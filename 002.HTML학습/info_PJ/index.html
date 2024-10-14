@@ -2,8 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta 
+    name="viewport" 
+    content="width=device-width, initial-scale=1.0" 
+    />
     <title>네이버요약뉴스 2024.10</title>
+    <!-- 스타일요소 -->
+     <style>
+      /* css 인터널 코딩구역 */
+      /* 
+        선택자{
+        속성:값;
+
+        ->선택자는 기본적으로
+        요소명 / 아이디명 / 클래스명
+        }
+      */
+      /* header{ 요소명 */
+      /* #top-area{ 아이디 */
+      .part{/* 클래스명 */
+        /* 보더(경계선) */
+      border: 10px solid #f00;
+      /* 안쪽여백(패딩) */
+     padding: 15px;
+      }
+     </style>
   </head>
   <body>
     <!-- 1. 상단영역 -->
@@ -13,18 +36,22 @@
       <!-- 1-2. 메뉴 -->
       <nav class="menu">
         <a href="index.html">
-          <img src="images/naver_logo.png" alt="네이버로고" />
+          <img 
+          src="images/naver_logo.png" 
+          style="width: 40px; vertical-align: middle"
+          alt="네이버로고"
+
+          />
         </a>
+        <a href="sub1.html">정치</a>
         <span> | </span>
-        <a href="sub.html">정치</a>
+        <a href="sub2.html">경제</a>
         <span> | </span>
-        <a href="sub.html">경제</a>
+        <a href="sub3.html">사회</a>
         <span> | </span>
-        <a href="sub.html">사회</a>
+        <a href="sub4.html">IT/과학</a>
         <span> | </span>
-        <a href="sub.html">IT/과학</a>
-        <span> | </span>
-        <a href="sub.html">TV/연예</a>
+        <a href="sub5.html">TV/연예</a>
       </nav>
     </header>
     <!-- <div id="header"></div> -->
@@ -49,13 +76,32 @@
         7. article : 독립된 내용구분파트
         ( section/article 내부에 h1~h6 태그사용권고)       
          
-         [ 요소 명명법 ]
-         1. 아이디는 #, 클래스는 . (약어로만들기)
-         2. 이름은 구체적으로 만들고
-         단어마다 데쉬(-)를 사용함(케밥케이스)
-         3. 아이디는 유일함, 클래스는 다중적용가능
-         예) <div class="aa bb cc" id="ee"></div>
+        [ 요소 명명법 ]
+        1. 아이디는 #, 클래스는 . (약어로만들기)
+        2. 이름은 구체적으로 만들고
+        단어마다 데쉬(-)를 사용함(케밥케이스)
+        3. 아이디는 유일함, 클래스는 다중적용가능
+        예) <div class="aa bb cc" id="ee"></div>
 
-         -->
+        [ img 요소 ]
+        - img 는 이미지를 불러오는 요소
+        - 필수속성
+            1) src : 이미지경로
+            2) alt : 대체텍스트(웹접근성 필수)
+            -> alternative text
+
+        [ 요소의 구성 ]
+        1.요소명 - 요소별 특징을 구분하는 이름
+        2. 속성 - 요소가 가지는 개별 셋팅값을 저장함
+        ->속성값은 쌍따옴표 안에 표기함
+        표기) <요소명 속성="값">
+        -> 요소의 문자는 모두 소문자를 원칙으로 한다.
+
+        [ 요소 공통속성 ] 
+        1. style 속성 : 요소에 인라인으로 css속성값을 셋팅함
+        예) <요소명 style="속성:값;속성:값;">
+        2. title 속성 : 툴팁제공속성(마우스오버시 등장)
+
+
   </body>
 </html>
