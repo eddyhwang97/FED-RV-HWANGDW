@@ -9,7 +9,7 @@
 2. 필수 플러그인
  1) korean language pack : 한국어팩
    : 모든 메뉴 등 한국어 지원
- 2) image preview
+ 2) image preview   
    : 이미지 미리보기 기능 지원
  3) Live Server
    : 브라우저 실시간 미리보기
