@@ -9,10 +9,31 @@
     <title>
       네이버요약뉴스 2024.10
     </title>
+    <!-- 웹폰트 CDN방식 호출하기 -->
+    <!-- CDN은 Contant Delivery Network
+      네트웍으로 컨텐트 불러오기 -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gugi&display=swap"
+      rel="stylesheet"
+    />
     <!-- 스타일요소 -->
 
     <style>
       /* css 인터널 코딩구역 */
+      /* 웹폰트 */
+      @import url('https://fonts.googleapis.com/css2?family=Dongle&family=Gasoek+One&family=Gugi&family=Jua&display=swap');
+
+      
+      @import url('https://fonts.googleapis.com/css2?family=Dongle&family=Gasoek+One&family=Gugi&family=Jua&family=Sunflower&display=swap');
       /* 
         선택자{
         속성:값;
@@ -28,10 +49,66 @@
         /* 상단영역 중앙정렬 tac*/
         text-align: center;
         /* 배경색 bgc*/
-        background-color: #c8e9c6;
+        background-color: #c8e9c66e;
       }
+      /* 전체 타이틀 
+      css에서 띄어쓰기는 하위요소를 선택함
+      */
+      #top-area h1{
+        /* 글자체ff
+        콤마로 연결된 글자체는 앞의체가 없을 경우
+        대체체임! 모두 없을시 브라우저가 기본체 나옴 */
+      font-family: "Gugi", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 40px;
+      color: #1d6f04;
+      /* 글자그림자 ts
+      text-shadow: x축, y축, 블러 색;*/
+
+      text-shadow: 3px 5px 3px #00000054;
+      }
+
+      /* 메뉴 a요소
+      기본세팅된 글자색, 밑줄 변경
+      */
+      .menu a{
+        /* 글자체 */
+        font-family: "Dongle", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        /* 글자색 */
+        color: darkkhaki;
+        /* 글자밑줄없앰 tdn */
+        text-decoration: none;
+        font-size: 35px;
+        font-weight: bold;
+
+      }
+      /* 첫번째 a메뉴를 빼고 두번째부터 끝ㄴ까지 양쪽마진 적용하기
+      주의) 인라인요소는 위아래 마진적용안됨! 
+      */
+      .menu span+a{
+        /* 앞에 span 형제요소가 있는 a만 선택
+        +는 형제선택자 */
+        margin: 4px;
+      }
+
+      /* a요소에 마우스 오버시 */
+      .menu span+a:hover{
+        /* 글자색 */
+        color: rgb(212, 161, 33);
+        /* 글자윗줄 tdo */
+        text-decoration: overline;
+        /* 글자데코 스타일 tdst*/
+        text-decoration-style: dotted;
+
+
+      }
+
+
       /* 2. 메인영역 */
-      #main-area{
+      #main-area {
         /* 위, 아래, 마진 
         ->양쪽 auto는 박스중앙정렬
         */
@@ -60,14 +137,12 @@
         즉, 자동으로 같은 크기배분
         ->마.영.오!!((웹의 기본적인 중력은 위.왼))
         */
-          
       }
 
       /* 3. 하단영역 */
       #info-area {
         /* 배경색 bgc */
         background-color: #e7d8d8;
-        
       }
 
       /* 최상위박스 공통 */
@@ -90,7 +165,7 @@
           종류(선형solid, 데쉬선dashed, 점선dotted
         */
 
-        border: 3px dashed #12ea6f;
+        border: 3px dashed #035125;
         /* 둥근모서리 */
         border-radius: 30px;
         /* 안쪽여백(패딩) */
@@ -99,11 +174,20 @@
 
       /* 주석 */
       address {
+        /* 글자체 */
+        font-family: "Sunflower", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        font-size: 15px;
+        font-weight: bold;
         /* 기본이탤릭체 해제하기 */
         font-style: normal;
         /* 글자 중앙정렬 */
         text-align: center;
+
+
       }
+      
     </style>
   </head>
   <body>
@@ -123,6 +207,7 @@
             alt="네이버로고"
           />
         </a>
+        <span></span>
         <a href="sub1.html">정치</a>
         <span> | </span>
         <a href="sub2.html">경제</a>
@@ -146,8 +231,9 @@
     <!-- 3. 하단영역 -->
     <footer id="info-area" class="part">
       <address>
-        서울시 강남구 역삼동 119 대호B <br>
-        8F 대표: Tom Brace Parker <br>
+        서울시 강남구 역삼동 119 대호B
+        <br />
+        8F 대표: Tom Brace Parker <br />
         전화:010-2222-3333
       </address>
     </footer>
