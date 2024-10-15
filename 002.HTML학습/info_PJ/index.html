@@ -21,14 +21,42 @@
         }
       */
       /* header{ 요소명 */
-      /* #top-area{ 아이디 */
+
+
+      /* 1. 상단영역 */
+      #top-area{ /* 아이디 */
+        /* 상단영역 중앙정렬 */
+        text-align: center;
+      }
+      /* 2. 메인영역 */
+
+      /* 3. 하단영역 */
+      
+
+
+      /* 최상위박스 공통 */
       .part {
         /* 클래스명 */
-        /* 보더(경계선) */
-        border: 10px solid #f00;
+        /* 보더(경계선) 
+          boarder : 두께 종류 색상
+          종류(선형solid, 데쉬선dashed, 점선dotted
+        */
+          
+        border: 2px dashed #12ea6f;
         /* 안쪽여백(패딩) */
         padding: 15px;
       }
+      
+      /* 주석 */
+      address{
+        /* 기본이탤릭체 해제하기 */
+        font-style: normal;
+        /* 글자 중앙정렬 */
+        text-align: center;
+      }
+      
+
+
     </style>
   </head>
   <body>
@@ -72,7 +100,15 @@
     <footer
       id="info-area"
       class="part"
-    ></footer>
+    >
+      <address>
+        서울시 강남구 역삼동 119 대호B 8F
+        대표: Tom Brace Parker
+        전화: 010-2222-3333
+
+      </address>
+  
+  </footer>
     <!-- <div id="footer"></div> -->
 
     <!-- [ HTML5에서 등장한 div 친구들 ]
@@ -113,5 +149,6 @@
         예) <요소명 style="속성:값;속성:값;">
         2. title 속성 : 툴팁제공속성(마우스오버시 등장)
          -->
+        
   </body>
 </html>
