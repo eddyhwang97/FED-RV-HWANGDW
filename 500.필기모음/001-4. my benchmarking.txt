@@ -1,7 +1,22 @@
 
 
--평가기준:
+-uiux평가기준:
 사용성/컨텐츠/디자인/창의성
+
+기술평가기준
+1. semandic/SEO search engine optimization
+- 시맨틱 트그사용 및 검색최적화
+2. Animation/ Transition
+-애니메이션 및 트랜지션 사용
+3. Accessibility
+- 컨텐츠 접근성
+4. WPO Web performace optimization
+- 웹최적화
+5. responsive Design
+- 반응형웹 디자인 적용
+6. Markup/ Meta-data
+- 데이터 구조화 및 메타데이터
+
 
 https://reown.com/
 https://halomedia.com/studio/
