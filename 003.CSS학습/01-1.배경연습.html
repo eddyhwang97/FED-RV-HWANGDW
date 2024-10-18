@@ -2,9 +2,68 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>01-1.배경연습</title>
-    <style></style>
+    <style>
+      /*  스타일시트 인터널 코딩규역*/
+      /* 초기화
+      - 기본 디자인 셋팅을 없애는 코드
+      - 마진, 패딩 없애기가 기본 초기화임
+      */
+      html,
+      body,
+      h1 {
+        /* 콤마는 그룹선택자임! */
+        margin: 0;
+        padding: 0;
+      }
+      /* 보이는 화면만큼 최상위 요소 맞추기 */
+        html,body{
+          height: 100%;
+          /* 항상 %단위는 싸고 있는 부모 박스를 기준으로 한다. 
+          body는 html을 기준하고 html은 보이는 화면을 기준으로 한다!
+          보이는 화면을 window라고함*/
+        } 
+
+        /* 타이틀 */
+        h1{
+          /* 패딩 p50 */
+          padding: 50px;
+          /* 중앙정렬 tac */
+          text-align: center;
+        }
+
+        /* body요소안에 배경넣기 */
+        body{
+          /* 주의 : html에 배경을 넣지 말자 */
+          /* 1. 배경색 bgc */
+          background-color: rgb(112, 148, 214);
+
+          /* 2.   배경이미지 : bgi -> url() 
+          기본적으로 배경은 반복된다!*/
+          background-image: url(./imgs/bg_logo_a_01.png);
+
+          /* 3. 배경반복여부 : bgr 
+          값 : 
+          repeat-x
+          repeat-y
+          repeat : 모든축반복)기본값
+          no-repeat : 반복안함
+          */
+          background-repeat: no-repeat;          
+
+          /* 화면고정 : bga 
+          배경고정여부는 스크롤바가 있어야 확인된다.(스크롤시 움직이지 않게함*/
+          /* background-attachment: fixed;
+          height: 200%; */
+          background-position: right;
+
+
+        }
+    </style>
   </head>
   <body>
     <div class="wrap">
