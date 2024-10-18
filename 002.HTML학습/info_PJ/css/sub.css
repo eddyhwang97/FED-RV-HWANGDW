@@ -38,7 +38,50 @@ h2.sub-title{
     padding: 20px;
     /* 둥근모서리 brad */
     border-radius: 20px;
-    background: url(../images/);
+    background: url(../css/title_bg/titbg4.jpg) no-repeat center/cover ;
+    /* 배경한번에 넣기: 색이반고윙/크 */
+
+    /* 박스그림자 bxsh
+    box-shadow: 내부그림자(insert) x y 블러 (확장) 색;
+    ->블러 뒤에 확장옵션에 px값을 주면 그림자가 더 커진다. 박스그림자에만 이 옵션이 있다.
+    콤마로 연결하면 박스그림자는 모두 다중 그림자 적용 가능!!
+    */
+    box-shadow: inset 0 0 10px #000,
+    0 0 20px 5px rgb(47, 126, 175) ;
+}
+/* css 적용우선순위
+0. 속성값 안에 !important 라고 쓰면 가장 최우선 적용
+1. 인라인셋팅 : 태그안에 style속성 셋팅
+2. 종속선택요소 : 태그명#아이디명 or 태그.클래스명
+3. 아이디요소 : #이름
+4. 클래스요소 : .이름
+5. 요소명 : 태그명
+-레벨이 같은 경우에는 나중에 쓴것이 덮어써진다.
+*/
+/* 페이지별 타이틀 박스 디자인 변경 */
+/* 정치뉴스 */
+h2.politics{
+    background-image: url(../css/title_bg/titbg1.jpg);
+    /* 글자색변경 */
+    color: darkblue;
+}
+/* 경제뉴스 */
+h2.economics{
+    background-image: url(../css/title_bg/titbg2.jpg);
+    /* 글자색변경 */
+    color: darkgoldenrod;
+}
+/* 사회뉴스 */
+h2.social{
+    background-image: url(../css/title_bg/titbg3.jpg);
+    /* 글자색변경 */
+    color: darkgray;
+}
+/* tv/연애뉴스 */
+h2.TV{
+    background-image: url(./title_bg/titbg5.jpg);
+    /* 글자색변경 */
+    color: rgb(255, 174, 174);
 }
 
 /* 2-2. 언론사 로고  */
