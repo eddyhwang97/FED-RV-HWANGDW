@@ -16,6 +16,7 @@
 - 반응형웹 디자인 적용
 6. Markup/ Meta-data
 - 데이터 구조화 및 메타데이터
+ㅇㄹㅇㄹㅇㄹㅇ
 
 
 https://reown.com/

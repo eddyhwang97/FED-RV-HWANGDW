@@ -45,7 +45,6 @@
           /* 2.   배경이미지 : bgi -> url() 
           기본적으로 배경은 반복된다!*/
           background-image: url(./imgs/bg_logo_a_01.png);
-
           /* 3. 배경반복여부 : bgr 
           값 : 
           repeat-x
@@ -67,10 +66,69 @@
           -수치값 : px, %, em등 여러단위 사용가능
           - % 단위는 기준이 이미지의 중앙이다.
           */
-
+          /* 포지션 따로쓸 수 있음 */
           background-position: right bottom;
+          
+          /* 배경이미지크기 : background-size(bgz) 
+          정해진값 :
+          1. contain - 이미지가 화면을 채우고 모두보임
+          2. cover - 이미지가 박스를 모두 채우고 잘리는 부분이 있을 수 있음
+          3. 수치값 : 가로, 세로
+          */
+            background-size: 100px, 300px;
 
+            
+          /*
+          [배경속성 한꺼번에 쓰기] 
+          background : 배경색 이미지 반속 고정 위치/크기
+          background : 색이반고윙/크
+          -주의 : 위치값 없이 크기만 고정하고 싶을때
+          반드시 위치값을 0이라도 쓰고 슬래쉬 뒤에 크기를써야함!
+          예) backgound : #000 url() no-repeat 0.right;
 
+             */
+        }
+
+        /* body아래 .wrap박스 */
+        .wrap{
+          height: 100%;
+          /* 높이값을 body와 같이 화면만큼 채운다 */
+          /* 
+          배경 한번에 쓰기를 사용하면
+          여러개의 배경이미지를 넣을 수 있다!
+          backgound : 색이반고윙/크, 색이반고윙/크,...
+
+          콤마로 구분하여 연속 셋팅한다
+
+          ((특징))
+          1) 위쪽에 셋팅된 배경이미지가 위에 위치함
+          2) 위치값의 가로는 left, 세로는 center가 기본값임
+          3) 위치가 크기의 특정겂을 쓰지 않으면 기본값이 적용됨
+          4) 위치값을 0을 쓰면 기본값인 left center가 적용됨
+          5) 위치값을 %로 쓰면 성정박스의 %위치를 이미지 중심을 기준으로 위치하게됨
+          */
+
+          /* 배경이미지 다중적용하기 */
+          background: 
+          /* 도깨비 이름 */
+          url(./imgs/d01.png) no-repeat 50% 60%/140px,
+          /* 도깨비 */
+          url(./imgs/dc1.png) no-repeat center/400px,
+          /* 지은탁 이름 */
+          url(./imgs/d02.png) no-repeat 88.5% 11vw/95px,
+          /* 지은탁 */
+          url(./imgs/dc2.png) no-repeat right top/250px,
+          /* 저승사자 이름 */
+          url(./imgs/d03.png) no-repeat 16% 101%/99px,
+          /* 저승사자 */
+          url(./imgs/dc3.png) no-repeat left bottom/300px,
+          /* 써니이름 */
+          url(./imgs/d04.png) no-repeat 16% 14%/110px,
+          /* 써니 */
+          url(./imgs/dc4.png) no-repeat left top/300px,
+          /* 포스터 */
+          url(./imgs/bg_mainvisual.jpg) no-repeat 0/50%
+          ;
         }
     </style>
   </head>
