@@ -93,10 +93,24 @@ h2.TV{
 }
 /* 2-3. 기사제목 */
 .article-titel{
+    /* 글자크기 fz */
     font-size: 30px;
+    /* 글자색 c */
+    color: #121223;
 }
 /* 2-4 기사사진  */
+.article-picture{
+    /* figure요소 기본 마진 없앰 */
+    margin: 0;
+}
+.article-picture img{
+    width: 100%;
+}
 /* 2-5 기사내용 */
+.contents p{
+    font-size: 20px;
+    line-height: 1.9;
+}
 /* 2-5.5 주해영역 */
 /* 2-6. 기자정보 */
 /* 2-7. 기사원문 */
