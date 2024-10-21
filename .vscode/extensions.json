@@ -3,3 +3,6 @@
         "ritwickdey.liveserver"
     ]
 }
+find. -name.DS_store -print0 | xargs -0 git rm -f --ignore-unmatch
+
+echo DS.store >> .gitignore
