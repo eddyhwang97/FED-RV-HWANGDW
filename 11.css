@@ -1,30 +1,64 @@
 @charset "uft-8";
 
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: url(./img/Groot-Marvel-Cinematic-Universe-Guardians-of-the-Galaxy-superhero-1962739-wallhere.com.jpg)
+    no-repeat center;
+  background-size: cover;
+}
+.title {
+  text-align: center;
+  text-shadow: 5px 5px 5px #f3dfdf;
+  -webkit-text-stroke: #6e6e6e 1.5px;
+  font-size: 50px;
+}
+.main-cite {
+  text-align: center;
+}
+div a {
+  text-align: center;
+  color: #f3dfdf;
+}
+.h2,
+main-cite,
+a {
+  color: #f3dfdf;
+  text-shadow: 5px 5px 5px #f3dfdf;
+  text-decoration: none;
+}
 
-        
-body{
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background: url(./img/Groot-Marvel-Cinematic-Universe-Guardians-of-the-Galaxy-superhero-1962739-wallhere.com.jpg) no-repeat center;
-    background-size: cover;
+div {
+  width: 200px;
+  height: 150px;
+  font-size: 30px;
 }
-.title{
-    text-align: center;
-    text-shadow: 5px 5px 5px #f3dfdf;
-    -webkit-text-stroke: #6e6e6e 1.5px;
-    font-size: 50px;
+.info {
+  position: absolute;
+  top: 150px;
+  left: 300px;
+  animation: ani 1s infinite alternate;
 }
-.main-cite{
-    text-align: center;
+@keyframes ani {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 100px);
+  }
 }
-div a{
-    text-align: center;
-    color: #f3dfdf;
+.gg {
+  position: absolute;
+  top: 150px;
+  right: 300px;
+  animation: ani 1s infinite alternate;
 }
-.h2,main-cite,a{
-    color: #f3dfdf;
-    text-shadow: 5px 5px 5px #f3dfdf;
-    text-decoration: none;
+@keyframes ani {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 100px);
+  }
 }
-
