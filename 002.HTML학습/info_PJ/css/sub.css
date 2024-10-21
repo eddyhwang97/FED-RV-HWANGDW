@@ -23,7 +23,7 @@ h2.sub-title{
     /* 글자체(웹폰츠) font-family: ; ff */
     font-family: "Dongle", sans-serif;
     /* 글자크기 font-size (fz) */
-    font-size: 50px;
+    font-size: 80px;
     /* 글자두께 font-weight (fw)
     두껍게 bold(fwb), 보통 normal(fwn) */
     font-weight: normal;
@@ -32,7 +32,7 @@ h2.sub-title{
     /*  배경색 : bgc */
     background-color: pink;
     /* 글자그림자 ts */
-    text-shadow: 2px 2px 2px #00000076;
+    text-shadow: 2px 2px 4px #00000076;
     /* 빅스디자인 */
     /* 패딩 */
     padding: 20px;
@@ -105,13 +105,100 @@ h2.TV{
 }
 .article-picture img{
     width: 100%;
+
+}
+/* 이미지설명 
+figcaption은 블록요소다!*/
+
+.article-picture figcaption{
+    /*  텍스트 가운데 정렬 tac */
+    text-align: center;
+    
+}
+/* 하위요소에 지정된 속성은 그 요소에서 
+재정의 해야 적용됨!
+예컨데 글자크키가 이미 small태그에 적용되어 있어서 여기에 재정의해야함. */
+.article-picture figcaption small{
+    /* 글자크기 15px : fz15 */
+    font-size: 15px;
 }
 /* 2-5 기사내용 */
 .contents p{
+    /* 기본마진 없애고 아래쪽 마진만 줌 */
+    margin: 0px;
+    margin-bottom: 5px;
+
     font-size: 20px;
     line-height: 1.9;
+    /* 
+    [줄간격 : line-height]
+    - 박스요소의 글자의 간격 높이를 지정하는 속성
+    -글자는 높이값의 세로 정중앙에 위치한다.
+    -단위를 사용하면 특정크기로 지정됨
+    -단위없는 숫자로표현하면 글자크기의 배수로 상대적 크기가 적용됨
+    -젠코당시 숫자만 쓰면 배수로 표현되므로 주의 요망!! 
+    예) lh20->line-height : 20;
+    */
+    color: #303038;
 }
-/* 2-5.5 주해영역 */
+
+/* 중요글자 strong */
+.contents p strong{
+    color: darkred;
+}
+/* 깅조글자 em */
+.contents p em{
+    /* 글자색 */
+    color: lightseagreen;
+    /* 글자그림자 ts */
+    text-shadow: 2px 2px 2px #0000007a;
+    /* 글자윗줄 overline */
+    text-decoration: underline wavy;
+    /* text-decoration: 유형 (스타일) */
+}
+/* 2-5.5 인용블록영역 */
+.quote-box{
+    /* 윗쪽보더주기 */
+    border-top: 2px dashed #8a8a8a;
+    /* 윗쪽마진 */
+    margin-top: 20px;
+}
+.quote-box h4{
+    /* 가로크기 내용만큼 설정위해 display 변경 
+    ->inline  (패딩 디자인이 실제 공간의 차지하지 않음)
+    ->inline-block (블록처럼 디자인적용되는 인라인요소)
+    */
+        display: inline-block;
+    /* 배경색 */
+    background-color: #e6e6e6;
+    /* 패딩 p */
+    padding: 15px;
+    /* 둥근모서리 brad*/
+    border-radius: 30px;
+    /* 박스그림자 pxsh*/
+    box-shadow: inset 0 0 10px #7b7b7b;
+}
+/* 인용구박스 */
+.quote-box blockquote{
+    /* 기본마진없앰 */
+    margin: 0;
+    /* 글자크기fz */
+    font-size: 20px;
+    /* 글자간격 lh */
+    line-height: 1.8;
+}
+/* 이미지 오른쪽으로 보내고 옆에 글자 흘러가기 */
+.quote-box blockquote img{
+    /* 나는 오른쪽에 있고(글자는 왼쪽에 흘러감) 
+    float: right flr */
+    float: right;
+    margin-left: 20;
+    text-align: justify;
+
+    
+}
+
+
 /* 2-6. 기자정보 */
 /* 2-7. 기사원문 */
 /* 주해영역 */
