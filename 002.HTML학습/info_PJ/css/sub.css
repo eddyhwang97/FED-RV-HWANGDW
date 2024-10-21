@@ -126,7 +126,7 @@ figcaption은 블록요소다!*/
 .contents p{
     /* 기본마진 없애고 아래쪽 마진만 줌 */
     margin: 0px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 
     font-size: 20px;
     line-height: 1.9;
@@ -194,8 +194,6 @@ figcaption은 블록요소다!*/
     float: right;
     margin-left: 20;
     text-align: justify;
-
-    
 }
 
 

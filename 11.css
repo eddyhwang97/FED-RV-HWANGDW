@@ -1,0 +1,30 @@
+@charset "uft-8";
+
+
+        
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url(./img/Groot-Marvel-Cinematic-Universe-Guardians-of-the-Galaxy-superhero-1962739-wallhere.com.jpg) no-repeat center;
+    background-size: cover;
+}
+.title{
+    text-align: center;
+    text-shadow: 5px 5px 5px #f3dfdf;
+    -webkit-text-stroke: #6e6e6e 1.5px;
+    font-size: 50px;
+}
+.main-cite{
+    text-align: center;
+}
+div a{
+    text-align: center;
+    color: #f3dfdf;
+}
+.h2,main-cite,a{
+    color: #f3dfdf;
+    text-shadow: 5px 5px 5px #f3dfdf;
+    text-decoration: none;
+}
+
