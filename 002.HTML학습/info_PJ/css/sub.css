@@ -103,6 +103,7 @@ h2.TV {
 }
 .article-picture img {
   width: 100%;
+  
 }
 /* 이미지설명 
 figcaption은 블록요소다!*/
@@ -187,7 +188,9 @@ figcaption은 블록요소다!*/
   /* 윗쪽보더주기 */
   border-top: 2px dashed #8a8a8a;
   /* 윗쪽마진 */
-  margin-top: 20px;
+  margin: 20px 0;
+  border-bottom: 2px dashed #8a8a8a;
+  padding: 15px;
 }
 
 /* 이미지 오른쪽으로 보내고 옆에 글자 흘러가기 */
@@ -195,18 +198,30 @@ figcaption은 블록요소다!*/
   /* 나는 오른쪽에 있고(글자는 왼쪽에 흘러감) 
     float: right flr */
   float: right;
-  /* 왼쪽마진 m1 */
-  margin-left: 20;
-  /* 마진탑으로 이미지 위치를 이동함 : mt */
-  margin-top: 15px;
-  /* 둥근모서리 : drad */
   border-radius: 10px;
+ /* 
+ 기본적으로 이미지는 인라인요소이며
+ 글자가 왼쪽으로 한줄 하단에 나열됨!
+ 글자가 옆에와서 흘러가게 하려면
+ float속성을 사용해야 한다.
+    float:left 이미지는 왼쪽에 글자는 오른쪽에
+    float:right 이미지는 오른쪽에 글자는 왼쪽에
+ */
+
+ /* 왼쪽마진 : m1 (이미지 왼쪽에 글자에 간격을줌)
+  */
 }
 
 /* 2-5.5 인용블록영역 */
 
 /* 2-6. 기자정보 */
+ .reporter{
+  /* 글자크기 fz*/
+  font-size: 20px;
+  /* padding */
+  padding: 15px 0;
 
+ }
 /* 2-7. 기사원문 */
 .article-link {
   /* 오른쪽정렬 */
@@ -237,9 +252,54 @@ figcaption은 블록요소다!*/
   /* 글자크기 fz */
   font-size: 20px;
 }
-/* 기사원문 오버시 변경 */
+/* 기사원문 오버시 변경 
+  :hover는 마우스 오버시 가상클래스임!
+  선택요소에 붙여서 사용함
+  가상클래스란 마치 클래스를 준것 같다
+*/
+
 .article-link a:hover{
+  /* 배경색변경 : bgc */
     background-color: yellowgreen;
+    /* 글자색변경 : c */
+    color: red;
+    /* 그림자 bxsh */
+    box-shadow: 0 0 10px 5px #000;
+    /* box-shadow x y 블러 확대 색 */
 }
 /* 주해영역 */
 /* 오늘의 작품&느낌 */
+.work{
+  /* 전제 정렬 중앙 */
+  text-align: center;
+  
+}
+/* 타이틀 */
+.work h4{
+  font-family: 'Dongle';
+    font-size: 50px;
+    font-weight: normal;
+    margin: 0;
+    color: #555;
+}
+/* 이미지박스 */
+.work figure {
+   /*기본마진없애기 */
+   margin: 0;
+   padding: 15px;
+}
+/* 작품이미지 */
+.work img {
+    border: 20px ridge goldenrod;
+}
+.work figcaption{
+  font-size: 30px;
+  color: lightcoral;
+  font-weight: bold
+}
+/* 작품명만 따로 디자임 */
+/* cite는 작품명요소(시맨틱 구조화다!) */
+.work figcaption cite{
+color: darkolivegreen;
+font-style: normal;
+}

@@ -63,9 +63,4 @@ div {
     transform: translate(0, 100px);
   }
 }
-.groot{
-  width: 1200px;
-  height: 900px;
-  display: grid;
-  place-items: center;
-}
+
