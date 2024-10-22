@@ -270,8 +270,31 @@ figcaption은 블록요소다!*/
 /* 주해영역 */
 /* 오늘의 작품&느낌 */
 .work{
-  /* 전제 정렬 중앙 */
+  /* 전제 정렬 중앙 *//* 그라데이션 
+        [ 선형 그라데이션 : linear-gradient ]
+        linear-gradient(방향,색1,색2,...);
+        linear-gradient(방향,색1 몇%,색2 몇%,...);
+        linear-gradient(각도,색1 몇%,색2 몇%,...);
+        - 옵션 : 
+        1. 방향: to top, to bottom, to left, to right
+        2. 각도: 각도deg
+        3. 콤마로 나열된 색상 뒤에 %수치를 쓰면 비율조정가능
+    */
   text-align: center;
+  /* 백그라운드 그라디언트 */
+  background: linear-gradient(45deg, #d49090, #b6ca7a, #6cc7ac, #5d5ac6);
+  /* 박스 그림자 
+        box-shadow: x축 y축 blur spread 색
+        1.x축 - 가로축 이동
+        2.y축 - 세로축 이동
+        3.blur - 경계선 흐림
+        4.spread - 그림자 기존크기 보다 더한크기
+        5.색 - 그림자 색
+        ->> 내부 그림자일 경우 inset 키워드를 앞에씀
+        box-shadow: inset x축 y축 blur spread 색
+        ->> spread는 필요시에 작성함
+    */
+  box-shadow: inset 0 0 15px 4px #000;
   
 }
 /* 타이틀 */
@@ -290,7 +313,7 @@ figcaption은 블록요소다!*/
 }
 /* 작품이미지 */
 .work img {
-    border: 20px ridge goldenrod;
+    border: 20px ridge gold;
 }
 .work figcaption{
   font-size: 30px;

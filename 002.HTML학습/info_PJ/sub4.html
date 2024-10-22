@@ -30,14 +30,16 @@
     <!-- <style></style> -->
 
     <!-- 외부 CSS불러오기 -->
-     <!-- 공통 css불러오기 -->
+    <!-- 공통 css불러오기 -->
     <link
       rel="stylesheet"
       href="css/common.css"
-      
     />
     <!-- 서브 CSS불러오기 -->
-     <link rel="stylesheet" href="./css/sub.css">
+    <link
+      rel="stylesheet"
+      href="./css/sub.css"
+    />
   </head>
   <body>
     <!-- 1. 상단영역 -->
@@ -193,8 +195,8 @@
           <q>
             이러한 신호는 동물이 인간과
             놀 때 즐거움을 표현하는 한편
-            갈등을 피하게 하는데
-            도움이 된다 </q
+            갈등을 피하게 하는데 도움이
+            된다 </q
           >고 설명했다.
         </p>
 
@@ -214,9 +216,12 @@
         <p>
           병코돌고래는 무리지어 생활하며
           사회적 능력이 뛰어난 해양
-          동물로 알려져 있다. <abbr title="물 위로 점프하는 등의 장난기 있는 행동">물쩜장</abbr>을 포함해 복잡한
-          상호작용을 할 줄 아는 것으로
-          유명하다.
+          동물로 알려져 있다.
+          <abbr
+            title="물 위로 점프하는 등의 장난기 있는 행동"
+            >물쩜장</abbr
+          >을 포함해 복잡한 상호작용을
+          할 줄 아는 것으로 유명하다.
         </p>
 
         <p>
@@ -281,7 +286,6 @@
           있다.
         </p>
         <!-- 반대방향출력(예 : 아랍어) -->
-        
       </section>
 
       <!-- 2-5.5. 인용블록박스 -->
@@ -310,7 +314,6 @@
           있다.
         </blockquote>
       </article>
-     
 
       <!-- 2-6. 기자정보 -->
       <div class="reporter">
@@ -345,9 +348,149 @@
       <article class="work">
         <!-- 오늘의 작품&느낌 -->
         <h4>오늘의 작품 &amp; 느낌</h4>
-        <figure><img src="./images/munch.jpg" alt="뭉크의 절규"><figcaption><cite>뭉크의 &lt;절규&gt;</cite></figcaption></figure>
+        <figure>
+          <img
+            src="./images/munch.jpg"
+            alt="뭉크의 절규"
+          />
+          <figcaption>
+            <cite
+              >뭉크의 &lt;절규&gt;</cite
+            >
+          </figcaption>
+        </figure>
+      </article>
+      <!-- 
+          [ 순서없는 리스트 : ul ]
+          unordered list
+
+          (참고: 블릿옵션
+          https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_ul_type_css)
+
+          [ 순서있는 리스트 : ol ]
+          ordered list
+
+          (참고: 순서표시옵션
+          https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_ol_type_all_css)
+
+          [ ul/ol 공통사항 ]
+          - 하위필수요소 : li (개별리스트)
+          - 주의 : 하위에 li 이외의 블록요소나 
+          그 어떤 요소도 직계자식으로 사용할 수 없다!
+          예) <ul><li></li><div></div></ul> -> 사용불가!
+
+         -->
+      <!-- 주요뉴스: ul -->
+      <article
+        class="main-news news-box"
+      >
+        <h3>주요뉴스</h3>
+        <ul>
+          <li>
+            <a
+              href="https://n.news.naver.com/article/057/0001848718?cds=news_media_pc&type=editn"
+              >에어쇼 중 비행기
+              추락…영화 '탑건' 배우
+              가르친 조종사 사망</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://n.news.naver.com/article/648/0000029940?cds=news_media_pc&type=editn"
+              >삼성전자만 팔아치운
+              외국인…'5만전자' 추가 하락
+              가능성은 낮아</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/hotissue/article/277/0005487858?cid=1064715&type=series&cds=news_media_pc"
+            >
+              [단독]내달 폴란드
+              독립기념일날 ‘K-방산 또
+              잭팟’[양낙규의 Defence
+              Club]
+            </a>
+          </li>
+        </ul>
 
       </article>
+        <class="rank-news news-box"
+      >
+        <h3>랭킹뉴스</h3>
+        <ol>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/ranking/article/277/0005487959?ntype=RANKING"
+              >500엔 받았는데 알고보니 韓 500원…日 지금도 사기 활개</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/ranking/article/277/0005488095?ntype=RANKING"
+              >"더본코리아에 투자하세요"…'흑백요리사' 백종원 사칭 사기 발생</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/ranking/article/277/0005487750?ntype=RANKING"
+            >
+            "100억 빚 힘들다"더니 "500억 자산가"…개그맨, 거짓방송 논란
+            </a>
+          </li>
+        </ol>
+      </article>
+      <!-- 
+          [ 용어정의리스트 : dl ]
+          
+          dl > dt + dd
+          __________________
+
+          dl : 용어 리스트
+          (defines the description list)
+          dt : 용어정의
+          (defines the term)
+          dd : 용어설명
+          (description each term)
+          ________________________
+          주의 - dl은 반드시 자식요소로 dt와 dd가
+          반드시 한번이상 사용되어야 함!!!
+          또 주의 - dt와 dd는 형제관계임!(자식아님!)
+          --> 
+
+          <!-- 분야별 뉴스 : dl-->
+        <article class="sec_news news_box">
+          <h3>분야별 뉴스</h3>
+          <dl>
+            <!-- 경제파트 -->
+             <dt>경제</dt>
+             <dd>
+              <a href="https://n.news.naver.com/mnews/article/014/0005256340" target="_blank">두산 사업재편 재시동… "주식 더 준다"</a>
+              <a href="https://n.news.naver.com/mnews/article/008/0005103940" target="_blank">층간소음 저감 솔루션 개발사 '메타이노텍', 프리A 투자유치</a>
+             </dd>
+          
+            <!-- 사회파트 -->
+            <dt>사회</dt>
+            <dd>
+            <a href="https://n.news.naver.com/mnews/article/052/0002103032" target="_blank">[현장영상+] '불법 도박' 개그맨 이진호 서울 강남경찰서 출석..."죄송합니다"</a>
+            <a href="https://n.news.naver.com/mnews/article/003/0012855403" target="_blank">"노동자 44%, 포괄임금 받고 있어…세전 월 임금 평균 292만원"</a>
+            </dd>
+            
+            <!-- TV/연애파트 -->
+            <dt>TV/연애파트</dt>
+            <dd>
+              <a href="https://m.entertain.naver.com/article/108/0003275782" target="_blank">"40시간 날아가"..'아마존 활명수' 류승룡X진선규, 웃음·감동 제대로 쐈다 [종합]
+              </a>
+              <a href="https://m.entertain.naver.com/article/311/0001786357" target="_blank">유연석 '개발' 논란 흔들…"넌 오늘 진짜 손흥민" (틈만 나면,)
+              </a>
+            </dd>
+            </dl>
+        </article>
+
       <!-- 
       [ html요소에서 특수문자 처리]
       & 엔퍼센트 &amp;
