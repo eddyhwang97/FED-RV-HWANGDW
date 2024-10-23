@@ -1,71 +1,7 @@
 @charset "uft-8";
 
 body {
-  margin: 0;
+  margin: 20px;
   padding: 0;
-  background: #000;
-  max-width: 1920px;
-  
+  background-color: #272727;
 }
-/* 타이틀 */
-.title {
-  text-align: center;
-  text-shadow: 5px 5px 5px #f3dfdf;
-  -webkit-text-stroke: #6e6e6e 1.5px;
-  font-size: 50px;
-}
-
-div a{
-  width: 200px;
-  height: 150px;
-  font-size: 30px;
-  color: #f3dfdf;
-  text-shadow: 3px 3px 10px #f3dfdf;
-  -webkit-text-stroke: #6e6e6e 1px;
-text-decoration: none;
-}
-
-/* 글자애니 */
-.info {
-  position: absolute;
-  top: 150px;
-  left: 300px;
-  animation: ani 1s infinite alternate;
-}
-
-@keyframes ani {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(0, 100px);
-  }
-}
-/* 글자애니 */
-.gg {
-  position: absolute;
-  top: 150px;
-  right: 300px;
-  animation: ani 1s infinite alternate;
-}
-@keyframes ani {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(0, 100px);
-  }
-}
-div .inner{
-  height: 680px;
-  margin: auto 50%;
-  display: inline-block;
-  
-}
-.outer{
-  display: flex;
-}
-
-
-
-
