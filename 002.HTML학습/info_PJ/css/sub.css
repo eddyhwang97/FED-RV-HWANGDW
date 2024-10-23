@@ -103,7 +103,6 @@ h2.TV {
 }
 .article-picture img {
   width: 100%;
-  
 }
 /* 이미지설명 
 figcaption은 블록요소다!*/
@@ -199,7 +198,7 @@ figcaption은 블록요소다!*/
     float: right flr */
   float: right;
   border-radius: 10px;
- /* 
+  /* 
  기본적으로 이미지는 인라인요소이며
  글자가 왼쪽으로 한줄 하단에 나열됨!
  글자가 옆에와서 흘러가게 하려면
@@ -208,20 +207,19 @@ figcaption은 블록요소다!*/
     float:right 이미지는 오른쪽에 글자는 왼쪽에
  */
 
- /* 왼쪽마진 : m1 (이미지 왼쪽에 글자에 간격을줌)
+  /* 왼쪽마진 : m1 (이미지 왼쪽에 글자에 간격을줌)
   */
 }
 
 /* 2-5.5 인용블록영역 */
 
 /* 2-6. 기자정보 */
- .reporter{
+.reporter {
   /* 글자크기 fz*/
   font-size: 20px;
   /* padding */
   padding: 15px 0;
-
- }
+}
 /* 2-7. 기사원문 */
 .article-link {
   /* 오른쪽정렬 */
@@ -229,7 +227,7 @@ figcaption은 블록요소다!*/
 }
 /* 자식요소a는 인라인이므로 크기 적용안됨
 따라서 디자인 적용되는 인라인요소인 inline-block을 사용한다. */
-.article-link a{
+.article-link a {
   display: inline-block;
   width: 100px;
   height: 100px;
@@ -239,9 +237,9 @@ figcaption은 블록요소다!*/
   /* 세로중앙 */
   /* vertical-align: middle; ->인라인요소만 세로정렬
    -> 세로중양정렬은 table-cell 디스플레이에서만 적용됨, 여기서는 line-height를 높이값과 같이 줌! */
-   
-   line-height: 100px;
-   /* 정원은 둥근모서리값 50% */
+
+  line-height: 100px;
+  /* 정원은 둥근모서리값 50% */
   border-radius: 50%;
   /* 배경색 : bgc */
   background-color: lightgrey;
@@ -258,19 +256,19 @@ figcaption은 블록요소다!*/
   가상클래스란 마치 클래스를 준것 같다
 */
 
-.article-link a:hover{
+.article-link a:hover {
   /* 배경색변경 : bgc */
-    background-color: yellowgreen;
-    /* 글자색변경 : c */
-    color: red;
-    /* 그림자 bxsh */
-    box-shadow: 0 0 10px 5px #000;
-    /* box-shadow x y 블러 확대 색 */
+  background-color: yellowgreen;
+  /* 글자색변경 : c */
+  color: red;
+  /* 그림자 bxsh */
+  box-shadow: 0 0 10px 5px #000;
+  /* box-shadow x y 블러 확대 색 */
 }
 /* 주해영역 */
 /* 오늘의 작품&느낌 */
-.work{
-  /* 전제 정렬 중앙 *//* 그라데이션 
+.work {
+  /* 전제 정렬 중앙 */ /* 그라데이션 
         [ 선형 그라데이션 : linear-gradient ]
         linear-gradient(방향,색1,색2,...);
         linear-gradient(방향,색1 몇%,색2 몇%,...);
@@ -282,7 +280,13 @@ figcaption은 블록요소다!*/
     */
   text-align: center;
   /* 백그라운드 그라디언트 */
-  background: linear-gradient(45deg, #d49090, #b6ca7a, #6cc7ac, #5d5ac6);
+  background: linear-gradient(
+    45deg,
+    #d49090,
+    #b6ca7a,
+    #6cc7ac,
+    #5d5ac6
+  );
   /* 박스 그림자 
         box-shadow: x축 y축 blur spread 색
         1.x축 - 가로축 이동
@@ -295,34 +299,256 @@ figcaption은 블록요소다!*/
         ->> spread는 필요시에 작성함
     */
   box-shadow: inset 0 0 15px 4px #000;
-  
 }
 /* 타이틀 */
-.work h4{
-  font-family: 'Dongle';
-    font-size: 50px;
-    font-weight: normal;
-    margin: 0;
-    color: #555;
+.work h4 {
+  font-family: "Dongle";
+  font-size: 50px;
+  font-weight: normal;
+  margin: 0;
+  color: #555;
 }
 /* 이미지박스 */
 .work figure {
-   /*기본마진없애기 */
-   margin: 0;
-   padding: 15px;
+  /*기본마진없애기 */
+  margin: 0;
+  padding: 15px;
 }
 /* 작품이미지 */
 .work img {
-    border: 20px ridge gold;
+  border: 20px ridge gold;
 }
-.work figcaption{
+.work figcaption {
   font-size: 30px;
   color: lightcoral;
-  font-weight: bold
+  font-weight: bold;
 }
 /* 작품명만 따로 디자임 */
 /* cite는 작품명요소(시맨틱 구조화다!) */
-.work figcaption cite{
-color: darkolivegreen;
-font-style: normal;
+.work figcaption cite {
+  color: darkolivegreen;
+  font-style: normal;
+}
+
+/* 뉴스파트 공통 클래스: .news-box */
+.news-box {
+  /* 상단 보더 넣기 bdt */
+  border-top: 2px dashed #ccc;
+  /* 상단마진 m */
+  margin: 20px 0;
+  /* 위 아래 패딩 p */
+  padding: 20px 0;
+}
+/* 뉴스 타이틀 공통 */
+.news-box h3 {
+  /* 글자체(웹폰트) : ff */
+  font-family: Dongle;
+  /* 두껍지 않게 */
+  font-weight: normal;
+  /* 글자크기 fz */
+  font-size: 40px;
+  /* 배경그라데션 */
+  background: linear-gradient(
+    to right,
+    lightseagreen,
+    transparent
+  );
+  padding: 10px;
+}
+/* 뉴스박스 공통 a */
+.news-box a{
+  font-size: 17px;
+  line-height: 2.5;
+  color: #222;
+  text-decoration: none;
+
+  /* 한줄 말줄임 셋팅하기*/
+  /* 1. 줄바꿈 방지 whn : */
+  white-space: normal;
+  /* 2. 넘치는 요소 숨기기(전제조건 inline아닐것!) */
+  overflow: hidden;
+  display: block;
+  /* 넘치는 글자 말줄임표시 */
+  text-overflow: ellipsis;
+}
+
+/* 공통 a요소 오버시 가상클래서 :hover */
+.news-box a:hover {
+  color: rgb(125, 23, 175);
+  text-shadow: 1px 1px 1px #000000d6;
+}
+/* 뉴스파트 공통 초기화 필요
+ul.ol은 기본마진, 패딩, 블릿, 번호 등
+dl,dd은 기본마진있음 
+초기화 필요함*/
+.news-box ul,
+.news-box ol {
+  /* 마진, 패딩 0 */
+  margin: 0;
+  padding: 0;
+  /*  블릿, 숫자표시 리스트 없앰
+  :lin */
+  list-style: none;
+}
+
+/* ol은 숫자값 살리기 */
+.news-box ol {
+  list-style: decimal;
+  padding-left: 10px;
+}
+.news-box dl,
+.news-box dl dd{
+  margin: 0;
+}
+
+/* 주요뉴스 개별 설정하기 */
+.main-news a::before {
+  /* 가상요소 필수속성 contant : ct; */
+  content: "⛳️";
+  margin-right: 5px;
+  font-size: 20px;
+  /* url을 사용하면 이미지를 넣을 수 있으나 크기조정 안됨 */
+}
+
+
+/* 가상요소로 아이콘 넣기
+이미지같은 요소를 CSS에서 가상으로 넣을 수 있음
+(가상은 실제 태그요소가 아님)
+앞에넣는 가상요소는 ::before
+뒤에 넣는 가상요소는 ::after
+((기본 필수속성은? contant))
+*/
+/* 
+[ CSS의 가상요소 : before, after ]
+    - 모든 요소는 맨앞과 맨뒤에 가상요소를 사용할 수 있다!
+    - 가상요소 표기법은 요소명 뒤에 콜론2개를 겹쳐씀(::)
+    - 맨앞은 before, 맨뒤는 after
+    - 필수속성 : content
+    - 이미지는 content 속성값으로 url() 사용! 
+*/
+/* 
+주요뉴스의 li 순서에서 개별 선택하기
+글자색 변경하기!
+
+[같은종류의 형제요소 선택법]
+  ;first-child ->첫번째 자식
+  ;last-child ->마지막째 자식
+  ;nth-child(n) ->n번째 자식
+ */
+ .main-news li:first-child a{
+    color: red;
+ }
+ .main-news li:last-child a{
+    color: rgb(100, 190, 54);
+ }
+ .main-news li:nth-child(2) a{
+    color: rgb(65, 95, 192);
+ }
+
+
+ /* 분야별 뉴스 */
+ .sec-news dt{
+    font-size: 40px;
+    font-family: dongle;
+    border: 4px dotted #6cc7ac;
+    padding: 10px;
+    /* 내용만큼 가로크기 되도록 display변경
+    inline block ->dib */
+    display: inline-block;
+    /* 원형 둥근모서리 */
+    border-radius: 50%;
+ }
+ /* 
+ [여러종류의 태그에서 순서별 선택법]
+:first-of-type ->첫번째 자식
+  :last-of-type ->마지막째 자식
+  :nth-of-type(n) ->n번째 자식
+ */
+.sec-news dt:first-of-type{
+  color: #302f3a;
+  background-color: #964f8d;
+  border-color: yellowgreen;
+}
+.sec-news dt:last-of-type{
+  color: #302f3a(134, 207, 137);
+  background-color: #5397a1;
+  border-color: yellowgreen;
+}
+.sec-news dt:nth-of-type(2){
+  color: #302f3a;
+  background-color: #7b9f49;
+  border-color: yellowgreen;
+}
+.sec-news dd ::before{
+  content: '🤾';
+  margin-right: 5px;
+}
+/* 두번째 dt부터 마진탑 주기
+-> dt앞에 dd가 있는 모든 dt를 선택함!
+-> 형제 선택자 +사용함 : dd+dt
+*/
+.sec-news dd+dt{
+  margin-top: 20px;
+}
+
+.photo-news table{
+  /* 최대크기 설정 maw
+  최대 크기보다 작아지면 auto로 전환
+  */
+  max-width: 500px;
+  /* 테이블 기본 간격 없앰(정확한 수치화를 위해) */
+  border-collapse: collapse;
+  /* separate 가 기본값임(사이간격 있음) */
+
+  /* 테두리 */
+  border: 2px solid #ccc;
+  /* 테이블 중앙정렬 마영오!
+  블록요소, 테이블요소 모두 적용공통 */
+  margin: 0 auto;
+  
+}
+
+/* 첫번째 td : 숫자데이터 */
+.photo-news td:first-child{
+  /* 가로크기 */
+  width: 50px;
+  /* 세로크기 */
+  height: 84px;
+  /* 글자중앙 */
+  text-align: center;
+  /* 배경색 */
+  background-color: #ccc;
+}
+/* 두번째 td : 기사제목링크 부분 */
+.photo-news td:nth-child(2){
+    /* 배경색 bgc */
+    background-color: #e4e4e4;
+    /* 패딩 */
+    padding: 0 20px;
+}
+/* 세번째 td : 사진링크부분 */
+.photo-news td:last-child{
+  /* 배경색 */
+    background-color: #ddd;
+}
+
+/* 사진뉴스 a요소 셋팅 */
+.photo-news a{
+  /* 줄바꿈방지 설정 해제 :whn 
+  ->줄바꿈방지설정일 경우
+  테이블 td에서 크기가 글내용 만큼 밀려서 나오기 때문에
+  기본 줄바꿈으로 설정함!
+  */
+  white-space: normal;
+
+}
+/* 사진뉴스 이미지 크기셋칭 */
+.photo-news img{
+  width: 100px;
+  height: 70px;
+  vertical-align: middle;
+}
+/* 사이구분선 넣기 : 두번째 tr부터 */
+.photo-news tr+tr td{
+  border-top: 2px solid #ccc;
 }

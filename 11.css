@@ -3,29 +3,26 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
   background: #000;
+  max-width: 1920px;
   
 }
+/* 타이틀 */
 .title {
   text-align: center;
   text-shadow: 5px 5px 5px #f3dfdf;
   -webkit-text-stroke: #6e6e6e 1.5px;
   font-size: 50px;
 }
-.main-cite {
-  text-align: center;
-}
-div a {
-  text-align: center;
-  color: #f3dfdf;
-}
 
-
-div {
+div a{
   width: 200px;
   height: 150px;
   font-size: 30px;
+  color: #f3dfdf;
+  text-shadow: 3px 3px 10px #f3dfdf;
+  -webkit-text-stroke: #6e6e6e 1px;
+text-decoration: none;
 }
 
 /* 글자애니 */
@@ -59,4 +56,16 @@ div {
     transform: translate(0, 100px);
   }
 }
+div .inner{
+  height: 680px;
+  margin: auto 50%;
+  display: inline-block;
+  
+}
+.outer{
+  display: flex;
+}
+
+
+
 
