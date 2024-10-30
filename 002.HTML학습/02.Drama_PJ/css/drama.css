@@ -43,8 +43,12 @@ h2.tit{
 }
 
 /* 자식 블록플롯때문에 부모가 망가지는걸
-막아주는 가상요소 클리어 장치 */
-.drama ul::after{
+막아주는 가상요소 클리어 장치 
+대상: ul아래 li가 float되었으므로
+ul에 넣고 section 아래 div가 float되었으므로 section, drama에도 넣어준다.
+*/
+.drama ul::after,
+section.drama::after{
     content: '';
     display: block;
     clear: both;
@@ -62,8 +66,32 @@ table.drama{
     margin: 0 auto;
     /* 패딩 */
     padding: 15px;
+    border-spacing: 10px;
 }
 
+/* 테이블대신 일반 블록박스로 드라마 구성 */
+section.drama {
+    /* 최대가로크기 : maw */
+    max-width: 670px;
+    /* 마영오! 박스 중앙정렬 */
+    margin: 0 auto;
+    /* 패딩 */
+    padding: 15px;
+}
+/* 일반 블록박스 옆으로 흐르게 하기 */
+.each-drama {
+    float: left;
+    /* 등분할 */
+    width: 50%;
+    /* 가로크기에 패딩 포함설정 */
+    box-sizing: border-box;
+    border-spacing: 10px;
+
+}
+/* 블록박스로 구성한 경우 하위 ol에 width주기 */
+.each-drama ol {
+    width: 200px;
+}
 /* 드라마별 묶음요소 .drama > ul */
 .drama ul {
     /* 보더 */
@@ -79,6 +107,7 @@ table.drama{
 .drama img{
     /* 가로크기 설정 : 높이값은 자동! */
     width: 75px;
+    border-radius: 5px;
 }
 
 /* 추가정보 파트 */
