@@ -66,7 +66,12 @@
              (주의: 숫자 비교는 같은 레벨에서 함!)
 
              9. 부모자격
-
+            ->자식요소가 absolute일때 부모자격으로 relative를 
+            주는 경우가 많다! 왜? 기존 디자인이 그대로 유지되니까!
+            static 한 특징이 있는 relative를 부모자격으로
+            설정하는 경우가 많은 것이다.
+            실제 부모자격은 static이 아닌 포지션
+            즉, relative, absolute, fixed, sticky 다!
               ___________________________________
 
                 [ z-index 란? ]
@@ -116,11 +121,38 @@
         #s2{
             background-color: lightcoral;
         }
+        /* 제목넣기 relative */
+        h1.tit{
+            position: relative;
+            top: 100px;
+            left: 60%;
+            /* 나의 부모는? 보이는 화면! */
+
+            width: 40%;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            border: 4px solid plum;
+            border-radius: 20px;
+            background-color: lightsalmon;
+
+            
+            font-size: 60px;
+
+
+            /* 코딩순서 
+            포지션
+            박스모델
+            폰트관련*/
+
+
+        }
         
 
     </style>
 </head>
 <body>
+    <h1 class="tit">Relative 포지션</h1>
    <div class="bx" id="r1">r1</div>
    <div class="bx" id="s1">s1</div>
    <div class="bx" id="r2">r2</div>
