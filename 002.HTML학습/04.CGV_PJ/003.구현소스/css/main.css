@@ -67,7 +67,7 @@ body * {
     height: 180px;
 }
 /* 메뉴리스트 li */
-.poster-menu li {
+.poster-menu ul>li {
     /* 블록 옆으로 흐르게 */
     float: left;
 }
@@ -75,7 +75,7 @@ body * {
 li+li 앞에 li가 있는 li선택
 즉, 첫번째 li 빼고 다선택
 */
-.poster-menu li+li {
+.poster-menu ul>li+li {
     margin-left: 11px;
 }
 /********************************** 3. 하단영역 **********************************/
