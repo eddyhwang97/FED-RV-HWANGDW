@@ -4,7 +4,6 @@
 html,body {
     /* 보이는 화면만큼 높이값 셋팅 */
     height: 100%;
-    
     margin: 0;
     padding: 0;
 }
