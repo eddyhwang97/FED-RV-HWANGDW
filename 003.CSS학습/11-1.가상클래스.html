@@ -77,16 +77,16 @@
 
       /* a 요소 가상클래스 */
       /* 처음 링크 :link */
-      .뭘까 {
+      h2 a:link {
         color: hotpink;
         text-decoration: none;
       }
       /* 방문후 :visited */
-      .뭘까 {
-        /* color: lime;             */
-      }
+      /* h2 a:visited {
+        color: lime;            
+      } */
       /* 마우스 오버시 :hover */
-      .뭘까 {
+      h2 a:hover {
         color: red;
         /* 텍스트 데코레이션에 스타일은
             뒤에 띄어쓰기로 추가해서 쓸 수 있음 */
@@ -94,19 +94,19 @@
         /* text-decoration-style: wavy; */
       }
       /* 마우스를 누르고 있는 상태 :active */
-      .뭘까 {
+      h2 a:active {
         color: lightseagreen;
         text-decoration: underline double red;
       }
 
       /* 요즘은 a요소를 바로 선택하여
         셋팅하고 :hover 정도만 변경한다! */
-      /* h2 a {
+      h2 a {
         color: darkorange;
-      } */
+      }
 
       /* 포커스 가상클래스 :focus */
-      .뭘까 {
+      h2 a:focus {
         outline: 10px dotted darkcyan;
       }
 
@@ -172,46 +172,51 @@
         /* pointer 손가락모양 */
         cursor: pointer;
       }
-
-      .뭘까 {
+      /* part1. 첫번째 자식 */
+      .part1 li:first-child {
         font: 40px "궁서";
         color: red;
       }
-      .뭘까 {
+      /* .part1 li의 첫번째자식 오버시 */
+      .part1 li:first-child:hover {
         font-style: italic;
       }
-
-      .뭘까 {
+      /* .part1 li의 두번째 자식 */
+      .part1 li:nth-child(2){
         font: 35px "굴림";
         color: skyblue;
       }
-      .뭘까 {
+      /* .part1 li의 두번째자식 오버시 */
+      .part1 li:nth-child(2):hover {
         font-weight: bold;
       }
-      .뭘까 {
+      
+      /* .part1 li의 세번째 자식 */
+      .part1 li:nth-child(3) {
         font: 25px "돋움";
         color: darkkhaki;
       }
-      .뭘까 {
+      .part1 li:nth-child(3):hover {
         /* 단어간격 : ws숫자 */
         word-spacing: 20px;
         /* 자간 : ls숫자 */
         letter-spacing: 10px;
       }
-
-      .뭘까 {
+      
+      /* .part1 li의 네번째 자식 */
+      .part1 li:nth-child(4) {
         font: 42px "맑은 고딕";
         color: darkmagenta;
       }
       /* 한글이 있는 b요소만 숨기기 */
-      .뭘까 {
+      .part1 li:nth-child(4) b {
         display: none;
       }
       /* 오버시 한자(span)숨기고 한글(b)보이기 */
-      .뭘까 {
+      .part1 li:nth-child(4):hover b {
         display: inline;
       }
-      .뭘까 {
+      .part1 li:nth-child(4):hover span {
         display: none;
       }
 
@@ -231,7 +236,12 @@
             -> 주의: -n을 반드시 먼저써야함!
         */
       
-      .뭘까 {
+      /* .part1 li:nth-child(4) ~ li {
+        font-size: 24px;
+        color: darkgoldenrod;
+      } */
+      /* 5번째부터 9번째까지 선택 */
+      .part1 li:nth-child(4) ~ li:nth-child(-n + 9) {
         font-size: 24px;
         color: darkgoldenrod;
       }
@@ -241,14 +251,15 @@
             :nth-child(even) event은 짝수
             :nth-child(odd) odd는 홀수
         */
-      .뭘까 {
+        /* li짝수번째 */
+      .part1 li:nth-child(even) {
         background-image: linear-gradient(
           to right,
           lightblue,
           rgb(255, 167, 135)
         );
       }
-      .뭘까 {
+      .part1 li:nth-child(odd) {
         background-image: linear-gradient(
           to right,
           rgb(168, 255, 199),
@@ -265,12 +276,12 @@
             3n+1 -> 1, 4, 7, 10,...
 
         */
-      .뭘까 {
+      .part1 li:nth-child(3n + 1)::after {
         content: "👩‍🦰";
       }
 
       /* 마지막 li선택 */
-      .뭘까 {
+      .part1 li:last-child {
         font: 40px "굴림";
         font-weight: bold;
         /* 글자에 배경 그라데이션 반영하기 */
