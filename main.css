@@ -6,7 +6,7 @@ body, header, main, footer, h1 {
 }
 
 body * {
-  outline: 1px solid #fff;
+  /* outline: 1px solid #fff; */
 }
 body {
  margin: 0;
@@ -40,14 +40,14 @@ h2 a{
 }
 
 .main-area {
-  height: 500px;
+  height: 700px;
   position: relative;
 
 }
 .character {
   position: absolute;
   bottom: 0px;
-  left: 40px;
+  left: 250px;
 }
 .character ul>li {
   float: left;
@@ -56,12 +56,30 @@ h2 a{
 
 .character li {
   float: left;
+  
  
 }
 .character img {
-  width: 200px;
   height: 350px;
  
+}
+.character .groot {
+  height: 150px;
+  margin-top: 300px;
+}
+.character .rocket {
+  height: 200px;
+  margin-top: 250px;
+}
+.character .starload {
+  height: 400px;
+  margin-top: 50px;
+}
+.character .gamora {
+  margin-top: 100px;
+}
+.character .drax {
+  height: 450px;
 }
 
 /******************* 하단영역 *******************/
