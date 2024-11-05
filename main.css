@@ -6,13 +6,13 @@ body, header, main, footer, h1, ul, li {
 }
 
 body * {
-  outline: 1px solid #fff;
+  /* outline: 1px solid #fff; */
 }
 body {
  margin: 0;
  padding: 0;
  height: 100%;
- background: url(./img/galxybg.jpg) no-repeat fixed top/cover;
+ background: url(./img/wall.jpg) no-repeat fixed top/cover;
 
 }
 
@@ -24,10 +24,10 @@ header {
   height: 80px;
 }
 .head-area h1 {
-  font-size: 60px;
+  font-size: 70px;
   color: #dccfcf;
   text-shadow: 3px 3px 5px #f9f2f2;
-  -webkit-text-stroke: .5px #000;
+  -webkit-text-stroke: 1px #000;
   text-align: center;
 }
 
@@ -38,32 +38,18 @@ header {
 }
 h2 {
   text-align: center;
+  margin-top: 100px;
 }
 h2 a{
-  font-size: 40px;
+  font-size: 60px;
   color: #dccfcf;
-  text-shadow: 3px 3px 5px #f9f2f2;
-  -webkit-text-stroke: .5px #000;
+  text-shadow: 3px 3px 10px #f9f2f2;
+  -webkit-text-stroke: 1px #000;
   text-decoration: none;
 }
 
 
 
-.bx{
-  width: 900px;
-  margin: 10px auto;
-}
-.main-content{
-  text-align: center;
-}
-ul{
-  height: 80px;
-}
-
-li{
-  float: left;
-  
-}
 
 /******************* 하단영역 *******************/
 footer {
