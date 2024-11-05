@@ -47,7 +47,7 @@ h2 a{
 .character {
   position: absolute;
   bottom: 0px;
-  left: 250px;
+  margin: 0 auto;
 }
 .character ul>li {
   float: left;
