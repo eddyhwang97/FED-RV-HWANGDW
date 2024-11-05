@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>스타벅스 응용</title>
+        <style></style>
+    </head>
+<style>
+    body{
+        background: #000 url(./starbucks_img/reserve_bg.jpg) no-repeat fixed center/100%;
+    }
+     #trans10{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                /* 부모는? window */
+
+                /* 정중앙 이동은 내크기의 절반만큼씩
+                왼쪽반향, 윗쪽방향으로 translate이동함 */
+                translate: -50% -50%;
+
+                /* 앱솔루트 자식은 잡히지 않으므로 
+                가로, 세로 크기를 설정함 */
+                width: 334px;
+                height: 334px;
+
+     }
+
+     #trans10 img{
+                position: absolute;
+                /* 앱솔루트는 서로 겹친다 */
+                /* 위치값 없으면 부모박스에 가만히 있는다!
+                즉 젠츨하다! 젠틀앱솔루트 */
+            }
+            /* 유정이 원본 회전하여 숨기기 */
+            #trans10 img:first-child{
+                
+                transform: rotateY(0);
+                /* 처음에 천천히 */
+                transition:  .4s ease-in .4s;
+            }
+            /* 유정이 오버시 회전하여 보이기 */
+            #trans10:hover img:first-child{
+                transform: rotateY(90deg);
+                /* 마지막에 천천히 */
+                transition:  .4s ease-out;
+                
+            }
+
+            /* 보거미 원본 회전하기 */
+            #trans10 img:last-child{
+                
+                transform: rotateY(90deg);
+                /* 처음에 천천히 */
+                transition:  .4s ease-in;
+            }
+            
+            /* 보거미 오버시 회전하기 */
+            #trans10:hover img:last-child{
+                /* y축 90도 회전 */
+                /* rotate: y 90deg; */
+                transform: rotateY(0);
+                /* 마지막에 천천히 */
+                transition:  .4s ease-out .4s;
+            }
+</style>
+
+    <body>
+        <div id="trans10">
+            <img src="./starbucks_img/reserve_medal02.png" alt="캐릭터" />
+            <img src="./starbucks_img/reserve_medal01.png" alt="캐릭터" />
+        </div>
+   
+    </body>
+</html>
