@@ -54,7 +54,7 @@
 
              */
       /* h2요소 맨앞에 이미지 넣기 */
-      .뭘까 {
+      h2::before {
         content: url(./imgs/blogo.png);
         width: 20px;
         height: 10px;
@@ -69,7 +69,7 @@
       }
 
       /* 맨뒤 추가요소 ::after */
-      .뭘까 {
+      h2::after {
         /* 이미지크기 조절하려면
             박스를 만들고 배경이미지로 넣는다! */
         content: "";
@@ -101,9 +101,11 @@
         margin-left: 50px;
       }
 
-      dt {
+      dt::before {
+        content: '🧚‍♀️⭐️';
         /* 마진: 위 양쪽 아래 */
         margin: 25px 0 15px;
+        font-size: 25px;
       }
 
       /* 반복되는 요소의 앞에 아이콘 가상요소로 넣기 */
@@ -114,61 +116,65 @@
         color: red;
       }
       /* dt아이콘 변경 */
-      .뭘까{
+      dt:nth-of-type(2)::before{
         content: '🧛‍♂️';
       }
-      .뭘까{
+      dt:nth-of-type(3)::before{
         content: '🏇';
       }
-      .뭘까{
+      dt:nth-of-type(4)::before{
         content: '🍒';
       }
 
       /* dd전체 before적용하기 */
-      .뭘까{
+      dd::before{
         content: '👨‍🦰';
         font-size: 28px;
         margin-right: 15px;
       }
       /* 여자인 경우 이모지 변경 */
-      .뭘까,
-      .뭘까,
-      .뭘까,
-      .뭘까,
-      .뭘까,
-      .뭘까      
+      dd:nth-of-type(3)::before,
+      dd:nth-of-type(4)::before,
+      dd:nth-of-type(8)::before,
+      dd:nth-of-type(9)::before,
+      dd:nth-of-type(11)::before,
+      dd:nth-of-type(12)::before
       {
         content: '👩‍🦰';
       }
-      .뭘까      
+      dd:nth-of-type(13):before      
       {
         content: '👨‍🦰👩‍🦰';
       }
 
       
       /* 스토리의 dd는 가상요소 없애기 */
-      .뭘까{
+      dd.story::before{
         display: none;
       }
 
       /* 스토리의 dd 아래 h3 이모지넣기 */
-      .뭘까{
+      dd.story h3::before{
         content: '🎥';
         margin-right: 20px;
       }
 
       /* .story의 첫번째 p태그의 첫번째 글자 디자인 변경하기 */
-      .뭘까{
+      .story p:first-of-type::first-letter{
             font-size: 50px;
             color: hotpink;
             font-weight: bold;
+            /* ::first-line에서의 글자체가 같이 적용되므로
+            ::first-letter의 글자체를 별도로 셋팅한다
+            우선순위가 높음! */
+            font-family: '맑은고딕';
         }
 
       /* .story의 첫번째 p태그의 첫번째줄 디자인 변경하기 */
-      .뭘까{
+      .story p:first-of-type::first-line{
             font-size: 22px;
             color: blue;
-            font-family: '궁서';
+            font-family: '궁서체';
         }
 
       /* 두번째 p태그는 태그로 
@@ -186,7 +192,7 @@
       /* 기타 가상요소 ::selection */
       /* 드래그 선택시 글자색 배경색 설정변경! */
       
-      .뭘까{
+      p::selection{
         color: rgb(52, 255, 154);
         background-color: hotpink;
       }
