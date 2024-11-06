@@ -29,12 +29,73 @@ function 김비서나와라() {
     )
   );
 
-  //3.1. 배경이미지 넣기
-  document
-    .getElementsByClassName("pbox")
-    .item(0).style.background=
-    "url(./images/kimbs.jpg) no-repeat top/cover";
+  //  변수에 대상 할당하기
+  var 나변수 = document.getElementsByClassName("pbox").item(0);
+  // 변수는 특정 매모리 공간이다!
+  // 선언과 동시에 할당하여 값을 저장한다.
+  // 변수는 여기를 "봐!" var로 선언
+  // var 변수명 = 값;
+
+  // 변수를 사용하는 이유?
+  // -변수는 재사용
+  // -변수는 저장 메모리공간 주소
+  // -변수는 따옴표안쓴 문자
+  // -변수는 띄어쓰기 없음
+  // -변수는 호출시 값 출력
+  // -변수는 재할당시 다른값 덮어씀
+  // -변수는 한번만 선언 var(let/const)
+  // -var는 variable(변수)라는 단어에서 나온말
+
+
+  // 3-1. 배경이미지 넣기
+  나변수.style.background = "url('./images/kimbs.jpg') no-repeat top/cover";
   // .pbox중 첫번째 (0)를 선택함
   // item(순번)
+
+  // 3-2. 글자색 변경하기
+  나변수.style.color = "lightblue";
+  
+  // 3-3. 글자크기 변경하기
+  나변수.style.fontSize = "40px";
+
+  // 3-4. 글자그림자 
+  나변수.style.textShadow ="2px 2px 2px #000"
+  //(x,y,blur,color)
+
+  // 3-5. 트랜지션
+  // 백틱은 줄바꿈 자유로움
+  나변수.style.transition = `
+   2s,
+   top 4s 2s,
+   left 2s 2s,
+   rotate 3s 2s,
+   translate 1s 2s,
+   scale 2s 6s
+  `;
+  
+
+  // 3-6. 크기변경
+  나변수.style.width = "400px";
+  나변수.style.height = "400px";
+
+  // 3-7. 줄간격
+  나변수.style.lineheight = "100px";
+
+  // 3-8. 원만들기
+  나변수.style.borderRadius = "50%";
+
+  // 3-9. 중앙이동을 위한 top,left값 변경
+  나변수.style.top = "50%";
+  나변수.style.left = "50%";
+
+  // 3-10. 트랜스폼변경 : 중앙이동. 360도 회전, 스케일 변경
+  나변수.style.translate = "-50% -50%";
+  나변수.style.rotate = "360deg";
+  나변수.style.scale = "2";
+
+  // 트랜스폼 한번에 쓰기
+  // 나변수.style.transform = "translate(-50%, -50%) rotate(360deg) scale(2)";
+
+  // 만약 속성명을 잘못쓰면 브라우저가 
 }
 //////////김비서나와라 함수 ///////////////
