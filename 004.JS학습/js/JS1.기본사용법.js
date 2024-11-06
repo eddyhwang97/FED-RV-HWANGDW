@@ -97,5 +97,13 @@ function 김비서나와라() {
   // 나변수.style.transform = "translate(-50%, -50%) rotate(360deg) scale(2)";
 
   // 만약 속성명을 잘못쓰면 브라우저가 
+
+  // 3-11. 전체 배경색 바꾸기
+  // 대상: body
+  // JS에서 body는 특별히 취급하여 document.body로 선택
+  var 나바디 = document.body;
+  나바디.style.backgroundColor = "lightgreen";
+  // 나바디.style.background = "linear-gradient(45deg,lightgreen, white, lightblue)";
+  나바디.style.transition = "3s 5s";
 }
 //////////김비서나와라 함수 ///////////////
