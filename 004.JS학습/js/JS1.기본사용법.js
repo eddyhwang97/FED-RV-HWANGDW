@@ -239,4 +239,52 @@ function 맘대로해라(헐, 헉스) {
   // (2) remove(클래스명) : 클래스 제거
   // (3) toggle(클래스명) : 클래스 추가/제거
   //  
+
+
+  
 } ////////////////////////// functions 함수명(){코드명} //////////////////////////
+
+
+
+
+/*********************************
+힘수명 : 사각사각
+기능 : 전체가 사각형으로 화면을 채우며 애니메이션 됨! 
+*********************************/
+
+function 사각사각() {
+  // 1. 함수호출 확인
+  console.log("사각사각");
+
+  // 2. 대상선정 : .넌뭐냐
+  var 나야나 = document.querySelectorAll(".넌뭐냐")[0];
+  console.log("선택요소:", 나야나);
+  
+  // 3. 변경내용 : top, 트랜지션, width, height 값 변경
+  나야나.style.top = "0";
+  나야나.style.borderRadius = "0";
+  나야나.style.width = "100%";
+  나야나.style.height = "100%";
+  나야나.style.transition = "3s 1s,top 1s 0s";
+  // top값부터 1초간 작동, 나머지는 1초 후 작동
+  나야나.style.zindex = "111"; //맨위 
+
+
+  // 4. 추가변경 : 글자넣기
+  // innerText = 글자내용 
+  // ->태그없는 글자 데이터만 넣기!
+  나야나.innerText = "JS입문을 환영합니다!";
+
+  // 5. 글자관련 CSS 넣기!
+  나야나.style.fontSize = "70px";
+  나야나.style.color = "aqua";
+  나야나.style.fontWeight = "bold";
+  나야나.style.textShadow = "5px 5px 3px black";
+  나야나.style.lineheight = window.innerHeight + "px";
+  // window.innerHeight : 현재 윈도우창 높이값 리턴
+
+  console.log("화면높이값:", window.innerHeight);
+
+
+}
+ ////////////사각사각함수//////////////////////////
