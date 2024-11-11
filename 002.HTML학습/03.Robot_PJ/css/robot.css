@@ -5,23 +5,26 @@
 @import url(./core.css);
 @import url(./reset.css);
 
-
 /* 공사중 표시 */
-body *, *::after, *::before{
-  outline: 2px dashed yellowgreen;
+body *,
+*::after,
+*::before {
+  /* outline: 2px dashed yellowgreen; */
 }
 
 body {
   background: url(../images/bg.jpg)
     no-repeat fixed top/cover;
 
-    /* 커서 이미지로 변경하기 */
-    cursor: url(../images/favicon.png),auto;
+  /* 커서 이미지로 변경하기 */
+  cursor: url(../images/favicon.png),
+    auto;
 }
 
 /******************* 1. 상단영역  *******************/
 /* 2-1. 로봇박스 */
 .robot-box {
+  /* display: none; */
   padding-top: 100px;
   padding-bottom: 700px;
 }
@@ -39,17 +42,18 @@ body {
   z-index: 1;
 }
 /* 머리카락넣기 가상요소 */
-.head::after{
-  content: '';
+.head::after {
+  content: "";
   position: absolute;
   top: -50%;
   left: -30%;
   width: 160%;
   height: 120%;
-  background: url(../images/hair3.png) no-repeat 0/100%;
+  background: url(../images/hair3.png)
+    no-repeat 0/100%;
 }
 /* 로봇머리 하위 공통 앱솔루트 */
-.head>div {
+.head > div {
   position: absolute;
 }
 
@@ -81,7 +85,7 @@ body {
   background-image: url(../images/e1.jpg);
 }
 /* 코 */
-.nose{
+.nose {
   top: 53%;
   left: 50%;
   translate: -50% -40%;
@@ -90,7 +94,8 @@ body {
   /* 색 이미지 반복 고정 위치/크기 
     색이반고윙크
   */
-  background: url(../images/nose.webp) no-repeat 0/100% 100%;
+  background: url(../images/nose.webp)
+    no-repeat 0/100% 100%;
   border-radius: 50%;
 }
 /* 입 */
@@ -100,23 +105,23 @@ body {
   translate: -50%;
   width: 100px;
   height: 30px;
-  background: url(../images/mouth.png) no-repeat 0/100% 100%;
+  background: url(../images/mouth.png)
+    no-repeat 0/100% 100%;
 }
 
 /* 귀공통 */
-.ear{
+.ear {
   top: 20%;
   width: 50px;
   height: 80px;
-  
 }
 /* 왼귀 */
-.ear1{
+.ear1 {
   left: -50px;
   border-radius: 40% 20% 0 50%;
 }
 /* 오른귀  */
-.ear2{
+.ear2 {
   right: -50px;
   border-radius: 20% 40% 50% 0%;
 }
@@ -126,48 +131,51 @@ body {
   width: 200px;
   height: 300px;
 
-  margin: 0 auto;;
+  margin: 0 auto;
   margin-top: 50px;
 }
-.body>div {
+.body > div {
   position: absolute;
 }
 /* .body가상요소로 상체만들기 */
-.body::before{
-  content: '';
+.body::before {
+  content: "";
   display: block;
-/* 블록으로 변경해야 div같이 사용가능 */
-position: absolute;
-top: 0;
-left: -20%;
-/* 부모는? .body */
-width: 140%;
-height: 60%;
-background-color: gray;
-background-image:  linear-gradient(rgb(93, 190, 222), #57b09e);
-z-index: 1;
-border-radius: 15px;
+  /* 블록으로 변경해야 div같이 사용가능 */
+  position: absolute;
+  top: 0;
+  left: -20%;
+  /* 부모는? .body */
+  width: 140%;
+  height: 60%;
+  background-color: gray;
+  background-image: linear-gradient(
+    rgb(93, 190, 222),
+    #57b09e
+  );
+  z-index: 1;
+  border-radius: 15px;
 }
 /* .body가상요소로 바지만들기 */
-.body::after{
-  content: '';
+.body::after {
+  content: "";
   display: block;
-/* 블록으로 변경해야 div같이 사용가능 */
-position: absolute;
-bottom: -13%;
-left: -5%;
-/* 부모는? .body */
-width: 110%;
-height: 40%;
-background-color: gray;
-background-image: url(../images/shorts.jpg);
-background-size: cover;
-background-repeat: no-repeat;
-z-index: 1;
-border-radius: 10% 10% 50% 50%;
+  /* 블록으로 변경해야 div같이 사용가능 */
+  position: absolute;
+  bottom: -13%;
+  left: -5%;
+  /* 부모는? .body */
+  width: 110%;
+  height: 40%;
+  background-color: gray;
+  background-image: url(../images/shorts.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+  border-radius: 10% 10% 50% 50%;
 }
 /* 로봇목 */
-.neck{
+.neck {
   top: -70px;
   left: 50%;
   translate: -50%;
@@ -176,14 +184,14 @@ border-radius: 10% 10% 50% 50%;
   border-radius: 20px;
 }
 /* 팔공통 */
-.arm{
+.arm {
   width: 50px;
   height: 150px;
   top: 10%;
 }
 /* 팔관절 가상요소 만들기 */
-.arm::after{
-  content: '';
+.arm::after {
+  content: "";
   position: absolute;
   top: 80%;
   left: -5%;
@@ -193,23 +201,25 @@ border-radius: 10% 10% 50% 50%;
   단, height  값 주지말것!
   */
   padding-top: 100%;
-  background-image:  radial-gradient(#ccc 30%, #ccc 50%,#111);
+  background-image: radial-gradient(
+    #ccc 30%,
+    #ccc 50%,
+    #111
+  );
   /* 원만들기 */
   border-radius: 50%;
   box-sizing: border-box;
-
 }
 /* 왼팔 */
-.arm1{
+.arm1 {
   left: -47%;
-  
 }
 /* 오른팔 */
-.arm2{
+.arm2 {
   right: -47%;
 }
 /* 팔하단공통 */
-.arm span{
+.arm span {
   position: absolute;
   top: 100%;
   left: 10%;
@@ -217,8 +227,8 @@ border-radius: 10% 10% 50% 50%;
   height: 120%;
 }
 /* 손공통 : span의 가상요소로 만들기 */
-.arm span::after{
-  content: '';
+.arm span::after {
+  content: "";
   position: absolute;
   z-index: 1;
   /* 앱솔루트 자동블록 */
@@ -230,28 +240,27 @@ border-radius: 10% 10% 50% 50%;
   /* 배경공통 */
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  
 }
 /*  */
 /* 왼손 */
-.arm1 span::after{
-background-image: url(../images/hand_left.png);
-left: -12px;
+.arm1 span::after {
+  background-image: url(../images/hand_left.png);
+  left: -12px;
 }
 /* 오른손 */
-.arm2 span::after{
+.arm2 span::after {
   background-image: url(../images/hand_right.png);
   right: -12px;
 }
 /* 다리공통 */
-.leg{
+.leg {
   width: 70px;
   height: 250px;
-  top: 100%
+  top: 100%;
 }
 /* 무릎 가상요소로만들기 공통 */
 .leg::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4%;
   left: -4%;
@@ -262,21 +271,20 @@ left: -12px;
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 30px;
-  
 }
 
 /* 왼다리 */
-.leg1{
+.leg1 {
   left: 0;
 }
 /* 왼무릎 */
 
 /* 오른다리 */
-.leg2{
+.leg2 {
   right: 0;
 }
 /* 다리하단공통 */
-.leg span{
+.leg span {
   position: absolute;
   top: 100%;
   left: 10%;
@@ -284,50 +292,226 @@ left: -12px;
   height: 80%;
 }
 /* 부츠상단 가상요소 */
-.leg span::before{
-  content: '';
+.leg span::before {
+  content: "";
   position: absolute;
   z-index: 1;
   top: 30%;
   left: -10%;
   width: 120%;
   height: 100%;
-  background-image: linear-gradient(to right, #eee, #333);
+  background-image: linear-gradient(
+    to right,
+    #eee,
+    #333
+  );
   border: 5px solid #000;
   border-top-width: 20px;
   box-sizing: border-box;
 }
 
 /* 부츠하단 가상요소 */
-.leg span::after{
-  content: '';
+.leg span::after {
+  content: "";
   position: absolute;
   z-index: 2;
   top: 120%;
   left: -20%;
   width: 140%;
   height: 25%;
-  background-image: linear-gradient(to right, #eee, #333);
+  background-image: linear-gradient(
+    to right,
+    #eee,
+    #333
+  );
   border: 5px solid #000;
   border-top-width: 20px;
   box-sizing: border-box;
   border-radius: 30px 30px 0 0;
 }
 /* 어깨공통 */
-.shdr{
+.shdr {
   width: 60px;
   height: 60px;
 }
-.shdr1{
+.shdr1 {
   top: 5%;
   left: -50%;
   border-radius: 50% 0 0 50%;
 }
-.shdr2{
+.shdr2 {
   top: 5%;
   right: -50%;
   border-radius: 0 50% 50% 0;
 }
+
+/* tv박스 */
+.tv {
+  /* 앱솔루트 가로중앙 세팅 */
+  top: 12px;
+  left: 50%;
+  translate: -50%;
+  /* 트랜스폼의 트랜스레이트는 현재위치에서의 위치이동이며
+  %단위는 자신의 크기를 기준함 
+  translate :가로 세로;
+  */
+  width: 240px;
+  height: 160px;
+  /* 가슴부분 가상요소보다 위 */
+  z-index: 2;
+  /* 배경이미지 */
+  background: url(../images/tv.jpg)
+    no-repeat 0/100% 100%;
+}
+/* 스크린 */
+.screen {
+  position: absolute;
+  /* 부모는? .tv */
+  top: 16px;
+  left: 14px;
+  width: 168px;
+  height: 112px;
+  background-color: #000;
+  border-radius: 10px;
+  /* 넘치는 자식요소 숨기기 */
+  overflow: hidden;
+}
+/* 유튜브 동영상 아이프레임 */
+.screen iframe {
+  position: absolute;
+  /* 부모는? .screen */
+  top: 0%;
+  left: -12%;
+  width: 120%;
+  height: 100%;
+}
+
+/* 버튼 */
+.btns {
+  position: absolute;
+  top: 38px;
+  right: 12px;
+  
+  /* 부모는? .tv */
+  
+}
+/* 버튼요소 */
+.btns button{
+  /* 원래는 inline-block
+  한줄에 하나씩 오도록 블록화 */
+  display: block;
+
+  font-size: 15px;
+  padding: 0;
+  width: 40px;
+  height: 20px;
+}
+
+/* 2-2. 설명박스 */
+.text-box{
+  max-width: 800px;
+  margin: 0 auto;
+  color: #fff;
+  background-color: #33333380;
+  padding: 15px 30px 15px 30px;
+  /* 박스 2중 클로우효과 */
+  box-shadow: 
+  inset 0 0 50px lightblue,
+  inset 0 0 70px blue;
+  /* 백드롭효과 
+  
+  [백드롭 필터효과] 
+  - filter속성과 동일한 셋팅을 가지며
+  적용대상이 겹쳐지는 하단의 그래픽을 변경한다!
+
+  backdrop-filter: blur(2px); -> 흐림
+  backdrop-filter: brightness(60%); -> 밝기
+  backdrop-filter: contrast(40%); -> 대비
+  backdrop-filter: drop-shadow(4px 4px 10px blue);->그림자
+  backdrop-filter: grayscale(30%);-> 흑백
+  backdrop-filter: hue-rotate(120deg); -> 색상변경
+  backdrop-filter: invert(70%); -> 반전색
+  backdrop-filter: opacity(20%); -> 투명도
+  backdrop-filter: sepia(90%); -> 세피아효과
+  backdrop-filter: saturate(80%); -> 채도
+
+  -> 복합적용 가능!
+  backdrop-filter: blur(4px) saturate(150%);
+  */
+  backdrop-filter: blur(4px) saturate(150%);
+
+
+  border-radius: 10px;
+}
+.text-box h2{
+  /* 스틱키 포지션 */
+  position: sticky;
+  top: 10px;
+
+  font-family: "Chakra Petch",sans-serif;
+  font-size: 50px;
+  font-weight: normal;
+  text-shadow: 2px 2px 2px #000;
+  text-align: center;
+  background-color: #78a9cb50;
+  border-radius: 50px;
+  box-shadow: inset 2px 2px 10px #fdfdfd;
+  margin-bottom: 10px;
+}
+/* 2-2-2. 출처 */
+.text-box small{
+  font-size: 14px;
+  font-family: "Chakra Petch",sans-serif;
+  text-shadow: 1px 1px 1px #000;
+  color: #c74848;
+  display: block;
+  /* display: block
+  display가 inline은 tac가 안먹힘
+  ->display: block; 해준다
+  */
+  text-align: center;
+  padding: 10px;
+}
+/* 2-2-3. 내용단락 */
+.text-box p{
+  font-family: 'balow',sans-serif;
+  font-size: 17px;
+  /* 줄간격 */
+  line-height: 1.7;
+  /* 자간 */
+  letter-spacing: 1px;
+  /* 단어간격 */
+  word-spacing: 2px;
+  /* 다단설정하기
+  -> 다중열속성
+  column-count : 다중열개수
+  column-rule : 다중열구분선
+  column-gap : 다중열간격 */
+  column-count : 3;
+  column-rule : 2px dotted lightcyan;
+  /* 다중열구분선은 보더와 같음 
+  ->두종색 : 두께, 종류, 색상
+  */
+  column-gap : 20px;
+  text-align: justify;
+  /* 영문에서 양쪽 정렬일 경우 단어단위로 줄바꿈이 되므로 
+  중간에 구멍이 생김.
+  따라서, 단어깨기 설정필요 */
+  word-break: break-all;
+  /* 첫줄 들여쓰기 text-indent ti */
+  text-indent: 20px;
+
+}
+
+/* 첫글자 가상요소 */
+.text-box p::first-letter{
+  font-size: 40px;
+  font-weight: bold;
+  color: lightseagreen;
+}
+
+
+/* 2-1. 로��� */
 
 /* 2-2. 로봇박스  */
 /******************* 2. 메인영역  *******************/
