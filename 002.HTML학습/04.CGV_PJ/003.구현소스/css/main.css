@@ -146,7 +146,7 @@ li+li 앞에 li가 있는 li선택
     top: 0;
 }
 .mv-info ol li:first-child {
-  /* 글자사이즈 ㄹㅋ */
+  /* 글자사이즈  */
   font-size: 22px;
   /* 글자두껍게 : fwb */
   /* font-weight: bold; */
