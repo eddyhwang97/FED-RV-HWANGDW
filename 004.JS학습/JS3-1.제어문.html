@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS3-1. 제어문 - if문, switch case문, for문, while문</title>
     <!-- JS코드구역 -->
-    
+    <script>
+      // JS 인터널 코딩구역
+
+    </script>
+  <!-- 외부 JS 불러오기 : 익스터널방식 -->
+    <script src="./js/제어문.js"></script>
 
     <!-- CSS코드구역 -->
     <style>
@@ -111,7 +116,9 @@
         placeholder="점수를 입력하세요!"
         maxlength="3"
       />
-      
+      <!-- value 속성
+
+      -->
       <!-- 
             [ label요소 ]
             input요소의 설명라벨요소
@@ -122,7 +129,24 @@
             - placeholder  -> 안내문구출력
             - maxlength -> 최대입력 글자수 제한
          -->
-      <button class="sbtn">평가하기</button>
+      <button class="sbtn" onclick="showJumsu()"
+      >평가하기</button>
+      <!-- 
+        [ onkeypress 이벤트 속성 ]
+        -> 키보드를 치면 발생하는 이벤트 속성
+        if조건문
+        조건식 : event.keyCode === 13
+        -> 키보드의 키코드가 13번이냐? 엔터키 눌렀냐?
+        -> 엔터키의 키코드는 13번이다!
+        -> true이면 showJumsu() 라는 함수를 호출해라!
+        -> event 브라우저 내장객체 : 이벤트관련 객체
+        -> event.keyCode는 키코드
+        -> event.key는 키이름
+
+        참고) 키코드 참조: 아스키코드 
+        (리턴키는 carriage return)
+        https://www.w3schools.com/charsets/ref_html_ascii.asp
+       -->
       <!-- 칭찬스티커 박스 -->
       <div class="jshow"></div>
     </div>
