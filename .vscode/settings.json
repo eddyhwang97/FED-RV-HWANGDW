@@ -9,5 +9,6 @@
     "sideBar.background": "#212223",
     
 
-  }
+  },
+  "liveServer.settings.port": 5501
 }
