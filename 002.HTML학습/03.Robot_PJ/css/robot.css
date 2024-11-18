@@ -1,15 +1,21 @@
-@charset "utf8";
+@charset "utf-8";
 /* 로봇 PJ CSS - robot.css */
 
 /* 초기화 */
 @import url(./core.css);
 @import url(./reset.css);
 
+/* 스크롤 이동 애니설정 */
+html{
+  /* 스크롤 html에 부드러운 스크롤 설정하기 */
+  scroll-behavior: smooth;
+}
+
 /* 공사중 표시 */
 body *,
 *::after,
 *::before {
-  /* outline: 2px dashed yellowgreen; */
+  outline: 2px dashed yellowgreen;
 }
 
 body {
@@ -22,11 +28,33 @@ body {
 }
 
 /******************* 1. 상단영역  *******************/
+
+/* 메인영역 속박스 */
+.main-area{
+  padding-top: 100vh;
+}
+.robot-box{
+  position: fixed;
+    top: 0;
+    /* left 값 변경 77% ->50% */
+    left: 77%;
+    /* 중앙이동 */
+    translate: -50%;
+    /* 축소 0.3 -> 0.8 확대애니*/
+    scale: .3;
+    /* 트렌스폼 기준변경 : center center -> top */
+    /* 트랜스폼 변경 25% */
+    transform-origin: center 25%;
+}
+
+
 /* 1-1.로고 */
 h1.logo{
   position: fixed;
-  top: calc(50% - 10vw);
-  left: calc(50% - 10vw);
+  top: 0;
+  left: 0;
+  /* top: calc(50% - 10vw);
+  left: calc(50% - 10vw); */
   width: 20vw;
   height: 20vw;
   border-radius: 50%;
@@ -330,7 +358,7 @@ h1.logo{
 .arm {
   width: 50px;
   height: 150px;
-  top: 10%;
+  top: 14%;
 }
 /* 팔관절 가상요소 만들기 */
 .arm::after {
