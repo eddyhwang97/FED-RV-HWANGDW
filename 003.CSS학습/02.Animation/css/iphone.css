@@ -75,7 +75,12 @@ body {
   );
   /* 넘치는 자식요소 숨기기 */
   overflow: hidden;
+
+  cursor: url(../images/spongebob.webp).5 .5,auto;
 }
+
+/* 커서 이미지 변경 */
+
 
 /* 아이폰박스 */
 .iphone {
@@ -101,6 +106,8 @@ body {
   /* 회전적용 */
   transform: rotateX(10deg)
     rotateY(30deg);
+
+  transition: .4s ease-out;
 }
 
 /* 아이폰 각면 공통 */
@@ -124,6 +131,25 @@ body {
   /* transform: translateZ(20px); */
   translate: 0 0 10px;
 }
+.iphone span:nth-child(1)::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50%;
+  width: 80%;
+  height: 0%;
+  background: #fff url(../images/Maggie_Simpson.png) no-repeat center/cover;
+  animation: bg-ani .5s ease-in-out 5s   forwards;
+}
+@keyframes bg-ani {
+  to{
+    top: 20%;
+  height: 60%;
+  }
+  
+}
+
 /* 2. 뒷면 */
 .iphone span:nth-child(2) {
   background-image: url(../images/ip02.png);
