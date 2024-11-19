@@ -1,7 +1,11 @@
 @charset "utf-8";
+/* 아이폰 회전 애니 CSS */
 
 /* 웹폰트 */
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+/* font-family: 'Anton', sans-serif; */
+
 
 /* 
     [ CSS의 변수사용 ]
@@ -41,13 +45,13 @@
 
 */
 
-/* css변수 설정하기 */
+/* CSS변수 설정하기 */
 :root {
   /* 아이폰 가로크기 */
   --ip-width: 200px;
   /* 아이폰 세로크기 */
   --ip-height: 400px;
-  /* 아이폰 두께 */
+  /* 아이폰 두께크기 */
   --ip-side-size: 20px;
 
   /* 그라데이션 색상 */
@@ -69,17 +73,18 @@ body {
     var(--grad-color2) 40%,
     var(--grad-color1)
   );
+  /* 넘치는 자식요소 숨기기 */
   overflow: hidden;
 }
 
+/* 아이폰박스 */
 .iphone {
   position: absolute;
-  /* 박스 정중앙보내기 */
+  /* 박스 정중앙 보내기 */
   top: calc(50% - var(--ip-height) / 2);
-  left: calc(
-    50% - var(--ip-width) / 2
-  );
-
+  left: calc(50% - var(--ip-width) / 2);
+  /* calc() CSS계산함수
+    - 더하기, 빼기 사용시 기호앞뒤공백 필수 */
   width: var(--ip-width);
   height: var(--ip-height);
 
@@ -98,6 +103,7 @@ body {
     rotateY(30deg);
 }
 
+/* 아이폰 각면 공통 */
 .iphone span {
   position: absolute;
   width: var(--ip-width);
@@ -106,13 +112,14 @@ body {
   /* 배경공통 */
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  /* 배경 투명부분을 횐색으로 채움 */
+  /* 배경 투명부분을 흰색으로 채움 */
   background-color: #fff;
 }
 
 /* 1. 앞면 */
 .iphone span:nth-child(1) {
   background-image: url(../images/ip01.png);
+
   /* z축 이동하기 */
   /* transform: translateZ(20px); */
   translate: 0 0 10px;
@@ -126,95 +133,101 @@ body {
   /* 뒤집어 보여야함 */
   rotate: y 180deg;
 }
-/* 오른쪽면 */
+/* 3. 오른쪽면 */
 .iphone span:nth-child(3) {
   background-image: url(../images/ip03.png);
 
   /* 오른쪽끝으로 이동 */
   right: -10px;
+
   /* 가로크기 재설정 */
   width: var(--ip-side-size);
 
   /* y축회전 90도 */
   rotate: y 90deg;
 }
-/* 왼쪽면 */
+/* 4. 왼쪽면 */
 .iphone span:nth-child(4) {
-    background-image: url(../images/ip04.png);
-  
-    /* 가로크기 재설정 */
-    width: var(--ip-side-size);
-  
-    /* 왼쪽끝으로 이동 */
-    left: -10px;
-  
-    /* y축회전 -90도 */
-    rotate: y -90deg;
-  }
+  background-image: url(../images/ip04.png);
+
+  /* 가로크기 재설정 */
+  width: var(--ip-side-size);
+
+  /* 왼쪽끝으로 이동 */
+  left: -10px;
+
+  /* y축회전 -90도 */
+  rotate: y -90deg;
+}
 
 /* 5. 아랫면 */
 .iphone span:nth-child(5) {
-    background-image: url(../images/ip05.png);
-  
-    /* 세로크기 재설정 */
-    height: var(--ip-side-size);
-  
-    /* 아랫쪽끝으로 이동 */
-    bottom: -10px;
-  
-    /* x축회전 90도 */
-    rotate: x 90deg;
-  }
-  
-  /* 6. 아랫면 */
-  .iphone span:nth-child(6) {
-    background-image: url(../images/ip06.png);
-  
-    /* 세로크기 재설정 */
-    height: var(--ip-side-size);
-  
-    /* 윗쪽끝으로 이동 */
-    top: -10px;
-  
-    /* x축회전 90도 */
-    rotate: x 90deg;
-  }
+  background-image: url(../images/ip05.png);
 
-  .ip-ani{
+  /* 세로크기 재설정 */
+  height: var(--ip-side-size);
+
+  /* 아랫쪽끝으로 이동 */
+  bottom: -10px;
+
+  /* x축회전 90도 */
+  rotate: x 90deg;
+}
+
+/* 6. 아랫면 */
+.iphone span:nth-child(6) {
+  background-image: url(../images/ip06.png);
+
+  /* 세로크기 재설정 */
+  height: var(--ip-side-size);
+
+  /* 윗쪽끝으로 이동 */
+  top: -10px;
+
+  /* x축회전 90도 */
+  rotate: x 90deg;
+}
+
+/* 애니호출 클래스 */
+.ip-ani {
     /* 애니메이션 : 이시이지반방마 */
     animation: ip-rotate-ani 2s ease-in-out 1s 2 alternate;
     /* 이름 시간(3초) 이징 지연(1초) 반복(2회) 방향(번갈아설정) */
-  }
+}
 
-  @keyframes ip-rotate-ani {
-    to{
-        transform: rotateX(370deg)
-        rotateY(-330deg)
-        /* 각도설정시 유의사항 */
-        /* 
-        360도 설정시 이미 회정된 각도를
-        고려하여 같은 방향이면 +
-        반대방향이면 -로 쓰고
-        실제 각도를 더하거나 빼준다.
-        */
-    }
+/* 아이폰 회전 키프레임 */
+@keyframes ip-rotate-ani {
+  to {
+    transform: rotateX(370deg)
+      rotateY(-330deg);
+      /* 각도 설정시 유의사항 */
+      /* 
+        360도 설정시 이미 회전된 각도를
+        고려하여 같은 방향이면 + 반대방향이면 -로 쓰고
+        실제 각도를 더하거나 빼준다!
+      */
   }
+}
 
-  .fbx{
+
+/* 흘러가는 글자박스 부모 */
+.fbx{
     position: absolute;
-    width: 100vh;
-  }
-  /* 각각 위치잡기 */
-  .f1{
+    width: 100vw;
+}
+
+/* 각각 위치잡기 */
+.f1{
     top: 5vh;
-  }
-  .f2{
+}
+.f2{
     bottom: 5vh;
-  }
-/* 아래쪽 박스는 tbx가 왼쪽으로 나가 있도록 함! */
+}
+/* 아랫쪽 박스는 tbx가 왼쪽에 나가 있도록 함! */
 .f2 .tbx{
     translate: -50%;
 }
+
 /* 텍스트박스 */
 .tbx{
     /* 플렉스 박스 : 하위 ul흘러감 */
@@ -240,6 +253,7 @@ body {
     padding: 0;
     list-style: none;
 }
+
 /* 하위 li 공통셋팅 */
 .tbx li{
     /* 플렉스 자식 등분할! */
@@ -251,6 +265,7 @@ body {
     font-size: 4vw;
     color: #a0a0a0;
 }
+
 /* 글자애니 클래스1 */
 .txt-ani1{
     animation: txt-flow-ani1 10s linear infinite;
@@ -262,6 +277,7 @@ body {
         translate: -50%;
     }
 }
+
 /* 글자애니 클래스2 */
 .txt-ani2{
     animation: txt-flow-ani2 10s linear infinite;
@@ -273,6 +289,8 @@ body {
         translate: 0%;
     }
 }
+
+
 /* 3번째 박스(반대방향주기 다른방법) */
 .f3{
     bottom: 15vh;
@@ -288,3 +306,37 @@ body {
     animation: txt-flow-ani1 5s linear infinite reverse;
     /* 방향 속성 값을 reverse로 하면 기존 애니가 반대로 적용된다! */
 }
+
+.evt-bx{
+  position: fixed;
+  /*사방 당겨서 화면 채우기 */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* 맨위에 위치 */
+  z-index: 999;
+}
+/* 하의 ul초기화 */
+.evt-bx ul{
+  /* 플렉스박스 */
+  display: flex;
+  /* 랩핑박스: 아래로 떨어져 계속감 */
+  flex-wrap: wrap;
+
+
+  /* 기본초기화 */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 플렉스 자식 li셋팅 */
+.evt-bx li{
+  /* 가로 5등분 */
+  width: 20vw;
+  height: 33.333vh;
+  outline: 1px solid black;
+}
+
+
