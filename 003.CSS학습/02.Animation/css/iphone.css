@@ -76,7 +76,7 @@ body {
   /* 넘치는 자식요소 숨기기 */
   overflow: hidden;
 
-  cursor: url(../images/spongebob.webp).5 .5,auto;
+  cursor: url(../images/spongebob1.png),auto;
 }
 
 /* 커서 이미지 변경 */
