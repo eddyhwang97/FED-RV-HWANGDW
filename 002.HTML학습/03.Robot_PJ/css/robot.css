@@ -6,7 +6,7 @@
 @import url(./reset.css);
 
 /* 스크롤 이동 애니설정 */
-html{
+html {
   /* 스크롤 html에 부드러운 스크롤 설정하기 */
   scroll-behavior: smooth;
 }
@@ -15,7 +15,7 @@ html{
 body *,
 *::after,
 *::before {
-  outline: 2px dashed yellowgreen;
+  /* outline: 2px dashed yellowgreen; */
 }
 
 body {
@@ -30,86 +30,88 @@ body {
 /******************* 1. 상단영역  *******************/
 
 /* 메인영역 속박스 */
-.main-area{
+.main-area {
   padding-top: 100vh;
 }
-.robot-box{
+.robot-box {
   position: fixed;
-    top: 0;
-    /* left 값 변경 77% ->50% */
-    left: 77%;
-    /* 중앙이동 */
-    translate: -50%;
-    /* 축소 0.3 -> 0.8 확대애니*/
-    scale: .3;
-    /* 트렌스폼 기준변경 : center center -> top */
-    /* 트랜스폼 변경 25% */
-    transform-origin: center 25%;
+  top: 0;
+  /* left 값 변경 77% ->50% */
+  left: 77%;
+  /* 중앙이동 */
+  translate: -50%;
+  /* 축소 0.3 -> 0.8 확대애니*/
+  scale: 0.3;
+  /* 트렌스폼 기준변경 : center center -> top */
+  /* 트랜스폼 변경 25% */
+  transform-origin: center 25%;
 }
 
-
 /* 1-1.로고 */
-h1.logo{
+h1.logo {
   position: fixed;
   top: 0;
   left: 0;
   /* top: calc(50% - 10vw);
   left: calc(50% - 10vw); */
-  width: 20vw;
-  height: 20vw;
+  width: max(20vw,100px);
+  height: max(20vw,100px);
   border-radius: 50%;
   z-index: 999;
-  background: pink url(../images/robot_03.png) no-repeat center/auto 100%;
-  box-shadow: 
-  inset 0 0 20px 5px #000,
-  0 0 20px 5px aqua;
+  background: pink
+    url(../images/robot_03.png)
+    no-repeat center/auto 100%;
+  box-shadow: inset 0 0 20px 5px #000,
+    0 0 20px 5px aqua;
 
   /* 글자설정 */
   text-align: center;
   line-height: 20vw;
-  font-family: 'Orbitron';
+  font-family: "Orbitron";
   font-size: 4.5vw;
   color: lightgreen;
   text-shadow: 0 0 10px #000;
 }
 
+
 /* 1-2.탑이동버튼 */
-.btn-top{
+.btn-top {
   position: fixed;
   bottom: 3vw;
   right: 3vw;
 
-  width: 5vw;
-  height: 5vw;
+  width: max(5vw, 50px);
+  height: max(5vw, 50px);
   border-radius: 50%;
   border: 5px outset #fff;
   background-color: #ccc;
 
   z-index: 10;
+  box-sizing: content-box;
 }
 
 /* a요소 확장 */
-.btn-top a{
+.btn-top a {
   display: block;
   width: 100%;
   height: 100%;
-  
+
   /* 글자셋팅 */
   color: blue;
   text-decoration: none;
-  font: 1.4vw/5vw 'Black Ops One';
+  font: max(1.4vw, 17px) / 5vw
+    "Black Ops One";
   /* font: 스두크/줄체; */
 }
 /* 오버시 설정 */
-.btn-top:hover{
+.btn-top:hover {
   background-color: #ff0;
   /* outset 나온버튼, inset 들어간 버튼 */
   border-style: inset;
 }
-.btn-top:hover a{
+.btn-top:hover a {
   color: #f00;
 }
-
 
 /******************* 2. 메인영역  *******************/
 /* 2-1. 로봇박스 */
@@ -119,7 +121,8 @@ h1.logo{
   padding-bottom: 700px;
 }
 /* 2-1-0. 로봇 말풍선 */
-.link-title{
+/* 2-1-0. 로봇 말풍선 */
+.link-title {
   position: absolute;
   top: -7vw;
   left: 50%;
@@ -128,25 +131,22 @@ h1.logo{
   /* 로봇쪽에서 커지게 하기위해
   트랜스폼 기준 변경(왼쪽아래) */
   transform-origin: left bottom;
-  width: 40vw;
-  height: 20vw;
-
+  width: max(40vw, 300px);
+  height: max(20vw, 150px);
   border-radius: 50%;
   background-color: #fff;
   text-align: center;
-  line-height: 20vw;
-
+  line-height: max(20vw,150px);
   text-decoration: none;
   color: orangered;
-  font-size: 5vw;
-
+  font-size: max(5vw, 34px);
   border: 10px dashed orangered;
   box-sizing: border-box;
-
 }
+
 /* 가상요소로 삼각형 만들기 */
-.link-title::after{
-  content: '';
+.link-title::after {
+  content: "";
   position: absolute;
   top: 62.7%;
   left: -9%;
@@ -162,10 +162,14 @@ h1.logo{
   border-right: 1.5vw solid transparent;
 }
 /* 로봇 말풍선 오버시 */
-.link-title:hover{
+.link-title:hover {
   color: #fff;
-  background-image: 
-  radial-gradient(circle,red 10%,blue 30%,yellow);
+  background-image: radial-gradient(
+    circle,
+    red 10%,
+    blue 30%,
+    yellow
+  );
 }
 
 /* 
@@ -562,12 +566,11 @@ h1.logo{
   position: absolute;
   top: 38px;
   right: 12px;
-  
+
   /* 부모는? .tv */
-  
 }
 /* 버튼요소 */
-.btns button{
+.btns button {
   /* 원래는 inline-block
   한줄에 하나씩 오도록 블록화 */
   display: block;
@@ -579,16 +582,15 @@ h1.logo{
 }
 
 /* 2-2. 설명박스 */
-.text-box{
+.text-box {
   max-width: 800px;
   margin: 0 auto;
   color: #fff;
   background-color: #33333380;
   padding: 15px 30px 15px 30px;
   /* 박스 2중 클로우효과 */
-  box-shadow: 
-  inset 0 0 50px lightblue,
-  inset 0 0 70px blue;
+  box-shadow: inset 0 0 50px lightblue,
+    inset 0 0 70px blue;
   /* 백드롭효과 
   
   [백드롭 필터효과] 
@@ -609,17 +611,18 @@ h1.logo{
   -> 복합적용 가능!
   backdrop-filter: blur(4px) saturate(150%);
   */
-  backdrop-filter: blur(4px) saturate(150%);
-
+  backdrop-filter: blur(4px)
+    saturate(150%);
 
   border-radius: 10px;
 }
-.text-box h2{
+.text-box h2 {
   /* 스틱키 포지션 */
   position: sticky;
   top: 10px;
 
-  font-family: "Chakra Petch",sans-serif;
+  font-family: "Chakra Petch",
+    sans-serif;
   font-size: 50px;
   font-weight: normal;
   text-shadow: 2px 2px 2px #000;
@@ -630,9 +633,10 @@ h1.logo{
   margin-bottom: 10px;
 }
 /* 2-2-2. 출처 */
-.text-box small{
+.text-box small {
   font-size: 14px;
-  font-family: "Chakra Petch",sans-serif;
+  font-family: "Chakra Petch",
+    sans-serif;
   text-shadow: 1px 1px 1px #000;
   color: #c74848;
   display: block;
@@ -644,8 +648,8 @@ h1.logo{
   padding: 10px;
 }
 /* 2-2-3. 내용단락 */
-.text-box p{
-  font-family: 'balow',sans-serif;
+.text-box p {
+  font-family: "balow", sans-serif;
   font-size: 17px;
   /* 줄간격 */
   line-height: 1.7;
@@ -658,12 +662,12 @@ h1.logo{
   column-count : 다중열개수
   column-rule : 다중열구분선
   column-gap : 다중열간격 */
-  column-count : 3;
-  column-rule : 2px dotted lightcyan;
+  column-count: 3;
+  column-rule: 2px dotted lightcyan;
   /* 다중열구분선은 보더와 같음 
   ->두종색 : 두께, 종류, 색상
   */
-  column-gap : 20px;
+  column-gap: 20px;
   text-align: justify;
   /* 영문에서 양쪽 정렬일 경우 단어단위로 줄바꿈이 되므로 
   중간에 구멍이 생김.
@@ -671,16 +675,14 @@ h1.logo{
   word-break: break-all;
   /* 첫줄 들여쓰기 text-indent ti */
   text-indent: 20px;
-
 }
 
 /* 첫글자 가상요소 */
-.text-box p::first-letter{
+.text-box p::first-letter {
   font-size: 40px;
   font-weight: bold;
   color: lightseagreen;
 }
-
 
 /* 2-1. 로��� */
 
