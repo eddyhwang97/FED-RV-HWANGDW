@@ -50,6 +50,8 @@ body * {
 /* 부모는? .top-area */
   z-index: 999;
   /* 서브메뉴가 위로 올라오도록 위치위로 */
+
+  font-size: 2rem;
 }
 /* 글자일반셋팅 */
 .gnb ul{
@@ -149,6 +151,80 @@ li+li 두번째 li부터
 .gnb ul>li:nth-child(4) 
 .smenu li:hover a::after{
   content: '📣';
+}
+/* 영사기 박스 */
+.cam{
+  position: absolute;
+  top: -10px;
+  right: -65px;
+}
+/* 영사기 이미지 */
+.cam img{
+  width: 50px;
+  rotate: 30deg;
+  /* 트랜지션: trs 양방향공통 */
+  transition: .3s .3s;
+}
+/* GNB에 오버시 영사기 이미지 회전 */
+.gnb:hover .cam img{
+  rotate: 0deg;
+  /* 트랜지션 지연시간 오버시엔 없앰! */
+  transition-delay: 0s;
+}
+/* 빔박스 */
+.beam{
+  position: absolute;
+  z-index: -1;
+  /* 스테틱 이미지보다 아래 */
+  top: -16px;
+  right: 9px;
+  width: 0px;
+  height: 70px;
+  background: url(../images/bim.png) no-repeat right/auto 100%;
+  /* 트랜지션: trs */
+  transition: .3s;
+
+  /* outline: 2px dashed yellow; */
+}
+/* GNB에 오버시 빔박스 보이기 */
+.gnb:hover .beam{
+  width: 200px;
+  /* 영사기 이미지 .3s 돌동안 대기하기 */
+  transition-delay: .3s;
+  /* 빔떨림 애니메이션 호출 */
+  animation: beam-ani .05s linear infinite alternate;
+  /* 0.05초간 등속도(linear)로 계속(infinite) 번갈아(alternate) */
+}
+/* 빔떨림 애니 키프레임 */
+@keyframes beam-ani {
+  to{
+    opacity: 0.5;
+  }
+}
+/* 가상요소로 상영스크린 만들기 */
+.cam::after{
+  content: '';
+  position: absolute;
+  /* 메뉴,빔보다 아래 */
+  z-index: -2;
+
+  top: -15px;
+  right: 120px;
+  /* 트랜지션 대상: opacity */
+  width: 0;
+  opacity: 0;
+
+  height: 66px;
+  background: url(../images/screen.gif) no-repeat -50% center/auto 80%;
+  /* 트랜지션 */
+  transition: opacity .3s;
+}
+/* GNB오버시 스크린 보이기 */
+.gnb:hover .cam::after{
+  width: 129px;
+  opacity: 1;
+  /* 트랜지션 딜레이 */
+  transition-delay: .6s;
 }
 /********************************** 2. 메인영역 **********************************/
 .main-area {
