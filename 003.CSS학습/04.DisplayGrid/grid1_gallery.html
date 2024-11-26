@@ -198,6 +198,9 @@
 
         3. 가로/세로 방향 위치속성 한번에 쓰기
             grid-area: 로시작 / 컬럼시작 / 로끝 / 컬럼끝;
+            grid-area: 로/컬/로/컬
+
+            로컬은 왼쪽
 
         -> 각 위치값은 그리드 기준선 번호를 참고함
         (브라우저에서 그리드 소스 버튼을 클릭하여
@@ -221,6 +224,9 @@
     */
 
         /* 그리드 구성박스 변경주기 */
+        .first{
+
+        }
 
         /* 1200px 이하 미디어쿼리 시작 */
         @media screen and (max-width: 1200px) {
@@ -231,22 +237,37 @@
         }
         /* 1200px 이하 미디어쿼리 종료 */
 
-        /* 1000px 이하 미디어쿼리 시작 */
-        @media screen and (max-width: 1000px) {
-          .grid{
-          grid-template-columns : repeat(
-            3, 1fr)};
+       /* 1000px 이하 미디어쿼리 시작 */
+      @media screen and (max-width: 1000px) {
+        .grid {
+          /* 컬럼수 3개 */
+          grid-template-columns: repeat(
+            3,
+            1fr
+          );
         }
-        /* 1000px 이하 미디어쿼리 종료 */
-
-        /* 800px 이하 미디어쿼리 시작 */
-        @media screen and (max-width: 800px) {
-          .grid{
-          grid-template-columns : repeat(
-            2, 1fr)};
+        /* 없어진 라인번호 변경 */
+        .second {
+          grid-area: 7 / 2 / 9 / 4;
         }
-        /* 800px 이하 미디어쿼리 종료 */
+      }
+      /* 1000px 이하 미디어쿼리 종료 */
 
+      /* 800px 이하 미디어쿼리 시작 */
+      @media screen and (max-width: 800px) {
+        .grid {
+          /* 컬럼수 2개 */
+          grid-template-columns: repeat(
+            2,
+            1fr
+          );
+        }
+        /* 없어진 라인번호 변경 */
+        .second {
+            grid-area: 7 / 1 / 9 / 3;
+          }
+      }
+      /* 800px 이하 미디어쿼리 종료 */
         /* 500px 이하 미디어쿼리 시작 */
         @media screen and (max-width: 500px) {
           .grid{
@@ -274,7 +295,13 @@
                 i++
             ) {
                 hCode += `
-        <div>
+        <div ${
+            i == 1
+              ? 'class="first"'
+              : i == 33
+              ? 'class="second"'
+              : ""
+          }>
         <img src="./images/${i}.jpg" alt="dress">
         <aside>
           <h2>상품명${i}</h2>
