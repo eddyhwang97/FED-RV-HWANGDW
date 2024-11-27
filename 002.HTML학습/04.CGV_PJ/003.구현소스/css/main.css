@@ -261,6 +261,17 @@ li+li 두번째 li부터
   left: 200px;
   /* 나의부모는? .main-area */
 }
+/* li상위 ul 플렉스박스 만들기 */
+.poster-menu ul {
+  display: flex;
+  /* 마진대신 gap으로 간격셋팅 */
+  gap: 0 1%;
+  /* 비율유지 부모박스 높이값 채우기 */
+  height: 100%;
+  /* 직계자식요소를 3d원근 설정하기 */
+  perspective: 100vh;
+
+}
 /* 포스터 이미지 */
 .poster-menu img {
   height: 180px;
@@ -274,7 +285,27 @@ li+li 두번째 li부터
 
   /* 부모자격에서 넘치는 자식요소 숨기기설정 */
   overflow: hidden;
+  /* x축회전하여 누워있게 셋팅 */
+  rotate : x 45deg;
+  /*원래 속성 transform : transform: rotateX(35deg); */
+  /* 회전축 변경하기 : bottom */
+  transform-origin: bottom;
+  /* 트랜지션 : trs 속시이지 */
+  transition: rotate .4s ease-out;
+
 }
+/* li에 오버시 x 축 회전하여 일어나기
++ li의 클래스가 "on" 일 경우 동일 디자인 */
+/* 그룹선택자 : 콤마로 여러 선택자를 선택할 수 있음 */
+.poster-menu ul > li:hover,
+.poster-menu ul > li.on
+{
+  rotate: x 0deg;
+  z-index: 1;
+  /* 선택요소 외곽선보이기 */
+  outline: 1px solid aquamarine;
+}
+
 /* li사이간격 
 li+li 앞에 li가 있는 li선택
 즉, 첫번째 li 빼고 다선택
@@ -309,8 +340,11 @@ li+li 앞에 li가 있는 li선택
   transition: .3s ease-out;
 }
 
-/* 상위 ul>li 오버시 영화정보보이기 */
-.poster-menu ul>li:hover .mv-info{
+/* 상위 ul>li 오버시 영화정보보이기 
++ li가 클래스 "on"일 경우도 동일 디자인*/
+.poster-menu ul>li:hover .mv-info,
+.poster-menu ul>li.on .mv-info
+{
     /* 값이 100%에서 0으로 변경 */
     top: 0;
 }
