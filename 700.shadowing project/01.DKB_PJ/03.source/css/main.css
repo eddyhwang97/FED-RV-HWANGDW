@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* 도깨비 PJ : 메인페이지 CSS - main.css */
+
+/* 리셋, 코아, 커먼 공통 외부CSS 합치기 */
+@import url(./reset.css);
+@import url(./core.css);
+@import url(./common.css);
+/* 그리드 12 불러오기 */
+@import url(./grid_12_flex.css);
+
+/* 공사중 표시 */
+body * {
+  outline: 2px dashed #ccc;
+}
+
+/* 임시 높이 */
+.main-area .inbox{
+  height: 500px;
+}
+/* 임시 타이틀 */
+h1,h2{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  text-align: center;
+  font-size: 4vw;
+  color: #ccc;
+  outline: none;
+}
