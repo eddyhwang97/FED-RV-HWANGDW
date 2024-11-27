@@ -236,16 +236,17 @@ li+li 두번째 li부터
   background: url(../images/bg.jpg)
     no-repeat center/cover;
 }
+/* 2-1.스크린 */
 .screen {
-  /* 앱솔루트 포지션 */
+  /* 앱솔루트 포지션 : poa */
   position: absolute;
-  /* 앱솔루트 위치 */
-  top: 136px;
-  left: 257px;
-  /* 나의부모는?  .main-area*/
-  width: 701px;
-  height: 397px;
-  background-color: black;
+  top: 17.2%;
+  left: 21.3%;
+  /* 나의 부모는? .main-area */
+  width: 58.6%;
+  height: 50.6%;
+  /* 기본배경색 검정! */
+  background-color: #000;
 }
 /* 유튜브 아이프레임 */
 .screen iframe#ifr {
@@ -257,9 +258,14 @@ li+li 두번째 li부터
 /* 2-2. 포스터 메뉴 */
 .poster-menu {
   position: absolute;
-  bottom: 35px;
-  left: 200px;
-  /* 나의부모는? .main-area */
+  /* 비율유지 부모박스 기준 % */
+  width: 63%;
+  aspect-ratio: 4.5/1;
+  /* outline: 2px dashed yellow; */
+  bottom: 3.5%;
+  left: 50%;
+  /* 나의 부모는? .main-area */
+  translate: -50%;
 }
 /* li상위 ul 플렉스박스 만들기 */
 .poster-menu ul {
@@ -274,7 +280,10 @@ li+li 두번째 li부터
 }
 /* 포스터 이미지 */
 .poster-menu img {
-  height: 180px;
+  width: 100%;
+  height: 100%;
+  /* 이미지 비율로 채우기 */
+  object-fit: cover;
 }
 
 /* 메뉴리스트 li */
@@ -310,9 +319,9 @@ li+li 두번째 li부터
 li+li 앞에 li가 있는 li선택
 즉, 첫번째 li 빼고 다선택
 */
-.poster-menu ul > li + li {
+/* .poster-menu ul > li + li {
   margin-left: 11px;
-}
+} */
 
 .mv-info {
   position: absolute;
@@ -332,7 +341,7 @@ li+li 앞에 li가 있는 li선택
   padding-top: 35px;
   /* 패딩,보더 크기포함박스 bxb */
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: min(1.6rem,1.2vw);
   /* 글자체 */
   font-family: "Cute Font", cursive;
   
@@ -348,13 +357,14 @@ li+li 앞에 li가 있는 li선택
     /* 값이 100%에서 0으로 변경 */
     top: 0;
 }
+/* 첫번째 제목만 큰글자 만들기 */
 .mv-info ol li:first-child {
-  /* 글자사이즈  */
-  font-size: 22px;
-  /* 글자두껍게 : fwb */
+  /* 글자크기 : fz */
+  font-size: min(2rem,1.5vw);
+  /* 글자 두껍게 : fwb */
   /* font-weight: bold; */
-  /* 글자색 */
-  color: rgb(48, 167, 219);
+  /* 글자색 : c */
+  color: aqua;
 }
 
 /********************************** 3. 하단영역 **********************************/
