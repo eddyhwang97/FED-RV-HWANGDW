@@ -23,7 +23,78 @@
         background-color: #333;
         border-radius: 25px;
       }
-      
+      /* 처음 바 셋팅상태 */
+      /* 첫번째 바 */
+      .hambtn span:nth-child(1){
+        top: 0;
+        /* 트랜지션
+        top은 0.3s
+        로테이트 0.3s
+        */
+        transition: 
+        top .3s .3s,
+        rotate 0.3s ;
+      }
+      /* 두번째 바 */
+      .hambtn span:nth-child(2){
+        top: 100px;
+        transition: 
+        opacity 0.3s 0.3s;
+      }
+      /* 세번째 바 */
+      .hambtn span:nth-child(3){
+        top: 200px;
+        /* 트랜지션
+        top은 0.3s
+        로테이트 0.3s
+        */
+        transition: 
+        top .3s .3s,
+        rotate 0.3s;
+      }
+      /* 클래스 on 바 셋팅상태 */
+      /* 첫번째 바 */
+      .hambtn.on span:nth-child(1){
+        top: 100px;
+        rotate: 45deg;
+        /* 트랜지션
+        top은 0.3s
+        로테이트 0.3s
+        */
+        transition: 
+        top .3s,
+        rotate 0.3s 0.3s;
+      }
+      /* 두번째 바 */
+      .hambtn.on span:nth-child(2){
+        opacity: 0;
+        transition: 
+        opacity 0.3s 0.3s;
+        
+      }
+      /* 세번째 바 */
+      .hambtn.on span:nth-child(3){
+        top: 100px;
+        rotate: -45deg;
+        /* 트랜지션
+        top은 0.3s
+        로테이트 0.3s
+        */
+        transition: 
+        top .3s,
+        rotate 0.3s 0.3s;
+      }
+
+      .hambtn2 {
+        position: absolute;
+        top: 2vw;
+        right: 3vw;
+        scale: .1;
+        transform-origin: right top;
+      }
+    
+
+
       
     </style>
   </head>
