@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>태그 선택자</title>
+    <!-- jQuery library 가장위에 있어야함!!! -->
+    <script src="../jquery-3.6.3.min.js"></script>
+    <script>
+      // 제이쿼리 함수명은? $
+      // $(()=>{}) : 제이쿼리 로딩구역
+      $(() => {
+        //   // 이 구역안에 코딩하면 html로딩후 실행!
+        //   // 요소 선택법? $(CSS선택자)
+        //  -> ul>li
+        // ->여러개의 요소도 for문없이 코딩가능!
+        $("ul li")
+          .css({
+            color: "red",
+            fontSize: "40px",
+          })
+          .click((e) => {
+            let iam = e.currentTarget;
+            console.log(
+              "나야나!",
+              e.iam
+            );
+            // 클릭된 요소는? iam 변수
+            // 요구사항 : 글자크기 70px
+            // 글자색 aquamarine,translate 100px 200px
+            // 글자그림자
+            $(iam).css({
+              fontSize: "70px",
+              color: "aquamarine",
+              translate: "100px 200px",
+              transition: "1s ease-out",
+              textShadow:
+                "2px 2px 5px gray",
+            });// css({속성값})
+          });// click
+          
+
+        // 원래 JS문법에서는 여러개의 for문 필수임!
+        // const mymy = document.querySelectorAll('ul li');
+        // for(let x of mymy){
+        //   x.style.color ='red';
+        //   x.style.fontSize ='40px';
+        // }
+
+        // h2요소를 선택후 클릭하면
+        // css 를 변경
+        // 글자크기 50px, 로테이트 360도, 글자색 핫핑크
+
+        $("h2").click((e) => {
+          // 나자신
+          let iam = e.currentTarget;
+          $(iam).css({
+            transform: "rotate(360deg)",
+            color: "hotpink",
+            fontSize: "50px",
+            transition: "1s ease-out",
+            textShadow:
+              "2px 2px 5px gray",
+          });
+        });
+      }); ///click
+    </script>
+  </head>
+
+  <body>
+    <div id="container">
+      <header>
+        <h2>여기를 클릭하시오~!!!</h2>
+      </header>
+
+      <nav>
+        <ul class="list">
+          <li id="first">
+            <span>One</span>
+          </li>
+          <li id="second">
+            <span>Two</span>
+          </li>
+          <li id="third">
+            <span>Three</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!---------- jQuery code Start ---------->
+    <script></script>
+  </body>
+</html>
