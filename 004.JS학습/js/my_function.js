@@ -2,9 +2,9 @@
 const myFn = {
     // 요소 선택함수
     qs: x => document.querySelector(x),
-    qs: (el,x) => el.querySelector(x),
+    qsEl: (el,x) => el.querySelector(x),
     qsa: x => document.querySelectorAll(x),
-    qsa: (el,e) => el.querySelectorAll(x),
+    qsaEl: (el,e) => el.querySelectorAll(x),
 
     // 이벤트 셋팅 함수
     addEvt : (el,evt,fn) => el.addEventListener(evt, fn),
