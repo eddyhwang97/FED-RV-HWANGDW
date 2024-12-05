@@ -93,7 +93,7 @@ body{
 .gnb>ul>li:hover>a::after{
     content: '';
     position: absolute;
-    top: 100%;
+    top: 48px;
     left: 0;
     display: block;
     width: 100%;

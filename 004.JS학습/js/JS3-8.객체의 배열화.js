@@ -22,7 +22,7 @@ import myFn from "./my_function.js";
 
 // 2. 대상선정 //////////////////////////////////
 // 2-1. 이벤트대상 : window
-// -> 이벤트종류 : load이벤트
+// -> 이벤트종류 : load이벤트                               
 
 // 2-2. 변경대상 : .wrap
 const wrap = myFn.qs(".wrap");

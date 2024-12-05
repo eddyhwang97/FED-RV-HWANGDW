@@ -14,11 +14,11 @@ body * {
 }
 
 /* 임시 높이 */
-.main-area .inbox{
+.main-area .inbox {
   height: 500px;
 }
 /* 임시 타이틀 */
-h2.temp{
+h2.temp {
   position: absolute;
   left: 0;
   width: 100%;
@@ -32,49 +32,156 @@ h2.temp{
 /********************** 메인영역 **********************/
 
 /********************** 2. 배너파트 **********************/
-/* 배너영역 : 중앙영역(인디케이터)
+/* 배너 영역 : 중앙영역(인디케이터)
 -> 배너와 겹쳐지게 앱솔루트로 구성함! */
 /* 배너 겉박스 부모자격 필요! */
-#ban-area{
+#ban-area {
   position: relative;
 }
-.main-area .ban-area{
+.main-area .ban-area {
   position: absolute;
   top: 0;
   /* 나의 부모는? #ban-area */
+
+  /* 가로중앙셋팅: 
+  앱솔루트이므로 마.영.오 적용불가! */
   left: 50%;
   translate: -50%;
+
   width: 100%;
   height: 530px;
 }
-/* 배너 슬라이드 박스 */
-.ban-box{
-  height: 530px ;
+/* 배너 슬라이드박스 */
+.ban-box {
+  height: 530px;
   /* 넘치는 자식요소 숨기기 */
   overflow: hidden;
 }
-/* 슬라이드 프렑스 박스 */
-.ban-box ul{
+/* 슬라이드 플렉스박스 */
+.ban-box ul {
   display: flex;
-  /* 부모박스의 3배(슬라이드 3장) */
-  width: 300%;
+  /* 부모박스와 같은크기 
+  ->그래야 translate % 값 설정이 쉬워진다.*/
+  width: 100%;
   height: 100%;
 }
-.ban-box ul li{
-  /* 등분할 플렉스 자동 높이설정 */
-  flex: 1;
+/* 슬라이드 플렉스 자식요소 */
+.ban-box ul li {
+  /* 강제로 줄이기 설정 해제 -> 부모크기와 같은 박스가 옆으로 나감
+  (1-설정(기본값)/0-해제) */
+  flex-shrink: 0;
+  /* 가로크기는 부모와 같은크기로
+  -> 슬라이드 하나의 크기가 부모와 같다. */
+  flex-basis: 100%;
 }
 /* 슬라이드 이미지 */
-.ban-box ul li img{
+.ban-box ul li img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   /* 오브젝트 핏 포지션 top변경 */
   object-position: top;
 }
-/* 3. 캐릭터 소개 박스 */
-.main-area .cat-area{
-  /* 비율적용을 위해 높이값을 없앤다 */
+
+/********** 3. 캐릭터소개영역 **********/
+.main-area .cat-area {
+  /* 비율적용을 위해 높이값을 없앤다! */
   height: auto;
-  aspect-ratio: 1392/207;
+  aspect-ratio: 1320/190;
+}
+/* 캐릭터박스 */
+.cat-box {
+  /* 플렉스박스 */
+  display: flex;
+  /* 사이간격 */
+  gap: 1%;
+}
+/* 직계자식요소 div 4개 */
+.cat-box > div {
+  /* 플렉스자식 등분할설정 */
+  flex: 1;
+}
+/* 캐릭터 이미지박스 */
+.cat-box figure {
+  /* 트랜지션 */
+  transition: 0.4s ease-out;
+}
+/* 캐릭터 각 박스 오버시 캐릭터박스
+마진탑 올리기 */
+.cat-box > div:hover figure {
+  /* 브라우저 화면크기를 중앙속박스 크기에 맞추고 
+  최대크기 px, vw */
+  margin-top: max(-200px,-16vw);
+  /* margin-top: max(-200px,-15vw); */
+}
+/* 캐릭터 이미지만 선택 */
+.cat-box figure > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 캐릭터 이름 이미지박스 */
+.cat-box figcaption {
+  text-align: center;
+  margin-top: -17%;
+}
+/* 이름이미지 공통 */
+.cat-box figcaption img {
+  width: 35%;
+}
+/* 첫번째 이름이미지 처음에 안보임 */
+.cat-box figcaption img:first-child {
+  display: none;
+}
+/* 캐릭터 개별박스에 오버시 이름변경
+-> 첫번째 보이고 두번째 숨기기 */
+.cat-box
+  > div:hover
+  figcaption
+  img:first-child {
+  display: inline;
+}
+.cat-box
+  > div:hover
+  figcaption
+  img:last-child {
+  display: none;
+}
+
+/* 캐릭터 설명박스 */
+.cat-box aside {
+  height: 0;
+  overflow: auto;
+  /* 배경 */
+  background: url(../images/eachBG.jpg)
+    no-repeat bottom/cover;
+  /* 트랜지션 */
+  transition: 0.4s ease-out;
+}
+/* 각 캐릭터박스에 오버시 설명박스 보이기 */
+.cat-box > div:hover aside {
+  /* 중앙박스 최대 크기에서 px과 vw크기를 맞추고
+  최소크기 출력을 테스트 하면 잘 된다.*/
+  height: min(200px,15vw);
+  /* height: min(200px,15vw); */
+}
+/* 캐릭터 타이틀 */
+.cat-box aside h3 {
+  font-family: "Gugi";
+  /* 글자 최대 크기를 min으로 설정 */
+  font-size: min(2.4rem, 1.8vw);
+  font-weight: normal;
+  padding: 1.5rem 1rem 0.5rem;
+  /* 자간 letter-spacing */
+  letter-spacing: -1px;
+}
+/* 캐릭터 설명 */
+.cat-box aside p {
+  font-family: "Single Day";
+  /* 글자 최대 크기를 min으로 설정 */
+  font-size: min(1.8rem, 1.5vw);
+  padding: 1.5rem;
+  line-height: 1.6;
+  /* 양쪽정렬 justify */
+  text-align: justify;
 }
