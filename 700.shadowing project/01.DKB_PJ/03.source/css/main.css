@@ -157,6 +157,9 @@ h2.temp {
     no-repeat bottom/cover;
   /* 트랜지션 */
   transition: 0.4s ease-out;
+  /* 보더설정 */
+  border-radius: 10px 5px 5px 10px;
+  margin-top: 8px;
 }
 /* 각 캐릭터박스에 오버시 설명박스 보이기 */
 .cat-box > div:hover aside {

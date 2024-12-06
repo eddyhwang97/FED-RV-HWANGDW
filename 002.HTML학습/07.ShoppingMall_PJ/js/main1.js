@@ -41,16 +41,38 @@ const slideBox = myFn.qs(".slide-box");
 // 동일한 기능이 될 수 있게 해준다!
 
 // (2) 이벤트대상: .abtn
-const abtn = myFn.qsaEl(slideBox, ".abtn");
+const abtn = myFn.qsaEl(
+  slideBox,
+  ".abtn"
+);
 // 처음에 첫번째 버튼 숨기기
 abtn[0].style.display = "none";
 
 // (3) 변경대상: .slide
-const slide = myFn.qsEl(slideBox, ".slide");
+const slide = myFn.qsEl(
+  slideBox,
+  ".slide"
+);
+
+// (4) 인디케이터 블릿대상
+const indic = myFn.qsaEl(
+  slideBox,
+  ".indic li"
+);
+console.log(
+  "대상:",
+  abtn,
+  slide,
+  indic
+);
+
 // 슬라이드 개수 변수할당!
 // 보통 변경없이 사용하는 변수는 상수라고 하고
 // 상수는 보통 대문자로 쓰고 스네이크 케이스 사용함!
-const SLIDE_CNT = myFn.qsaEl(slide, "li").length;
+const SLIDE_CNT = myFn.qsaEl(
+  slide,
+  "li"
+).length;
 console.log("슬라이드개수:", SLIDE_CNT);
 
 // console.log("대상:",slideBox,abtn,slide);
@@ -69,7 +91,8 @@ function goSlide() {
   // console.log('나함수!',this);
 
   // 2. 오른쪽버튼여부 확인
-  let isRight = this.classList.contains("ab2");
+  let isRight =
+    this.classList.contains("ab2");
   // classList.contains(클래스명) -> 클래스있으면 true
   console.log("나함수!", isRight);
 
@@ -80,7 +103,8 @@ function goSlide() {
     // 한계값 설정 :
     // -> 마지막 슬라이드 순번보다 크면 마지막번호고정
     // 위에서 슬라이드개수는 상수 SLIDE_CNT에 있음!
-    if (seqNum > SLIDE_CNT - 1) seqNum = SLIDE_CNT - 1;
+    if (seqNum > SLIDE_CNT - 1)
+      seqNum = SLIDE_CNT - 1;
   } /// if ///
   // (2) 왼쪽일때 감소
   else {
@@ -93,8 +117,10 @@ function goSlide() {
   console.log("슬순번:", seqNum);
 
   // 4. 슬라이드 CSS변경하여 슬라이드 이동하기
-  slide.style.translate = seqNum * -100 + "%";
-  slide.style.transition = ".4s ease-in-out";
+  slide.style.translate =
+    seqNum * -100 + "%";
+  slide.style.transition =
+    ".4s ease-in-out";
 
   // 5. 순번이 끝번호일때 버튼 숨기기 보이기 처리
   if (seqNum === 0) {
@@ -110,4 +136,23 @@ function goSlide() {
     abtn[0].style.display = "block";
     abtn[1].style.display = "block";
   } /// else ///
+
+  // 6. 인디케이터 변경하기 : 대상 .indic li
+  // ->seqNum값 즉, 슬라이드 순번과
+  // 인디케이터 li순번이 같으므로
+  // 해당순번의 li에 클래스 on을 넣고
+  // 나머지는 on을 제거한다.
+  indic.forEach((el, idx) => {
+    console.log(el, idx);
+
+    // (1) 페이지번호와 이치하는 순번li에 클래스 "on"넣기
+    if (idx === seqNum) {
+      el.classList.add("on");
+    } 
+     // (2) 나머지 li는 "on" 지우기
+    else {
+      el.classList.remove("on");
+    }///else ///
+   
+  }); ///forEach ///
 } ////////// goSlide함수 /////////////

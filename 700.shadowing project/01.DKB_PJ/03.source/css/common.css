@@ -2,9 +2,10 @@
 
 /* 도깨비 PJ : 공통 모듈 CSS - common.css */
 /* 공유기능 요소 셋팅 */
-
+.scbar{
+}
 /**************** 1. 상단영역 ****************/
-#top-area{
+#top-area {
   position: relative;
   /* .smenu의 부모 */
   z-index: 999;
@@ -50,9 +51,23 @@
 .gnb ul {
   gap: 32px;
 }
+.gnb ul > li >a{
+  padding-bottom: 10px;
+}
 /* gnb a요소 오버시 */
-.gnb a:hover{
+.gnb ul > li:hover > a,
+.smenu a:hover {
   color: red;
+}
+/* gnb 상위 a요소 오버시 밑줄 디자인 보이기 */
+.gnb ul>li>a::after{
+content: '';
+display: block;
+height: 3px;
+background-color: #fff;
+}
+.gnb ul>li:hover>a::after{
+background-color: #000;
 }
 /* 아래화살표 아이콘 */
 .gnb i {
@@ -67,14 +82,16 @@ aside.smenu {
   width: 100%;
   /* 숨길박스는 패딩주지말것 하위박스에 주어라
   왜? height 할때 패딩이 보임 */
-  height: 0;
+  max-height: 0;
   background: #fff;
+  
+  transition: max-height 0.3s ease-in-out;
   overflow: hidden;
 }
 /* 마우스 오버시 보이기 */
-.gnb>ul>li:hover .smenu{
-  height: 200px;
-  transition: .4s;
+.gnb > ul > li:hover .smenu {
+  max-height: 300px;
+  
 }
 /* 서브 속박스 */
 .smenu .inbox {
@@ -82,13 +99,13 @@ aside.smenu {
   margin: 0 auto;
 }
 
-.smenu>div{
+.smenu > div {
   padding: 20px;
   box-sizing: border-box;
 }
 
 /* 서브제목 */
-.smenu h2{
+.smenu h2 {
   font-size: 3rem;
   margin-bottom: 20px;
 }
