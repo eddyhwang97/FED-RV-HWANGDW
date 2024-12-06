@@ -7,13 +7,10 @@
     <script src="../jquery-3.6.3.min.js"></script>
     <script>
       $(() => {
-        //////////JQB /////////////
+        //////// jQB ///////////////////
 
         // 미션:
-        // (1) 아래의 각 li에 미니언즈 이미지를 웹으로 찾아서 html로 넣고 이미지크기를 width: 100px로 고정한다.
-
-        // 동시에 한번은 오른쪽, 한번은 왼쪽으로 10도씩 기울어지게 애니메이션 하시오.
-
+        // (1) 아래의 각 li에 미니언즈 이미지를 웹으로 찾아서 html로 넣고 
         $("#first").html(
           '<img src="https://hercanberra.com.au/wp-content/uploads/2019/06/Minions_feature.jpg" alt="미니언즈">'
         );
@@ -24,29 +21,33 @@
           '<img src="https://5.imimg.com/data5/XQ/KP/MY-40305254/kids-toy-500x500.jpg" alt="미니언즈">'
         );
 
-        // 이미지크기를 width: 100로 고정하기
-        $(".list img")
-          .css({
-            width: "100px",
-          })
-          .click(function () {
-            // this는 클릭된 이미지 자기자신!
+        // 이미지크기를 width: 100px로 고정한다.
+        $('.list img').css({width:'100px'})
 
-            // 변경전 css rotate속성값 읽어오기
-            let rotVal = $(this).css("rotate");
-            console.log(rotVal);
+        // 위에서 선택한 이미지와 같으므로
+        // 아래에서 메서드 체인으로 연결하여 코딩한다!
+        .click(function(){
+          // this는 클릭된 이미지 자신!
 
-            // (2) 각 이미지 클릭시 이미지크기가 클릭할때마다 10px씩 커지게함과
-            $(this).css({
-              width: "+=10px",
-              rotate: rotVal=="10deg"?"-10deg":"10deg",
-              // 3항연산자 -> 10도냐? 응 -10도/ 아니 10도 
-              transition: ".1s"
-            });
-            // += 대입연산자를 쓰면 기존값에 더해줌!(제이쿼리방식)
+          // 변경전 css rotate속성값 읽어오기
+          // 속성명은 css(속성명)으로 읽어옴!
+          let rotVal = $(this).css("rotate");
+          console.log('각도:',rotVal);
+
+          // (2) 각 이미지 클릭시 이미지크기가 클릭할때마다 10px씩 커지게함과
+          // 동시에 한번은 오른쪽, 한번은 왼쪽으로 10도씩 기울어지게 애니메이션 하시오.
+          $(this).css({
+            width: "+=10px",
+            rotate: rotVal=="-10deg"?"10deg":"-10deg",
+            // 3항연산자 -> -10도냐?응(10도):아니(-10도)
+            transition: ".2s",
           });
-        // 위에서 선택한 이미지와 같으므로 아래에서 메서드 체인으로 연결하여 코딩한다.
-      }); //////////JQB /////////////
+          // += 대입연산자를 쓰면 기존값에 더해줌!(제이쿼리방식)
+        }); /// click ///
+
+
+
+      }); //////////// jQB ///////////////////
     </script>
   </head>
 

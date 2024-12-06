@@ -1,41 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title> child(&gt;)선택자  </title>
-<!-- jQuery library -->
-<script src="../jquery-3.6.3.min.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <title>child(&gt;)선택자</title>
+    <!-- jQuery library -->
+    <script src="../jquery-3.6.3.min.js"></script>
+    <script>
+      $(() => {
+        //////// jQB ///////////////////
+        // 미션: #container 를 클릭하면 이것의 직계자식인 p태그의 배경색을 노란색, 글자색은 녹색, 글지크기는 42px, 테두리는 5px 점선 빨간색으로 설정하시오!
 
-</head>
-  
-<body>
+        $("#container").click(
+          function () {
 
-<div id="container">
+            // [자손선택 3가지 방법]
+            // $('#container p')
+            // $(this).find('p')
+            // $("p", this)
 
- <header>
-   <h2> Welcome mySite </h2>
-	 <p>나는 손자 p태그다!</p>
- </header>
+            // [직계선택 3가지 방법]
+            // $('#container > p')
+            // $(this).children('p')
+            $(">p", this)
+            .css({
+              backgroundColor: "yellow",
+              color: "green",
+              fontSize: "42px",
+              border: "5px dotted red",
+            });
+          }
+        );
 
- <nav>
-   <ul class="list">
-   <li id="first">One</li>
-   <li id="second">Two</li>
-   <li id="third">Three</li>
-  </ul>
- </nav>
- 
-  <p>
-    나는 직계자식 p태그다! 
- </p>
- 
-</div>
+        // this를 이용한 자손선택법?
+        // $(선택자,this)
+        // 예 $('p',this)
+        // ->자손선택 트래버싱 메서드
+        // ->find()
+        // $(this).find('p')
 
-<!---------- jQuery code Start ---------->
-<script>
-  
-</script>
+        // this를 이용한 직계자식선택법은?
+        // $('>선택자',this)
+        // 예 $('>p',this)
+        // ->직계자석선택 트래버싱 메서드
+        // ->children()
+        // $(this).children('p')
+      }); //////////// jQB ///////////////////
+    </script>
+  </head>
 
-</body>
+  <body>
+    <div id="container">
+      <header>
+        <h2>Welcome mySite</h2>
+        <p>나는 손자 p태그다!</p>
+      </header>
+
+      <nav>
+        <ul class="list">
+          <li id="first">One</li>
+          <li id="second">Two</li>
+          <li id="third">Three</li>
+        </ul>
+      </nav>
+
+      <p>나는 직계자식 p태그다!</p>
+    </div>
+
+    <!---------- jQuery code Start ---------->
+    <script></script>
+  </body>
 </html>
-
