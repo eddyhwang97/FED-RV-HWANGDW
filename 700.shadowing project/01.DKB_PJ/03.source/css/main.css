@@ -53,6 +53,7 @@ h2.temp {
 }
 /* 배너 슬라이드박스 */
 .ban-box {
+  position: relative;
   height: 530px;
   /* 넘치는 자식요소 숨기기 */
   overflow: hidden;
@@ -83,11 +84,64 @@ h2.temp {
   object-position: top;
 }
 
+/*이동버튼*/
+.abtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /*Y축 중앙이동*/
+}
+
+/*왼쪽버튼*/
+.ab1 {
+  left: 50px;
+}
+
+/*오른쪽버튼*/
+.ab2 {
+  right: 50px;
+}
+
+/*블릿버튼*/
+.indic {
+  display: flex;
+  /* 플렉스박스 */
+  position: absolute;
+  bottom: 50px;
+  left: 80px;
+}
+
+.indic li {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.indic li img {
+  position: absolute;
+  /*이미지 겹치게*/
+}
+
+.indic li img:last-child {
+  /*회색이미지만 투명하게*/
+  opacity: 0;
+}
+
+/*회색블릿이미지가 보이게하는 class*/
+.indic li.on img:last-child {
+  /*회색이미지만 투명하게*/
+  opacity: 1;
+  /*우선적용!*/
+}
+
 /********** 3. 캐릭터소개영역 **********/
 .main-area .cat-area {
   /* 비율적용을 위해 높이값을 없앤다! */
   height: auto;
   aspect-ratio: 1320/190;
+  /* 형제 배너 박스보다 밑에 깔리므로
+  포지션을 줘서 나중에오는 박스가 위로 오게함! */
+  position: relative;
 }
 /* 캐릭터박스 */
 .cat-box {
