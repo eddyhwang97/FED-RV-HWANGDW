@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>스와이퍼 데모2</title>
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <style>
+      h1 {
+        text-align: center;
+      }
+      /* 스와이퍼 부모박스 */
+      .demo-box {
+        width: 800px;
+        height: 450px;
+        margin: 0 auto;
+
+        outline: 2px solid #ccc;
+      }
+      /* 각 스와이퍼 개별 슬라이드 디자인 */
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      /* 각 스와이퍼 슬라이드 하위 이미지 */
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* 개별조작버튼 박스 */
+      .btn-box {
+        text-align: center;
+        padding: 5vh;
+      }
+      .btn-box button {
+        font-size: 30px;
+      }
+    </style>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      // 스와이프 사이트
+      // https://swiperjs.com/
+
+      window.addEventListener(
+        "DOMContentLoaded",
+        () => {
+          //   스와이퍼 인스턴스 생성하기
+          const swiper = new Swiper(
+            ".my-slide",
+            {
+              // 한 화면에 볼 슬라이드 수
+              slidesPerView: 3,
+              //   슬라이드 사이 간격(숫자는 픽셀 단위)
+              spaceBetween: 10,
+              //   루프설정 true(기본값은 false)
+              loop: true,
+              //   자동넘김 설정
+              autoplay: {
+                // 중간 지연시간
+                delay: 2500,
+                //   상호작용없애기 설정
+                disableOnInteraction: false,
+                //   ->(false를 해야 잠시 후 다시 작동함)
+              },
+              //   하단 블릿 인디케이터
+              pagination: {
+                // 사용할 요소 이름(CSS명이 이것으로 되어있음)
+                el: ".swiper-pagination",
+                // 블릿 클릭 설정(클릭으로 슬라이드 이동여부 설정)
+                clickable: true,
+              },
+              //   양쪽 이동버튼
+              navigation: {
+                // 오른쪽 다음이동버튼
+                nextEl:
+                  ".swiper-button-next",
+                //   왼쪽 이전이동버튼
+                prevEl:
+                  ".swiper-button-prev",
+              },
+            }
+          ); ///swiper
+          // 스와이퍼 API를 이용한 개별코딩
+          // 내감나튼 버튼에 디오 기능 부여
+          const myBtns =
+            document.querySelectorAll(
+              ".btn-box button"
+            );
+          console.log("대상", myBtns);
+
+          // 클릭이벤트 설정하기
+          myBtns.forEach((el) => {
+            el.addEventListener(
+              "click",
+              controlSwp
+            );
+          });
+
+          // 기능구현함수
+          function controlSwp() {
+            // 버튼구분하기
+            let isBtn =
+              this.classList.contains(
+                "btn-next"
+              );
+            console.log(
+              "나야나!",
+              isBtn
+            );
+
+            // 분기하기
+            // 다음버튼
+            if (isBtn) {
+              swiper.slideNext();
+            } else {
+              swiper.slidePrev();
+            }
+          }///controlSwp ///
+          const bgColor = [
+            'pink', 'purple', 'yellow', 'orange', 'blue',
+          ]
+          let arrNum = 0;
+          swiper.on(
+            "slideChange",
+            function () {
+              console.log(
+                "slide changed"
+              );
+              document.body.style.backgroundColor = bgColor[arrNum];
+              arrNum++;
+              if(arrNum>4)
+                arrNum = 0;
+              
+            }
+          );
+        }
+      ); /////////// 로드구역 ///////////
+    </script>
+  </head>
+  <body>
+    <h1>Slides per view</h1>
+    <div
+      class="demo-box swiper my-slide"
+    >
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img
+            src="./images/pic01.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic02.png"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic03.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic15.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic05.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic06.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic07.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic08.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic09.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic10.jpg"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic11.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic12.jfif"
+            alt=""
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="./images/pic13.jfif"
+            alt=""
+          />
+        </div>
+      </div>
+      <div
+        class="swiper-button-next"
+      ></div>
+      <div
+        class="swiper-button-prev"
+      ></div>
+      <div
+        class="swiper-pagination"
+      ></div>
+    </div>
+    <!-- 개별 컨트롤을 위한 버튼 -->
+    <div class="btn-box">
+      <button class="btn-prev">
+        이전
+      </button>
+      <button class="btn-next">
+        다음
+      </button>
+    </div>
+  </body>
+</html>

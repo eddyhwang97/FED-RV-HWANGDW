@@ -1,54 +1,100 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title> append()활용  </title>
-<!-- jQuery library -->
-<script src="jquery-1.7.2.min.js"></script>
-	<script>
-	$(function(){// jQB //////////////////////////
-		// 미션: 추가버튼을 클릭하면 이미지가 랜덤하게 #container에 추가되게하시오.
-		// 추가버튼 - #append
+  <head>
+    <meta charset="utf-8" />
+    <title>append()활용</title>
+    <!-- jQuery library -->
+    <script src="jquery-1.7.2.min.js"></script>
+    <script>
+      $(function () {
+        // jQB //////////////////////////
+        $("body,button").css({
+          fontSize: "40px",
+        });
+        // 추가버튼 - #append
 
-		// 변경대상 - #container
-		
+        // 변경대상 - #container
+        const target = $("#container");
+        // 이벤트대상 - 버튼들
+        // 추가버튼 #append
+        const btnAdd = $("#append");
+        const btnAuto = $("#auto");
+        const btnStop = $("#stop");
 
-		// 추가미션: 자동버튼(#auto)클릭시 인터발함수로
-		// 랜덤수 이미지 계속 추가하기 기능만들기 + 멈춤버튼(#stop)
-		// 클릭시 인터발함수 멈추기!
+        // 디자인 조정
+        target.css({
+          marginTop: "20px",
+          padding: "20px",
+        });
 
-		
-		
-		
-	});/// jQB ////////////////////////////////////
-	//////////////////////////////////////////////
-	
-	
-	</script>
-	
-	
-	
-	
-<style>
-  div {border:#00F solid 1px;}
-</style>
-</head>
- 
-<body>
+        // 미션: 추가버튼을 클릭하면 이미지가 랜덤하게 #container에 추가되게하시오.
+        btnAdd.click(() => {
+          // 랜덤수 만들기
+          let rdmNum = Math.ceil(
+            Math.random() * 5
+          );
 
-<button id ="append"  title="append">추가</button>
-<button id="auto">자동</button>
-<button id="stop">멈춤</button>
+          // 대상요소에 이미지 넣기
+          target.append(`
+			<img src="./th_pic${rdmNum}.jpg" alt="이미지">
+			`);
+        });
 
-<div id="container"></div>
+        // 추가미션: 자동버튼(#auto)클릭시 인터발함수로
 
-	
-<!---------- jQuery code Start ---------->
-<script>
-          
+        // 클릭시 인터발함수 멈추기
+        let autoI;
+        // 인터발용변수
+        btnAuto.click(() => {
+          // 전역변수에 담아서 clearInterval 하도록함
+          console.log("autoI:", autoI);
+          if (!autoI) {
+            //할당전일때만 한번 들어옴!
+            console.log(
+              "autoI:",
+              autoI
+            );
 
+            autoI = setInterval(() => {
+              // trigger() 메서드
+              // 이벤트대상.trigger(이벤트명)
+              // ->선택요소의 이벤트 강제발생함
+              btnAdd.trigger("click");
+            }, 200);
+          } ///if///////
+        }); ///click //////////////
 
-</script>
+        // 인터벌 멈추기 구현
+        btnStop.click(() => {
+          // 인터벌 멈추기
+          clearInterval(autoI);
+          // 다시 인터벌 처리되도록 autoI 값 초기화
+          autoI = false;
+        });
 
-</body>
+        // 랜덤수 이미지 계속 추가하기 기능만들기 + 멈춤버튼(#stop)
+        // 클릭시 인터발함수 멈추기!
+      }); /// jQB ////////////////////////////////////
+      //////////////////////////////////////////////
+    </script>
+
+    <style>
+      div {
+        border: #00f solid 1px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="append" title="append">
+      추가
+    </button>
+    <button id="auto">자동</button>
+    <button id="stop">멈춤</button>
+
+    <div id="container"></div>
+
+    <!---------- jQuery code Start ---------->
+    <script></script>
+  </body>
 </html>
