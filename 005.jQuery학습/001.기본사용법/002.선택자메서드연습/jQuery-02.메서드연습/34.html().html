@@ -19,6 +19,68 @@
 		//미션: #main>p중 첫번째p를 클릭하면 두번째 p태그 내부에 
 		// img태그를 5개 만들고 css설정을 absolute로 하여 차례대로 
 		// left이동 애니메이션을 하시오.
+		$("#main").find("p").first().
+		click(function(){
+			console.log('hi');
+			$(this) //주인공 첫번째 p 요소
+			.next()
+			.html(`
+			<img src="pic1.jpg" alt="이미지"/>
+			<img src="pic2.jpg" alt="이미지"/>
+			<img src="pic3.jpg" alt="이미지"/>
+			<img src="pic4.jpg" alt="이미지"/>
+			<img src="pic5.jpg" alt="이미지"/>
+			`)
+			.find("img")
+			.css({
+				position : "absolute",
+				left : "0",
+			})
+			.first() //첫번째 이미지
+			.css({width : "300px"})
+			.next() //다음이미지(두번째)
+			.css({width : "250px"})
+			.next() //다음이미지(세번째)
+			.css({width : "200px"})
+			.next() //다음이미지(네번째)
+			.css({width : "150px"})
+			.next() //다음이미지(다섯번째)
+			.css({width : "100px"})
+			// 애니메이션주기
+			// 마지막 이미지에서 부모로 이동
+			.parent()
+			.find('img')
+			.eq(1) //eq(n)은 0부터 시작함 1번은 2번째
+			.delay(1000) //1초후
+			.animate({left : '300px'},500) //액션
+			.next() //3번째 이미지
+			.delay(1400) //1초후
+			.animate({left : '550px'},400) //액션
+			.next() //4번째 이미지
+			.delay(1700) //1초후
+			.animate({left : '750px'},300) //액션
+			.next() //5번째 이미지
+			.delay(2000) //1초후
+			.animate({left : '900px'},200) //액션
+
+			// 짝수번째이미지 이동 애니메이션
+			// 사실 홀수번째 왜? :even만 쓰면 첫번째가 0번
+			.parent().find('img:even')
+			.delay(2000) //
+			.animate({top : "200px"},500)
+
+			// 홀수번째 이미지 (사실 짝수번째)
+			.parent().find('img:odd').first()
+            .delay(2000) //
+            .animate({top : "-50px"},400)
+			// 홀수번째 이미지 (사실 짝수번째)
+			.parent().find('img:odd').last()
+            .delay(2000) //
+            .animate({top : "50px"},400); //마무리
+
+			console.log('현재 HTML',$('#main').html());
+            
+		})
 		
 		
 	
@@ -39,7 +101,7 @@
  
  <div id = "main">
    <p>여기를 클릭하시면 이미지가 나와요!</p>
-   <p><img src="pic1.jpg" alt="이미지"/></p>
+   <p></p>
  </div>
 
 <script>
