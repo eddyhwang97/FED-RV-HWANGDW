@@ -3,8 +3,8 @@
 // 메인배너 슬라이드 기능함수 불러오기
 import slideFn from "./slide_fn.js";
 
-import {previewData} from "../data/dkb_data.js"
-console.log(previewData)
+import { previewData } from "../data/dkb_data.js";
+console.log(previewData);
 // console.log(slideFn);
 // 슬라이드함수 호출하여 실행하기
 slideFn();
@@ -15,54 +15,94 @@ slideFn();
 // 데이터 : previewdata
 // map 메서드 사용하기
 // 배열값 변령출력은? 맵죠잉!
-// 원래는 일반 js에서 html 넣을때 
+// 원래는 일반 js에서 html 넣을때
 // 배열값 직접 넣으면 사이에 콤마가 출력됨
 // 그래서 join('')으로 없애고 출력함!
 // ->제이쿼리 html() 메서드에서는 join()없이
 // 콤마없애고 출력해줌!!
 
-$('.preview-box ul').html(
-    previewData.map(v=>`
+$(".preview-box ul").html(
+  previewData
+    .map(
+      (v) => `
         <li>
             <h3>${v.title}</h3>
             <p>${v.story}</p>
         </li>      
-        `).join('')
-)
+        `
+    )
+    .join("")
+);
 
 //스와이퍼 인스턴스 생성하기
 const swiper = new Swiper(".clip-box", {
-    // 한화면에 볼 슬라이드수
-    slidesPerView: 4,
-    // 슬라이드 사이 간격(숫자는 px단위임)
-    spaceBetween: 0,
-    
-  }); /// swiper /////
+  // 한화면에 볼 슬라이드수
+  slidesPerView: 4,
+  // 슬라이드 사이 간격(숫자는 px단위임)
+  spaceBetween: 0,
+}); /// swiper /////
 
-  // 스와이퍼 API를 이용한 개별 코딩
-        // 내가 만든 버튼에 이동 기능 부여하기!
-        const myBtns = document.querySelectorAll(".btn-box button");
-        console.log("대상:", myBtns);
+// 스와이퍼 API를 이용한 개별 코딩
+// 내가 만든 버튼에 이동 기능 부여하기!
+const myBtns =
+  document.querySelectorAll(
+    ".btn-box button"
+  );
+console.log("대상:", myBtns);
 
-        // 클릭이벤트 설정하기
-        myBtns.forEach((el) => {
-          el.addEventListener("click", controlSwp);
-        });
+// 클릭이벤트 설정하기
+myBtns.forEach((el) => {
+  el.addEventListener(
+    "click",
+    controlSwp
+  );
+});
 
-        // 기능구현함수
-        function controlSwp() {
-          // 버튼구분하기
-          let isBtn = this.classList.contains("btn-next");
-          console.log("나야나!", isBtn);
+// 기능구현함수
+function controlSwp() {
+  // 버튼구분하기
+  let isBtn =
+    this.classList.contains("btn-next");
+  console.log("나야나!", isBtn);
 
-          // 분기하기
-          // 다음버튼
-          if (isBtn) {
-            swiper.slideNext();
-          } // if //
-          // 이전버튼
-          else {
-            swiper.slidePrev();
-          } // else //
-        } ////////// controlSwp함수 /////////
+  // 분기하기
+  // 다음버튼
+  if (isBtn) {
+    swiper.slideNext();
+  } // if //
+  // 이전버튼
+  else {
+    swiper.slidePrev();
+  } // else //
+} ////////// controlSwp함수 /////////
 
+//////////////////////////////////////////
+//////////리스트 내뇬 서브페이지 별창형 구현/////
+//////////////////////////////////////////
+
+// 공통변경대상: .sub-cont
+const $subCont = $(".sub-cont");
+
+// 닫기버튼 셋팅
+$subCont
+  .find(".cbtn")
+  .click(() => $subCont.fadeOut());
+
+// 1. 미리보기영역 클릭시 세부내용 보기
+//  이벤트 대상 : .preview-box li
+$(".preview-box li").click(function () {
+  console.log("hi");
+
+  // 클릭된 박스의 데이터 읽어오기
+  let currTit = $(this).find().text();
+  let currCont = $(this).find().text();
+
+  // 2. 읽어온 내용을 서브컨텐츠 박스에 넣기
+  $subCont.find("h1").text(currTit);
+  $subCont
+    .find("내용박스")
+    .text(currCont);
+  // 3. 서브컨텐츠 박스 보이기
+  $subCont.fadeIn();
+  // fadeIn(시간) 시간 안쓰면 400
+}); ////click ///////
