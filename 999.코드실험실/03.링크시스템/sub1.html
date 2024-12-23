@@ -14,8 +14,9 @@
         margin: 0;
         padding: 0;
       }
-      body{
-        background: url(https://fjwp.s3.amazonaws.com/blog/wp-content/uploads/2021/02/25083908/How-to-Find-Online-Jobs-Work-From-Home-Jobs-That-Require-Little-or-No-Work-Experience.jpg) no-repeat center/cover;
+      body {
+        background: url(https://fjwp.s3.amazonaws.com/blog/wp-content/uploads/2021/02/25083908/How-to-Find-Online-Jobs-Work-From-Home-Jobs-That-Require-Little-or-No-Work-Experience.jpg)
+          no-repeat center/cover;
       }
 
       /* 페이지 전환효과용 가림막 */
@@ -25,8 +26,8 @@
         top: 0;
         left: 0;
         width: 100vw;
-        /* height: 100vh;
-        display: none; */
+        height: 100vh;
+        /* display: none; */
         background-color: lightseagreen;
         /* 트랜지션: 속시이지 */
         /* transition: all 0.8s ease-in-out; */
@@ -86,9 +87,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
 
     <!-- 링크시스템 JS -->
-    <script src="./js/linksys.js" defer></script>
-    
-    <!-- <script src="./js/main.js" defer></script> -->
+    <script
+      src="./js/linksys.js"
+      defer
+    ></script>
+
+    <script
+      src="./js/common.js"
+      defer
+    ></script>
   </head>
   <body>
     <nav class="gnb">
@@ -104,5 +111,7 @@
         <h1>This is Second One!</h1>
       </div>
     </div>
+    <!-- 화면전환용 가림막 요소 -->
+    <div class="pg-cover"></div>
   </body>
 </html>
