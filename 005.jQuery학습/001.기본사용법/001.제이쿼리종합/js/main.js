@@ -207,8 +207,21 @@ $btns
       // 콜백한수(애니실행 후)
       // function(){ //-> this 는 $mi}
       () => {
+        // 좀비보이기
+        $room
+          .eq(9)
+          .find(".mz")
+          .delay(2000)
+          .fadeIn(400, () => {
+            // 콜백함수 : 좀비나타난후 액션
+            // 메세지 보이기/위치조정하기/보이기
+            $msg
+              .html(msgTxt[9])
+              .css({ left: "-88%" })
+              .fadeIn(300);
+            showNextBtn(this);
+          }); //fadeIn
         // 다음버튼 보이기 함수 호출
-        showNextBtn(this);
       }; ///fn 콜백함수 ////
 
     // (2) actMini() 함수 호출
@@ -387,4 +400,4 @@ const santaAni = () => {
 santaAni();
 
 // 6. 인터발 함수로 계속 호출하기!
-setInterval(santaAni,11000);
+setInterval(santaAni, 11000);
