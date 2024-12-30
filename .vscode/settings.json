@@ -1,5 +1,5 @@
 {
-  "prettier.printWidth": 40,
+  "prettier.printWidth": 120,
   "workbench.colorTheme": "One Dark Pro Mix",
   "workbench.colorCustomizations": {
     // 전체배경색
