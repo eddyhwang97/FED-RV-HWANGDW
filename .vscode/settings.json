@@ -1,14 +1,12 @@
 {
-    "prettier.printWidth": 40,
-    "workbench.colorTheme": "Monokai Dimmed",
-    "workbench.colorCustomizations": {
+  "prettier.printWidth": 40,
+  "workbench.colorTheme": "One Dark Pro Mix",
+  "workbench.colorCustomizations": {
     // 전체배경색
     "editor.background": "#101010",
     "activityBar.background": "#101010",
     // 사이드바(파일,폴더) 배경 색
-    "sideBar.background": "#212223",
-    
-
+    "sideBar.background": "#212223"
   },
   "liveServer.settings.port": 5502
 }

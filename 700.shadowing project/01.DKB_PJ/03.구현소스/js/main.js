@@ -3,8 +3,13 @@
 // 메인배너 슬라이드 기능함수 불러오기
 import slideFn from "./slide_fn.js";
 
-import { previewData } from "../data/dkb_data.js";
-console.log(previewData);
+// 도깨비 PJ 데이터 불러오기
+// import { previewData } from "../data/dkb_data.js";
+import * as dkbData from "../data/dkb_data.js";
+// 넘겨준 것을 모두 받는 방법은 별(*)로 받고
+// as로 별칭을 지어주면 객체화되어 담겨진다.
+
+console.log(dkbData);
 // console.log(slideFn);
 // 슬라이드함수 호출하여 실행하기
 slideFn();
@@ -22,19 +27,109 @@ slideFn();
 // 콤마없애고 출력해줌!!
 
 $(".preview-box ul").html(
-  previewData
-    .map(
-      (v) => `
+  dkbData.previewData.map(
+    (v) => `
         <li>
             <h3>${v.title}</h3>
             <p>${v.story}</p>
         </li>      
         `
-    )
-    .join("")
+  )
+  // .join("")
 );
 
-//스와이퍼 인스턴스 생성하기
+////////////////////////////////////////
+// 현장포토 영역 : 데이터 연결하여 태그만들기 ////
+////////////////////////////////////////
+// 대상 : .live-box
+// 주의 : 제이쿼리 html() 메서드의 값으로 map변환만 씀녀
+// join('') 자동 변환되지면 다른 태그 합칠경우
+// 서비스 기능이 비활성화 된다!
+// 이런경우 JS기본 사용법대로 아래처럼 "맵죠잉~?" 한다.
+// 배열.map().join('')
+$(".live-box").html(
+  "<ul>" +
+    dkbData.liveData
+      .map(
+        (v) => `
+    <li data-idx="${v.idx}">
+                  <figure>
+                    <img
+                      src="./images/live_photo/${v.imgName[0]}.jpg"
+                      alt="${v.title}"
+                    />
+                    <figcaption>
+                      ${v.title}
+                    </figcaption>
+                  </figure>
+                </li>`
+      )
+      .join("") +
+    "</ul>"
+);
+
+////////////////////////////////////////
+// 대표포스터 영역 : 데이터 연결하여 태그만들기 ////
+////////////////////////////////////////
+$(".poster-box").html(
+  "<ul>" +
+    dkbData.posterData
+      .map(
+        (v) => `
+    <li data-idx="${v.idx}">
+    <figure>
+    <img
+    src="./images/poster_img/${v.imgName}.jpg"
+    alt="${v.title}"
+    />
+    <figcaption>${v.title}</figcaption>
+    </figure>
+    </li>
+    
+    `
+      )
+      .join("") +
+    "</ul>"
+);
+////////////////////////////////////////
+// 최신동영상 영역 : 데이터 연결하여 태그만들기 ////
+////////////////////////////////////////
+// 대상: .clip-box
+$(".clip-box").html(
+  `<ul
+      class="slide swiper-wrapper"
+      data-db="clipData"
+    >
+    ${dkbData.clipData.map(
+      (v) => `
+      <li
+        class="swiper-slide"
+        data-idx="${v.idx}}"
+        data-seq="0"
+      >
+        <div
+          class="clip-mv-box"
+        >
+          <img
+            src="./images/clip_img/${v.idx}.jpg"
+            alt="${v.subtit}}"
+          />
+        </div>
+        <h4>
+          ${v.subtit}}
+        </h4>
+        <h3>${v.title}}</h3>
+      </li>
+      `
+    ).join('')}
+  </ul>
+                `
+);
+
+////////////////////////////
+//스와이퍼 인스턴스 생성하기 //////
+////////////////////////////
+
 const swiper = new Swiper(".clip-box", {
   // 한화면에 볼 슬라이드수
   slidesPerView: 4,
