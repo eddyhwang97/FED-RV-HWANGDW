@@ -4,8 +4,6 @@
 // 부드러운 스크롤 2024.04 변수선언개정
 // arranged by Tom Brace Parker
 
-
-
 // startSS()함수를 호출하여 사용
 export default function startSS() {
   // 전체 스크롤 대상일때 document를 보냄
