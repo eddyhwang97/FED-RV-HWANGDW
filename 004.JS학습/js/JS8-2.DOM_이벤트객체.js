@@ -5,8 +5,7 @@ import myFn from "./my_function.js";
 
 // console.log(myFn);
 
-// 이벤트  전달을 관찰하기 위한 클릭이벤트 설정
-// 이벤트 객체의 이벤트 로그찍기 함수
+/// 이벤트 객체의 이벤트 로그찍기함수 ///
 const showEvtLog = (x) =>
   console.log(
     x,
@@ -29,75 +28,80 @@ const showEvtLog = (x) =>
     event.isTrusted
   );
 
-// 1. 아들방
+// 이벤트 전달을 관찰하기 위한 클릭이벤트 설정 ///
+
+// 1. 아들방 ///////
+
+// 아들방 a요소에 추가적인 이벤트설정 가능함!
+// addEventListener로 할 수 있음!!!
+
+// 추가 이벤트 설정
+myFn.addEvt(myFn.qs('a'),'click',mySon);
+
+// 추가기능함수
+function mySon(e){
+    // 이벤트 버블링 막기
+    // e.stopPropagation();
+
+    // e.stopImmediatePropagation();
+    // 이벤트 버블링 막기에서 
+    // stopImmediatePropagation 다른점은
+    // 버블링 막기 + 나중에 등록된 같은 이벤트실행 막기
+    // 여기서는 아랫쪽에 등록된 onclick 이벤트 함수기능이
+    // 막아져서 버블링 막기와 함께 실행중지됨!
+    // 현재 여기에 구현된 기능만 실행됨!
+    
+    e.currentTarget
+    .style.outline = '20px dotted hotpink';
+} //// mySon ///////
+
+
 myFn.qs("a").onclick = (e) => {
-  // e = 이벤트 전달변수
+  // e - 이벤트 전달변수
   // 이벤트 버블링 막기
   // event.stopPropagation();
-  e.currentTarget.style.backgroundColor = //이벤트 발생 요소
-    "red";
 
-  // 이벤트로고 찍기
+  e.currentTarget.style.backgroundColor = "red"; // 이벤트발생요소
+
+  // 이벤트 로그 찍기
   showEvtLog("아들방(a)");
 
-  // 기본기능막기(a요소는 이동특성이 있음. 이것을 막음)
+  // 기본기능막기(a요소는 이동특성이 있음. 이것을 막음!)
   // event.preventDefault();
   return false;
-  // 리턴시 false를 쓰면 기본기능 막기가됨
-}; ///click /////////
-
-// 아들방 a요소에 추가적인 이벤트 설정 가능함
-// addEventListener로 할 수 있음
-
-// 추가이벤트 설정
-myFn.addEvt(myFn.qs('a'),'click',mySon)
-
-function mySon(e){
-    e.stopPropagation();
-    // e.stopImmediatePropagation();
-    // 이벤트 버블링 막기에서
-    // stopImmediatePropagation 다른점은
-    // 버블링 막기 + 나중에 등록된 같은 이벤트 실행 막기
-    // 여기서는 아래쪽에 등록된 onclick 이벤트 함수 기능이
-    // 막아져서 버블링 막기와 함께 실행 중지됨
-    // 현재 여기에 구현된 기능만 실행됨
-
-    e.currentTarget.style.outline = '20px dotted hotpink';
-    
-}
+  // 리턴시 false를 쓰면 기본기능막기가 됨!
+}; /// click ///
 
 
-// 2. 엄마집
-myFn.qs("p").onclick = (e) => {
-  // e = 이벤트 전달변수
-  //   e.stopPropagation();
-  e.currentTarget.style.backgroundColor = //이벤트 발생 요소
-    "yellow";
+
+// 2. 엄마집 ///////
+myFn.qs("p").onclick = function (e) {
+  // e - 이벤트 전달변수
+  // e.stopPropagation();
+  e.currentTarget.style.backgroundColor = "yellow"; // 이벤트발생요소
   // return false;
 
-  // 이벤트로고 찍기
+  // 이벤트 로그 찍기
   showEvtLog("엄마집(p)");
-}; ///click /////////
+}; /// click ///
 
-// 3. 친척네집
+// 3. 친척네집 //////
 myFn.qs("div").onclick = (e) => {
-  // e = 이벤트 전달변수
-  e.currentTarget.style.backgroundColor = //이벤트 발생 요소
-    "green";
+  // e - 이벤트 전달변수
+  e.currentTarget.style.backgroundColor = "green"; // 이벤트발생요소
 
-  // 이벤트로고 찍기
+  // 이벤트 로그 찍기
   showEvtLog("친척네집(div)");
-}; ///click /////////
+}; /// click ///
 
-// 4. 대한민국전체
+// 4. 대한민국 전체 /////
 myFn.qs("body").onclick = (e) => {
-  // e = 이벤트 전달변수
-  e.currentTarget.style.backgroundColor = //이벤트 발생 요소
-    "blue";
+  // e - 이벤트 전달변수
+  e.currentTarget.style.backgroundColor = "blue"; // 이벤트발생요소
 
-  // 이벤트로고 찍기
+  // 이벤트 로그 찍기
   showEvtLog("대한민국전체(body)");
-}; ///click /////////
+}; /// click ///
 
 /**************************************************
     
@@ -139,15 +143,16 @@ myFn.qs("body").onclick = (e) => {
     현재 이벤트를 처리중인 element
 ★(2) target (element) : 이벤트 타깃
 
-4. 이벤트 메서드(Function)
-★(1) preventDefault()  
+4. 이벤트 메서드 (Function) 
+★(1) preventDefault()
     이벤트의 기본행동 취소, 
     (cancelable가 true일때)
-    -> return false로 대체될 수 있음
-★(2) stopImmediatePropagation()  
+    -> return false로 대체될 수 있음!
+★(2) stopImmediatePropagation() 
     이벤트캡처링,이벤트버블링 모두 취소. 
-    다른 이벤트 핸들러 호출을 막음. (같은 이벤트로 여러기능설정시)
-★(3) stopPropagation() 
+    다른 이벤트 핸들러 호출을 막음. 
+    (같은 이벤트로 여러기능설정시)
+★(3) stopPropagation()
     이벤트캡처링,이벤트버블링 모두 취소 
     (bubbles가 true일때)
 
@@ -199,33 +204,37 @@ stopImmediatePropagation() 메서드 사용!
 (2) 이벤트속성 = ""; -> 빈 문자열값을 할당하여 지움
 **************************************************/
 
-// 이벤트 지우기 버튼 클릭시 기능 설정하기
+/// 이벤트 지우기 버튼 클릭시 기능 설정하기 //////
 myFn.qs('.clear').onclick = (e)=>{
-    // 1. 이벤트 버블링막기
+    // 1. 이벤트 버블링 막기
     e.stopPropagation();
-    alert('아들방 이벤트 지우기');
+
+    alert('아들방 이벤트 지움!!!');
     // 2. 이벤트리스너로 등록된 이벤트 지우기
-    myFn.qs('a').removeEventListener('click',mySon);
-    // 반드시 이벤트명과 연결함수가 addEventListener 여야함!
+    myFn.qs('a').removeEventListener('click', mySon);
+    // 반드시 이벤트명과 연결함수가  addEventListener 여야함!
     // 그리고 외부함수 연결이어야 지울 수 있음!
 
     // 3. 이벤트 속성에 할당한 값 지우기
     myFn.qs('a').onclick = '';
-    // 할당값에 null 또는 undefined 를 할당하여 지울 수 있다.
+    // 할당값에 null 또는 undefined 를 할당하여 지울 수 있다!
     
-}; ///click /////////
+}; //// click ////
 
-
-// 휠 이벤트 막기 테스트 ///
-window.addEventListener('wheel',()=>{
-console.log('휠!!!');
-    // 기본기능 막기
+// 휠 이벤트 막기 테스트 ////
+window.addEventListener(
+  "wheel",
+  () => {
+    // 기본기능막기
     event.preventDefault();
-    // 배경색 변경
-    myFn.qs('body').style.backgroundColor = 'lightcoral';
 
-},{passive:false});
-// 이벤트 막기 할 경우 window,body,document 일 경우
-// 막기를 할 수 없게 셋팅됨
-// 이것을 쓰려면 이벤트 설정시 맨뒤에 {passive:false}설정을 추가한다.
-// 
+    console.log("휠~~~~");
+    // 배경색 변경
+    myFn.qs("body").style.backgroundColor = "lightcoral";
+  },
+  { passive: false }
+);
+// 이벤트막기할 경우 window, body, document
+// 일 경우 막기를 할 수 없게 셋팅됨!
+// 이것을 쓰려면 이벤트 설정시 맨뒤에 {passive:false}
+// 설정을 추가한다!

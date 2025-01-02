@@ -1,14 +1,14 @@
 // 모듈 연습 메인 JS - main.js
 
 // 데이터 JS 가져오기
-// import { mTitle, sTitle } from "./text_data.js";
+// import { mTitle,sTitle } from "./text_data.js";
 
 // 별칭으로 가져오기 {원래변수 as 새이름}
-import {
-  mTitle as 큰제목,
-  sTitle as 소제목,
-  personInfo as 개인정보,
-  mvData as 영화정보,
+import { 
+    mTitle as 큰제목, 
+    sTitle as 소제목,
+    personInfo as 개인정보,
+    mvData as 영화정보
 } from "./text_data.js";
 
 // 프리티어 자동완성시 JS파일 뒤에 확장자가 없는 것은
@@ -17,6 +17,11 @@ import {
 
 // console.log("확인:", mTitle);
 
+// 메시지함수 불러오기 ////
+import msgFn from "./msg_format.js";
+
+console.log("메시지함수:",msgFn);
+
 // 나의 함수 가져오기 ///
 // default로 내보낸것은 어떤변수로 받아도됨
 // 그런데 내보낼때 쓴 변수를 일반적으로 사용함!
@@ -24,10 +29,6 @@ import {
 
 // import myFn from "./my_function.js";
 // console.log('나의함수:',myFn);
-
-// 메시지 함수 불러오기
-import msgFn from "./msg_format.js";
-console.log("메세지함수", msgFn);
 
 // 내보낼때 {}를 사용하여 내보내면
 // 같은 변수명을 반드시 써야함!
@@ -48,48 +49,47 @@ console.log("나의함수:", 헐);
     <h3>${소제목}</h3>
 `;
 
-// 2. 두번째 요소 #demo에 이름나이 메세지 출력하기
+// 2. 두번째 요소 #demo에 이름나이 메시지 출력하기
 // 대상요소
-const demo = 헐.qs("#demo");
+const demo = 헐.qs('#demo');
 
 // 코드변수
-let hCode = "";
+let hCode = '';
 
-// 코드에 메세지 넣기 (메세지 함수호출함!)
-hCode += msgFn("공유", 46);
-hCode += msgFn("톰햄크스", 46);
-hCode += msgFn("안젤리나졸리", 49);
-// 개인정보 배열데이터를 돌면서 메세지 함수 호출 하기
-개인정보.forEach(
-  (v) => (hCode += msgFn(v[0], v[1]))
-);
+// 코드에 메시지 넣기(메시지 함수호출함!)
+hCode += msgFn('공유',46);
+hCode += msgFn('톰행크스',60);
+hCode += msgFn('안젤리나 졸리',49);
+// 개인정보 배열 데이터를 돌면서 메시지함수 호출하기
+개인정보.forEach(v=>hCode += msgFn(v[0],v[1]));
 console.log(개인정보);
+
 // 화면출력
 demo.innerHTML = hCode;
 
 // 3. 세번째 요소 .mvpart에 영화정보 출력하기
-// 단, ol>li사용할 것
-// 대상 : <
-const mvBox = 헐.qs(".mvpart");
+// 단, ol>li를 사용할 것!
+// 대상:
+const mvBox = 헐.qs('.mvpart');
 
-console.log("데이터 : ", 영화정보)
-
-mvBox.innerHTML = "<h2>👀영화위시리스트</h2>"
+console.log("데이터:",영화정보);
+// 제목출력
+mvBox.innerHTML = "<h2>🎃영화위시리스트🎃</h2>";
 
 // 객체를 forEach() 메서드 사용하려면?
-// 객체를 배열화한다.
-// ->Object.keys(객체) -> 객체의 키값배열생성!
-Object.keys(영화정보).forEach(v => {
+// 객체를 배열화한다!!
+// -> Object.keys(객체) -> 객체의 키값배열생성!
+Object.keys(영화정보).forEach(v=>{
     mvBox.innerHTML += `
-    <ol>
-        <li> 👑제목 : ${영화정보[v].제목}</li>
-        <li> 👑장르 : ${영화정보[v].개요}</li>
-        <li> 👑감독 : ${영화정보[v].감독}</li>
-        <li> 👑주연 : ${영화정보[v].출연}</li>
-        <li> 👑한마디 : ${영화정보[v].문구}</li>
-    </ol>
+        <ol>
+            <li>🎪제목 : ${영화정보[v].제목}</li>
+            <li>🎪장르 : ${영화정보[v].개요}</li>
+            <li>🎪감독 : ${영화정보[v].감독}</li>
+            <li>🎪주연 : ${영화정보[v].출연}</li>
+            <li>🎪한마디 : ${영화정보[v].문구}</li>
+        </ol>
     `;
-});
+});/// forEach ///
 
 /**********************************************     
     [ import 형식 ]

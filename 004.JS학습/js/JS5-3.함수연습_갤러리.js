@@ -33,8 +33,7 @@ _____________________________________
     if문으로 조건을 체크한다!
 
 *********************************************/
-
-// 공통변수 ///
+// 공통변수 ////
 // [1] 이미지설명 배열변수
 const iTxt = [
   "노랑잉꼬가 먹이를 꼭꼭 찍어먹어요~",
@@ -47,78 +46,67 @@ const iTxt = [
 ];
 
 // [2] 이미지 설명 글자색 배열변수
-const tColor = [
-  "red",
-  "orange",
-  "yellow",
-  "green",
-  "blue",
-  "navy",
-  "purple",
-];
+const tColor = ["red", "orange", "yellow", "green", "blue", "navy", "purple"];
 
 // 1. 대상선정
 // 1-1. 이벤트 대상: .btn
 // 이벤트종류 : click
-const btns = myFn.qsa(".btn");
+const btn = myFn.qsa(".btn");
 
-// 1-2. 변경대상 : #mbox img
+// 1-2. 변경 대상: #mbox img
 const mbox = myFn.qs("#mbox img");
 
-// 1-3. 변경대상 : .imgtxt
+// 1-3. 변경 대상: .imgtxt
 const imgTxt = myFn.qs(".imgtxt");
 
-console.log("대상", btns, mbox, imgTxt);
+console.log("대상:", btn, mbox, imgTxt);
 
-// 처음에 첫번째 배열글자와 글자색 적용하기
-// imgTxt.innerText = iTxt[iNum];
-// imgTxt.style.color = tColor[iNum];
+// 1-4. 초기화
+// -> 처음에 첫번째 배열글자와 글자색 적용하기!
+imgTxt.innerText = iTxt[0];
+imgTxt.style.color = tColor[0];
 
-// 2. 이벤트 설정하기
-// 이벤트 대상을 btn 변수에 할당하기
-btns.forEach((el) => {
-  //el의 각각 버튼 요소
-  myFn.addEvt(el, "click", changeImage);
-}); ///forEach 함수
+// 2. 이벤트 설정하기 /////////
+// 이벤트 대상은 btn변수에 할당
+btn.forEach((el) => {
+  // el - 각각의 버튼요소
+  myFn.addEvt(el, "click", changeImg);
+}); ////// forEach /////
 
-// 3. 함수 만들기 /////
-// 이미지 번호변수(전역변수)
+// 3. 함수만들기 ////////////
+// 이미지번호변수(전역변수)
 let iNum = 1;
-function changeImage() {
-  // (1) 함수호출하기
-  console.log("hi", this);
+function changeImg() {
+  // (1) 함수호출 확인(this확인)
+  console.log("나야나!", this);
 
-  // (2) 오른쪽버튼인지 여부판단
-  let isR =
-    this.classList.contains("rb");
+  // (2) 오른쪽 버튼인지 여부판별
+  let isR = this.classList.contains("rb");
   console.log("오른쪽인가?", isR);
 
   // (3) 이미지 번호 증감 분기하기
   if (isR) {
-    //오른쪽버튼일때 이미지 번호 증가
+    // 오른쪽버튼일때 이미지번호 증가
     iNum++;
     // 한계값 체크(끝번호 다음은 첫번호)
     if (iNum > 7) iNum = 1;
-  } // if /////
+  } /// if ///
   else {
     iNum--;
     // 한계값 체크(첫번호 이전은 끝번호)
     if (iNum < 1) iNum = 7;
-  } ///else ///
+  } /// else ///
 
-  // (4) 이미지 변경하기 src
+  // (4) 이미지 src변경하기
   // 변경대상은 mbox변수에 할당
-  mbox.setAttribute(
-    "src",
-    `./images/img${iNum}.jpg`
-  );
+  mbox.setAttribute("src", `./images/img${iNum}.jpg`);
   // 속성읽기 JS메서드 - getAttribute(속성명)
-  // 속성쓰기 JS메서드 - setAttribute(속성명, 값)
+  // 속성쓰기 JS메서드 - setAttribute(속성명,값)
 
   // (5) 이미지 설명 변경하기
   imgTxt.innerText = iTxt[iNum - 1];
   imgTxt.style.color = tColor[iNum - 1];
-} ///changeImage 함수 ////////
+} ////// changeImg 함수 ///////////
 
 /****************************************** 
     [ JS 클래스 관련 내장함수 ]
@@ -159,8 +147,7 @@ function changeImage() {
 // 원리: 미리셋팅된 클래스를 미니언즈요소에
 // 일정시간 후 넣고/빼고/넣기를 해준다!
 // 변경대상: #mini
-const mini =
-  document.querySelector("#mini");
+const mini = document.querySelector("#mini");
 // console.log(mini);
 
 // 2초후 미니언즈 class "on1" 넣기
@@ -202,8 +189,7 @@ let autoI;
 for (let x of abtn) {
   x.onclick = () => {
     // 1. 클릭된 요소의 클래스가 "start"인지 여부
-    let isStart =
-      x.classList.contains("start");
+    let isStart = x.classList.contains("start");
     // classList.contains(클래스명)
     // -> 클래스가 해당요소에 있으면 true
     console.log(".start인가?", isStart);
@@ -214,9 +200,7 @@ for (let x of abtn) {
       // setInterval(함수,시간)
       // 오른쪽버튼 클릭강제발생하기는 click() 메서드 사용!
       // 오른쪽버튼은 btn[1]
-      autoI = setInterval(() => {
-        btn[1].click();
-      }, 1000);
+      autoI = setInterval(() => {btn[1].click()}, 1000);
     } //////// if ////////
 
     // 2-2. false이면 멈춤
@@ -229,9 +213,7 @@ for (let x of abtn) {
     // 항상 클릭된 버튼은 숨긴다!
     x.style.display = "none";
     // "멈춤"/"자동넘김" 버튼 전환하며 보이기
-    abtn[
-      isStart ? 1 : 0
-    ].style.display = "inline-block";
+    abtn[isStart ? 1 : 0].style.display = "inline-block";
     // isStart? "자동넘김"버튼인가?
     // true이면 1 즉 두번째 버튼 보이기
     // false이면 0 즉 첫번째버튼 보이기

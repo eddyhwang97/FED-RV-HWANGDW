@@ -2,13 +2,8 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>
-      JS3-7. 객체를 위한 for in문
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS3-7. 객체를 위한 for in문</title>
     <style>
       h1,
       .btns,
@@ -52,6 +47,7 @@
         text-align: center;
       }
 
+      /* 영화한마디 한글자씩 디자인 */
       .show span {
         display: inline-block;
         /* 가로,세로 등 디자인 적용+한줄에 나옴 */
@@ -69,27 +65,20 @@
         line-height: 30px;
         text-align: center;
       }
-      /* 한글자씩 사이공백 요소 */
+      /* 한글자씩 사이공백요소 */
       .show i {
         margin-left: 15px;
       }
     </style>
-
-    <!-- 외부 JS모듈 타입으로 호출! !import 사용 -->
-    <script
-      type="module"
-      src="./JS3-7.for_in문.js"
-    ></script>
+    <!-- 외부 JS 모듈타입으로 호출! import사용!
+     모듈은 자동 defer처리됨! -->
+    <script type="module" src="./js/JS3-7.for_in문.js"></script>
   </head>
 
   <body>
-    <h1 style="text-align: center">
-      객체를 위한 for in문
-    </h1>
+    <h1 style="text-align: center">객체를 위한 for in문</h1>
     <main class="cont ibx">
-      <h2 style="text-align: center">
-        무비차트
-      </h2>
+      <h2 style="text-align: center">무비차트</h2>
       <!-- 영화정보박스 -->
       <div class="wrap"></div>
     </main>

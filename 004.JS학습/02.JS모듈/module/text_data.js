@@ -15,7 +15,7 @@ const personInfo = [
 ]; ///// 배열 /////////
 
 // 4. 영화정보 데이터
-const mvData = { //객체안에 객체
+const mvData = {
     "조제": {
       "포스터": "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
       "제목": "조제",
@@ -40,7 +40,7 @@ const mvData = { //객체안에 객체
       "출연": "이제훈, 조우진, 신혜선, 임원희",
       "문구": "도굴은 범죄예요"
     },
-    "앤트맨과": {
+    "앤트맨": {
       "포스터": "https://movie-phinf.pstatic.net/20230216_8/16765083584990ol68_JPEG/movie_image.jpg?type=m203_290_2",
       "제목": "앤트맨과 와스프: 퀀텀매니아",
       "개요": "액션",
@@ -80,7 +80,7 @@ const mvData = { //객체안에 객체
       "출연": "황정민(정재호), 현빈(박대식)",
       "문구": "아쌀라말라이쿰"
     },
-    "다음 소희": {
+    "소희": {
       "포스터": "https://movie-phinf.pstatic.net/20230112_63/1673489515726qkQ2t_JPEG/movie_image.jpg?type=m203_290_2",
       "제목": "다음 소희",
       "개요": "드라마",
@@ -118,13 +118,10 @@ const mvData = { //객체안에 객체
 const myObj = {name:'수현',age:34};
 
 // 함수 예시
-
 const myFunc = x => `나는 ${x}다!`;
 
 // 내보내기
-export {mTitle, sTitle, personInfo, mvData, myObj, myFunc};
-
-
+export {mTitle,sTitle,personInfo,mvData,myObj,myFunc};
 
 /******************************************** 
     [ export 형식 ]
@@ -142,7 +139,8 @@ export {mTitle, sTitle, personInfo, mvData, myObj, myFunc};
 
     2. export {변수,변수,변수};
     -> 여러개의 변수(함수)를 내보낼때 사용
-    -> 이렇게 중괄호로 할당하여 내보내는 형실을 구조분해할당이라고 부른다!
+    -> 이렇게 중괄호로 할당하여 내보내는 형식을
+    "구조분해할당"이라고 부른다!
     -> 받는 곳에서 이름 바꿀 수 없다!!!
         (별칭규칙으로 바꿀 수 있다)
     -> 여러개가 공개되어 있어도 받는곳에서
