@@ -197,8 +197,218 @@ import myFn from "./my_function.js";
 // 숫자값 배열
 const arrNumber = [4, 5, 8, 10, 2, 1, 9, 3, 7, 6];
 
+// console.log('숫자배열원본',arrNumber);
+// console.log('숫자배열정렬:sort()',arrNumber.sort());
+// console.log('숫자배열정렬:sort((a,b)=>a-b)',arrNumber.sort((a,b)=>a-b));
+// console.log('숫자배열정렬:sort((닭가슴살,계란후라이)=>닭가슴살-계란후라이)',arrNumber.sort((닭가슴살,계란후라이)=>닭가슴살-계란후라이));
+// console.log('숫자배열정렬:sort((닭가슴살,계란후라이)=>계란후라이-닭가슴살)',arrNumber.sort((닭가슴살,계란후라이)=>계란후라이-닭가슴살));
+// console.log('숫자배열정렬:sort((a,b)=>{return a-b})',arrNumber.sort((a,b)=>{return a-b}));
+// console.log('숫자배열정렬:sort(function (a,b){return a-b})',arrNumber.sort(function (a,b){return a-b}));
+
 // 예를 위한 숫자값 배열
 const arrNumber2 = [380, 1000, 245, 2278];
+// console.log('숫자값 배열원본:',arrNumber2)
+// console.log('숫자값 배열-sort():',arrNumber2.sort())
+// console.log('숫자값 배열-sort((a,b)=>a-b)):',arrNumber2.sort((a,b)=>a-b))
 
 // 문자값 배열
 const arrString = ["파", "타", "하", "가", "바", "사", "다", "라", "차"];
+
+// console.log('문자값 배열원본:',arrString)
+// console.log('문자값 배열-sort():',arrString.sort())
+// console.log('문자값 배열-reverse():',arrString.reverse())
+
+// 숫자가 아니면 빼기 연산을 못하므로 정렬불가
+// console.log('문자값 배열-sort((a,b)=>a-b):',arrString.sort((a,b)=>a-b))
+// console.log('문자값 배열-sort((a,b)=>b-a):',arrString.sort((a,b)=>b-a))
+
+// 숫자 문자 모두 정렬가능한 함수 만들기
+/***********************************************
+  ==========================================
+-숫자나 문자 모두 가능한 것은? 크다/작다/같다
+    -> 즉 비교연산자 사용함!
+    ((3가지 시그널))
+    1번 시그널 : 0 -> 변경없음
+    2번 시그널 : 음수(마이너스) -> 음,그대로 유지
+    3번 시그널 : 양수(플러스) -> 양쪽을 바꿔서 유지
+    
+    (1) 오름차순
+    sort((a,b) => a==b? 0 : a < b ? 음수:양수)
+    sort((a,b) => a==b? 0 : a < b ? -1:1)
+    
+    (2) 내림차순
+    sort((a,b) => a==b? 0 : a > b ? 음수:양수)
+    sort((a,b) => a==b? 0 : a > b ? -1:1)
+    ==========================================
+***********************************************/
+
+// console.log('문자값 배열-sort() 오름차순:',arrString.sort((a,b)=> a==b? 0 : a < b? -1:1))
+// console.log('문자값 배열-sort() 내림차순:',arrString.sort((a,b)=> a==b? 0 : a > b? -1:1))
+// console.log('숫자값 배열-sort() 오름차순:',arrNumber.sort((a,b)=> a==b? 0 : a < b? -1:1))
+// console.log('숫자값 배열-sort() 내림차순:',arrNumber.sort((a,b)=> a==b? 0 : a > b? -1:1))
+
+///////////////////////////////////////////////////////////////
+// [1] 숫자로만된 배열의 정렬
+
+// 출력대상: .showNum
+const showNum = myFn.qs(".showNum");
+
+// 현재 숫자배열 출력
+// 배열대상 : arrNumber
+const showNumfn = (newArray) => {
+  showNum.innerHTML = newArray.map((v) => `<img src="./images/num/num_0${v}.png" alt="숫자이미지">`).join("");
+}; //showNumFn함수 ////////
+showNumfn(arrNumber); //showNumFn 최초호출
+// console.log("숫자배열원본", arrNumber);
+
+// [1-3] 정렬 선택박스 이벤트 설정하기
+myFn.qs("#sel").addEventListener("change", function () {
+  console.log(this.value);
+
+  //   원본배열 보존하고자 깊은복사를 해줌!
+  const newArray = [...arrNumber];
+  // 스프레드연산자로
+
+  if (this.value == "1") {
+    //오름차순
+    newArray.sort((a, b) => (a == b ? 0 : a < b ? -1 : 1));
+  }
+  if (this.value == "2") {
+    //내림차순
+    newArray.sort((a, b) => (a == b ? 0 : a > b ? -1 : 1));
+  }
+
+  // 정렬후 화면출력
+  showNumfn(newArray);
+}); ////////addEventListener //////////
+
+// [2] 문자로만된 배열의 정렬 //////////////////
+// [2-1] 배열 태그변형 후 출력하기
+const showNum2 = myFn.qs(".showNum2");
+const showNum2Fn = (newArray) => {
+  // newArray는 처리할 배열전달
+  showNum2.innerHTML = newArray.map((v) => `<span>${v}</span>`).join("");
+};
+
+// showNum2Fn 최초 호출
+showNum2Fn(arrString);
+
+// [2-2] 선택박스 변경 이벤트 발생시 정렬변경하기
+myFn.addEvt(myFn.qs("#sel2"), "change", function () {
+  // 원본 보존을 위해 깊은 복사로 처리
+  const newArray = [...arrString];
+
+  if (this.value == "1") {
+    //오름차순
+    newArray.sort();
+  } else if (this.value == "2") {
+    //내림차순
+    newArray.reverse();
+  }
+  //   화면출력
+  showNum2Fn(newArray);
+
+  //   console.log("문자값 배열 원본", arrString);
+}); ////////change function ////////////////
+
+// [3] 객체데이터 배열의 정렬
+// [3-1] 객체데이터 배열
+// -객체구조 :
+// (1) idx : 순번
+// (2) tit : 제목
+// (3) count: 내용
+const list1 = [
+  {
+    idx: 8,
+    tit: "나는 구누?",
+    cont: "공동구매) 슬로건 공구 (계좌와 네이버폼)",
+  },
+  {
+    idx: 4,
+    tit: "여기는 어디?",
+    cont: "총공 공지] 오늘부터 일 2회, 총공 진행합니다",
+  },
+  {
+    idx: 1,
+    tit: "나야나",
+    cont: "연합 갈라 서포트 계좌오픈",
+  },
+  {
+    idx: 15,
+    tit: "이제 얼마나 남은거니?",
+    cont: "음악프로그램에 출연 요청글도 써볼까요?",
+  },
+]; /////////////// list1 /////////////
+
+console.log(list1);
+
+//   [3-2]  데이터 바인딩하기 : 함수화하여 재사용
+// 바인딩 출력대상
+const showList3 = myFn.qs(".showList3");
+
+const showList3Fn = (newArray) => {
+  // newArray 데이터 바인딩할 배열
+
+  showList3.innerHTML = `
+    <table>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>내용</th>
+            </tr>
+          </thead>
+          <tbody>
+          <thead>
+          ${newArray
+            .map(
+              (v) => `
+              <tr>
+                <td>${v.idx}</td>
+                <td>${v.tit}</td>
+                <td>${v.cont}</td>
+              </tr>
+          `
+            )
+            .join("")}
+          </thead>
+          <tbody>
+    </tbody>
+        </table>
+    `;
+}; //////showList3Fn //////////
+
+// 바인딩함수 최초호출
+showList3Fn(list1);
+console.log("객체배열원본",list1)
+// [3-3] 정렬하기
+// 대상 : 기준선택박스 / 정렬선택박스
+const cta3 = myFn.qs("#cta3");
+const sel3 = myFn.qs("#sel3");
+
+// 이벤트 설정하기 : 대상 - sel3
+myFn.addEvt(sel3, "change", function () {
+
+    // 깊은복사 : 배열순서를 바꾸는 경우엔 효과있음
+    const newArray = list1.slice(1,3); //slice 방식!
+    // -> slice(시작순번,끝순번) -> 끝순번 앞에서 잘라서 새배열생성
+    // -> slice() 아무것도 안쓰면 전체배열을 새로 생성함!(부가기능)
+    // const newArray = [...list1];
+    // const newArray = list1
+
+    // ->객체데이터를 변경하는 경우엔
+    // 위의 깊은복사가 아닌 JASON.parse()방식써야함
+    // newArray[0].idx = 999;
+
+  if (this.value == "1")
+    //오름차순
+    newArray.sort((a, b) =>
+         (a.idx === b.idx ? 0 : a.idx < b.idx ? -1 : 1));
+  else if (this.value == "2")
+    //내림차순
+    newArray.sort((a, b) =>
+         (a.idx === b.idx ? 0 : a.idx > b.idx ? -1 : 1));
+
+    showList3Fn(newArray);
+    console.log("객체배열원본",list1)
+}); //////change 이벤트함수
