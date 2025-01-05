@@ -5,11 +5,11 @@ import slideFn from "./slide_fn.js";
 
 // 도깨비 PJ 데이터 불러오기
 // import { previewData } from "../data/dkb_data.js";
-// import * as dkbData from "../data/dkb_data.js";
+import * as dkbData from "../data/dkb_data.js";
 // 넘겨준 것을 모두 받는 방법은 별(*)로 받고
 // as로 별칭을 지어주면 객체화되어 담겨진다.
 
-// console.log(dkbData);
+console.log(dkbData);
 
 // 도깨비 GNB데이터 불러오기
 import gnbData from "../data/gnb_data.js";
@@ -34,13 +34,15 @@ $(".gnb").html(`
         <div class="inbox">
           <h2>${v}</h2>
           <ol>
-          ${gnbData[v].map(
-            (v2) => `
+          ${gnbData[v]
+            .map(
+              (v2) => `
           <li>
             <a href="#">${v2}</a>
           </li>
           `
-          ).join('')}
+            )
+            .join("")}
           </ol>
         </div>
       </aside>
@@ -69,8 +71,22 @@ slideFn();
 // ->제이쿼리 html() 메서드에서는 join()없이
 // 콤마없애고 출력해줌!!
 
+// 데이터 변경하기 : 15화부터 나오게 idx 내림차순
+// ->데이터는 8개만씀 ->slice(시작순번,끝순번)
+// dkbData.previewData.sort((a, b) => a.idx === b.idx ? 0 : a.idx > b.idx ? -1 : 1);
+const newArrayData = 
+dkbData.previewData.slice() //원본배열
+.sort( //깊은복사
+  // 배열정렬(idx를 숫자형으로 변환!)
+  (a, b) => Number(a.idx) == Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1)
+  .slice(0,8); //다시한번 정렬한 배열중 0부터 7번까지의 배열값만 딥카피!
+console.log("원본", dkbData.previewData);
+
+console.log("변경", newArrayData);
+
+
 $(".preview-box ul").html(
-  dkbData.previewData.map(
+  newArrayData.map(
     (v) => `
         <li>
             <h3>${v.title}</h3>

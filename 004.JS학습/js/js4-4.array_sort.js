@@ -380,7 +380,7 @@ const showList3Fn = (newArray) => {
 
 // 바인딩함수 최초호출
 showList3Fn(list1);
-console.log("객체배열원본",list1)
+console.log("객체배열원본", list1);
 // [3-3] 정렬하기
 // 대상 : 기준선택박스 / 정렬선택박스
 const cta3 = myFn.qs("#cta3");
@@ -388,27 +388,28 @@ const sel3 = myFn.qs("#sel3");
 
 // 이벤트 설정하기 : 대상 - sel3
 myFn.addEvt(sel3, "change", function () {
+  // 깊은복사 : 배열순서를 바꾸는 경우엔 효과있음
+  const newArray = list1.slice(); //slice 방식!
+  // -> slice(시작순번,끝순번) -> 끝순번 앞에서 잘라서 새배열생성
+  // 예) list1.slice(1,3) -> 1,2번째 배열값만 가져옴
+  // -> slice() 아무것도 안쓰면 전체배열을 새로 생성함!(부가기능)
+  // const newArray = [...list1];
+  // const newArray = list1
 
-    // 깊은복사 : 배열순서를 바꾸는 경우엔 효과있음
-    const newArray = list1.slice(1,3); //slice 방식!
-    // -> slice(시작순번,끝순번) -> 끝순번 앞에서 잘라서 새배열생성
-    // -> slice() 아무것도 안쓰면 전체배열을 새로 생성함!(부가기능)
-    // const newArray = [...list1];
-    // const newArray = list1
+  // ->객체데이터를 변경하는 경우엔
+  // 위의 깊은복사가 아닌 JASON.parse()방식써야함
+  // newArray[0].idx = 999;
 
-    // ->객체데이터를 변경하는 경우엔
-    // 위의 깊은복사가 아닌 JASON.parse()방식써야함
-    // newArray[0].idx = 999;
+  // (3) 정렬 기준값 읽어오기
+  let cta = cta3.value;
+  console.log("정렬기준", cta);
 
-  if (this.value == "1")
-    //오름차순
-    newArray.sort((a, b) =>
-         (a.idx === b.idx ? 0 : a.idx < b.idx ? -1 : 1));
-  else if (this.value == "2")
-    //내림차순
-    newArray.sort((a, b) =>
-         (a.idx === b.idx ? 0 : a.idx > b.idx ? -1 : 1));
+  // (3-1)오름차순
+  if (this.value == "1") newArray.sort((a, b) => (a[cta] === b[cta] ? 0 : a[cta] < b[cta] ? -1 : 1));
+  // (3-2)내림차순
+  else if (this.value == "2") newArray.sort((a, b) => (a[cta] === b[cta] ? 0 : a[cta] > b[cta] ? -1 : 1));
 
-    showList3Fn(newArray);
-    console.log("객체배열원본",list1)
+  // (4)화면출력
+  showList3Fn(newArray);
+  console.log("객체배열원본", list1);
 }); //////change 이벤트함수
