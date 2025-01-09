@@ -1,5 +1,19 @@
 // 보그PJ메인페이지 SCSS - main.scss
 
-// 파일합치기
-import './commom/core';
-import './commom/reset';
+// 파일합치기 /////
+@import './variables/variables';
+@import './commom/core';
+@import './commom/reset';
+
+// 1. 상단영역
+// 1-1. 로고박스
+.logo{
+    h1{
+        text-align: center;
+        img{
+            height: 70px;
+        }
+    }
+}
+ // 1-1. 메뉴박스
+// 1-1. 요약메뉴
