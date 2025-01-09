@@ -509,10 +509,13 @@ console.log("객체배열원본", list2);
 const cta4 = myFn.qs("#cta4");
 const sel4 = myFn.qs("#sel4");
 
+// 정렬할 배열 데이터 담을 변수
+const tgArray4 = list2.slice();
+
 // 이벤트 설정하기 : 대상 - sel4
 myFn.addEvt(sel4, "change", function () {
   // 깊은복사 : 배열순서를 바꾸는 경우엔 효과있음
-  const newArray = list2.slice(); //slice 방식!
+  const newArray = tgArray4.slice(); //slice 방식!
   // -> slice(시작순번,끝순번) -> 끝순번 앞에서 잘라서 새배열생성
   // 예) list1.slice(1,3) -> 1,2번째 배열값만 가져옴
   // -> slice() 아무것도 안쓰면 전체배열을 새로 생성함!(부가기능)
@@ -561,8 +564,8 @@ myFn.addEvt(sbtn, "click", () => {
     let result = list2.filter((v) => String(v[sCta4.value]).includes(stxt.value.trim()));
 
     // 이해를위해 직접값을 넣어본다!
-// let result = list2.filter((v)
-// => v.tit.includes('당근));
+    // let result = list2.filter((v)
+    // => v.tit.includes('당근));
 
     // let result = list2.filter(v=>{
     //   // 숫자형이 들어오면 indexOf()에러남!
@@ -574,7 +577,10 @@ myFn.addEvt(sbtn, "click", () => {
     // })
     console.log(result);
 
-    // 3) 결과배열을 화면 바인딩 함수를 호출시 보내준다.
+    // 3)검색에서 사용할 배열값 업데이트하기
+    tgArray4 = result;
+
+    // 4) 결과배열을 화면 바인딩 함수를 호출시 보내준다.
     showList4Fn(result);
   } ///else ////
 }); /////////click 이벤트 함수 ///////////
@@ -587,10 +593,16 @@ myFn.addEvt(fbtn, "click", () => {
   // 2) 검색항목 초기화
   sCta4.value = "tit";
 
-  // 3) 실제 전체항목 리스트보기
-  showList4Fn(list2);
-})
+  // 3. 검색정렬 초기화
+  cta4.value = "idx";
+  sel4.value = "0";
 
+  // 4)검색에서 사용할 배열값 업데이트하기
+  tgArray4 = list2.slice();
+
+  // 5) 실제 전체항목 리스트보기
+  showList4Fn(tgArray4);
+});
 
 // 검색전 테스트하기 ///////////////
 let searchAText1 = list2.find((v) => {
