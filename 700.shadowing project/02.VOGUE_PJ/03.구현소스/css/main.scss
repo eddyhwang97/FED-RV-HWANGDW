@@ -2,10 +2,13 @@
 
 // 파일합치기 /////
 @import './variables/variables';
-@import './commom/core';
-@import './commom/reset';
+@import './common/core';
+@import './common/reset';
 
 // 1. 상단영역
+.top-area{
+    padding: $spacing-40;
+}
 // 1-1. 로고박스
 .logo{
     h1{
@@ -17,10 +20,13 @@
 }
  // 1-1. 메뉴박스
  .gnb{
+     margin-top: $spacing-40;
     ul{
         display: flex;
+        gap: 20px;
+        justify-content: center;
         li{
-            
+            font-size: 20px;
         }
     }
  }
