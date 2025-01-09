@@ -13,54 +13,57 @@
       // 2. 화살표함수 : JS5-2
 
       // 3. 새로운 변수선언 : JS2-2
-      // var let const
+      // let, const
 
       // 4. 배열 메서드 : map()
       // -> 배열을 자동으롤 돌면서 목록을 만들어 준다!
       const arr1 = ["수박", "사과", "단감"];
-      console.log("원래배열:", arr1);
+      console.log('원래배열:',arr1);
 
       // 예컨데 위의 배열값을 태그로 싸서 만들고자할때
-      // 새로운 배얼을만드러면 어떻게 해야하나?
-      // map이 없다면 아래와 같이 해야함
+      // 새로운 배열을 만드려면 어떻게 해야하나?
+      // map이 없다면 아래와 같이 해야함!
 
-      // 새로운 배열 변수 만들기
+      // 새로운 배열 변수만들기
       const newArr = [];
-      // 기존배열을 순회하여 새배열에 값 넣기
-      arr1.forEach((v) => {
+      // 기존 배열을 순회하여 새배열에 값 넣기
+      arr1.forEach(v=>{
         newArr.push(`<span>${v}</span>`);
       });
-      // 새배열 출력
-      console.log("newArr:", newArr);
+      // 새 배열 출력
+      console.log('새로운배열:',newArr);
 
       // map을 사용하면 간단하다!
-      console.log(arr1.map((v) => `<span>${v}</span>`));
-      // -> 이점: 별도의 변수선언 불필요! 원본배열보존! 그자리 출력
+      console.log(arr1.map(v=>`<div>${v}</div>`));
+      // -> 이점: 
+      // 별도의 변수선언 불필요! 원본배열보존! 그자리출력!
 
       // 5. JS 비구조화 할당(구조분해할당) //////////////////
-      // -> 배열의 값을 각각의 변수에 담는 방법
-      const list = ["현대", "삼성", "LG"];
-      console.log("기존배열", list);
-      // 배열의 각 겂을 변수로 다시 담을 경우 아래처럼함!
+      // -> 배열의 값을 각각의 변수에 담는 방법     
+      const list = ["현대","삼성","LG"]; 
+      console.log('기존배열:',list);
+      // 배열의 각 값을 변수에 따로 다시 담을 경우 아래처럼함!
       let corp1 = list[0];
       let corp2 = list[1];
       let corp3 = list[2];
       console.log(corp1, corp2, corp3);
 
-      //->>> 구조분해할당 방식으로 쉽게 처리
-      const home = ["의자", "tv", "노트북"];
-      console.log("기존배열", home);
+      // ->>> 구조분해할당 방식으로 쉽게 처리~!
+      const home = ["의자","TV","노트북"];
+      console.log('기존배열:',home);
+
       // 변수를 배열기호안에 한꺼번에 순서대로 써줌
       const [chair, tv, notebook] = home;
-      console.log("구조분해 할당결과:", chair, tv, notebook);
-      // -> 만일 배열값보다 적은수의 변수를 써도 에러없이
-      // 해당순번만큼만 구조분해 할당된다.
+      console.log("구조분해할당결과:",chair, tv, notebook);
+      // -> 만일 배열값 보다 적은 수의 변수를 써도 에러없이
+      // 해당 순번만큼만 구조분해할당됨!
 
       const home2 = ["엄마", "아빠", "동생"];
       // 변수를 한꺼번에 선언하여 배열값을 각각 할당함!
       // 중간값을 건너 뛸 경우 콤마로 비워둔다!
-      let [mom, , bro] = home2;
-      console.log("구조분해할당으로 배열값 변수할당:", mom, bro);
+      let [mom, ,bro] = home2;
+      console.log("구조분해할당으로 배열값 변수할당:", mom,bro);
+
 
       // 객체도 구조분해할당으로 쉽게~!
       // 자동차 객체 생성
@@ -71,7 +74,7 @@
         year: 2021,
         color: "red",
       };
-      console.log("원본객체", vehicleOne);
+      console.log('원본객체:', vehicleOne);
 
       // 기존방식 : 새변수에 객체값 할당하기
       let brand = vehicleOne.brand;
@@ -79,7 +82,8 @@
       let type = vehicleOne.type;
       let year = vehicleOne.year;
       let color = vehicleOne.color;
-      console.log("기존방식 각 변수할당:", brand, model, type, year, color);
+      console.log("기존방식 각 변수할당:", 
+      brand, model, type, year, color);
 
       // 구조분해방식으로 할당할 자동차정보 객체생성
       const newCar = {
@@ -92,12 +96,14 @@
       // 객체 구조분해할당은 원래 객체속성명으로 받아야함!
       // const {객체속성명, 객체속성명} = 객체변수
 
-      const { carName, carColor } = newCar;
+      const {carName, carColor} = newCar;
       console.log("구조분해할당으로 객체값 변수할당:", carName, carColor);
-      // 객체의 구조분해 할당시 새로운 변수면 사용하기!
-      // const {기존이름:새이름} =객체변수
-      const { carModel: cm, carType: ct } = newCar;
-      console.log("구조분해할당으로 객체값 새이름 변수할당:", cm, ct);
+
+      // 객체의 구조분해 할당시 새로운 변수명 사용하기!
+      // const {기존이름:새이름} = 객체변수
+      const {carModel:cm, carType:ct} = newCar;
+      console.log("구조분해할당으로 객체값 새이름변수할당:", cm,ct);
+      
 
       // 6. 모듈 문법 : 03.JS모듈
 
@@ -111,11 +117,11 @@
       const number2 = [111, 444, 777, 999];
 
       // 위 두 배열값을 스프레드 연산자로 합치기
-      // 문법 : [...기존배열,...기존배열]
-      const addNumber = [number1, number2];
-      console.log("배열합치기시도", addNumber);
-      const addNumber2 = [...number1, ...number2];
-      console.log("배열합치기시도2", addNumber2);
+      // 문법: [...기존배열,...기존배열]
+      const addNumber = [number1,number2];
+      console.log('배열합치기시도1:',addNumber);
+      const addNumber2 = [...number1,...number2];
+      console.log('배열합치기시도2:',addNumber2);
 
       // 객체는 안되나???
       const cars = {
@@ -125,18 +131,18 @@
       };
       const newCars = {
         type: "썬루프",
-        year: "2023",
+        year: "2025",
         color: "흰색", //같은 속성은 나중것이 덮어씀!
       };
-      // 스프레드 연산자로 객체 합치기
+
+      // 스프레드 연산자로 객체합치기
       // 예컨데 기존 자동차 속성에 새해에 새로운
-      // 속성이 추가된 경우 이것을 하나의
-      // 자동자 속성으로 합칠 경우 사용할 수 있다
-      const addCar = {cars, newCars};
-      const addCar2 = {...cars, ...newCars};
-      console.log("객체합치시시도", addCar);
-      console.log("객체합치시시도2", addCar2);
+      // 속성이 추가된 경우 이것을 하나의 
+      // 자동차 속성으로 합칠 경우 사용할 수 있다!
+      const myNewCar  = {...cars, ...newCars};
+      console.log('새로운 자동차정보:',myNewCar);
       // 결과는 합쳐졌고 같은 속성은 나중값으로 대체됨!
+      
     </script>
   </head>
   <body></body>

@@ -89,7 +89,30 @@
 // 초기화 셋팅 sass 불러오기
 @import "./common/reset";
 // 변수 셋팅 sass 불러오기
-@import "./common/variables";
+@import "./data/variables";
+
+// @mixin셋팅하기
+// (1) 타이틀 디자인 믹스인하기
+// @mixin title-text { -> 전달변수 없는 경우
+// @mixin title-text($selColor) { -> 전달변수 있는 경우
+@mixin title-text($selColor: red, $icon: "👑") {
+  color: $selColor;
+  // [속성접두어 묶음기법]
+  font: {
+    size: $fontSize1;
+    family: "Times New Roman";
+  }
+  text: {
+    align: center;
+    decoration: underline;
+    underline-offset: 10px;
+    shadow: 5px 5px 5px #0000007d;
+  }
+  //   가상요소 아이콘 넣기
+  &::before {
+    content: "👑";
+  }
+}
 
 // 주의: 파일선택후 실제로 부분파일 앞에 언더바와
 // 뒤에 scss확장자는 사라진다.(안써도됨!)
@@ -107,17 +130,9 @@
 
   // [네스팅기법]
   h1 {
-    color: $orgAqua;
-    // [속성접두어 묶음기법]
-    font: {
-      size: $fontSize1;
-      family: "Times New Roman";
-    }
-    text: {
-      align: center;
-      decoration: none;
-      shadow: 5px 5px 5px #0000007d;
-    }
+    // 타이틀 믹스인 호출
+    @include title-text($orgAqua, "😍");
+
     // 하단마진
     margin-bottom: $fontSize1;
     // 배경설정
@@ -133,9 +148,188 @@
   }
   //   서브 타이틀 박스
   h2 {
+    // 자식 span의 부모
+    position: relative;
     font-size: $fontSize3;
     // 박스공통설정
+    @extend .box-basic;
     text-align: center;
-    padding: 20px 0;
+    // padding: 20px 0;
+
+    // 원모양 4개의 span
+    span {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      //   background-color: #000;
+
+      //  각span 위치잡기
+      @for $i from 1 through 4 {
+        &:nth-of-type(#{$i}) {
+          @if ($i==1 or $i==2) {
+            top: -40px;
+          }
+          @if ($i==3 or $i==4) {
+            bottom: 0;
+          }
+          @if ($i==1 or $i==3) {
+            left: 0;
+          }
+          @if ($i==2 or $i==4) {
+            right: 0;
+          }
+        }
+      }
+      //   &:nth-of-type(1) {
+      //     top: 0;
+      //     left: 0;
+      //   }
+      //   &:nth-of-type(2) {
+      //     top: 0;
+      //     right: 0;
+      //   }
+      //   &:nth-of-type(3) {
+      //     bottom: 0;
+      //     left: 0;
+      //   }
+      //   &:nth-of-type(4) {
+      //     bottom: 0;
+      //     right: 0;
+      //   }
+    }
   }
+}
+// 상단영역 원모양 색상 @each 제어문으로 넣기
+// 사용할 셋팅값은 객체형변수인 $colors를 사용함
+@each $key, $val in $colors {
+  .#{$key}-circle {
+    background-color: $val;
+  }
+}
+// #{} 자리에 변수가 들어가서 속성이 할당됨!
+
+// 메인영역
+.main-area {
+  // 내부박스 section
+  section {
+    border: {
+      color: red;
+      style: dashed;
+      width: 7px;
+    }
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  //   타이틀 h3믹스인호출
+  h3 {
+    @include title-text(navy);
+  }
+  //   리스트 문단 디자인
+  ul,
+  ol,
+  p {
+    line-height: 2;
+    font-size: 24px;
+    // 하위 li
+    li {
+      text: {
+        decoration: underline;
+        decoration-thickness: 5px;
+        decoration-color: $maincolor2;
+        align: center;
+      }
+      // 배경색
+      background-color: #ff0;
+
+      // [네스팅 이어붙이기 기법(&)]
+      &:first-child {
+        color: orchid;
+        font-weight: bold;
+        font-size: $fontSize3;
+        // 글자 그림자로 글자 테두리 넣기
+        text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000;
+      }
+      // 2번째li요소부터 5번째까지 앞뒤 보더넣기
+      @for $i from 2 to 6 {
+        //to는 끝수 불포함
+
+        &:nth-child(#{$i}) {
+          border-left: ($i * 20px) solid red;
+          border-right: ($i * 20px) solid red;
+        }
+      }
+      // 변수구역인 #{}는 선택자부분, CSS속성부분에 사용
+      // 값부분에 사용시엔 변수를 그대로 쓸 수 있다@
+      // 가상요소 블릿넣기
+      &::before {
+        content: "😀";
+      }
+    }
+  }
+}
+
+// 일반 박스 디자인
+.box-basic {
+  // 중앙정렬
+  text-align: center;
+  // 위아래패딩
+  padding: 20px 0;
+}
+// 위의 일반 박스 디자인 공통 클래스를
+// 원하는 박스에 @extend로 적용하자!
+
+// 버튼 박스
+.button-box {
+  // 기본박스 클래스적용
+  @extend .box-basic;
+}
+// 최하단박스
+.bottom-title {
+  // 기본박스 클래스적용
+  @extend .box-basic;
+  // 믹스인 타이틀 공통디자인 불러오기
+  @include title-text;
+  // -> 글자 색상을 안보내면 기본설정색 적용
+  // ->추가디자인
+  margin-bottom: 50px;
+}
+
+// 디자인 구성요소중 공통디자인을
+// 가져와서 넣기 -> @extend .클래스명
+
+// 더보기 버튼 디자인
+.button-basic {
+  display: inline-block;
+  border: 1px solid #222;
+  border-radius: 20px;
+  padding: 15px 30px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 20px;
+  //   마우스 오버시
+  &:hover {
+    background-color: hotpink;
+    text: {
+      decoration: overline;
+      decoration-style: wavy;
+    }
+  }
+  //   별도의 클래스는 다르게 적용
+  &.my {
+    text: {
+      decoration: underline;
+      decoration-style: dotted;
+      underline-offset: 10px;
+      decoration-thickness: 5px;
+    }
+  }
+}
+
+// 제출하기 버튼
+.button-report {
+  @extend .button-basic;
+  background-color: orange;
+  color: #fff;
 }
