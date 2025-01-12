@@ -1,5 +1,6 @@
 /* 보그 PJ 공통핵심 CSS - _core.scss */
 /* 웹폰트, 공용클래스 */
+// 보그PJ 웹폰트, 공통클레스, 믹스인 셋팅
 
 /*********** 1. 웹폰트 ***********/
 /* Roboto체 + Roboto Condensed체 - CDN */
@@ -41,3 +42,33 @@ font-family: 'Roboto Condensed', sans-serif;
     max-width: 1600px;
     margin: 0 auto;
 }
+
+
+// 1. 미디어쿼리믹스인
+// 큰것에서 작은것 순으로
+@mixin desktop {
+    @media (max-width: $breakpoint-desktop) {
+      @content;
+    }
+  }
+  @mixin tablet-large {
+    @media (max-width: $breakpoint-tablet-large) {
+      @content;
+    }
+  }
+  @mixin tablet-medium {
+    @media (max-width: $breakpoint-tablet-medium) {
+      @content;
+    }
+  }
+  @mixin tablet-small {
+    @media (max-width: $breakpoint-tablet-small) {
+      @content;
+    }
+  }
+  
+  @mixin mobile {
+    @media (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  }

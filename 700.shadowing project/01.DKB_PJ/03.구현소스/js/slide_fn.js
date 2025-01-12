@@ -7,30 +7,19 @@ import myFn from "./my_function.js";
 export default function slideFn() {
   // 1. 대상선정 //////////////////
   // (1) 전체 슬라이드 박스 : .slide-box
-  const slideBox = myFn.qs(
-    ".slide-box"
-  );
+  const slideBox = myFn.qs(".slide-box");
   // 전체 박스 하위의 요소로 상대적으로 잡아준다!
   // 이유는 다른 슬라이드 박스를 카피하여 만든경우
   // 동일한 기능이 될 수 있게 해준다!
 
   // (2) 이벤트대상: .abtn
-  const abtn = myFn.qsaEl(
-    slideBox,
-    ".abtn"
-  );
+  const abtn = myFn.qsaEl(slideBox, ".abtn");
 
   // (3) 변경대상: .slide
-  const slide = myFn.qsEl(
-    slideBox,
-    ".slide"
-  );
+  const slide = myFn.qsEl(slideBox, ".slide");
 
   // (4) 최초 슬라이드 li 수집하기
-  const firstSlide = myFn.qsaEl(
-    slide,
-    "li"
-  );
+  const firstSlide = myFn.qsaEl(slide, "li");
 
   // 최초슬라이드 li에 data-seq 속성 만들고 순번넣기
   // 왜 넣는가? 슬라이드 li순서가 계속 변경되므로
@@ -44,16 +33,10 @@ export default function slideFn() {
   // 보통 변경없이 사용하는 변수는 상수라고 하고
   // 상수는 보통 대문자로 쓰고 스네이크 케이스 사용함!
   const SLIDE_CNT = firstSlide.length;
-  console.log(
-    "슬라이드개수:",
-    SLIDE_CNT
-  );
+  // console.log("슬라이드개수:", SLIDE_CNT);
 
   // (4) 인디케이터 블릿대상
-  const indic = myFn.qsaEl(
-    slideBox,
-    ".indic li"
-  );
+  const indic = myFn.qsaEl(slideBox, ".indic li");
 
   // console.log("대상:",slideBox,abtn,slide,indic);
 
@@ -64,11 +47,12 @@ export default function slideFn() {
     // click이벤트를 addEventListener로 설정!
     myFn.addEvt(el, "click", goSlide);
     // 이동버튼 클릭시 인터발지우기함수 호출
-    myFn.addEvt(el, "click", (e) => {
-      // a요소 기본이동기능 막기
-      e.preventDefault();
-      clearAuto();
-    });
+    myFn.addEvt(el, "click", 
+      (e)=>{
+        // a요소 기본이동기능 막기
+        e.preventDefault();
+        clearAuto();
+      });
   }); //////////// forEach ////////////////
 
   // 광클금지 상태변수
@@ -87,19 +71,14 @@ export default function slideFn() {
     //////////////////////
 
     // 1. 함수호출확인
-    console.log(
-      "나함수!",
-      this,
-      this.classList
-    );
+    // console.log("나함수!", this, this.classList);
 
     // 2. 오른쪽버튼여부 확인(기본값 true할당)
     let isRight = true;
     // 만약 this.classList가 undefined가 아니면
     // 클래스 오른쪽 여부를 판단한다!
-    if (this.classList)
-      isRight =
-        this.classList.contains("ab2");
+    if (this.classList) 
+      isRight = this.classList.contains("ab2");
     // 일반적으로 버튼을 클릭하지 않고 호출하면
     // window객체가 this로 잡히므로 classList객체가 없어서
     // undefined로 나오고 하위 클래스인 contains()가
@@ -111,7 +90,7 @@ export default function slideFn() {
     // 이동버튼 분기가 작동된다!
 
     // classList.contains(클래스명) -> 클래스있으면 true
-    console.log("나함수!", isRight);
+    // console.log("나함수!", isRight);
 
     // 3. 현재 변경된 li수집용 변수
     let list = myFn.qsaEl(slide, "li");
@@ -121,8 +100,7 @@ export default function slideFn() {
     if (isRight) {
       // [1] translate x축방향 -100% 이동
       slide.style.translate = "-100%";
-      slide.style.transition =
-        TIME_ANI + "ms ease-in-out";
+      slide.style.transition = TIME_ANI + "ms ease-in-out";
 
       // [ 슬라이드 이동후 실행해야함 ]
       // 따라서 setTimeout으로 시간 지연실행코드작성
@@ -141,10 +119,7 @@ export default function slideFn() {
     // (2) 왼쪽버튼 클릭시 : 오른쪽으로 이동
     else {
       // [1] 맨뒤li 맨앞으로 이동하기 /////////
-      slide.insertBefore(
-        list[list.length - 1],
-        list[0]
-      );
+      slide.insertBefore(list[list.length - 1], list[0]);
       // 슬라이드.insertBefore(맨뒤li,맨앞li)
       // 맨뒤 li순번은 (개수-1)임!
 
@@ -160,8 +135,7 @@ export default function slideFn() {
         slide.style.translate = "0";
 
         // [4] 이때 트랜지션 애니메이션 설정
-        slide.style.transition =
-          TIME_ANI + "ms ease-in-out";
+        slide.style.transition = TIME_ANI + "ms ease-in-out";
       }, 0);
     } ///////// else ///////
 
@@ -181,15 +155,8 @@ export default function slideFn() {
     // 일치하는 순번li에 클래스 "on"넣기
     // 이때 오른쪽버튼은 1번, 왼쪽버튼은 0번째 li의
     // data-seq값을 읽어온다!
-    let num =
-      list[
-        isRight ? 1 : 0
-      ].getAttribute("data-seq");
-    console.log(
-      "num:",
-      num,
-      typeof num
-    );
+    let num = list[isRight ? 1 : 0].getAttribute("data-seq");
+    // console.log("num:", num, typeof num);
 
     // 4. 인디케이터 변경하기 : 대상 .indic li
     indic.forEach((el, idx) => {

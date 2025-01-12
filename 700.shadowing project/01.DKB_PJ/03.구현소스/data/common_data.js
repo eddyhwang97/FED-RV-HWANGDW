@@ -2,8 +2,8 @@
 
 const comData = {
     // 1. 상단영역 코드
-    topArea:`
-     <!-- 1. 상단영역 -->
+    topArea:`    
+    <!-- 1. 상단영역 -->    
     <div id="top-area">
       <header class="top-area inbox">
         <!-- 파티션박스 -->
@@ -45,13 +45,10 @@ const comData = {
           </div>
         </div>
       </header>
-    </div>`,
-    // 전체메뉴코드
-    navArea : `
-      <nav class="gnb"></nav>
+    </div>
     `,
     // 2. 하단영역 코드
-    footerArea:`
+    footerArea:`    
     <!-- 8.하단영역 -->
     <div id="footer-area">
       <footer class="footer-area inbox">
@@ -167,17 +164,18 @@ const comData = {
           <!-- 하단로고박스 영역 -->
           <div class="col-12">
             <!-- 하단로고 -->
-            <h1 class="footer__logo">
-              <img src="./images/tvnlogo2.png" alt="" />
-            </h1>
+            <h2 class="footer__logo">
+              <img src="./images/tvnlogo_bottom.png" alt="하단로고" />
+            </h2>
           </div>
           <!-- 회사주소박스 영역 -->
           <div class="col-9">
             <address class="corp-info">
               시청자 상담실 (편성 문의 및 시청자 의견) : 080-080-0780 <br />
               (주)씨제이이엔엠?대표이사 : 구창근, 윤상현 사업자정보확인 <br />
-              본점 : (06761) 서울시 서초구 과천대로 870-13 사업장 : (03926) 서울시 마포구 상암산로 66 사업자 등록번호 :
-              106-81-51510 개인정보 보호책임자 : 강봉관
+              본점 : (06761) 서울시 서초구 과천대로 870-13 사업장 : (03926)
+              서울시 마포구 상암산로 66 사업자 등록번호 : 106-81-51510 개인정보
+              보호책임자 : 강봉관
             </address>
           </div>
           <!-- SNS박스 영역 -->
