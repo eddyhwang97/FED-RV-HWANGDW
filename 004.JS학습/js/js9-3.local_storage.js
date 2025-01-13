@@ -64,14 +64,15 @@ import myFn from "./my_function.js";
 // // myFn.qs('body').onclick = ()=>{localStorage.clear()}
 // myFn.qs('body').onclick = ()=>{localStorage.removeItem('your-name')}
 
-
 // 세션스토리지 테스트
 // sessionStorage.setItem('my-dog','포메라니안');
 // sessionStorage.setItem('your-dog','푸들');
 // console.log(sessionStorage.getItem('my-dog'));
 // console.log(sessionStorage.getItem('your-dog'));
 // myFn.qs('body').onclick = ()=>{sessionStorage.clear()}
-myFn.qs('body').onclick = ()=>{sessionStorage.removeItem('your-dog')}
+myFn.qs("body").onclick = () => {
+  sessionStorage.removeItem("your-dog");
+};
 
 // [ 1. 로컬 스토리지 연습 ] ////////////////////
 // 1. 버튼 기능 이벤트 대상 : .local-box button
@@ -94,10 +95,7 @@ function localsFn() {
     // -> localStorage.setItem(키,값)
     localStorage.setItem("actor-name", "이정재");
     localStorage.setItem("actor-role", "박평호역");
-    localStorage.setItem(
-      "actor-cat",
-      "조직내 스파이를 색출하는 해외팀 안기부장"
-    );
+    localStorage.setItem("actor-cat", "조직내 스파이를 색출하는 해외팀 안기부장");
   } /// if ////
   else if (btxt == "보여줘") {
     // 배우이름 출력
@@ -130,7 +128,6 @@ function localsFn() {
     //   makeObj();
     // } /// if ///
     // console.log(localStorage.getItem("minfo"));
-
     // // 2. 화면에 출력하기 : 데이터 바인딩하기
     // bindData();
   } //// else if ////
@@ -138,13 +135,11 @@ function localsFn() {
 
 // 추가로 출력영역을 클릭하면 해당 로콜쓰만 지우기셋팅
 // 배우이름 출력
-myFn.qs(".local .nm").onclick =()=> localStorage.removeItem("actor-name");
+myFn.qs(".local .nm").onclick = () => localStorage.removeItem("actor-name");
 // 역할이름 출력
-myFn.qs(".local .role").onclick =()=> localStorage.removeItem("actor-role");
+myFn.qs(".local .role").onclick = () => localStorage.removeItem("actor-role");
 // 캐릭터소개 출력
-myFn.qs(".local .cat").onclick =()=> localStorage.removeItem("actor-cat");
-
-
+myFn.qs(".local .cat").onclick = () => localStorage.removeItem("actor-cat");
 
 // 2. 버튼에 이벤트 설정하기
 // 3. 로컬쓰 처리 함수 만들기 ///////
@@ -192,7 +187,7 @@ function bindData() {
         </tr>
         <!-- 데이터에 따른 반복바인딩 -->
         ${localData
-            .map(
+          .map(
             (v, i) => `
             <tr>
                 <td>${v.idx}</td>
@@ -203,12 +198,65 @@ function bindData() {
                 </td>
             </tr>
         `
-            )
-            .join("")}
+          )
+          .join("")}
     </table>
 `;
 } ////////////// bindData //////////////////
 
+//////////////////////////////////////////////////
+///////////[게시판 최초호출 및 데이터 셋업]//////////////
+//////////////////////////////////////////////////
+
+// 게시판 최초호출 : 로컬쓰 minfo존재여부에 따라처리
+console.log("최초minfo로콜쓰가 있는가?", localStorage.getItem("minfo"));
+// 만약 결과가 null이면 이 로컬쓰는 없는것임!
+// 따라서 if문의 조건문에 사용하면 코드를 지정할 수 있다.
+
+// 만약에 minfo로컬쓰가 존재하면 bindData 함수호출!
+if (localStorage.getItem("minfo")) bindData();
+// 만약 minfo 로컬쓰가 없으면 생성하라!
+else makeObj();
+
+////////////////////////////////////////////////////
+/////////[데이터 추가 버튼 클릭시 데이터 추가하기]///////////
+///////////////////////////////////////////////////
+// 대상 : #sbtn (입력버튼)
+// 데이터 읽어올 대상 : #tit, #cont
+const tit = myFn.qs("#tit");
+const cont = myFn.qs("#cont");
+myFn.qs("#sbtn").onclick = () => {
+  console.log("입력하라", tit, cont);
+  // 1. 입력데이터 유효성 검사 : try~catch사용!
+  try {
+    if (tit.value.trim() == "" || cont.value.trim() == "") {
+      throw "제목과 내용을 반드시 입력해야합니다.";
+    }
+  } catch (err) {
+    /// try ////////
+    // catch문에 들어온 경우는 에러상황임
+    alert(err);
+    // 함수 아랫부분 실행 못하도록 리턴함!
+    return;
+  } ///catch ///////
+
+  // [ 로컬쓰 처리 기본과정 ]
+  // 로컬쓰읽기->로컬쓰파싱->데이터변경->로컬쓰문자변경후 업데이트
+
+  // 2. 로컬쓰 minfo 데이터 읽어오기
+  let locals = localStorage.getItem("minfo");
+  // 3. 로컬쓰 minfo 파싱후 데이터 넣기
+  locals = JSON.parse(locals);
+  locals.push({
+    idx: locals.length+1,
+    tit: tit.value,
+    cont: cont.value,
+  });
+  // 4. 로컬쓰 변경된 데이터 다시 넣기 : 넣을땐 문자화(stringify)
+  localStorage.setItem("minfo",JSON.stringify(locals));
+  // 5. 다시 데이터 바인딩하기
+  bindData();
+}; ////////////////click 이벤트 함수 //////////////////
 
 //******************************************** */
 ///////////////////////////////////////////////
@@ -254,8 +302,8 @@ function sessionsFn() {
 
 // 세션스토리지 개별삭제 구현하기
 // 배우이름 삭제
-myFn.qs(".session .nm").onclick =()=> sessionStorage.removeItem("actor-name");
+myFn.qs(".session .nm").onclick = () => sessionStorage.removeItem("actor-name");
 // 역할이름 삭제
-myFn.qs(".session .role").onclick =()=> sessionStorage.removeItem("actor-role");
+myFn.qs(".session .role").onclick = () => sessionStorage.removeItem("actor-role");
 // 캐릭터소개 삭제
-myFn.qs(".session .cat").onclick =()=> sessionStorage.removeItem("actor-cat");
+myFn.qs(".session .cat").onclick = () => sessionStorage.removeItem("actor-cat");
