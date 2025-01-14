@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>01.컴포넌트 연습1</title>
+    <title>02.컴포넌트 현실화</title>
     <link rel="stylesheet" href="./css/comp1.css" />
     <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
@@ -35,12 +35,13 @@
       <div class="grid">
         <de-fashion-list
           v-for="v in exData"
-          v-bind:list-idx="'v.idx"
-          v-bind:list-tit="'v.gName"
-          v-bind:list-price="'v.gPrice"
-        >
-        </de-fashion-list>
+          v-bind:list-idx="v.idx"
+          v-bind:list-tit="v.gName"
+          v-bind:list-price="v.gPrice"
+          v-bind:fn-add-comma="addComma"
+        ></de-fashion-list>
       </div>
+
       <div class="grid">
         <!-- v-for 숫자돌리기
         (숫자증가,순번) in 개수 -->
@@ -52,35 +53,36 @@
           v-bind:key="n"
           v-bind:my-seq="i"
           v-on:hull="goMsg"
-          v-on:gotkimchi="goMsg"
-        >
-        </list-comp>
+          v-on:gotkimchi="ovMsg"
+          v-bind:fn-add-comma="addComma"
+        ></list-comp>
         <!--
-      v-on:hull="goMsg"
-        v-on:gotkimchi="goMsg"
-        해석) 세상에 없느 이벤트인 hull,gotlimchi
-        이벤트로 자기자신의 메서드인 goMsg,ovMsg 를 호출함
-        -> 자식컴포넌트의 $emit
-      -->
-
+          v-on:hull="goMsg"
+          v-on:gotkimchi="ovMsg"
+          해석) 세상에 없는 이벤트인 hull, gotkimchi
+          이벤트로 자기자신의 메서드인 goMsg와 ovMsg를 호출함
+          -> 자식컴포넌트의 $emit(hull) / $emit(gotkimchi)
+          를 설정하여 연결함!!!
+        -->
         <!--
-        [1. 내부전달용 변수 바인딩하기]
-        컴포넌트 외형을 구성하는 list-comp 가 부모가 된다
-        부모는 자식컴포넌트에게 숫자값을 전달하려면
-        속성으로 바인딩하여 만들고 자식은 컴포넌트 내부에
-        props:[] 객체를 만들어 이를 전달받는다.
-        -> 이것을 프롭스 다운! 이라고 부른다
-        properties down 즉, 자식에게 속성을 내려보낸다라는 의미!
-        (속성은 셋팅은 소문자로 쓰고 케밥케이스로 단어구분한다!)
-        [2. DOM 노출용 사용자 정의 속성만들기]
-        -> v-bind:data-내이름 즉, 'data-'로 시작하면 됨!
-        -> 당연히 내부전달용 변수는 'data-'로 시작하면 안됨!!!
-        -> W3C문법 사항중 'data-'로 시작하면 사용저정의 속성임!
-        [3. key이름의 속성은 무엇인가?]
-        -> 반복요소를 만들경우 그 반복요소의 유일성을 보장하기 위해 만들어주느 속성이 key다! SPA 노드JS개발환경에서는
-        이것을 안씀녀 에러가남! 그러나 CDN방식에서는 이걸을 검사하지 않아서 에러나지 않음 하지만 이것을 쓰는것이 기본!
-    
-         -->
+          [ 1. 내부전달용 변수 바인딩하기 ]
+          컴포넌트 외형을 구성하는 list-comp 가 부모가 된다
+          부모는 자식 컴포넌트에게 숫자값을 전달하려면
+          속성으로 바인딩하여 만들고 자식은 컴포넌트 내부에
+          props:[] 객체를 만들어 이를 전달 받는다!
+          -> 이것을 프롭스 다운! 이라고 부른다!
+          properties down 즉, 자식에게 속성을 내려보낸다라는 의미!
+          ((속성셋팅시 소문자로 쓰고 캐밥케이스로 단어구분한다!))
+          [ 2. DOM 노출용 사용자정의 속성 만들기 ]
+          -> v-bind:data-내이름 즉, 'data-'로 시작하면 됨!
+          -> 당연히 내부전달용 변수는 'data-'로 시작하면 안됨!
+          -> W3C문법 사항중 'data-'로 시작하면 사용자정의 속성임!
+          [ 3. key 이름의 속성은 무엇인가? ]
+          -> 반복요소를 만들경우 그 반복요소의 유일성을 보장하기위해
+          만들어주는 속성이 key다! SPA 노드JS개발환경에서는
+          이것을 안쓰면 에러가 남! 그러나 CDN방식에서는 이것을
+          검사하지 않아서 에러나지 않음. 하지만 이것을 쓰는것이 기본!
+        -->
       </div>
       <!-- 3.하단정보 -->
       <div class="tit2">
