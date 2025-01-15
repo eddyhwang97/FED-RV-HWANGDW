@@ -5,21 +5,24 @@
 /*********** 1. 웹폰트 ***********/
 /* Roboto체 + Roboto Condensed체 - CDN */
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto:wght@300&display=swap");
-
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap";
 /* 
 font-family: 'Roboto', sans-serif;
 font-family: 'Roboto Condensed', sans-serif;
 */
+body {
+  font-family: "Roboto", sans-serif;
+}
 /* 나눔바른고딕 */
 @font-face {
-    font-family: nbg;
-    src: url(../fonts/NanumBarunGothicLightSubset.woff) format("woff");
+  font-family: nbg;
+  src: url(../fonts/NanumBarunGothicLightSubset.woff) format("woff");
 }
 
 /* Pistilli체 */
 @font-face {
-    font-family: pist;
-    src: url(../fonts/Pistilli-Roman.woff) format("woff");
+  font-family: pist;
+  src: url(../fonts/Pistilli-Roman.woff) format("woff");
 }
 
 /* 
@@ -39,36 +42,129 @@ font-family: 'Roboto Condensed', sans-serif;
 
 /* 2-1. 중앙 속박스 */
 .ibx {
-    max-width: 1600px;
-    margin: 0 auto;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+// 서브 타이틀 공통 클레스
+.sub-tit {
+  font-size: $font-size-x-large;
+  padding-bottom: 15px;
+}
+// 영역박스 공통
+.common-box {
+  padding: $spacing-40;
+}
+// 리스트 타입 큰 이미지 박스 확장 공통 클래스
+.big-box-type {
+  figure {
+    aspect-ratio: 1/2;
+
+    figcaption {
+      translate: 0 -100%;
+      padding: $spacing-50;
+      color: #fff;
+      background: linear-gradient(to top, #000, transparent);
+
+      // 타이틀
+      h3.s-tit {
+        font-size: $font-size-large;
+        font-weight: normal;
+      }
+      // 날짜 글쓴이는 숨김
+      p.date {
+        display: none;
+      }
+    }
+  }
+}
+
+//////////////////////////
+/////////3.믹스인영역 ///////
+//////////////////////////
+
+// 3-1 리스트 타입 믹스인 //////
+@mixin list-type($type) {
+  // $type ('right-type','left-type')
+  // 큰이미지가 오른쪽에 있나 왼쪽에 있나구분
+  // 제어문 @if(){} / @else if(){} 사용함!
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    // 타입에 따른 코드분기 ///
+    // (1) 오른쪽 큰 이미지 타입
+    @if ($type== "right-type") {
+      // 3번째 li 두칸차지하기
+      li:nth-child(3) {
+        grid-area: 1 / 3 / 3 / 4;
+        // 공통 큰박스 타입 클래스
+        @extend .big-box-type;
+      }
+    }
+    // (2) 큰 이미지 왼쪽 타입 ////
+    @else if ($type== "left-type") {
+      // 1번째 li 두칸차지하기
+      li:nth-child(1) {
+        grid-area: 1 / 1 / 3 / 2;
+        // 공통 큰박스 타입 클래스
+        @extend .big-box-type;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // 아이템 설명박스
+    figcaption {
+      padding: 20px 0;
+
+      p.category {
+        font-size: $font-size-cat-date;
+      }
+      h3.s-tit {
+        font-size: $font-size-small-tit;
+        margin: 10px 0;
+      }
+      p.date {
+        font-size: $font-size-cat-date;
+        color: #999;
+      }
+    }
+  }
 }
 
 
-// 1. 미디어쿼리믹스인
+////////////////////////////
+// 3-2. 미디어쿼리믹스인 영역 ////
+////////////////////////////
 // 큰것에서 작은것 순으로
 @mixin desktop {
-    @media (max-width: $breakpoint-desktop) {
-      @content;
-    }
+  @media (max-width: $breakpoint-desktop) {
+    @content;
   }
-  @mixin tablet-large {
-    @media (max-width: $breakpoint-tablet-large) {
-      @content;
-    }
+}
+@mixin tablet-large {
+  @media (max-width: $breakpoint-tablet-large) {
+    @content;
   }
-  @mixin tablet-medium {
-    @media (max-width: $breakpoint-tablet-medium) {
-      @content;
-    }
+}
+@mixin tablet-medium {
+  @media (max-width: $breakpoint-tablet-medium) {
+    @content;
   }
-  @mixin tablet-small {
-    @media (max-width: $breakpoint-tablet-small) {
-      @content;
-    }
+}
+@mixin tablet-small {
+  @media (max-width: $breakpoint-tablet-small) {
+    @content;
   }
-  
-  @mixin mobile {
-    @media (max-width: $breakpoint-tablet) {
-      @content;
-    }
+}
+
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
   }
+}
