@@ -125,8 +125,6 @@ Vue.component("tit-comp", {
       },
   });
   
-  // 뷰인스턴스 생성하기 : 유튜브 동영상 컴포넌트
-  new Vue({el:".you-box"});
   
   // 4. 하단 컴포넌트 만들기
   Vue.component("footer-comp",{
@@ -137,7 +135,12 @@ Vue.component("tit-comp", {
           </div>
       `,
   });
-  
+
   // 뷰인스턴스 생성하기 : 하단 컴포넌트
   new Vue({el:".tit2"});
+  
+  // 뷰인스턴스 생성하기 : 유튜브 동영상 컴포넌트
+//   ->테스트로 하단영여 전역 컴포넌트를 유튜브 영역에 
+// 출력하기위해 아랫쪽으로 코드 위치를 옮겼다!
+  new Vue({el:".you-box"});
   
