@@ -81,6 +81,15 @@ import myFn from "./my_function.js";
 const btnLocal = myFn.qsa(".local-box button");
 console.log("대상:", btnLocal);
 
+// ->추가대상 :  수정하기 선택박스요소 - select#sel
+const selBox = myFn.qs("select#sel");
+
+// ->추가대상 : 수정항목 제목/ 내용
+const tit2 = myFn.qs("#tit2");
+const cont2 = myFn.qs("#cont2");
+
+console.log("대상: ", btnLocal, selBox, tit2, cont2);
+
 // 2. 버튼에 이벤트 설정하기
 btnLocal.forEach((ele) => myFn.addEvt(ele, "click", localsFn));
 
@@ -207,9 +216,35 @@ function bindData() {
           .join("")}
     </table>
 `;
-  // 삭제함수 호출
+  // 4. 삭제버튼 링크함수 호출
   selDelLink();
+
+  // 5. 수정을 위한 선택박스 바인딩하기
+  // 대상 : #sel -> selBox변수
+  // 데이터 : 파싱된 로컬쓰 (배열) 중 idx만 사용! -> map()
+  selBox.innerHTML = localData
+    .map((v) => `<option value="${v.idx + "♨︎" + v.tit + "♨︎" + v.cont}">${v.idx}</option>`)
+    .join("");
 } ////////////// bindData //////////////////
+
+/////////////////////////////////////////////////
+////// [ 수정항목 선택박스 변경시 함수 구현 ] //////////
+//////////////////////////////////////////////////
+
+myFn.addEvt(selBox, "change", function () {
+  // console.log("선택변경", this.value);
+  // 읽어온 value값을 split로 잘라넣기
+  let newVal = this.value.split("♨︎");
+
+  // 수정할 데이터의 원본 제목 /내용 보여주기
+  tit2.value = newVal[1];
+  cont2.value = newVal[2];
+});
+
+// 수정항목 선택박스 변경시 함수구현 ///
+myFn.addEvt(selBox, "change", function () {
+  console.log("선택변경:", this.value);
+}); ///////change 이벤트 함수 //////////
 
 /////////////////////////////////////////////////
 ////// [ 게시판 최초호출 및 데이터 셋업 ] //////////
@@ -250,8 +285,8 @@ myFn.qs("#sbtn").onclick = () => {
     return;
   } /// catch ///
 
-  // 로컬쓰 처리함수 호출!
-  setLS({ key: "minfo", opt: "add" });
+  // 로컬쓰 처리함수 호출! : call 대리호출
+  setLS.call({ key: "minfo", opt: "add" });
 }; ///////////// click 이벤트 함수 ///////////////
 
 /////////////////////////////////////////////////
@@ -278,28 +313,65 @@ function selDelLink() {
       let delIdx = this.getAttribute("data-idx");
       console.log("지울순번:", delIdx);
 
-      // 2. 로컬쓰처리함수 호출
-      setLS({ key: "minfo", opt: "delete", delSeq: delIdx });
+      // 2. 로컬쓰처리함수 호출 : call 대리호출
+      setLS.call({ key: "minfo", opt: "delete", delSeq: delIdx });
     }); //// addEvt ////
   }); ////// forEach /////
 } ///selDelLink ////////
+
+/////////////////////////////////////////////////
+/// [ 데이터 수정 버튼 클릭시 데이터 수정하기 ] ////
+/////////////////////////////////////////////////
+// 대상 : #sbtn (입력버튼)
+// 데이터 읽어올 대상 : #tit2, #cont2
+
+// 이벤트 함수 설정하기 /////
+myFn.qs("#mobtn").onclick = () => {
+  console.log("입력하라!", tit2, cont2);
+  // 1. 입력데이터 유효성 검사 : try ~ catch사용!
+  try {
+    // trim() 앞뒤공백 제거 처리해야 공백만 넣기막음!
+    if (tit2.value.trim() == "" || cont2.value.trim() == "") {
+      throw "제목과 내용은 반드시 입력해야합니다!";
+    }
+  } catch (err) {
+    /// try ////
+    // catch문에 들어온 경우는 에러상황임!
+    alert(err);
+    // 함수 아랫부분 실행 못하도록 리턴함!
+    return;
+  } /// catch ///
+
+  // 로컬쓰 처리함수 호출! : call 대리호출
+  setLS.call({
+    key: "minfo",
+    opt: "update",
+    upSeq: selBox.value.split("♨︎")[0],
+    // 지울 순번은 선택박스의 value값 중 잘라서 첫번째 값!
+  });
+}; ///////////// click 이벤트 함수 ///////////////
 
 ////////// 로컬스토리지 처리 공통함수 //////////////
 /************************************************* 
   함수명 : setLS
   기능 : 로컬스토리지 데이터를 처리하는 함수
 *************************************************/
-function setLS(obj) {
-  // obj - 단 하나의 객체전달변수!
+function setLS() {
   // 전달변수를 하나만 받고 그값을 객체로 정의한다!
   // -> 이렇게 하면 확장성이 좋아진다!
   // -> 예컨데 지울때는 지울순번을 더 보내야한다! 이럴때 좋음!
 
+  // ->>>전달변숭벗이 객체를 받는 방법이 있음!!
+  // 바로 call(객체) / apply(객체) 로 대리호출해줌!
+  // 받을때는 this.속성명 으로 받아준다!!!
+
   // 아래 속성명정의! /////////
   // obj = {key:값, opt:값, delIdx:값}
-  // obj.key - 로컬스토리지 키명
-  // obj.opt - 처리옵션(add/delete/update)
-  // obj.delIdx - 지울순번
+  // -> call(객체)로 호출하면 this로 받아라!
+  // this.key - 로컬스토리지 키명
+  // this.opt - 처리옵션(add/delete/update)
+  // this.upSeq - 수정할 순번
+  // this.delIdx - 지울순번
   // -> 일반적으로 데이터 처리는 4가지를 말한다!
   // ->>> 크루드!(CRUD) -> Create/Read/Update/Delete
 
@@ -307,42 +379,67 @@ function setLS(obj) {
   // 로컬쓰읽기->로컬쓰파싱->데이터변경->로컬쓰문자변경후 업데이트!
 
   // 1. 전달값 및 호출확인
-  console.log("로컬쓰처리!", obj.key);
+  console.log("로컬쓰처리!", this.key);
 
   // 2. 로컬쓰 minfo 데이터 읽어오기 : 문자형 데이터임!
-  let locals = localStorage.getItem(obj.key);
+  let locals = localStorage.getItem(this.key);
 
   // 3. 로컬쓰 minfo 파싱후 데이터 처리하기
   locals = JSON.parse(locals);
   // ->문자형 로컬쓰를 파싱하여 배열객체로 변환함
 
-console.log("Math.max(1,50,24)",Math.max(1,50,24))
-console.log("locals.map(v=>v.idx)",locals.map(v=>v.idx))
+  console.log("Math.max(1,50,24)", Math.max(1, 50, 24));
+  console.log(
+    "locals.map(v=>v.idx)",
+    locals.map((v) => v.idx)
+  );
 
   // 3-1. 'add'일때 데이터 추가하기 ////
-  if (obj.opt == "add") {
+  if (this.opt == "add") {
     locals.push({
       // 고유번호는 데이터 중 최대값에 1을 더해야함
       // Math.max(1,50,24)-> 결과는 50
       // Math.max.apply(보낼객체,배열) -> 보낼객체가 없으면 null
       // ->max 하위 apply는 배열값 대상으로 최대값을 적용함!
 
-      idx: Math.max.apply(null,locals.map(v=>v.idx))+1,
+      idx:
+        Math.max.apply(
+          null,
+          locals.map((v) => v.idx)
+        ) + 1,
       tit: tit.value,
       cont: cont.value,
     });
   } /// if ///
   // 3-2. 'update'일때 데이터 수정하기 ////
-  else if (obj.opt == "update") {
+  else if (this.opt == "update") {
+    // 파싱된 객체값을 순회하여 해당순번 idx값과
+    // 일치된 값을 찾아서 제목과 내용을 변경한다.
+    // 순회가능한 배열 매서드는 뭐가있지?
+    // ->forEach(), map(), find(),filter()
+    // ->>>위의 매서드들은 대상배열을 모두 순회한다!
+    // 그래서 효율성이 떨어진다!
+    // 찾으면 바로 순회를 끝내는 매서드가 있다!
+    // ->>>썸타는 매서드 : some()
+    locals.some((v) => {
+      console.log("배열순회중!");
+      if (v.idx == this.upSeq) {
+        // 데이터 업데이트
+        v.tit = tit2.value;
+        v.cont = cont2.value;
+        
+        // 리턴 true 하면 some 메서드끝내기
+        return true;}
+    });
   } /// else if ///
   // 3-3. 'delete'일때 데이터 삭제하기 ////
-  else if (obj.opt == "delete") {
+  else if (this.opt == "delete") {
     // 삭제처리 배열함수 : splice(지울순번,1)
-    locals.splice(obj.delSeq, 1);
+    locals.splice(this.delSeq, 1);
   } /// else if ///
 
   // 4. 로컬쓰 변경된 데이터 다시 넣기 : 넣을땐 문자화(stringify)
-  localStorage.setItem(obj.key, JSON.stringify(locals));
+  localStorage.setItem(this.key, JSON.stringify(locals));
 
   // 5. 다시 데이터 바인딩하기
   bindData();
