@@ -9,8 +9,8 @@ import store from "./store.js";
 // (1) 상단영역 컴포넌트
 Vue.component("top-area", {
   // 템플릿설정
-//   ->이벤트 설정시 
-// ->기본기능막기인 e.preventDefault
+  // -> 이벤트 설정시 v-on:이벤트명.prevent 라고 쓰면
+  // -> 기본기능막기인 event.preventDefault() 가 설정됨!
   template: `
         <header>
             <ul class="gnb">
@@ -18,7 +18,7 @@ Vue.component("top-area", {
                   .map(
                     (v) => `
                         <li>
-                            <a href="#" v-on:click.prevent="changData('${v}')">${v == "처음" ? "🏠" : v}</a>
+                            <a href="#" v-on:click.prevent="changeData('${v}')">${v == "처음" ? "🏠" : v}</a>
                         </li>
                         `
                   )
@@ -31,8 +31,19 @@ Vue.component("top-area", {
     return {};
   },
   // 메서드 설정
-  methods: {},
+  methods: {
+    // 컴포넌트 탬플릿 코드에서 호출할 메서드
+    // ->스토어 데이터 변경하기
+    changeData(pm) {
+      //pm은 파라미터변수 : 도시명 받음
+      console.log("나야나", pm);
+      // 스토어 state데이터 변경하기
+      // initSet 뮤테이션스 메서드 호출
+      store.commit("changeCityData", pm);
+    },
+  },
 });
+
 // (2) 상단영역 컴포넌트
 Vue.component("main-area", {
   /* 
@@ -58,17 +69,9 @@ Vue.component("main-area", {
     return {};
   },
   // 메서드 설정
-  methods: {
-    // 컴포넌트 탬플릿 코드에서 호출할 메서드
-    // ->스토어 데이터 변경하기
-    changeData(pm) { //pm은 파라미터변수 : 도시명 받음
-      console.log("나야나",pm);
-    // 스토어 state데이터 변경하기
-    // initSet 뮤테이션스 메서드 호출
-    store.commit('changeCityData',pm)
-    },
-  },
+  methods: {},
 });
+
 // (3) 상단영역 컴포넌트
 Vue.component("info-area", {
   // 템플릿설정
@@ -111,7 +114,32 @@ new Vue({
         */
     store.commit("initSet", {
       url: "https://i.namu.wiki/i/corJqZiNxAUreAunnA2wdulOYFuEtpFmPCjZMgpyMjoZkcxe2cX2p8I9tTZqC7uSjmYhrrBbDQ3h0M4b3Brh1w.webp",
-      txt:'도시소개 사이트는 넷플릭스와 함께합니다~!',
+      txt: "도시소개 사이트는 넷플릭스와 함께합니다~!",
     });
   }, ///created ///////
+
+  // 모든 DOM관련 코딩은 mounted 구역에서 한다.
+  mounted() {
+    // 1. 메뉴클릭시 클릭된 li의 a요소는 .on주기
+    // 나머지는 .on빼기 그리고
+    $(".gnb a").click(function () {
+      if ($(this).parent().index() == 0) {
+        $(".gnb a").removeClass("on");
+        return;
+      }
+      // ->선택자.index()순번을 리턴함!
+      // 클릭된 a에 클래스 넣기 (나머지 빼기)
+      $(this).addClass("on").parent().find("a").siblings().removeClass("on");
+
+      //   showBox 함수 호출하여 박스 서서히보이기
+      showBox();
+    });
+    function showBox() {
+      // 이미지
+      $("main img").css({ opacity: 0 }).delay(200).fadeTo(500, 1);
+      // 글자박스
+      $("main p").css({ opacity: 0 }).delay(400).fadeTo(500, 1);
+      // fadeTo (시간 오파 이징 함수)
+    }
+  },
 });
