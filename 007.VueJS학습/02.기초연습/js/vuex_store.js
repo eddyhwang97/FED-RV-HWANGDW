@@ -5,6 +5,53 @@ import store from "./store.js";
 // default로 내보내기 했지만 이름은 store로 정해짐
 // -> 뷰인스턴스에서 store를 사용하도록 등록필수!!
 
+// [라우터 옵션셋팅하기]
+// (1) 라우터 출력 템플릿 만들기
+// {template:태그}-> 템플릿 이름의 겍체로 생성
+// 변수를 대문자로 시작한 이유는 컴포넌트이기 때문!
+const Trip = {
+  template: `
+  <div class="trip router">World Trip</div>
+  `,
+};
+const Foods = {
+  template: `
+  <div class="foods router">World foods</div>
+  `,
+};
+
+// (2) 라우터 연결 옵션 셋팅하기
+// const routes = [{},{},{}] 형식에 주의!
+// ((셋팅시 제한사항))
+// 1) 라우터 인스턴스에 routes라는 이름으로만 셋팅해야함!
+// 2) 배열 객체형식을 지켜야하며 이것을 직접 라우터 인스턴스에 셋팅못함
+const routes = [
+  {
+    // (1) 경로설정 : path
+    // -> router-link의 to 속성과 같은값으로 셋팅
+    path: "/trip",
+    // (2)연결할 컴포넌트 설정 : component
+    // -> 외부의 변수로 셋팅할 수있고 직접 쓸수 있음
+    component: Trip,
+  },
+  {
+    // (1) 경로설정 : path
+    // -> router-link의 to 속성과 같은값으로 셋팅
+    path: "/foods",
+    // (2)연결할 컴포넌트 설정 : component
+    // -> 외부의 b변수로 셋팅할 수있고 직접 쓸수 있음
+    component: Foods,
+  },
+];
+
+// 라우터 옵션 연결하여 인스턴스 생성하기
+const router = new VueRouter({
+  routes //위에 셋팅된 라우트 셋팅 배열변수
+});
+//  [중요!]
+// 뷰인스턴스에 라우터를 등록해줘야만 사용할 수 있다.
+// ->new Vue({el:"",router,methods:{}})
+
 // [1] 전역컴포넌트 만들기 ////
 // (1) 상단영역 컴포넌트
 Vue.component("top-area", {
@@ -90,7 +137,7 @@ Vue.component("info-area", {
   methods: {},
 });
 
-// [2] 뷰 인스턴스 생성하기 ////
+// [2] 뷰 인스턴스 생성하기 {{본진이다}} ////
 
 // 대상요소 : #app
 new Vue({
@@ -98,6 +145,8 @@ new Vue({
   el: "#app",
   // 스토어 등록하기(필수!)
   store,
+  // 라우터 등록하기(필수!)
+  router,
   // 데이터
   data: {},
   // 메서드
@@ -116,6 +165,10 @@ new Vue({
       url: "https://i.namu.wiki/i/corJqZiNxAUreAunnA2wdulOYFuEtpFmPCjZMgpyMjoZkcxe2cX2p8I9tTZqC7uSjmYhrrBbDQ3h0M4b3Brh1w.webp",
       txt: "도시소개 사이트는 넷플릭스와 함께합니다~!",
     });
+
+    // 여기서 스토어 actions메서들르 호출함!
+    // 테스트 호출! -> dispatch()
+    store.dispatch("myAct", "데이터좀불러줘");
   }, ///created ///////
 
   // 모든 DOM관련 코딩은 mounted 구역에서 한다.
@@ -125,11 +178,11 @@ new Vue({
     $(".gnb a").click(function () {
       if ($(this).parent().index() == 0) {
         $(".gnb a").removeClass("on");
+        // ->선택자.index()순번을 리턴함!
+        // 클릭된 a에 클래스 넣기 (나머지 빼기)
         return;
       }
-      // ->선택자.index()순번을 리턴함!
-      // 클릭된 a에 클래스 넣기 (나머지 빼기)
-      $(this).addClass("on").parent().find("a").siblings().removeClass("on");
+      $(this).addClass("on").parent().siblings().find("a").removeClass("on");
 
       //   showBox 함수 호출하여 박스 서서히보이기
       showBox();

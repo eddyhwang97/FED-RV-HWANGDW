@@ -1,11 +1,14 @@
 // 뷰엑스 스토어 JS - 전역뷰데이터 저장소
 
+
+// import ggg from 'sadfsdaf.js';
 // 뷰엑스 스토아를 이용한 변수 셋팅하기
 // [뷰엑스 스토어 인스턴스를 생성한다]
 export default new Vuex.Store({
     // 1. 데이터 셋팅구역 : state
     state:{
         // 도시데이터 셋업
+        // img : ggg  ->가져온 데이터 넣기
         cityData:{
             처음: {
                 이미지: `https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg`,
@@ -29,13 +32,15 @@ export default new Vuex.Store({
               },
         },
         // 이미지 정보 셋업변수 : 화면에 반영할 이미지
-        img: '',
+        imgSrc: '',
         // 도시설명 정보 셋업변수 : 화면에 반영할 설명
         desc:'',
     },
     // 2. 데이터 변경메서드 구역 : mutations
+    // -> 컴포넌트에서 호출시 emit('메서드명',전달값) 사용
     mutations:{
         // 초기데이터 셋업 매서드
+        // 메서드명(state객체,parameter){}
         initSet(헐,파람){
             // 전달변수는 두번째 변수 파람임!
             console.log("데이터 변경 초기화",헐,파람)
@@ -59,6 +64,16 @@ export default new Vuex.Store({
 
     },
     // 3. 비동기처리 메서드구역 : actions
-    actions:{},
+    // -> 컴포넌트에서 호출시 dispatch('메서드명',전달값) 사용!
+    // -> 주로 백엔드 데이터를 가져올때 많이 사용됨
+    // -> 컴포넌트에서 created 구역에 actions메서드를 호출하고
+    // -> actions의 메서드는state변수에 데이터를 셋팅하는
+    // -> 경우가 많다
+    actions:{
+      myAct(형,벙){
+        console.log('나의액숀',형,벙);
+      }
+
+    },
 
 }); //Vuex.Store ////////////////
