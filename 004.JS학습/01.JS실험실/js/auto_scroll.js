@@ -211,8 +211,7 @@ function movePage(evt, el, idx, list) {
     3. pageX, pageY : 
         스크롤을 포함한 브라우저 화면을 기준한 x,y 좌표
 *********************************************************/
-// 1. 모바일 이벤트 등록하기
-
+// 1. 모바일 이벤트 등록하기 //////////
 myFn.addEvt(window, "touchstart", touchStartFn);
 myFn.addEvt(window, "touchend", touchEndFn);
 
@@ -221,43 +220,42 @@ myFn.addEvt(window, "touchend", touchEndFn);
 let mPosStart = 0,
   mPosEnd = 0;
 
-// 2. 모바일 이벤트함수 만들기
+// 2. 모바일 이벤트함수 만들기 /////////
 function touchStartFn(e) {
-  // 필요한 위치값은 y축
+  // 필요한 위치값은 Y축
   mPosStart = e.touches[0].screenY;
-  // console.log("터치시작",mPosStart,e.touches);
-  // event.touches는 모바일 터치정보를 담고있음
-} ////////touchStartFn 함수
+  // event.touches는 모바일 터치정보를 담고 있음
+  // 위치정보는 0번째 주소에 모두 종류별로 있음
+  // console.log('터치시작!', mPosStart, e.touches);
+} /////////// touchStartFn 함수 ///////////
+
 function touchEndFn(e) {
-  // 1. 필요한 위치값은 y축
+  // 1. 필요한 위치값은 Y축
   mPosEnd = e.changedTouches[0].screenY;
   // 처음 터치위치값과 변경된 터치위치값은 다른곳에 담긴다!
-  // 바로 changedTouches를 사용해야 읽을 수 있다
+  // 바로 changedTouches를 사용해야 읽을 수 있다!
 
   // 2. 위치차 : 처음위치 - 나중위치
   let diffValue = mPosStart - mPosEnd;
-  // console.log("터치끝",mPosEnd, "/차이수:",diffValue);
+  // console.log('터치끝!', mPosEnd, '/차이수:',diffValue);
 
-  // 3. 위치차 값이 양수이면 아래쪽으로 이동(음수는 윗쪽이동)
+  // 3. 위치차 값이 양수이면 아래쪽이동(음수는 윗쪽이동)
   if (diffValue > 0) {
-    console.log("아랫방향이동");
-
-    // (4-4) 방향 분기하여 전역 페이지변수 증감하기 ///////
+    console.log("아랫방향이동!");
     pgNum++;
-  } else if (diffValue < 0) {
-    console.log("윗방향이동");
+  } //// if /////
+  else if (diffValue < 0) {
+    console.log("윗방향이동!");
     pgNum--;
-  }
+  } ///// else if ///
+
   // 4. 한계값 체크 (0과 페이지끝번호 기준) ///////
   if (pgNum < 0) pgNum = 0;
   else if (pgNum > TOTAL_PAGE - 1) pgNum = TOTAL_PAGE - 1;
 
-  // 5 페이지 이동하기 /////////
+  // 5. 페이지 이동하기 /////////
   window.scrollTo(0, pageEl[pgNum].offsetTop);
-
-  // 6 페이지번호와 일치하는 GNB와 인디케이터에 클래스on넣기
+  
+  // 6. 페이지번호와 일치하는 GNB와 인디케이터에 클래스on넣기
   [gnb, indic].forEach((v) => addOn(v));
-  // 배열에 담고 값의 개수만큼 forEach로 순회하여 함수호출!
-} ///////touchEndFn 함수 /////////////
-
-
+} //////// touchEndFn 함수 ///////////////

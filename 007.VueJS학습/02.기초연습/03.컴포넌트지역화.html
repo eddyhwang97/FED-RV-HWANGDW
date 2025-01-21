@@ -26,7 +26,7 @@
       </h1>
       <!-- 유튜브 동영상박스 -->
       <div class="you-box">
-        <!-- 아이프레임 컴포넌트 -->
+        <!-- 아이프레임 컴포넌트 -->        
         <ifr-comp v-bind:mv-code="'ZH1Y1l1OmTY'"></ifr-comp>
         <ifr-comp v-bind:mv-code="'ZaQNTfKbngI'"></ifr-comp>
         <ifr-comp v-bind:mv-code="'Qz2QFUHbHQc'"></ifr-comp>
@@ -34,20 +34,22 @@
       </div>
       <!-- 2.그리드 레이아웃 박스 -->
       <!-- 추가된 리스트박스 -->
-      <div class="grid">
+       <div class="grid">
         <de-fashion-list
           v-for="v in exData"
-          v-bind:key="v-idx"
+          v-bind:key="v.idx"
           v-bind:list-idx="v.idx"
           v-bind:list-tit="v.gName"
           v-bind:list-price="v.gPrice"
           v-bind:fn-add-comma="addComma"
         ></de-fashion-list>
-      </div>
+       </div>
 
-      <!-- 
-      v-bind:key 는 뷰JS에서 반복문으로 만든 요소를 구분하기 위한 key를 쓸것을 강제하고 있다!
-      -->
+       <!-- 
+        v-bind:key는 뷰JS에서 반복문으로 만든 요소를
+        구분하기 위한 키를 쓸 것을 강제하고 있다!
+       -->
+
 
       <div class="grid">
         <!-- v-for 숫자돌리기

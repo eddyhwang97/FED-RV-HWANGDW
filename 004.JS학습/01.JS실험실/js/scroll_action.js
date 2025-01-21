@@ -14,6 +14,7 @@ import startSS from "./smoothScroll23.js";
 // 부드러운 스크롤 함수호출
 startSS();
 
+
 // 글자등장함수 호출하기
 callLetter(".stage", "신카이 마코토", 1500);
 
@@ -61,10 +62,8 @@ callLetter(".stage", "신카이 마코토", 1500);
 
 // 1. 대상선정 :
 // (1) 이벤트 대상 : window
-
 // (2) 변경대상 : .scroll-act
 const scrollAct = myFn.qsa(".scroll-act");
-
 // (3) 변경대상 : .tit
 const tit = myFn.qs(".tit");
 // 타이틀요소에 트랜지션
@@ -162,7 +161,14 @@ const docH = document.body.clientHeight;
 // 스한 = docH - winH
 const scLimit = docH - winH;
 
-console.log("문서높이:", docH, "\n윈도우높이:", winH, "\n스크롤한계값:", scLimit);
+console.log(
+  "문서높이:",
+  docH,
+  "\n윈도우높이:",
+  winH,
+  "\n스크롤한계값:",
+  scLimit
+);
 
 // 2. 대상선정 : 떨어지는 여자요소
 const woman = myFn.qs("#woman");
@@ -186,10 +192,8 @@ function moveWoman() {
   console.log("스이:", scY, "\n이이:", womanTop);
 
   // (3) 떨녀에게 적용하기
-  woman.style.top = womanTop + "px";
+  woman.style.top = womanTop + 'px';
 
   // (4) 맨위일때 윗쪽으로 숨기기
-  if (scY < 50) woman.style.top = "-20%";
+  if(scY < 50) woman.style.top = '-20%';
 } //////////// moveWoman 함수 /////////////
-
-
