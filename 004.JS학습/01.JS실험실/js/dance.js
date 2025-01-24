@@ -50,7 +50,7 @@ myFn.addEvt(window, "scroll", moveSlide);
 function moveSlide() {
   // 1. 스티키 부모박스 바운딩top값
   let bTop = myFn.getBCR(tpg);
-//   console.log("바운딩top:", bTop);
+  console.log("바운딩top:", bTop);
 
   // 2. 이동할 타겟박스 left값으로
   // 부모 바운딩top값 넣기
@@ -69,7 +69,7 @@ function moveSlide() {
   }
 
   // 3. 개별리스트 상하 이동함수 호출하기
-  eachList.forEach((ele,idx)=>upDownFn(ele,idx));
+  eachList.forEach((ele, idx) => upDownFn(ele, idx));
   // ele는 해당 리스트 li자신, idx 는 li자신의 순번
 } /////////// moveSlide 함수 /////////////
 
@@ -81,23 +81,23 @@ function upDownFn(ele, idx) {
   // 에 대한 위치값 바운딩left값을 이용하여
   // 자기위치에서 위/아래로 이동하는 수치변경하기
 
-  // 1. 바운딩 left값 구하기
+  // 1. 바운딩 left값 구하기 : my_function.js 함수업데이트 필수!
   let mVal = myFn.getBCR2(ele);
 
   // 2. 위치값을 양수로 만들고 윈도우 크기로 나눈후 백분율
   // 수치가 크므로 5로 나누어주었음...
   mVal = (Math.abs(mVal / window.innerWidth) * 100) / 5;
-  console.log('바운딩left:',mVal);
+  // console.log('바운딩left:',mVal);
 
   // 3. 들어온 li순번이 짝수일 경우 마이너스 처리하기!
   // 짝수일 경우 마이너스를 곱하여 방향을 반대로 해준다
   // 짝수는 %연산자사용 : 숫자%2==0 이면 짝수임!
   if (idx % 2 == 0) mVal = -mVal;
-  console.log("순번을 2로나눈 나머지:", idx % 2);
+  // console.log("순번을 2로나눈 나머지:",idx%2);
 
-  // 4. 실제 위치이동 CSS적용하기 : y축만 이동함
+  // 4. 실제 위치이동 CSS적용하기 : y축만 이동함!
   ele.style.translate = `0 ${mVal}%`;
-//   translate = "x축이동값 y축이동값"
+  // translate = "x축이동값 y축이동값"
 } ////////// upDownFn 함수 ////////////////
 
 /////////////////////////////////////////////
