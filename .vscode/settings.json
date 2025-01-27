@@ -8,5 +8,5 @@
     // 사이드바(파일,폴더) 배경 색
     "sideBar.background": "#212223"
   },
-  "liveServer.settings.port": 5502
+  "liveServer.settings.port": 5503
 }

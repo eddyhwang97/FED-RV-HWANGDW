@@ -16,42 +16,50 @@
         // https://picsum.photos/v2/list/
 
         const myPromise = new Promise((scFn) => {
-          // 비동기 파일 호출을 위한 객체생성
+          // (1) 비동기 파일 호출을 위한 객체생성
           const myAjax = new XMLHttpRequest();
 
-          // 비동기 전송파일 로드 열기
+          // (2) 비동기 전송파일 열기 ///
           myAjax.open("GET", "https://picsum.photos/v2/list/");
 
-          // 비동기 전송파일 로드 하기
+          // (3) 비동기 전송파일 로드하기 ///
           myAjax.onload = () => {
             console.log(myAjax.response);
             if (myAjax.status == 200) {
+              // then메서드 처리를 위한 성공함수호출!
               scFn(myAjax.response);
-            } ///if /////
+            } /// if ///
             else {
-              console.log("전송실패");
-            }////else /////
+              console.log("전송실패!");
+            }
           };
-          // 비동기 전송파일 전송하기 
+
+          // (4) 비동기 전송파일 전송하기 ///
           myAjax.send();
         }); ////  Promise /////
 
         // 약속받기
-        myPromise.then(res=>{
-          // 결과로 전송된 파일은 문자형이다 따라서 json 파싱을 통해 객체화 해야함
+        myPromise.then((res) => {
+          // 결과로 전송된 파일은 문자형이다!
+          // 따라서 JSON 파싱을 통해 객체화해야함!
 
-          // (1) 결과값
+          // (1) 결과값 파싱하기 /////
           let result = JSON.parse(res);
-          console.log("결과파싱",result);
+          console.log("결과파싱:", result);
 
-          // (2) 화면에 보여주기
-          // 대상 : .wrap
-          document.querySelector(".wrap").innerHTML = result.map(v=>`
-            <div class="page" style="background-image: url(${v.download_url})">
-             ${v.author}  
+          // (2) 화면에 보여주기 ///////
+          // 대상: .wrap
+          document.querySelector(".wrap").innerHTML = result
+            .map(
+              (v) => `
+            <div class="page"
+            style=
+            "background-image: url(${v.download_url})">
+              ${v.author}
             </div>
-          `).join("");
-
+          `
+            )
+            .join("");
         }); /////////////// Promise /////////////
       }); /////////////// load //////////////
     </script>

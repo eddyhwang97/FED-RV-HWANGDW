@@ -7,9 +7,14 @@
       name="description"
       content="컬렉션부터 스타일, 쇼핑, 뷰티, 라이프스타일, 셀러브리티까지 지금 가장 핫한 트렌드 소개"
     />
-    <link rel="shortcut icon" href="https://img.vogue.co.kr/vogue/common/vogue-favicon.ico?v=0.2" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="https://img.vogue.co.kr/vogue/common/vogue-favicon.ico?v=0.2"
+      type="image/x-icon"
+    />
     <title>보그 코리아 (Vogue Korea)</title>
     <link rel="stylesheet" href="./css/login.css" />
+
     <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 
@@ -25,15 +30,18 @@
     <!-- 제이쿼리 UI CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 
-    <script type="module" src="./js/main.js"></script>
+    <!-- 메인뷰 JS -->
     <script type="module" src="./js/main_vue.js"></script>
+
+    <!-- 메인 JS -->
+    <!-- <script type="module" src="./js/main.js"></script> -->
   </head>
   <body>
     <div id="vogue-app">
       <!-- 1. 상단영역 -->
       <top-comp></top-comp>
-
-      <!-- 2. 로그인 영역 -->
+      
+      <!-- 2. 로그인영역 -->
       <div id="main-area">
         <main class="main-area ibx">
            <!-- 2-1. 로그인 페이지 상단영역 --> 
@@ -103,15 +111,15 @@
         </main>
       </div>
 
-      <!-- 3. 하당영역 -->
+      <!-- 3. 하단영역 -->
       <bottom-comp></bottom-comp>
 
       <!-- 위로가기버튼 -->
-
       <a href="#" class="tbtn fi fi-angle-up">
         <span class="ir">위로가기버튼</span>
       </a>
-    </div>
-    <!-- #vogue-app -->
+
+
+    </div><!-- #vogue-app -->
   </body>
 </html>

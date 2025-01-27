@@ -1,4 +1,4 @@
-// 보그 PJ 로그인 페이지 SCSS - login.scss
+// 보그 PJ 회원가입 페이지 SCSS - member.scss
 
 // 파일 합치기 ////
 @import "./variables/variables";
@@ -12,13 +12,12 @@
   padding: 15px;
   padding-bottom: 100px;
 }
-
 /* 전체부모박스 */
 #cartlist {
   position: relative;
   margin: 0 auto;
-  width: 60vw;
-  height: 100dvh;/* vh -> dvh : 다이나믹 vh */
+  width: min(90vw,1000px);
+  height: 100dvh; /* vh -> dvh : 다이나믹 vh */
   background-color: rgba(255, 255, 255, 0.8);
 }
 
