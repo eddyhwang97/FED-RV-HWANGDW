@@ -85,7 +85,128 @@ h1.logo img {
   rotate: -45deg;
 }
 
-/* 미디어쿼리 */
+/* 2. 메인영역 */
+/* 메인영역 개별박스 공통 */
+#main-area > div {
+  padding: var(--contents-box-padding-size);
+}
+/* 2-1. 배너영역 */
+.banner {
+  /* 부모자격 */
+  position: relative;
+  /* 넘치는 자식 숨기기 */
+  overflow: hidden;
+  background: url(../images/main_visual_bg.jpg) 0/50px;
+  text-align: center;
+  padding-bottom: 100px !important;
+}
+/* 배너 이미지 */
+.banner img {
+  height: 60vmin;
+}
+/* 데스크탑 박스 */
+.dt-box {
+  transition: 0.4s ease-in-out;
+}
+/* 모바일용 박스 */
+.mob-box {
+  position: absolute;
+  top: -100%;
+  opacity: 0;
+  width: 100%;
+  padding-top: 85px;
+  transition: 0.4s ease-in-out;
+}
+
+/* 2-2. 캐릭터 영역 */
+.character {
+  background-color: var(--character-area-color);
+}
+/* 캐릭터 리스트 */
+.cat-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 100px;
+}
+.cat-list ul li {
+  flex-basis: 25%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.cat-list .img-part {
+  position: relative;
+}
+.cat-list img {
+  width: 100%;
+}
+.cat-list img:last-child {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.cat-list ul li:hover img:first-child {
+  opacity: 0;
+}
+/* 마지막 이미지 숨기기 */
+.cat-list ul li:hover img:last-child {
+  opacity: 1;
+}
+.cat-list figure {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+.cat-list figcaption {
+  text-align: center;
+  padding: 10px 15px;
+}
+.cat-list figcaption h3 {
+  font-size: 22px;
+  font-weight: normal;
+}
+.cat-list figcaption p {
+  font-size: 12px;
+}
+
+/* 2-3. 컴퍼니영역 */
+.company {
+  background-color: var(--company-area-color);
+}
+.company-list ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+.company-list ul figure {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 100px;
+}
+.company-list ul figure h3{
+  font-size: 22px;
+}
+.company-list ul figure  p{
+  font-size: 12px;
+}
+/* 2-4. 리쿠르트영역 */
+.recruit {
+  background-color: var(--character-area-color);
+}
+/* 2-5. 플레이스영역 */
+.place {
+  background: url(../images/bg_shop.jpg) no-repeat center/cover;
+}
+/* 2-6. 컨텍어스영역 */
+.contact-us {
+  background-color: var(--contact-area-color);
+}
+
+/************ 미디어쿼리 ************/
 @media screen and (max-width: 1024px) {
   /* Mobile GNB 나타남! */
   .gnb-mob {
@@ -107,9 +228,7 @@ h1.logo img {
 
     /* 투명, 트랜지션 */
     opacity: 0;
-    transition: 
-        0.8s ease-in-out, 
-        opacity 0.3s 0.5s;
+    transition: 0.8s ease-in-out, opacity 0.3s 0.5s;
   }
   .gnb.on ul {
     /* 세로방향 플렉스 */
@@ -121,4 +240,14 @@ h1.logo img {
     left: 0;
     opacity: 1;
   }
-}
+  /* 데스크탑용 박스 */
+  .dt-box {
+    translate: 0 -100%;
+    opacity: 0;
+  }
+  /* 모바일용 박스 */
+  .mob-box {
+    top: 0;
+    opacity: 1;
+  }
+} /* 미디어쿼리 */
