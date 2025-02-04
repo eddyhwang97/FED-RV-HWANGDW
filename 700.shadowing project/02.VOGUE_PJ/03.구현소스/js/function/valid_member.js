@@ -1,7 +1,7 @@
-// 회원가입 유효성 검사 및 회원가입 처리 JS - valid_member.js
+// 회원가입 유효성검사 및 회원가입처리 JS - valid_member.js
 
 export default function valid_member() {
-  console.log("유효성검사 나야나~!!", $("#mid"));
+  //   console.log("유효성검사! 나야나~!!!", $("#mid"));
 
   /********************************************** 
     [ 사용자 입력폼 유효성 검사 ]
@@ -34,8 +34,8 @@ export default function valid_member() {
       /****************************************** 
         2. 현재 블러가 발생한 요소의 값은?
     ******************************************/
-      // 이름입력창(id=='mnm')이면 trim() 나머지는 groSpace()
-      // 로 처리하여 공백을 제거한다!
+      // 이름입력창(id=='mnm')이면 trim()
+      // 나머지는 groSpace() 로 처리하여 공백을 제거한다!
       let cv = cid == "mnm" ? $(this).val().trim() : groSpace($(this).val());
       // 비?집:놀이동산
 
@@ -70,15 +70,46 @@ export default function valid_member() {
           pass = false;
         } //////// if ///////
         else {
-          // 통과시
-          // 1. DB에 조회하여 같은 아이디가 있다면
-          // '이미 사용중인 아이디입니다' 와 같은 메시지출력
-          // 2. 만약 DB조회하여 같은 아이다가 없다면
-          // '멋진 아이디네요~!'와 같은 메시지출력
-          // 여기서 우선은 DB조회 못하므로 통과시 메시지로 출력
-          // 메시지 띄우기
-          $(this).siblings(".msg").text("멋진 아이디네요~!").addClass("on");
-          // -> 비동기 통신 Ajax로 서버쪽에 아이디 중복검사필요!
+          if (localStorage.getItem("mem-data")) {
+            // (1) 로컬쓰 'mem-data'가 있는경우 파싱함
+            let temp = JSON.parse(localStorage.getItem("mem-data"));
+            // (2) 파싱된 로컬스는 배열이므로 find로 현재 입력한 아이디가 있는지 찾아본다!
+            // 배열.find(v=>{if(){return true}})
+            // -> true가 리터되면 해당 배열값이 저장됨
+            // 그러나... 없으면 값이 그냥 undefined로 나옴
+            let result = temp.find((v) => {
+              console.log(v.userid);
+              // cv는 입력된 아이디값
+              // 완전히 일치하는 아이디 존재여부를 검사
+              if (v.userid == cv) return true;
+            }); ///find //
+            console.log("아이디 존재 결과 ", result);
+            // (3)
+            // result가 undifined가 아닐경우 (아이디 있음)
+            // 통과시
+            // 1. DB에 조회하여 같은 아이디가 있다면
+            // '이미 사용중인 아이디입니다' 와 같은 메시지출력
+
+            if (result) {
+              // 아이디검사 불통과시 들어감(!NOT)
+              $(this).siblings(".msg").text("이미 사용중인 아이디입니다!").removeClass("on");
+
+              // [ 불통과시 pass값 변경 2-1 ]
+              pass = false;
+            }
+            // result가 undifined인 경우 (아이디 없음)
+            else {
+              $(this).siblings(".msg").text("멋진 아이디네요~!").addClass("on");
+            }
+          } //////////if ///////////
+          else {
+            // 2. 만약 DB조회하여 같은 아이다가 없다면
+            // '멋진 아이디네요~!'와 같은 메시지출력
+            // 여기서 우선은 DB조회 못하므로 통과시 메시지로 출력
+            // 메시지 띄우기
+            $(this).siblings(".msg").text("멋진 아이디네요~!").addClass("on");
+            // -> 비동기 통신 Ajax로 서버쪽에 아이디 중복검사필요!
+          }
         } ////// else //////
       } /////////////// else if : 아이디검사 ///////
 
@@ -94,7 +125,7 @@ export default function valid_member() {
           $(this).siblings(".msg").text("특수문자,문자,숫자포함 형태의 5~15자리");
 
           // [ 불통과시 pass값 변경3 ]
-            pass = false;
+          pass = false;
         } //////// if ///////
         else {
           // 통과시
@@ -129,7 +160,8 @@ export default function valid_member() {
         // 1. 이메일 주소 만들기 :  앞주소@뒷주소
         let comp = eml1.val() + "@" + (seleml.val() == "free" ? eml2.val() : seleml.val());
         // (비?집:놀이동산)
-        // 선택박스값이 'free'인가?숨긴이메일입력창값:선택값
+        // 선택박스값이 'free'인가?
+        // 숨긴이메일입력창값:선택값
 
         // 2. 이메일 검사함수 호출하기!
         resEml(comp);
@@ -142,18 +174,18 @@ export default function valid_member() {
         $(this).siblings(".msg").empty();
       } /////// else //////
     }); ///////////////// blur 메서드 /////////////////
+  //////////////////////////////////////////////////
 
+  /////////// 이메일 관련 대상선정 /////////////
+  // 이메일 앞주소
+  const eml1 = $("#email1");
+  // 이메일 뒷주소
+  const eml2 = $("#email2");
+  // 이메일 뒷주소 선택박스
+  const seleml = $("#seleml");
+  ////////////////////////////////////////////
 
-/////////// 이메일 관련 대상선정 /////////////
-// 이메일 앞주소
-const eml1 = $("#email1");
-// 이메일 뒷주소
-const eml2 = $("#email2");
-// 이메일 뒷주소 선택박스
-const seleml = $("#seleml");
-////////////////////////////////////////////
-
-/******************************************** 
+  /******************************************** 
     선택박스 변경시 이메일 검사하기
     ______________________________
 
@@ -161,45 +193,45 @@ const seleml = $("#seleml");
     제이쿼리 메서드 : change()
     이벤트 대상 : #seleml -> seleml변수
   ********************************************/
-seleml.change(function () {
-  // 1. 선택박스 변경된 값 읽어오기
-  let cv = $(this).val();
-  // console.log('선택값:',cv);
+  seleml.change(function () {
+    // 1. 선택박스 변경된 값 읽어오기
+    let cv = $(this).val();
+    // console.log('선택값:',cv);
 
-  // 2. 선택옵션별 분기
-  // 2-1."선택해주세요"일 경우
-  if (cv == "init") {
-    // 1. 메시지 출력
-    eml1.siblings(".msg").text("이메일 옵션선택 필수!").removeClass("on");
-    // 2. 직접입력창 숨기기
-    eml2.fadeOut(300);
-  } /////// if : 선택해주세요 ///////
+    // 2. 선택옵션별 분기
+    // 2-1."선택해주세요"일 경우
+    if (cv == "init") {
+      // 1. 메시지 출력
+      eml1.siblings(".msg").text("이메일 옵션선택 필수!").removeClass("on");
+      // 2. 직접입력창 숨기기
+      eml2.fadeOut(300);
+    } /////// if : 선택해주세요 ///////
 
-  // 2-2.'직접입력'일 경우
-  else if (cv == "free") {
-    // 1. 직접입력창 보이기
-    eml2.fadeIn(300).val("").focus();
-    // 숨긴입력창.나타나(300).값('').포커스()
+    // 2-2.'직접입력'일 경우
+    else if (cv == "free") {
+      // 1. 직접입력창 보이기
+      eml2.fadeIn(300).val("").focus();
+      // 숨긴입력창.나타나(300).값('').포커스()
 
-    // 2. 기존 메시지 지우기
-    eml1.siblings(".msg").empty();
-  } ////// else if : 직접입력 //////
+      // 2. 기존 메시지 지우기
+      eml1.siblings(".msg").empty();
+    } ////// else if : 직접입력 //////
 
-  // 2-3. 기타 이메일주소 선택일 경우
-  else {
-    // 1.직접입력창 숨기기
-    eml2.fadeOut(300);
+    // 2-3. 기타 이메일주소 선택일 경우
+    else {
+      // 1.직접입력창 숨기기
+      eml2.fadeOut(300);
 
-    // 2.이메일 전체주소 조합하기
-    let comp = eml1.val() + "@" + cv;
-    // cv 는 select의 option의 value값
+      // 2.이메일 전체주소 조합하기
+      let comp = eml1.val() + "@" + cv;
+      // cv 는 select의 option의 value값
 
-    // 3. 이메일 유효성 검사함수 호출
-    resEml(comp);
-  } ////// else : 기타 이메일주소 ////
-}); ///////// change메서드 ///////////////////
+      // 3. 이메일 유효성 검사함수 호출
+      resEml(comp);
+    } ////// else : 기타 이메일주소 ////
+  }); ///////// change메서드 ///////////////////
 
-/*********************************************** 
+  /*********************************************** 
     키보드 입력시 이메일 체크하기
     _______________________________
 
@@ -208,63 +240,62 @@ seleml.change(function () {
     2. keyup : 키가 눌렸다가 올라올때
     3. keydown : 키가 눌려져서 내려가 있을때
     -> 과연 글자가 입력되는 순간은 어떤 키보드 이벤트를
-    사용해야할까? ->>> keyup 
+    사용해야할까? ->>> 
 
     - 이벤트 대상 : #email1, #email2
     -> 모든 이벤트함수와 연결하는 제이쿼리 메서드는?
     on(이벤트명,함수)
  ***********************************************/
-$("#email1,#email2").on("keyup", function () {
-  // 1. 현재 이벤트 대상 아이디 읽어오기
-  let cid = $(this).attr("id");
+  $("#email1,#email2").on("keyup", function () {
+    // 1. 현재 이벤트 대상 아이디 읽어오기
+    let cid = $(this).attr("id");
 
-  // 2. 현재 입력된 값 읽어오기
-  let cv = $(this).val();
+    // 2. 현재 입력된 값 읽어오기
+    let cv = $(this).val();
 
-//   console.log('입력아이디:',cid,'\n입력값:',cv);
+    console.log("입력아이디:", cid, "\n입력값:", cv);
 
-  // 3. 이메일 뒷주소 셋팅하기
-  let backEml = cid == "email1" ? seleml.val() : eml2.val();
-  // 현재 입력아이디가 'email1'이면 선택박스값
-  // 아니면 두번째 이메일창에 입력하는 것이므로
-  // 두번째 이메일입력값을 뒷주소로 설정함!
+    // 3. 이메일 뒷주소 셋팅하기
+    let backEml = cid == "email1" ? seleml.val() : eml2.val();
+    // 현재 입력아이디가 'email1'이면 선택박스값
+    // 아니면 두번째 이메일창에 입력하는 것이므로
+    // 두번째 이메일입력값을 뒷주소로 설정함!
 
-  // 4. 만약 선택박스값이 'free'(직접입력)이면
-  // 이메일 뒷주소로 변경함!
-  if (seleml.val() == "free") backEml = eml2.val();
+    // 4. 만약 선택박스값이 'free'(직접입력)이면
+    // 이메일 뒷주소로 변경함!
+    if (seleml.val() == "free") backEml = eml2.val();
 
-  // 5. 이메일 전체주소 조합하기
-  let comp = eml1.val() + "@" + backEml;
+    // 5. 이메일 전체주소 조합하기
+    let comp = eml1.val() + "@" + backEml;
 
-  // 6. 이메일 유효성 검사함수 호출
-  resEml(comp);
-}); ///////////////// keyup ///////////////////
+    // 6. 이메일 유효성 검사함수 호출
+    resEml(comp);
+  }); ///////////////// keyup ///////////////////
 
-/****************************************** 
+  /****************************************** 
     함수명 : resEml (result Email)
     기능 : 이메일 검사결과 처리
   ******************************************/
-const resEml = (comp) => {
-  // comp - 이메일주소
-  // console.log('이메일주소:',comp);
-  // console.log('이메일검사결과:',vReg(comp,'eml'));
+  const resEml = (comp) => {
+    // comp - 이메일주소
+    // console.log('이메일주소:',comp);
+    // console.log('이메일검사결과:',vReg(comp,'eml'));
 
-  // 이메일 정규식 검사에 따른 메시지 보이기
-  if (vReg(comp, "eml")) {
-    eml1.siblings(".msg").text("적합한 이메일 형식입니다!").addClass("on");
-  } //////// if : 통과시 //////////
-  else {
-    eml1.siblings(".msg").text("맞지않는 이메일 형식입니다!").removeClass("on");
+    // 이메일 정규식 검사에 따른 메시지 보이기
+    if (vReg(comp, "eml")) {
+      eml1.siblings(".msg").text("적합한 이메일 형식입니다!").addClass("on");
+    } //////// if : 통과시 //////////
+    else {
+      eml1.siblings(".msg").text("맞지않는 이메일 형식입니다!").removeClass("on");
 
-    // [ 불통과시 pass값 변경5 ]
-    pass = false;
-  } //////// else : 불통과시 ////////
-}; ///////////// resEml /////////////////
-
+      // [ 불통과시 pass값 변경5 ]
+      pass = false;
+    } //////// else : 불통과시 ////////
+  }; ///////////// resEml /////////////////
 
   /************************************** 
-      비밀번호 글자 보이기/숨기기 셋팅
-**************************************/
+     비밀번호 글자 보이기/숨기기 셋팅
+    **************************************/
   let eyeNum = 1;
   $(".eye")
     .css({
@@ -285,7 +316,7 @@ const resEml = (comp) => {
       eyeNum = eyeNum ? 0 : 1;
     }); ////////// click ///////////////
 
-    /********************************************* 
+  /********************************************* 
     가입하기(submit) 버튼 클릭시 처리하기 
     __________________________________
 
@@ -306,90 +337,96 @@ const resEml = (comp) => {
 
   *********************************************/
 
-// 검사용 변수
-let pass = true;
+  // 검사용 변수
+  let pass = true;
 
-// 이벤트 대상: #btnj
-$("#btnj").click((e) => {
-  // 호출확인
-  console.log("가입해~!");
+  // 이벤트 대상: #btnj
+  $("#btnj").click((e) => {
+    // 호출확인
+    console.log("가입해~!");
 
-  // 1. 기본이동 막기
-  e.preventDefault();
+    // 1. 기본이동 막기
+    e.preventDefault();
 
-  // 2. pass 통과여부 변수에 true를 할당!
-  pass = true;
+    // 2. pass 통과여부 변수에 true를 할당!
+    pass = true;
 
-  // 3. 입력창 blur이벤트 강제 발생시키기
-  $(`form.logF input[type=text][id!=email2],
+    // 3. 입력창 blur이벤트 강제 발생시키기
+    // trigger(이벤트) - 선택요소에 강제 이벤트 발생!
+    $(`form.logF input[type=text][id!=email2],
         form.logF input[type=password]`).trigger("blur");
 
-  // 최종통과 여부
-  console.log("통과여부:", pass);
+    // 최종통과 여부
+    console.log("통과여부:", pass);
 
-  // 4. 검사결과에 따라 메시지 보이기
-  if (pass) {
-    // 로컬쓰영 배열 읽어오기
-    let temp=[];
-    // 로콜쓰가 있으면 읽어옴
-    if(localStorage.getItem('mem-data')) temp=JSON.parse(localStorage.getItem('mem-data'));
-    // 로컬 스토리지에 데이터 넣기
-    let memData = {
-        idx:1,
-        mid:$('#mid').val(),
-        mpw:$('#mpw').val(),
-        mnm:$('#mnm').val(),
-        email:$('#email').val(),
-    };
+    // 4. 검사결과에 따라 메시지 보이기
+    if (pass) {
+      // 로컬쓰용 배열변수
+      let temp = [];
 
-    // 객체값을 배열 로컬쓰에 넣기
-    temp.push(memData);
-    // 로컬스에 넣기
-    localStorage.setItem('mem-data',JSON.stringify(temp));
+      // 로컬쓰가 있으면 읽어옴!
+      if (localStorage.getItem("mem-data")) temp = JSON.parse(localStorage.getItem("mem-data"));
 
-    alert("회원가입을 축하드립니다! 짝짝짝!");
-    // 원래는 POST방식으로 DB에 회원가입정보를
-    // 전송하여 입력후 DB처리완료시 성공메시지나
-    // 로그인 페이지로 넘겨준다!
+      /**********************************
+      [회원가입 입력 데이터 구조 정의]
+      1. 일련번호 : idx - 숫자키(유일키)
+      2. 아이디 : userid - 문자값
+      3. 비밀번호 : password - 문자값
+      4. 이름 : name - 문자값
+      5. 성별 : gender - 문자값(m-남성, w-여성)
+      6. 이메일 : email - 문자값(@포함주소)
+      **********************************/
 
-    // 로그인 페이지로 리디렉션!
-    // location.href = 'login.html';
-    // ->>>회원가입 페이지로 뒤로가기 가능하게 되므로 replace로 사용
+      // 로컬스토리지에 데이터 넣기
+      let memData = {
+        // 1. 일련번호 : idx - 숫자키(유일키)
+        // -> 기존배열 개수 +1 로 입력
+        idx: temp.length + 1,
+        // 2. 아이디 : userid - 문자값
+        userid: $("#mid").val(),
+        // 3. 비밀번호 : password - 문자값
+        password: $("#mpw").val(),
+        // 4. 이름 : name - 문자값
+        name: $("#mnm").val(),
+        // 5. 성별 : gender - 문자값(m-남성, w-여성)
+        // :radio - input 속성 type의 값이 'radio'선택
+        // [name=gen] - 속성 name의 값이 'gen' 인 것을 선택
+        // :cheched - 체크된 라디오버튼을 선택
+        gender: $(":radio[name=gen]:checked").val(),
+        // 6. 이메일 : email - 문자값(@포함주소)
+        email: $("#email1").val() + "@" + ($("#seleml").val() == "free" ? $("#email2").val() : $("#seleml").val()),
+      };
 
-    // 민감한 입력 데이터 페이지가 다시 돌아와서
-    // 보이면 안되기 때문에 히스토리를 지우는
-    // replace()로 이동한다!
-    location.replace("login.html");
-  } //////// if : 통과시 ///////////
-  else {
-    ///// 불통과시 //////
-    alert("입력을 수정하세요~!");
-  } //////// else : 불통과시 //////
-}); ///////////// click ///////////
+      // 객체값을 배열 로컬쓰에 넣기
+      temp.push(memData);
 
+      // 로컬쓰에 넣기
+      localStorage.setItem("mem-data", JSON.stringify(temp));
 
+      alert("회원가입을 축하드립니다! 짝짝짝!");
+      // 원래는 POST방식으로 DB에 회원가입정보를
+      // 전송하여 입력후 DB처리완료시 성공메시지나
+      // 로그인 페이지로 넘겨준다!
 
+      // 로그인 페이지로 리디렉션!
+      //   location.href = 'login.html';
 
-
-} ////////////valid_member //////////
-
-
-
-
-
-
-
-
-
-
-
-
-
+      // 민감한 입력 데이터 페이지가 다시 돌아와서
+      // 보이면 안되기 때문에 히스토리를 지우는
+      // replace()로 이동한다!
+      location.replace("login.html");
+    } //////// if : 통과시 ///////////
+    else {
+      ///// 불통과시 //////
+      alert("입력을 수정하세요~!");
+    } //////// else : 불통과시 //////
+  }); ///////////// click ///////////
+} ///////////// valid_member 함수 //////////////
 
 /*//////////////////////////////////////////////////////
-  함수명: vReg (validation with Regular Expression)
-  기능: 값에 맞는 형식을 검사하여 리턴함
-  (주의: 정규식을 따옴표로 싸지말아라!-싸면문자가됨!)
+    함수명: vReg (validation with Regular Expression)
+    기능: 값에 맞는 형식을 검사하여 리턴함
+    (주의: 정규식을 따옴표로 싸지말아라!-싸면문자가됨!)
 */ //////////////////////////////////////////////////////
 function vReg(val, cid) {
   // val - 검사할값, cid - 처리구분아이디
