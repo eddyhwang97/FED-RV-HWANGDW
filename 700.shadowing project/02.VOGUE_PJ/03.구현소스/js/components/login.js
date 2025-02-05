@@ -9,9 +9,9 @@ export const LoginComp = Vue.component("login-comp", {
            <!-- 2-1. 로그인 페이지 상단영역 --> 
           <header class="ctop">
              <!-- 2-1-1. 서브타이틀 --> 
-            <h2 class="stit">Login</h2>
+            <h2 class="stit">Login {{msg}}</h2>
           </header>
-           <!-- 2-2. 갤러리 페이지 컨텐츠 박스 --> 
+           <!-- 2-2. 갤러리 페이지 컨텐츠 박스 -->  
           <section class="scont">
              <!-- form 요소 :  
                     입력데이터를 전송하기위한 요소
@@ -75,15 +75,29 @@ export const LoginComp = Vue.component("login-comp", {
   `,
   // 2. 리턴함수 데이터
   data() {
-    return{}
+    return{
+      msg : "준비",
+
+    }
   },
   // 3. 메서드
-  methods: {},
+  methods: {
+    myTest(pm,txt){
+      console.log('가상돔 메서드 실행',pm)
+      this.msg = txt;
+    }
+
+  },
   // 4. 데이터 셋업파트
   created() {},
 //   5. DOM파트
   mounted() {
     // 로그인 기능함수 호출!!
-    validLogin();
+    validLogin(this.myTest);
+    // -> 뷰컴포넌트 인스턴스의 메서드를 보냄!
+    // ->> DOM에서 뷰 메서드 실행하는 쉬운방법!
+
+    // css 변경하기
+    $('#css-set').attr('href','./css/login.css')
   },
 });
