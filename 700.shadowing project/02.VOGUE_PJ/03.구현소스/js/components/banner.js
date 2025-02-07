@@ -1,7 +1,7 @@
 // 보그 PJ 메인배너 컴포넌트 - banner.js
 
 import banData from '../../data/banner_data.json' with{type:'json'};
-console.log(banData);
+// console.log(banData);
 
 // 드래그 슬라이드 기능 함수 불러오기
 import setSlide from "../function/drag_slide.js";
@@ -10,7 +10,7 @@ import setSlide from "../function/drag_slide.js";
 export const BannerComp = Vue.component("banner-comp", {
   // 1-1. 템플릿코드설정 /////
   template: `
-    <div id="ban-area">
+    <div id="ban-area" class="inbox">
         <section class="ban-area">
           <!-- 배너박스 -->
           <div class="ban-box banbx">

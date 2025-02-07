@@ -1,4 +1,5 @@
-// 보그 PJ 공통 컴포넌트 - common.js
+// 보그 PJ 공통 컴포넌트 : SPA용 - common_spa.js
+import store from "../vuex_store.js";
 
 // 1. 상단컴포넌트
 const TopComp = Vue.component("top-comp", {
@@ -9,6 +10,7 @@ const TopComp = Vue.component("top-comp", {
         <!-- 1-1. 로고박스 -->
         <div class="logo">
           <h1>
+            <!-- 라우터 첫 페이지 이동셋팅 -->
             <router-link to="/">
               <img src="./images/svg/logo.svg" alt="메인로고" />
             </router-link>
@@ -32,24 +34,29 @@ const TopComp = Vue.component("top-comp", {
         </nav>
         <!-- 1-4. 추가메뉴박스 -->
         <nav class="add-menu">
-          <ol>
+          <ol :class="$store.state.loginCls">
             <li 
               v-for="
                 (v,k) in this.addMenu
                 /* v - 객체값, k - 키명 */
               "
-
-              :class="
-              // 키명이 '로그아웃'이면 'hide'클래스넣기
-                k=='로그아웃' ? 'hide' : ''
-              "
             >
-              <router-link :to="v[1]">
+            <!-- 로그아웃일때 일반 a요소 
+            [뷰 조건문 디렉티브]
+              v-if="조건"/v-eles-if="조건" / v-else
+            -->
+            <a href="#" v-if="k=='로그아웃'" @click.prevent="logoutFn">
+              <i :class="v[0]" :title="k"></i>
+            </a>
+            <!-- 기타일때 라우터링크 -->
+              <router-link v-else :to="v[1]">
                 <i :class="v[0]" :title="k"></i>
               </router-link>
             </li>
           </ol>
         </nav>
+        <!-- 로그인 환영메시지 박스 -->
+        <div id="login-msg">{{$store.state.welcomeMsg}}</div>
       </header>      
     </div>   
     `,
@@ -73,6 +80,13 @@ const TopComp = Vue.component("top-comp", {
 
   // 1-3. 컴포넌트 메서드구역 /////
   methods:{
+    // 로그아웃 메서드
+    logoutFn(){
+      if(confirm("로그아웃하시겠습니까?")){
+        store.commit('setLogout');
+      }
+    },
+
     // goPage : 링크이동 메서드 /////
     goPage(gubun){ // gubun - 구분키(키명)
       console.log(gubun);
@@ -89,6 +103,7 @@ const TopComp = Vue.component("top-comp", {
       location.href = pgName + '.html';
 
     }, //// goPage 메서드 ////
+
   }, /// methods //////
   // 1-4. 컴포넌트 라이프사이크 메서드 : mounted
   mounted(){
@@ -133,20 +148,16 @@ const BottomComp = Vue.component("bottom-comp", {
           </address>
         </footer>
         <!-- 위로가기버튼 -->
-      <a href="#" class="tbtn fi fi-angle-up">
-        <span class="ir">위로가기버튼</span>
-      </a>
-      </div>
+        <a href="#" class="tbtn fi fi-angle-up">
+          <span class="ir">위로가기버튼</span>
+        </a>
+      </div>      
   `,
   // 데이터 설정 ////
   data() {
     return {};
   },
 });
-
-
-
-
 
 // 3. 내보내기
 export { TopComp, BottomComp };

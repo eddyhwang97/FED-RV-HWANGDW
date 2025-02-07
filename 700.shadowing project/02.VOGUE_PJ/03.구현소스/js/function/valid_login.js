@@ -1,11 +1,11 @@
 // 보그 JS : 로그인 유효성검사 및 기능JS - valid_login.js
 
 export default function validLogin(cbFn) {
-  // cbFn: 뷰 메서드를 받아옴!
+  // cbFn : 뷰 메서드를 받아옴!
   console.log("로그인검사~!",cbFn);
   /**************************************** 
-          로그인 페이지 유효성 검사
-      ****************************************/
+        로그인 페이지 유효성 검사
+    ****************************************/
   // 검사대상 : #mid, #mpw
   const mid = $("#mid");
   const mpw = $("#mpw");
@@ -33,7 +33,8 @@ export default function validLogin(cbFn) {
       let temp = [];
 
       // 2. 회원정보 로컬스 읽어오기
-      if (localStorage.getItem("mem-data")) temp = JSON.parse(localStorage.getItem("mem-data"));
+      if (localStorage.getItem("mem-data"))
+        temp = JSON.parse(localStorage.getItem("mem-data"));
 
       console.log(temp);
 
@@ -66,8 +67,8 @@ export default function validLogin(cbFn) {
         // (2-2) 로그인 성공 : 첫페이지로 이동(로그인표시)
         // -> '로그인에 성공하였습니다!'
         else {
-          alert("로그인에 성공하였습니다!");
-          cbFn(result,"성공이다!");
+          // alert("로그인에 성공하였습니다!");
+          cbFn(result,"성공한겨!");
         } /// else : 로그인 성공시 ///
       } ///// else : 아이디가 있는 경우 ////
     } /////// else : 아이디,비번 모두입력시 ////////

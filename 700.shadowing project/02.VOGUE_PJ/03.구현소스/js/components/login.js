@@ -1,17 +1,24 @@
-// 보그JS 로그인 컴포넌트 - login.js
-import validLogin from "../function/valid_login.js";
+// 보그 JS 로그인 컴포넌트 - login.js
 
-export const LoginComp = Vue.component("login-comp", {
-  // 1. 템플릿
-  template: `
-  <div id="main-area">
+// 로그인 기능 함수 불러오기 -> mounted에서 호출! ////
+import validLogin from "../function/valid_login.js";
+import valid_member from "../function/valid_member.js";
+
+// 뷰엑스 스토어 불러오기
+import store from "../vuex_store.js";
+
+export const LoginComp =  
+Vue.component("login-comp",{
+    // 1. 템플릿
+    template: `
+    <div id="main-area">
         <main class="main-area ibx">
            <!-- 2-1. 로그인 페이지 상단영역 --> 
           <header class="ctop">
              <!-- 2-1-1. 서브타이틀 --> 
-            <h2 class="stit">Login {{msg}}</h2>
+            <h2 class="stit">Login</h2>
           </header>
-           <!-- 2-2. 갤러리 페이지 컨텐츠 박스 -->  
+           <!-- 2-2. 갤러리 페이지 컨텐츠 박스 --> 
           <section class="scont">
              <!-- form 요소 :  
                     입력데이터를 전송하기위한 요소
@@ -72,32 +79,48 @@ export const LoginComp = Vue.component("login-comp", {
           </section>
         </main>
       </div>
-  `,
-  // 2. 리턴함수 데이터
-  data() {
-    return{
-      msg : "준비",
+    `,
+    // 2. 리턴함수 데이터
+    data(){
+        return{
+          msg: "준비",
+        };
+    },
+    // 3. 메서드
+    methods: {
+      // 전역 스토어 변수 업데이트 메서드 호출
+      actLogin(pm,txt){
+        // pm : 로그인 된 사용자 정보 객체
+        // console.log('가상돔 메서드 실행!',pm);
+        // this.msg = txt;
 
-    }
-  },
-  // 3. 메서드
-  methods: {
-    myTest(pm,txt){
-      console.log('가상돔 메서드 실행',pm)
-      this.msg = txt;
-    }
+        // (1) 스토어 뮤테이션스 호출
+        store.commit('setLogin',pm);
+        // (2) 세션스토리지 셋업하기! 'login-user'
+        sessionStorage.setItem('login-user', JSON.stringify(pm));
+        // (3) 첫페이지로 라우팅하기
+        this.$router.push('/');
+      },
+    },
+    // 메서드구역 ///
+    methods:{
+      goPage(){
+        // 이 메서드를 DOM 유효성검사 함수에
+        // 콜백으로 보내서 이동처리한다!
+        this.$router.push('/');
+      },
+    },
+    // 4. 데이터셋업파트
+    created(){},
+    // 5. DOM 셋업파트
+    mounted(){
+       
+        // 로그인 기능함수 호출!!!
+        validLogin(this.actLogin);
+        // -> 뷰 컴포넌트 인스턴스의 메서드를 보냄!
+        // ->> DOM에서 뷰 메서드 실행하는 쉬운방법!
 
-  },
-  // 4. 데이터 셋업파트
-  created() {},
-//   5. DOM파트
-  mounted() {
-    // 로그인 기능함수 호출!!
-    validLogin(this.myTest);
-    // -> 뷰컴포넌트 인스턴스의 메서드를 보냄!
-    // ->> DOM에서 뷰 메서드 실행하는 쉬운방법!
-
-    // css 변경하기
-    $('#css-set').attr('href','./css/login.css')
-  },
+        // CSS 변경하기 ///
+        $('#css-set').attr('href','./css/login.css');
+    },
 });

@@ -135,20 +135,16 @@ const BottomComp = Vue.component("bottom-comp", {
           </address>
         </footer>
         <!-- 위로가기버튼 -->
-      <a href="#" class="tbtn fi fi-angle-up">
-        <span class="ir">위로가기버튼</span>
-      </a>
-      </div>
+        <a href="#" class="tbtn fi fi-angle-up">
+          <span class="ir">위로가기버튼</span>
+        </a>
+      </div>      
   `,
   // 데이터 설정 ////
   data() {
     return {};
   },
 });
-
-
-
-
 
 // 3. 내보내기
 export { TopComp, BottomComp };

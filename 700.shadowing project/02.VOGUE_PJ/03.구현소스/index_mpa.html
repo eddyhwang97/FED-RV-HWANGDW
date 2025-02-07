@@ -7,7 +7,11 @@
       name="description"
       content="컬렉션부터 스타일, 쇼핑, 뷰티, 라이프스타일, 셀러브리티까지 지금 가장 핫한 트렌드 소개"
     />
-    <link rel="shortcut icon" href="https://img.vogue.co.kr/vogue/common/vogue-favicon.ico?v=0.2" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="https://img.vogue.co.kr/vogue/common/vogue-favicon.ico?v=0.2"
+      type="image/x-icon"
+    />
     <title>보그 코리아 (Vogue Korea)</title>
 
     <!-- 메인 CSS -->
@@ -28,28 +32,31 @@
     <!-- 제이쿼리 UI CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 
-    <!-- 메인뷰 JS : MPA 용 -->
+    <!-- 메인뷰 JS : MPA용 호출 -->
     <script type="module" src="./js/main_vue.js"></script>
 
     <!-- 메인 JS -->
-    <script type="module" src="./js/main.js"></script>
+    <!-- <script type="module" src="./js/main.js"></script> -->
   </head>
   <body>
     <div id="vogue-app">
-      <!-- 1. 상단영역 -->
+      <!--********** 1. 상단영역 **********-->
       <top-comp></top-comp>
 
-      <!-- 2. 배너영역 -->
+      <!--********** 2. 메인영역 **********-->
+
+      <!-- 배너영역 -->
       <banner-comp></banner-comp>
 
-      <!-- 3. Today’s Stories 영역 -->
-      <today-area-comp />
-      
-      <!-- 7. fashion 영역 -->
-      <fashion-area-comp />
+      <!-- Today’s Stories 영역 -->
+      <today-area-comp></today-area-comp>
 
-      <!-- 하단영역 -->
+      <!-- fashion 영역 -->
+      <fashion-area-comp></fashion-area-comp>
+
+      <!--********** 3. 하단영역 **********-->
       <bottom-comp></bottom-comp>
+
     </div>
     <!-- #vogue-app -->
   </body>

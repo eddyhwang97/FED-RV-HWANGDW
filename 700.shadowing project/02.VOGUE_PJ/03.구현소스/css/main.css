@@ -14,7 +14,7 @@ body {
 /* 공사중 표시 */
 /************* 2. 공통 class *************/
 /* 2-1. 중앙 속박스 */
-.ibx {
+.inbox {
   max-width: 1600px;
   margin: 0 auto;
 }
@@ -175,8 +175,28 @@ img {
 .add-menu ol li a {
   letter-spacing: 2px;
 }
-.add-menu ol li.hide {
+.add-menu ol li:nth-child(2) {
   display: none;
+}
+.add-menu ol.login li:nth-child(2) {
+  display: block;
+}
+.add-menu ol.login li:nth-child(1),
+.add-menu ol.login li:nth-child(3) {
+  display: none;
+}
+
+#login-msg {
+  position: absolute;
+  width: 400px;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  z-index: -1;
 }
 
 #footer-area {
@@ -247,6 +267,10 @@ img {
 }
 .tbtn:hover {
   background-color: red;
+}
+
+#ban-area {
+  overflow: hidden;
 }
 
 .ban-box {

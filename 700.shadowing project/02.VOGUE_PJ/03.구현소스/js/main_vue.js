@@ -8,8 +8,8 @@ import { LoginComp } from "./components/login.js";
 import { TodayAreaComp } from "./components/today_area.js";
 import { FashionAreaComp } from "./components/fashion_area.js";
 
-console.log(TopComp, BannerComp, JoinComp,LoginComp,TodayAreaComp,FashionAreaComp);
-    
+// console.log(TopComp, BannerComp, JoinComp, LoginComp);
+
 /******************************* 
     메인 뷰 인스턴스 생성하기 
 ********************************/
@@ -25,7 +25,5 @@ new Vue({
     created(){},
 
     // 4-2. mounted() : DOM관련코드 작성
-    mounted(){
-        // this.$router.push('/')
-    },
+    mounted(){},
 });
