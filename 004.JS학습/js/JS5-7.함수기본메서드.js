@@ -104,34 +104,38 @@ exBox[2].innerText = 대표동물.발표.call(동물1, "오세아니아", "유�
 
 // 데이터 배열
 const animalData = ["아시아", "영장류"];
-// call 과 달리 apply는 추가 데이터를 배열로 보낸다!
+// call과 달리 apply는 추가 데이터를 배열로 보낸다!
 exBox[3].innerText = 대표동물.발표.apply(동물2, animalData);
 
 // 3. 일반함수 call() / apply() 사용하기
-exBox[4].innerText = 힘내.call({ 호호: "개르니카", 하하: "우는여인" }, "피카소");
+exBox[4].innerText = 힘내.call(
+  { 호호: "게르니카", 하하: "우는여인" },
+  "피카소"
+);
 
 // 특이하게 b요소를 선택하여 보내면 과연 될까?
 exBox[5].innerText = 노래.apply(document.querySelector(".iam"));
 // HTML요소도 객체의 일종이다!
-// 선택요소.title , 선택요소.id 이렇게 객체값을 찍는다.\
+// 선택요소.title, 선택요소.id 이렇게 객체값을 찍는다!
 
-// 4. Math.max.apply()/Math.min.apply() 사용하기
-// apply(객체,배열) -> 앞의 객체값을 불필요해서 null 보냄
-// 위의 배열만 필요하고 이것을 보내서 최댓값/최솟값을 리턴함
+// 4. Math.max.apply() / Math.min.apply() 사용하기
+// apply(객체,배열) -> 앞의 객체값을 불필요해서 null보냄
+// 뒤의 배열만 필요하고 이것을 보내서 최대값/최소값을 리턴함
+
 // 단순배열
 const myNum = [2400, 3600, 4200, 5300, 6700];
-exBox[6].innerText = myNum + "의 최댓값" + Math.max.apply(null, myNum);
+// 화면출력
+exBox[6].innerText = myNum + "의 최대값:" + Math.max.apply(null, myNum);
 
-console.log(myNum, "의 최댓값", Math.max.apply(null, myNum));
-console.log(myNum, "의 최솟값", Math.min.apply(null, myNum));
-// -> Math.max.apply(null,myNum)
+// 최소값을 콘솔에 찍어봄
+console.log(myNum, "의 최소값:", Math.min.apply(null, myNum));
 
 // 객체배열
 /* 
-  {
-  연봉연도 : 연도,
-  연봉금액 : 금액
-  }
+    {
+      연봉년도 : 년도,
+      연봉금액 : 금액,
+    }
   */
 const myObj = [
   {
@@ -164,7 +168,7 @@ console.log(
   myObj.map((v) => v.pay)
 );
 
-exBox[6].innerText = `내가 받았던 연봉 중 최대값은
+exBox[7].innerText = `내가 받았던 연봉 중 최대값은
   ${Math.max.apply(
     null,
     myObj.map((v) => v.pay)
@@ -219,12 +223,12 @@ const 개인3 = {
 
 // this가 확정된 객체의 메서드를 그냥 호출하기
 exBox[8].innerText = 합격자들.이름다();
+
 // this 의미가 bind()로 묶어서 보낸 객체로 변경되어 호출하기
 exBox[9].innerText = 합격자들.이름다.bind(개인1)();
-// ->bind()는 객체를 묶어보내는 역할만하고 실행은 뒤 소괄호함!
+// -> bind(객체)()는 객체를 묶어보내는 역할만 하고 실행 뒤소괄호함!
 
 // setTimeout으로 시간차 실행함수 호출하기
 합격자들.시간차.bind(개인2)();
 합격자들.화살표.bind(개인3)();
-
 /////////////// 전체 출력 코딩구역 //////////////////////

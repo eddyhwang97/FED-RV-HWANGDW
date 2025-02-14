@@ -144,7 +144,8 @@ export const JoinComp = Vue.component("join-comp", {
       
     };
   },
-  methods:{
+  // 메서드 구역 /////
+  methods: {
     goPage(){
       // 이 메서드를 DOM 유효성검사 함수에
       // 콜백으로 보내서 이동처리한다!
@@ -155,7 +156,8 @@ export const JoinComp = Vue.component("join-comp", {
   // mounted 메서드 : DOM로딩후 실행구역!
   // -> 일반 DOM코딩 JS는 여기서 호출한다!!!
   mounted() {
-    // 유효성검사 함수호출!
+    // 유효성검사 함수호출! 
+    // (라우터이동기능함수 콜백함수로 보냄!)
     valid_member(this.goPage);
     
     // CSS 변경하기 ///

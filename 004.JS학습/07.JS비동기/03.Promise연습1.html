@@ -12,7 +12,8 @@
 
       function 킬링타임() {
         let d = new Date();
-        document.querySelector("#time").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+        document.querySelector("#time").innerHTML =
+          d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
       }
 
       /************************************************** 
@@ -57,41 +58,43 @@
         // scFn - 성공함수
         setTimeout(() => {
           화면뿌려("나는 전도연이다!");
-          // 성공함수를 호출해야만 then메서드가 연결된다!
-          scFn("약속이행"); // then메서드 전달
+          // 성공함수를 호출해야만 then메서드가 연결됨!
+          scFn("약속이행!"); // then메서드호출 및 전달!
         }, 2000);
       }); /////////// myPromise ////////////
 
       // 프라미스 후에 실행할 코드는 then() 메서드에 연결한다!
       myPromise
         .then((res) => {
-          //res - 성공함수 리턴값
-          console.log("첫번째 then리턴값", res);
-          // 시간이 걸리는 다른 코드는 프라미스 이후에 then메서드 호출시 실행된다!
-          // 따라서 천제 기다리는 시간을 셋팅할 필요없다!
-          // 단지 호출된 시점부터 얼마후 실행할지만 고려
-          // 여기서는 1초후 실행하기
+          // res - 성공함수 리턴값
+          console.log("첫번째then리턴값:", res);
+          // 시간이 걸리는 다른 코드는 프라미스 이후에
+          // then메서드 호출시 실행된다!
+          // 따라서 전체 기다리는 시간을 셋팅할 필요 없다!
+          // 단지 호출된 시점부터 얼마후 실행할지만 고려!
+          // 여기서는 1초후 실행하자!
 
-          // 다음 then메서드를 순서대로 기다렸다가
-          // 실행시키러면 then메서드안에 프라미스를
-          // 리턴해주는 형태로 코드를 작성해야함!
+          // 다음 then 메서드를 순서대로 기다렸다가
+          // 실행시키려면 then메서드안에 프라미스를
+          // 리턴해주는 형태로 코드를 작성해야함!!!
           return new Promise((scFn) => {
+            // scFn - 성공함수
             setTimeout(() => {
               화면뿌려(
                 `<img src="https://images.khan.co.kr/article/2023/03/03/news-p.v1.20230303.139d5a1324fd43e9b750689a1c57af4e_P1.jpg" style="height:70vh" alt="길복순">`
               );
-              // 다음의 then메서드를 호출함
+              // 다음의 then메서드를 호출함!
               scFn("두번째 약속이행!");
-            }); /////new Promise ///////
-          }, 1000);
+            }, 1000);
+          }); ////// new Promise /////
         })
         // 프라미스 체이닝(then메서드를 이어붙임!)
         // -> 개별적으로 프라미스에 붙여사용할 것을
         // 더 쉽게 이어붙이는 방법의 코딩임!
         // myPromise.then(() => {
         .then((res) => {
-          console.log("두번째 then리턴값", res);
-          // 다음 메서드 순차실행을 위해 프라미스 리턴
+          console.log("두번째then리턴값:", res);
+          // 다음 then메서드 순차실행위해 프라미스 리턴
           return new Promise((scFn) => {
             setTimeout(() => {
               화면뿌려(`킬링타임<div id="time" style="font-size:5vh"></div>`);
@@ -99,13 +102,13 @@
               scFn("세번째 약속이행!");
             }, 1000);
           });
-        })
-        .then((res) => {
-          console.log("세번째 then리턴값", res);
+        }) //// then ////
+        .then(res=>{
+          console.log("세번째then리턴값:", res);
           // 여기서는 프라미스 리턴 불필요!
           // 왜? 마지막 코드니까!
           setInterval(킬링타임, 1000);
-        });
+        }); //// then /////
 
       // 일정시간 후 함수실행 -> 비동기함수 호출!
       // setTimeout(() => setInterval(킬링타임, 1000), 6000);

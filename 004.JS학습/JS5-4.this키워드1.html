@@ -132,7 +132,6 @@
       // 3. 함수에서 전역객체(window)를 의미 확인!
       // (함수)() -> 함수자신을 바로 실행!
       // 익명함수
-      // 변수면 충돌을 막기위해 쓴다
       (function () {
         console.log("12.익명함수 바로실행:", this);
         // 엄격모드에서 this는 undefined임! window객체가 아님!
@@ -167,7 +166,7 @@
 
           // ㅋㅋ버튼 : 화살표함수로 생성
           qs('.kk').onclick = ()=>{
-            // console.log('화살:',this);
+            console.log('화살:',this);
             // 나는 누구인가 찍기
             qs('#exp').innerText = 
             this.getAttribute('data-nm');

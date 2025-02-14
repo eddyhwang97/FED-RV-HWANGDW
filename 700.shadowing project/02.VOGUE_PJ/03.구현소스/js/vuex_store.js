@@ -12,8 +12,12 @@ export default new Vuex.Store({
     // 로그인 환영메시지
     welcomeMsg: "",
     // 아이콘 객체(m-남자,w-여자)
-    // 로그인 클래스(로그인/로그아웃 버튼 전환 클래스)
-    loginCls:"login",
+    iconSet: {
+      w: ["🙍‍♀️", "🤦‍♀️", "💁‍♀️", "🙆‍♀️", "🙋‍♀️", "🦸‍♀️"],
+      m: ["🙍‍♂️", "🙆‍♂️", "🤦‍♂️", "🤷‍♂️", "💁‍♂️", "🦸‍♂️"],
+    },
+    // 로그인 클래스 (로그인/로그아웃 버튼 전환클래스)
+    loginCls: '',
   },
   // 2. 데이터 변경 메서드 구역
   // -> 컴포넌트에서 호출시 commit() 사용!
@@ -23,29 +27,39 @@ export default new Vuex.Store({
       // st - state객체, pm - 전달값
       console.log("로그인셋!", st, pm);
       // 1. state변수 업데이트하기
+
       // (1) 사용자 정보 변경
       st.loginUser = pm;
-      // (2) 환영 메시지 변경 : 랜덤수로 아이콘 넣기
-      st.welcomeMsg = 
-      pm.name + "님, 환영합니다!";
 
-      // (3) 로그인버튼 숨기기 (로그아웃 보이기)
-      st.loginCls='login';
+      // (2) 환영 메시지 변경 : 랜덤수로 아이콘넣기
+      st.welcomeMsg = 
+      pm.name + "님, 환영합니다!"+
+      st.iconSet[pm.gender][Math.floor(Math.random()*6)];
+      
+      // (3) 로그인버튼 숨기기(로그아웃 보이기)
+      st.loginCls = 'login';
+      
     },
+
+    // 로그아웃 메서드 /////////
     setLogout(st) {
-      // st - state객체, pm - 전달값
+      // st - state객체
       console.log("로그아웃!", st);
-      // 1. state변수 업데이트하기
+      // 1. state변수 업데이트하기 : 모두 초기화!
+
       // (1) 사용자 정보 변경
       st.loginUser = {};
-      // (2) 환영 메시지 변경 : 랜덤수로 아이콘 넣기
+
+      // (2) 환영 메시지 변경
       st.welcomeMsg = '';
 
-      // (3) 로그인버튼 숨기기 (로그아웃 보이기)
-      st.loginCls='';
+      // (3) 로그인버튼 보이기
+      st.loginCls = '';
+
       // (4) 로그인 세션스 지우기 'login-user'
       sessionStorage.removeItem('login-user');
     },
+
   },
   // 3. 비동기처리 메서드 구역
   // -> 컴포넌트에서 호출시 dispatch() 사용!

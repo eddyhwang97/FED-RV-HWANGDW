@@ -1,8 +1,8 @@
 // 회원가입 유효성검사 및 회원가입처리 JS - valid_member.js
 
 export default function valid_member(cbFn) {
-  // cbFn: 뷰JS메서드를 전달 받아서 실행함
-  //   console.log("유효성검사! 나야나~!!!", $("#mid"));
+  // cbFn : 뷰JS 메서드를 전달받아서 실행함!
+  // console.log("유효성검사! 나야나~!!!", $("#mid"));
 
   /********************************************** 
     [ 사용자 입력폼 유효성 검사 ]
@@ -441,11 +441,11 @@ export default function valid_member(cbFn) {
       // 보이면 안되기 때문에 히스토리를 지우는
       // replace()로 이동한다!
       // location.replace("login.html");
-      // ->SPA로 변경후에는  MPA처리 불가!!
+      // -> SPA로 변경후에는 MPA처리 불가!!!
 
-      // 전달받은 콜백함수를 호출한다
+      // 전달받은 콜백함수를 호출한다!
       cbFn();
-      // -> 라우터이동 기능 뷰JS메서드
+      // -> 라우터이동 기능 뷰JS 메서드실행!
 
 
     } //////// if : 통과시 ///////////

@@ -37,18 +37,18 @@
       }
     </style>
     <script>
-      /* 
-        [ DOM여행의 핵심 포인트]
-          [1] 요소.isSameNode(비교요소)
-            ->특정요소가 비교요소와 같으면 true
-              같지 않으면 false
-          [2]nextElementSibling 
-            ->선택요소의 다음요소
-          [3] previousElementSibling 
-            ->선택요소의 이전요소선택
-          [4] parentElement 
-            ->선택요소의 부모요소선택
-      */
+      /*************************************** 
+        [ DOM 여행의 핵심 포인트 ]
+        [1] 요소.isSameNode(비교요소)
+          -> 특정요소가 비교요소와 같으면 true          
+            같지 않으면 false
+        [2] 요소.nextElementSibling 
+          -> 선택요소의 다음요소선택
+        [3] 요소.previousElementSibling 
+          -> 선택요소의 이전요소선택
+        [4] 요소.parentElement 
+          -> 선택요소의 부모요소선택
+      ***************************************/
       window.addEventListener("load", () => {
         let stage = document.querySelector(".stage");
         let tgs = stage.querySelectorAll("li");
@@ -60,7 +60,10 @@
             let cele;
             let isNow;
 
-            if (stage.querySelector("ul").classList.contains("on") && txt !== "부모로") {
+            if (
+              stage.querySelector("ul").classList.contains("on") &&
+              txt !== "부모로"
+            ) {
               stage.querySelector("ul").classList.remove("on");
               tgs[0].classList.add("on");
             }
@@ -92,7 +95,10 @@
                     // 다음요소를 돌때 다시 on이 걸리게되고
                     // if문에 들어오게 된다! 그래서 계속걸림!
                     // 해결책: on을 태스크큐 넣어준다(setTimeout)
-                    setTimeout(() => ele.nextElementSibling.classList.add("on"), 0);
+                    setTimeout(
+                      () => ele.nextElementSibling.classList.add("on"),
+                      0
+                    );
                   }
                 }); //// forEach //////
                 // if (!isNow)

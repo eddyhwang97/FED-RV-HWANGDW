@@ -79,16 +79,15 @@ import myFn from "./my_function.js";
 // [ 1. 로컬 스토리지 연습 ] ////////////////////
 // 1. 버튼 기능 이벤트 대상 : .local-box button
 const btnLocal = myFn.qsa(".local-box button");
-console.log("대상:", btnLocal);
 
-// ->추가대상 :  수정하기 선택박스요소 - select#sel
+// -> 추가대상 : 수정하기 선택박스요소 - select#sel
 const selBox = myFn.qs("select#sel");
 
-// ->추가대상 : 수정항목 제목/ 내용
+// -> 추가대상 : 수정항목 제목/내용
 const tit2 = myFn.qs("#tit2");
 const cont2 = myFn.qs("#cont2");
 
-console.log("대상: ", btnLocal, selBox, tit2, cont2);
+console.log("대상:", btnLocal, selBox, tit2, cont2);
 
 // 2. 버튼에 이벤트 설정하기
 btnLocal.forEach((ele) => myFn.addEvt(ele, "click", localsFn));
@@ -105,7 +104,10 @@ function localsFn() {
     // -> localStorage.setItem(키,값)
     localStorage.setItem("actor-name", "이정재");
     localStorage.setItem("actor-role", "박평호역");
-    localStorage.setItem("actor-cat", "조직내 스파이를 색출하는 해외팀 안기부장");
+    localStorage.setItem(
+      "actor-cat",
+      "조직내 스파이를 색출하는 해외팀 안기부장"
+    );
   } /// if ////
   else if (btxt == "보여줘") {
     // 배우이름 출력
@@ -216,35 +218,38 @@ function bindData() {
           .join("")}
     </table>
 `;
-  // 4. 삭제버튼 링크함수 호출
-  selDelLink();
 
-  // 5. 수정을 위한 선택박스 바인딩하기
+  // 4. 삭제버튼 링크함수 호출!
+  setDelLink();
+
+  // 5. 수정을 위한 선택박스 바인딩하기!
   // 대상 : #sel -> selBox변수
-  // 데이터 : 파싱된 로컬쓰 (배열) 중 idx만 사용! -> map()
-  selBox.innerHTML = localData
-    .map((v) => `<option value="${v.idx + "♨︎" + v.tit + "♨︎" + v.cont}">${v.idx}</option>`)
-    .join("");
+  // 데이터 : 파싱된 로컬쓰 (배열) 중 idx만 사용!->map()
+  selBox.innerHTML =
+    `<option value="sel">선택하세요</option>` +
+    localData
+      .map(
+        (v) =>
+          `<option value="${v.idx + "♨" + v.tit + "♨" + v.cont}">${
+            v.idx
+          }</option>`
+      )
+      .join("");
 } ////////////// bindData //////////////////
 
-/////////////////////////////////////////////////
-////// [ 수정항목 선택박스 변경시 함수 구현 ] //////////
-//////////////////////////////////////////////////
-
+//////////////////////////////////////
+// 수정항목 선택박스 변경시 함수구현 ////
+//////////////////////////////////////
 myFn.addEvt(selBox, "change", function () {
-  // console.log("선택변경", this.value);
-  // 읽어온 value값을 split로 잘라넣기
-  let newVal = this.value.split("♨︎");
+  // 읽어온 value값을 split으로 잘라서 넣기
+  let newVal = this.value.split("♨");
 
-  // 수정할 데이터의 원본 제목 /내용 보여주기
+  console.log("선택변경:", this.value, newVal);
+
+  // 수정할 데이터의 원본 제목/내용 보여주기!
   tit2.value = newVal[1];
   cont2.value = newVal[2];
-});
-
-// 수정항목 선택박스 변경시 함수구현 ///
-myFn.addEvt(selBox, "change", function () {
-  console.log("선택변경:", this.value);
-}); ///////change 이벤트 함수 //////////
+}); ///////// change 이벤트함수 ////////
 
 /////////////////////////////////////////////////
 ////// [ 게시판 최초호출 및 데이터 셋업 ] //////////
@@ -285,49 +290,18 @@ myFn.qs("#sbtn").onclick = () => {
     return;
   } /// catch ///
 
-  // 로컬쓰 처리함수 호출! : call 대리호출
+  // 로컬쓰 처리함수 호출! : call() 대리호출
   setLS.call({ key: "minfo", opt: "add" });
 }; ///////////// click 이벤트 함수 ///////////////
 
 /////////////////////////////////////////////////
-/// [ 데이터 삭제 버튼 클릭시 데이터 삭제하기 ] ////
-/////////////////////////////////////////////////
-// 대상 : .del-link a (삭제버튼)
-// 처음로딩시 삭제 버튼에 클릭이벤트를 설정하게되면
-// 삭제후 리스트가 변경됨에 따라 기존에 설정된 이벤트가 사라짐!
-// ->>주의!중요!! 일반적으로 형제요소중 DOM구조가 변경될시
-// ->>> 기존 이벤트가 리셋되는것이 기본임! 따라서 DOM이 변경될경우
-// ->>>> 그 형제요소의 이벤트를 다시 설정해야함
-// ->>>>> 이런이유로 아래 이벤트 설정 코드는 함수로 만들어 준다.
-
-// 삭제함수 링크함수 최초호출!
-selDelLink();
-function selDelLink() {
-  // 삭제코드 a링크를 순회하여 이벤트 및 기능넣기!
-  myFn.qsa(".del-link a").forEach((el) => {
-    myFn.addEvt(el, "click", function (e) {
-      // a요소 기본이동막기
-      e.preventDefault();
-
-      // 1. 지울순번 읽어오기 : data-idx속성값
-      let delIdx = this.getAttribute("data-idx");
-      console.log("지울순번:", delIdx);
-
-      // 2. 로컬쓰처리함수 호출 : call 대리호출
-      setLS.call({ key: "minfo", opt: "delete", delSeq: delIdx });
-    }); //// addEvt ////
-  }); ////// forEach /////
-} ///selDelLink ////////
-
-/////////////////////////////////////////////////
 /// [ 데이터 수정 버튼 클릭시 데이터 수정하기 ] ////
 /////////////////////////////////////////////////
-// 대상 : #sbtn (입력버튼)
-// 데이터 읽어올 대상 : #tit2, #cont2
-
+// 대상 : #mobtn (수정버튼)
+// 데이터 읽어올 대상 : #tit2, #cont2 -> tit2,cont2변수
 // 이벤트 함수 설정하기 /////
 myFn.qs("#mobtn").onclick = () => {
-  console.log("입력하라!", tit2, cont2);
+  console.log("수정하라!");
   // 1. 입력데이터 유효성 검사 : try ~ catch사용!
   try {
     // trim() 앞뒤공백 제거 처리해야 공백만 넣기막음!
@@ -342,14 +316,42 @@ myFn.qs("#mobtn").onclick = () => {
     return;
   } /// catch ///
 
-  // 로컬쓰 처리함수 호출! : call 대리호출
+  // 로컬쓰 처리함수 호출! : call() 대리호출
   setLS.call({
     key: "minfo",
     opt: "update",
-    upSeq: selBox.value.split("♨︎")[0],
-    // 지울 순번은 선택박스의 value값 중 잘라서 첫번째 값!
+    upSeq: selBox.value.split('♨')[0],
+    // 지울 순번은 선택박스의 value값 중 잘라서 첫번째값!
   });
 }; ///////////// click 이벤트 함수 ///////////////
+
+/////////////////////////////////////////////////
+/// [ 데이터 삭제 버튼 클릭시 데이터 삭제하기 ] ////
+/////////////////////////////////////////////////
+// 대상 : .del-link a (삭제버튼)
+// 처음 로딩시 삭제버튼에 클릭이벤트를 설정하게 되면
+// 삭제후 리스트가 변경됨에따라 기존에 설정된 이벤트가 사라짐!
+// ->>> ((주의!중요!!!)) 일반적으로 형제요소중 DOM구조가 변경될시
+// ->>> 기존 이벤트가 리셋되는것이 기본임! 따라서 DOM이 변경될때
+// ->>> 그 형제요소의 이벤트를 다시 설정해야한다!
+// ->>> 이런 이유로 아래 이벤트설정 코드는 함수로 만들어준다!
+
+function setDelLink() {
+  // 삭제코드 a링크를 순회하여 이벤트 및 기능넣기!
+  myFn.qsa(".del-link a").forEach((el) => {
+    myFn.addEvt(el, "click", function (e) {
+      // a요소 기본이동막기
+      e.preventDefault();
+
+      // 1. 지울순번 읽어오기 : data-idx속성값
+      let delIdx = this.getAttribute("data-idx");
+      console.log("지울순번:", delIdx);
+
+      // 2. 로컬쓰처리함수 호출 : call() 대리호출!
+      setLS.call({ key: "minfo", opt: "delete", delSeq: delIdx });
+    }); //// addEvt ////
+  }); ////// forEach /////
+} ////// setDelLink 함수 ////////////////////////////
 
 ////////// 로컬스토리지 처리 공통함수 //////////////
 /************************************************* 
@@ -360,18 +362,17 @@ function setLS() {
   // 전달변수를 하나만 받고 그값을 객체로 정의한다!
   // -> 이렇게 하면 확장성이 좋아진다!
   // -> 예컨데 지울때는 지울순번을 더 보내야한다! 이럴때 좋음!
-
-  // ->>>전달변숭벗이 객체를 받는 방법이 있음!!
+  // ->>> 전달변수 없이 객체를 받는 방법이 있음!!!
   // 바로 call(객체) / apply(객체) 로 대리호출해줌!
   // 받을때는 this.속성명 으로 받아준다!!!
 
   // 아래 속성명정의! /////////
-  // obj = {key:값, opt:값, delIdx:값}
+  // {key:값, opt:값, delIdx:값}
   // -> call(객체)로 호출하면 this로 받아라!
   // this.key - 로컬스토리지 키명
   // this.opt - 처리옵션(add/delete/update)
-  // this.upSeq - 수정할 순번
-  // this.delIdx - 지울순번
+  // this.upSeq - 수정할순번
+  // this.delSeq - 지울순번
   // -> 일반적으로 데이터 처리는 4가지를 말한다!
   // ->>> 크루드!(CRUD) -> Create/Read/Update/Delete
 
@@ -386,7 +387,7 @@ function setLS() {
 
   // 3. 로컬쓰 minfo 파싱후 데이터 처리하기
   locals = JSON.parse(locals);
-  // ->문자형 로컬쓰를 파싱하여 배열객체로 변환함
+  // 문자형 로컬쓰를 파싱하여 배열객체로 변환함!
 
   console.log("Math.max(1,50,24)", Math.max(1, 50, 24));
   console.log(
@@ -398,10 +399,9 @@ function setLS() {
   if (this.opt == "add") {
     locals.push({
       // 고유번호는 데이터 중 최대값에 1을 더해야함
-      // Math.max(1,50,24)-> 결과는 50
+      // Math.max(1,50,24) -> 결과는 50!
       // Math.max.apply(보낼객체,배열) -> 보낼객체가 없으면 null
-      // ->max 하위 apply는 배열값 대상으로 최대값을 적용함!
-
+      // -> max하위 apply는 배열값 대상으로 최대값을 적용함!
       idx:
         Math.max.apply(
           null,
@@ -411,27 +411,29 @@ function setLS() {
       cont: cont.value,
     });
   } /// if ///
+
   // 3-2. 'update'일때 데이터 수정하기 ////
   else if (this.opt == "update") {
-    // 파싱된 객체값을 순회하여 해당순번 idx값과
-    // 일치된 값을 찾아서 제목과 내용을 변경한다.
-    // 순회가능한 배열 매서드는 뭐가있지?
-    // ->forEach(), map(), find(),filter()
-    // ->>>위의 매서드들은 대상배열을 모두 순회한다!
+    // 파싱된 객체값을 순회하여 해당순번idx값과
+    // 일치된 값을 찾아서 제목과 내용을 변경한다!
+    // 순회가능한 배열 메서드는 뭐가있지?
+    // -> forEach(), map(), find(), filter()
+    // ->>> 위의 메서드들은 대상배열을 모두 순회한다!
     // 그래서 효율성이 떨어진다!
-    // 찾으면 바로 순회를 끝내는 매서드가 있다!
-    // ->>>썸타는 매서드 : some()
-    locals.some((v) => {
-      console.log("배열순회중!");
-      if (v.idx == this.upSeq) {
+    // 찾으면 바로 순회를 끝내는 메서드가 있다! 
+    // ->>>> 썸타는 메서드 : some()
+    locals.some(v=>{
+      console.log('배열순회중!');
+      if(v.idx == this.upSeq){ 
         // 데이터 업데이트
         v.tit = tit2.value;
         v.cont = cont2.value;
-        
-        // 리턴 true 하면 some 메서드끝내기
-        return true;}
-    });
+        // 리턴 true 하면 some메서드 끝내기!
+        return true;
+      } /// if ///
+    }); /// some ///
   } /// else if ///
+
   // 3-3. 'delete'일때 데이터 삭제하기 ////
   else if (this.opt == "delete") {
     // 삭제처리 배열함수 : splice(지울순번,1)
@@ -491,6 +493,7 @@ function sessionsFn() {
 // 배우이름 삭제
 myFn.qs(".session .nm").onclick = () => sessionStorage.removeItem("actor-name");
 // 역할이름 삭제
-myFn.qs(".session .role").onclick = () => sessionStorage.removeItem("actor-role");
+myFn.qs(".session .role").onclick = () =>
+  sessionStorage.removeItem("actor-role");
 // 캐릭터소개 삭제
 myFn.qs(".session .cat").onclick = () => sessionStorage.removeItem("actor-cat");
