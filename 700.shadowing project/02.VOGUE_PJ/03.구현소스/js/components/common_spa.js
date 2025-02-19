@@ -29,6 +29,9 @@ const TopComp = Vue.component("top-comp", {
               //query는 get 방식처럼 url창으로 전달함
               //값은 {키:값,키:값} 객체형식임
               //결과는 url?키:값
+              //->params로 보내지않고 query를 쓴이유는
+              //페이지가 새로 업데이트 되는
+              // 뷰JS 이벤트 발생은 query에서 발생한다!
               query:{id:v}}">
                 {{v}}
               </router-link>
@@ -77,6 +80,7 @@ const TopComp = Vue.component("top-comp", {
         <!-- 로그인 환영메시지 박스 -->
         <div id="login-msg">{{$store.state.welcomeMsg}}</div>
       </header>      
+      
     </div>   
     `,
   // 1-2. 데이터 셋업 리턴 메서드 /////
