@@ -3,10 +3,25 @@
   "workbench.colorTheme": "One Dark Pro Mix",
   "workbench.colorCustomizations": {
     // 전체배경색
-    "editor.background": "#252525",
-    "activityBar.background": "#101010",
+    "editor.background": "#191c23",
+    // 액티브바배경
+    "activityBar.background": "#1f243a",
     // 사이드바(파일,폴더) 배경 색
-    "sideBar.background": "#212223"
+    "sideBar.background": "#293643",
+    // 그룹 헤더 전체 배경 색
+    "editorGroupHeader.tabsBackground": "#1f242b",
+    // 선택된 탭 배경색
+    "tab.activeBackground": "#282f38",
+    // 비활성인 탭 배경색
+    "tab.inactiveBackground": "#1f242b",
+    // 상단 타이틀 배경색
+    // "titleBar.activeBackground": "#26c6da",
+    // 상단 타이틀 글자색
+    "titleBar.activeForeground": "#fff",
+    // 하단 상태 배경색
+    // "statusBar.background": "#26c6da",
+    // 주석 색상
+    "comments": "#757575",
   },
   "liveServer.settings.port": 5503
 }
