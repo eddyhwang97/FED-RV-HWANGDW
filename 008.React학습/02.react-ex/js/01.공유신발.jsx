@@ -10,8 +10,6 @@ import GoodsList from "./components/GoodsList";
 // 상품상세보기 서브컴포넌트 불러오기
 import GoodsDetail from "./components/GoodsDetail";
 
-
-
 // 주의사항!!! CDN에서 여기 import대상은 모두
 // html페이지에서 불러와야 사용할 수 있다!
 
@@ -26,14 +24,14 @@ import GoodsDetail from "./components/GoodsDetail";
 
 function MainComponent() {
   // [ 후크 상태관리 변수 셋팅 ]
-  // 1. 리스트/ 상세보기 전환용 상태관리변수
-  const [viewList,setViewList] = React.useState(true)
+  // 1. 리스트/ 상세보기 전환용 상태관리변수 [읽기전용/쓰기전용] 으로 셋팅
+  const [viewList, setViewList] = React.useState(true);
   // 2. 상품 데이터 인덱스값 상태관리 변수
-  const [gIdx,setGIdx] = React.useState(1)
+  const [gIdx, setGIdx] = React.useState(1);
   // 3. 선택 아이탬 고유이름 상태관리 변수
-  const [selItem,setSelItem] = React.useState("공유")
+  const [selItem, setSelItem] = React.useState("공유");
   // 4. 테스트용 상태관리 변수(의존성 테스트용 )
-  const [text,setTest] = React.useState(true)
+  const [text, setTest] = React.useState(true);
 
   /************************************** 
             [ 코드구성 ]
@@ -80,8 +78,22 @@ function MainComponent() {
         <button>useEffect 의존성 테스트</button>
       </div>
       <div className="gwrap">
-        <GoodsList/>
-        <GoodsDetail selItem={selItem} gIdx={gIdx}/>
+        {
+          //상태변수 viewList 가 ture면
+          // 상품리스트 하위 컴포넌트보이기
+          viewList ? (
+            <GoodsList
+              selItem={selItem}
+              // 상태변수업데이트를 위해 자식에게 보내준다
+              // 변수업데이트 메서드를 보내준다
+              setGIdx={setGIdx}
+              setViewList={setViewList}
+            />
+          ) : (
+            // 상품상세보기 하위 컴포넌트
+            <GoodsDetail selItem={selItem} gIdx={gIdx} setViewList={setViewList} />
+          )
+        }
       </div>
     </React.Fragment>
   );
@@ -91,5 +103,3 @@ function MainComponent() {
 ReactDOM.render(<MainComponent />, document.querySelector("#root"));
 // ReactDOM.render(어쩌구,저쩌구);
 // 어쩌구를 저쩌구에 출력해라!
-
-
