@@ -76,11 +76,11 @@ body {
   /* 넘치는 자식요소 숨기기 */
   overflow: hidden;
 
-  cursor: url(../images/spongebob1.png),auto;
+  /* 커서 이미지변경
+  -> 이미지 크기변경은 불가! 따라서 일정크기 이하여야만
+  커서로 쓸 수 있음! 가로,세로 중 모두 128px 이하여야함! */
+  cursor: url('../images/coke_cursor.png'), auto;
 }
-
-/* 커서 이미지 변경 */
-
 
 /* 아이폰박스 */
 .iphone {
@@ -107,6 +107,7 @@ body {
   transform: rotateX(10deg)
     rotateY(30deg);
 
+  /* 트랜지션 적용 */
   transition: .4s ease-out;
 }
 
@@ -131,25 +132,29 @@ body {
   /* transform: translateZ(20px); */
   translate: 0 0 10px;
 }
-.iphone span:nth-child(1)::after{
-  content: "";
+/* 배경이미지 가상요소로 하나추가 */
+.iphone span:nth-child(1)::after {
+  content: '';
   position: absolute;
+  /* 중앙위치 */
   top: 50%;
-  left: 50%;
-  translate: -50%;
+  left: 10%;
   width: 80%;
+  /* 높이값 0 */
   height: 0%;
-  background: #fff url(../images/Maggie_Simpson.png) no-repeat center/cover;
-  animation: bg-ani .5s ease-in-out 5s   forwards;
+  background: url(../images/avatar.jpg) no-repeat center/cover;
+  /* 애니메이션 : 이시이지반방마 */
+  animation: avatar-ani .5s ease-in-out 5s forwards;
 }
-@keyframes bg-ani {
+/* 아바타 가운데서 펼쳐짐 */
+@keyframes avatar-ani {
   to{
+    /* 위로 올라가고 높이값 생김
+    - 중앙에서 펼쳐지는 모양 */
     top: 20%;
-  height: 60%;
+    height: 60%;
   }
-  
 }
-
 /* 2. 뒷면 */
 .iphone span:nth-child(2) {
   background-image: url(../images/ip02.png);
@@ -333,23 +338,26 @@ body {
     /* 방향 속성 값을 reverse로 하면 기존 애니가 반대로 적용된다! */
 }
 
+
+/* 아이폰 이벤트 박스 : 따라보기 */
 .evt-bx{
   position: fixed;
-  /*사방 당겨서 화면 채우기 */
+  /* 사방 당겨서 화면 채우기 */
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   /* 맨위에 위치 */
   z-index: 999;
+  /* 처음에 안보임 */
+  display: none;
 }
-/* 하의 ul초기화 */
+/* 하위 ul초기화 */
 .evt-bx ul{
   /* 플렉스박스 */
   display: flex;
-  /* 랩핑박스: 아래로 떨어져 계속감 */
+  /* 랩핑박스:아래로 떨어져 계속감 */
   flex-wrap: wrap;
-
 
   /* 기본초기화 */
   margin: 0;
@@ -361,8 +369,9 @@ body {
 .evt-bx li{
   /* 가로 5등분 */
   width: 20vw;
+  /* 세로 3등분 */
   height: 33.333vh;
-  outline: 1px solid black;
+  /* outline: 2px dashed lightsalmon; */
 }
 
 

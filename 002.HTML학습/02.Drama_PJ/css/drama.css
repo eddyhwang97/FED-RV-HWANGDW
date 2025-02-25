@@ -11,6 +11,7 @@ ul,ol{
     /* 리스트 스타일 없앰 : lin */
     list-style: none;
 }   
+
 /* 전체제목 */
 h1.tit{
     /* 글자중앙정렬 : tac */
@@ -28,6 +29,40 @@ h2.tit{
     margin-bottom: 10px;
 }
 
+/* 이동 네비게이션 메뉴 */
+.menu{
+    /* 글자 중앙 */
+    text-align: center;
+}
+/* 하위 h2 */
+.menu h2{
+    /* 글자크기 : fz */
+    font-size: 16px;
+    /* 글자 두께 해제 : fwn */
+    font-weight: normal;
+
+}
+/* 하위 a */
+.menu a{
+    /* 디자인 적용위해 display변경 */
+    display: inline-block;
+    line-height: 2.5;
+    /* 글자색 : c */
+    color: #555;
+    /* 밑줄없앰 : tdn */
+    text-decoration: none;
+    /* 양쪽마진 */
+    margin: 0 10px;
+}
+/* 하위 a.on */
+.menu a.on{
+    /* 하단보더 : bdb */
+    border-bottom: 1px solid #000;
+    /* 글자색 진하게 */
+    color: #000;
+    /* text-decoration: underline; */
+}
+
 
 /* ul의 li를 옆으로 흐르게하기 */
 .drama ul > li{
@@ -43,8 +78,9 @@ h2.tit{
 
 /* 자식 블록플롯때문에 부모가 망가지는걸
 막아주는 가상요소 클리어 장치 
-대상: ul아래 li가 float되었으므로
-ul에 넣고 section 아래 div가 float되었으므로 section, drama에도 넣어준다.
+    대상: ul아래 li가 float되었으므로
+    ul에 넣고 section 아래 div가 float
+    되었으므로 section.drama에도 넣어준다!
 */
 .drama ul::after,
 section.drama::after{
@@ -65,10 +101,11 @@ table.drama{
     margin: 0 auto;
     /* 패딩 */
     padding: 15px;
-    border-spacing: 10px;
+    /* 각 테이블 td 사이 간격은 border-spacing */
+    border-spacing: 13px;
 }
 
-/* 테이블대신 일반 블록박스로 드라마 구성 */
+/* 테이블 대신 일반 블록박스로 드라마 구성 */
 section.drama {
     /* 최대가로크기 : maw */
     max-width: 670px;
@@ -78,19 +115,21 @@ section.drama {
     padding: 15px;
 }
 /* 일반 블록박스 옆으로 흐르게 하기 */
-.each-drama {
+.each-drama{
     float: left;
     /* 등분할 */
     width: 50%;
-    /* 가로크기에 패딩 포함설정 */
+    /* 가로크기에 패딩,보더 포함설정 : bxb */
     box-sizing: border-box;
+    /* 패딩 */
     padding: 10px;
-
 }
-/* 블록박스로 구성한 경우 하위 ol에 width주기 */
-.each-drama ol {
+/* 블록박스로 구성한 경우 하위 ol에 width 주기
+테이블로 만든 것엔 적용안됨! */
+.each-drama ol{
     width: 200px;
 }
+
 /* 드라마별 묶음요소 .drama > ul */
 .drama ul {
     /* 보더 */
@@ -99,8 +138,6 @@ section.drama {
     border-radius: 10px;
     /* 전체글자 */
     font-size: 15px;
-    /* 높이 맞춤 */
-    height: 145px;
 
 }
 
@@ -173,34 +210,4 @@ section.drama {
     /* 인라인요소의 앞뒤 마진,패딩은 적용됨! */
     padding-left: 5px;
     margin-left: 5px;
-}
-.menu {
-    
-    text-align: center;
-    color: #000000;
-}
-.menu h2{
-    /* 글자크기 fz */
-    font-size: 16px;
-    /* 글자두께 */
-    font-weight: normal;
-}
-.menu a {
-    /* 디자인 적용위해 display변경*/
-    display: inline-block;
-    line-height: 2.5;
-    /* 글자색 */
-    color: rgb(44, 88, 101);
-    /* 밑줄없앰 tdn */
-    text-decoration: none;
-    /* 양쪽마진 */
-    margin: 0 20px;
-}
-
-/* 하위 a.on */
-.menu a.on {
-    /* 글자색 진하게 */
-    color: #000;
-    /* 하단보더 */
-    border-bottom: 1px solid #000;
 }

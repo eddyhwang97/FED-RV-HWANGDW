@@ -2,11 +2,8 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>03.링크시스템-sub2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.링크시스템 - 서브2</title>
     <style>
       html,
       body,
@@ -14,9 +11,9 @@
         margin: 0;
         padding: 0;
       }
-      body {
-        background: url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29udGFjdHxlbnwwfHwwfHx8MA%3D%3D)
-          no-repeat center/cover;
+      body{
+        /* 배경넣기 */
+        background: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29udGFjdHxlbnwwfHwwfHx8MA%3D%3D') no-repeat center/cover;
       }
 
       /* 페이지 전환효과용 가림막 */
@@ -79,7 +76,6 @@
       }
     </style>
 
-    <!-- JS코드구역 -->
     <!-- 제이쿼리 라이브러리 CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -87,20 +83,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
 
     <!-- 링크시스템 JS -->
-    <script
-      src="./js/linksys.js"
-      defer
-    ></script>
+    <script src="./js/linksys.js" defer></script>
 
-    <script
-      src="./js/common.js"
-      defer
-    ></script>
+    <!-- JS코드구역 -->
+     <script src="./js/common.js" defer></script>
   </head>
   <body>
     <nav class="gnb">
-      <a href="#">HOME</a> |
-      <a href="#">WORK</a> |
+      <a href="#">HOME</a> | <a href="#">WORK</a> |
       <a href="#">CONTACT</a>
     </nav>
     <div class="wrap">

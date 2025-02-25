@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* ROBOT PJ : 리셋 CSS - reset.css */
+/* CGV PJ : 리셋 CSS - reset.css */
 /* 기본 초기화 셋팅 */
 
 
@@ -35,6 +35,7 @@ ul::after, ol::after{
     display: block;
     clear: both;
 }
+
 /* a요소 리셋 */
 a{
     color: #fff;

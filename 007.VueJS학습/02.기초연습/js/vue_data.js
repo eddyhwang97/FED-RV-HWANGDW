@@ -19,14 +19,17 @@ import store from "./vuedata_store.js";
 Vue.component("my-comp", {
   template: `
         <div class="grid">
-        <div v-for="
-        (v,i) in $store.state.items
-        /* 스토어 데이터 items를 직접 연결함
-         따라서 이값이 업데이트 되면 이스트도 
-         리랜더링됨 */
-        ">
+            <div v-for="
+            (v,i) in $store.state.items         
+            
+            /* 스토어 데이터 items를 직접 연결함
+            따라서 이값이 업데이트되면 리스트도
+            리랜더링됨! */
+
+            ">
                 <img 
                 v-bind:src="
+                // 이미지번호 50초과시 1번이미지 출력
                     './images/' +
                     (v.idx > 50 ? 1 : v.idx) +
                     '.jpg'
@@ -51,19 +54,22 @@ new Vue({
   el: "#app",
   store, // 뷰엑스 스토어 등록필수!
   data: {
-    items: {}, // json데이터 담을 변수
+    items: {}, // json데이터 담을 변수(여기서안씀!)
     myt: "나야나!",
   },
   // 뷰인스턴스 생성직후(가상돔/돔 생성전)
   created() {
-    // (1) 제이슨 데이터를 가져오기 위한 출발 코드구역
-    // (2) 제이슨 데이터를 DB에서 가져 온다고 할때
+    // 1. 제이슨 데이터를 가져오기 위한
+    // 출발 코드 구역은 바로 여기! careated()!
+    store.dispatch('getData');
+
+
+    // 제이슨 데이터를 DB에서 가져온다고할때
     // 가져오는 시간이 걸리므로
-    // 뷰엑스스토어 쪽에 호출하여 데이터를 가져오도록 한다
-    // 이때 비동기 호출인
-    // action 메서드구구역에 메서드를 만들고
+    // 뷰엑스 스토아쪽에 호출하여 데이터를
+    // 가져오도록 한다! 이때 비동기 호출인
+    // actions 메서드구역에 메서드를 만드고
     // 이것을 호출한다! 호출시 대리호출 메서드인
-    // dispatch("액션메서드명", 전달값)
-    store.dispatch("getData");
-  }, //////// created /////////////
+    // dispatch("엑션메서드명",전달값)
+}, //////// created /////////////
 });

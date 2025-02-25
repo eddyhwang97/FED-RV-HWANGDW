@@ -6,24 +6,32 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <title>robot PJ</title>
+    <title>Robot PJ</title>
     <!-- 파비콘 넣기(탭에 출력 아이콘) -->
     <link
       rel="shortcut icon"
       href="./images/favicon.png"
       type="image/x-icon"
     />
+    <!-- 메인 CSS -->
     <link
       rel="stylesheet"
       href="./css/robot.css"
     />
-    <!-- 애니css -->
-    <link rel="stylesheet" href="./css/robot_ani.css">
+    <!-- 애니 CSS -->
+    <link
+      rel="stylesheet"
+      href="./css/robot_ani.css"
+    />
     <!-- 미디어쿼리 CSS -->
-     <link rel="stylesheet" href="./css/robot_md.css">
+    <link
+      rel="stylesheet"
+      href="./css/robot_media.css"
+    />
+
+    <!-- 로봇 JS -->
+     <script src="./js/robot.js"></script>
   </head>
-  <!-- js  -->
-   <script src="./js/robot.js" defer></script>
   <body>
     <!-- 1. 상단영역 -->
     <div id="top-area">
@@ -36,7 +44,6 @@
         </button>
       </header>
     </div>
-
     <!-- 2. 메인영역 -->
     <div id="main-area">
       <main class="main-area">
@@ -90,14 +97,6 @@
                 class="metal2"
               ></span>
             </div>
-            <!-- 왼어깨 -->
-            <div
-              class="shdr shdr1 metal1"
-            ></div>
-            <!-- 오른어깨 -->
-            <div
-              class="shdr shdr2 metal1"
-            ></div>
             <!-- 왼다리 -->
             <div
               class="leg leg1 metal2"
@@ -114,44 +113,56 @@
                 class="metal2"
               ></span>
             </div>
-
+            <!-- 왼어깨 -->
+            <div
+              class="shdr shdr1 metal1"
+            ></div>
+            <!-- 오른어깨 -->
+            <div
+              class="shdr shdr2 metal1"
+            ></div>
             <!-- TV -->
             <div class="tv">
+              <!-- 스크린 -->
               <div class="screen">
+                <!-- 유튭동영상 -->
                 <iframe
                   src="https://www.youtube.com/embed/RMD91n01DuA"
-                  allow=" autoplay; "
+                  allow="autoplay"
                 ></iframe>
               </div>
               <!-- 컨트롤버튼 -->
               <div class="btns">
-                <button class="ch1" title="채널1">
+                <button class="ch1"
+                title="채널1">
                   ch1
                 </button>
-                <button class="ch2" title="채널2">
+                <button class="ch2"
+                title="채널2">
                   ch2
                 </button>
-                <button class="ch3" title="채널3">
+                <button class="ch3"
+                title="채널3">
                   ch3
                 </button>
-                <button class="scale" title="확대">
-                  ⌑
+                <button class="scale"
+                title="확대">
+                  ▣
                 </button>
               </div>
             </div>
           </div>
         </section>
-
         <!-- 2-2. 설명박스 -->
         <section class="text-box" id="text-box">
-          <!-- 2-2-1. 제목 -->
+          <!-- 2-2-1.제목 -->
           <h2>Robot</h2>
-          <!-- 2-2-2. 출처 -->
+          <!-- 2-2-2.출처 -->
           <small
-            >From Wikipidia, The Free
-            Encyclopedia</small
+            >From Wikipedia, the free
+            encyclopedia</small
           >
-          <!-- 2-2-3. 내용 -->
+          <!-- 2-2-3.내용 -->
           <p class="desc">
             A robot is a
             machine—especially one
@@ -309,9 +320,7 @@
         </section>
       </main>
     </div>
-
     <!-- 3. 하단영역 -->
-    <!-- 3-1. 회사정보 -->
     <div id="bottom-area">
       <footer class="bottom-area">
         <!-- 3-1. 회사정보 -->

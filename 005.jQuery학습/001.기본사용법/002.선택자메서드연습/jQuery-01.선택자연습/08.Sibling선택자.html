@@ -10,18 +10,21 @@
         //////// jQB ///////////////////
         // 미션: .first를 클릭하면 다음에 있는 형제요소인 li의 글자가 42px로 커지면서 margin-left값이 50px로 글자색은 red로 변경되게 하시오. 트랜지션 설정도 하시오.
         $('.first').click(
-         function () {
+         function(){
             // 다음의 형제요소 선택은 (+)를 사용함
-            // 직계자식(>)과 같이 비슷하게 사용함
+            // 직계자식(>)와 비슷하게 사용함!
+            // 트래버싱 메서드로 next()가 있음!
             $('+li',this)
-         //  $(this).next()
-          .css({
-            fontSize: "42px",
-            marginLeft: "50px",
-            color: "red",
-            transition: "all 0.5s",
-          }); ////css ////
-        }); /////click ///////
+            // $(this).next() -> 트래버싱 메서드 방법!
+            .css({
+               fontSize: '42px',
+               color:'red',
+               marginLeft: '50px',
+               transition: 
+                  `.5s, margin-left .7s .5s`
+
+            });/// css ///
+         });/// click ///
       }); //////////// jQB ///////////////////
     </script>
   </head>
@@ -30,106 +33,58 @@
     <div id="container">
       <nav>
         <ul class="list">
-          <li class="first">
-            나를 클릭해봐~!
-          </li>
-          <li class="second">
-            내가 커지지! ㅋㅋ
-          </li>
-          <li class="third">
-            난 뭥미?
-          </li>
+          <li class="first">나를 클릭해봐~!</li>
+          <li class="second">내가 커지지! ㅋㅋ</li>
+          <li class="third">난 뭥미?</li>
         </ul>
       </nav>
       <nav>
         <ul class="list">
-          <li class="first">
-            나를 클릭해봐~!
-          </li>
-          <li class="second">
-            내가 커지지! ㅋㅋ
-          </li>
-          <li class="third">
-            난 뭥미?
-          </li>
+          <li class="first">나를 클릭해봐~!</li>
+          <li class="second">내가 커지지! ㅋㅋ</li>
+          <li class="third">난 뭥미?</li>
         </ul>
       </nav>
       <nav>
         <ul class="list">
-          <li class="first">
-            나를 클릭해봐~!
-          </li>
-          <li class="second">
-            내가 커지지! ㅋㅋ
-          </li>
-          <li class="third">
-            난 뭥미?
-          </li>
+          <li class="first">나를 클릭해봐~!</li>
+          <li class="second">내가 커지지! ㅋㅋ</li>
+          <li class="third">난 뭥미?</li>
         </ul>
       </nav>
       <nav>
         <ul class="list">
-          <li class="first">
-            나를 클릭해봐~!
-          </li>
-          <li class="second">
-            내가 커지지! ㅋㅋ
-          </li>
-          <li class="third">
-            난 뭥미?
-          </li>
+          <li class="first">나를 클릭해봐~!</li>
+          <li class="second">내가 커지지! ㅋㅋ</li>
+          <li class="third">난 뭥미?</li>
         </ul>
       </nav>
       <nav>
         <ul class="list">
-          <li class="first">
-            나를 클릭해봐~!
-          </li>
-          <li class="second">
-            내가 커지지! ㅋㅋ
-          </li>
-          <li class="third">
-            난 뭥미?
-          </li>
+          <li class="first">나를 클릭해봐~!</li>
+          <li class="second">내가 커지지! ㅋㅋ</li>
+          <li class="third">난 뭥미?</li>
         </ul>
       </nav>
       <nav>
         <ul class="list">
-          <li class="first">
-            나를 클릭해봐~!
-          </li>
-          <li class="second">
-            내가 커지지! ㅋㅋ
-          </li>
-          <li class="third">
-            난 뭥미?
-          </li>
+          <li class="first">나를 클릭해봐~!</li>
+          <li class="second">내가 커지지! ㅋㅋ</li>
+          <li class="third">난 뭥미?</li>
         </ul>
       </nav>
       <nav>
         <ul class="list">
-          <li class="first">
-            나를 클릭해봐~!
-          </li>
-          <li class="second">
-            내가 커지지! ㅋㅋ
-          </li>
-          <li class="third">
-            난 뭥미?
-          </li>
+          <li class="first">나를 클릭해봐~!</li>
+          <li class="second">내가 커지지! ㅋㅋ</li>
+          <li class="third">난 뭥미?</li>
         </ul>
       </nav>
       <nav>
         <ul class="list">
-          <li class="first">
-            나를 클릭해봐~!
-          </li>
-          <li class="second">
-            내가 커지지! ㅋㅋ
-          </li>
-          <li class="third">
-            난 뭥미?
-          </li>
+          <li class="first">나를 클릭해봐~!</li>
+          <li class="second">내가 커지지! ㅋㅋ</li>
+          <li class="third">난 뭥미?</li>
         </ul>
       </nav>
     </div>

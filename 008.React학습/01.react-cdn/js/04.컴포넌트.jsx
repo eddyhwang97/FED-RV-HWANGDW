@@ -2,9 +2,10 @@
 
 // 내함수 불러오기
 import myFn from "./my_function";
-// 외부 jsx파일 불러오기
+
+// 외부jsx 파일 불러오기
 import Avengers from "./avengers";
-// 리액트에서는 CDN 에서도 from뒤에 파일명에 "js/jsx"를 생략해도 유효하다
+// 리액트에서는 CDN에서도 from 뒤에 파일명에 "js/jsx"를 생략해도 유효하다!
 
 /************************************************* 
     [ 리액트 컴포넌트 ]
@@ -31,7 +32,7 @@ import Avengers from "./avengers";
     (안지키면 적용안됨!!!)
 
     [ 클래스형 컴포넌트 ]
-    클래스 컴포넌트에서는 
+    클래스형 컴포넌트에서는 
     extends React.Component 상속문이 포함돼야함!
 
     -> 컴포넌트에서도 메서드가 필요함
@@ -39,43 +40,45 @@ import Avengers from "./avengers";
     (함수형 컴포넌트의 return 키워드를 
         사용할 수 있는 역할을 함!)
 
-    
-    [ 컴포넌트의 호출 ]
-    1. 컴포넌트 이름과 동일한 홀로 태그로 호출한다.
-    
-    2. 전달값은 태그의 속성셋팅과 같은 방식으로 보내준다
-    예) fuction HaHaHa(){return 코드}
+    ____________________________________
 
-    ((호출))
-    <HaHaHa king="킹" wang="왕" zzang="짱">
+    [ 컴포넌트의 호출 ]
+     1. 컴포넌트이름과 동일한 홀로 태그로 호출한다
+     2. 전달값은 태그의 속성셋팅과 같은 방식으로 보내준다
+
+     예) 
+     function HaHaHa({king,wang,zzang})
+     {return 코드}
+
+     ((호출))
+     <HaHaHa king="킹" wang="왕" zzang="짱" />
 
 *************************************************/
-
-///////[ 클래스형 컴포넌트 만들기 ]
+/// [ 클래스형 컴포넌트 만들기 ] /////
 class GoghWork extends React.Component {
-  // 클래스형 컴포넌트에서는 render()메서드로
-  // HTML 코드를 리턴한다! 내부에 return구문 필요!!
+  // 클래스형 컴포넌트에서는 render() 메서드로
+  // HTML 코드를 리턴한다! 내부에 return 구문필요!
   render() {
-    // html 코드 리턴
+    // html코드 리턴
     return (
       <React.Fragment>
-        <h2>안녕! 나는 고흐 그림이야!</h2>
+        <h2>안녕! 나는 고흐그림이야!</h2>
         <MakeImage isrc="01.png" ialt="고흐그림" />
         {/* <img src="./images/01.png" alt="고흐그림" /> */}
       </React.Fragment>
     );
-  } ///render 메서드
-} /////GoghWork 클래스형 컴포넌트
+  } //// render 메서드 ///
+} ////// GoghWork 클래스형 컴포넌트 ////
 
-// 전체출력요소 대상 선정하기 //
+// 전체 출력요소 대상 선정하기 ////
 const target = myFn.qsa(".root");
 
-// 첫번째 root에 고흐 출력하기
-// ReactDOM.render(출력할컴포넌트,출력요소)
+// 첫번째 .root에 고흐출력하기 ///
+// ReactDOM.render(컴포넌트,출력요소)
 ReactDOM.render(<GoghWork />, target[0]);
 
-// [ 함수형 컴포넌트 만들기 ]
-// 첫글자는 대문자
+// [ 함수형 컴포넌트 만들기 ] //////
+// 첫글자는 대문자!!
 function IronMan() {
   return (
     <React.Fragment>
@@ -84,69 +87,87 @@ function IronMan() {
       {/* <img src="./images/ab1.jpg" alt="아이언맨" /> */}
     </React.Fragment>
   );
-} ///////IronMan
-// 두번째 .root 에 츨력
+} /////// IronMan 함수형 컴포넌트 ///////
+
+// 두번째 .root에 출력하기 ////
 ReactDOM.render(<IronMan />, target[1]);
 
-// [ 이미지 생성 공통 컴포넌트 ]
-// function MakeImage({ ialt, isrc }) {
+// [ 이미지생성 공통 컴포넌트 ] ////
+// function MakeImage({ isrc, ialt }) {
 function MakeImage(헐) {
-  console.log("전달객체", 헐);
-  // {ialt,isrc} - 구조분해 할당
-  // 객체가 들어올때 해당 속성명으로 받으면 된다!
+  console.log("전달객체:", 헐);
+  // 컴포넌트에 전달되는 값은 객체로 전달된다!
+  // {ialt, isrc} - 구조분해할당
+  // 객체가 들어올때 해당 속성명으로 받으면된다!
   return (
     <figure>
       <img src={"./images/" + 헐.isrc} alt={헐.ialt} />
       <figcaption>{헐.ialt}</figcaption>
     </figure>
   );
-} ///////MakeImage 컴포넌트
+} ////////// MakeImage 컴포넌트 ///////
 
-function FavoriteThings(조아) {
-  return (
-    <h2>
-      내가 좋아하는 색은 {조아.color} 이야! <br />
-      내가 음식은 {조아.food} 이야! <br />
-      내가 취미은 {조아.habby} 야! 알겠니? <br />
-    </h2>
-  );
-} ///FavoriteThings ////
+// 내가 좋아하는 색 표시하기 컴포넌트 /////
+function FavoriteThings(조아){
+    return (
+        <h2>
+            내가 좋아하는 색은 {조아.color}이야! <br />
+            내가 좋아하는 음식은 {조아.food}야! <br />
+            취미는 {조아.hobby}야! 알겠니??? <br />
+        </h2>
+    );
+} //////// FavoriteThings 컴포넌트 ///////
 
-// 좋아하는 색과 음식 , 취미를 각각 속성명으로 생성하여
+// 좋아하는 색과 음식, 취미를 각각 속성명으로 생성하여
 // 컴포넌트를 호출하면 개별적으로 속성값을 다르게 출력할 수 있다!
 
 // 출력 : 세번째 .root
-ReactDOM.render(<FavoriteThings color="와인색" food="김치전" habby="닭다리먹기" />, target[2]);
+ReactDOM.render(
+<FavoriteThings
+    color="와인색" 
+    food="와인이" 
+    hobby="와인마시기" 
+/>, target[2]);
 
-// 출력 : 세번째 .root
-ReactDOM.render(<FavoriteThings color="브라운색" food="삼겹살" habby="축구" />, target[3]);
+// 출력 : 네번째 .root
+ReactDOM.render(
+<FavoriteThings
+    color="푸르딩딩한색" 
+    food="김치전이" 
+    hobby="야구보기" 
+/>, target[3]);
+
 
 /************************************************* 
     컴포넌트 내부에서 다른 컴포넌트를 호출 할 수 있다!
 *************************************************/
 
-function Who() {
-  return (
-    <div>
-      <h1>김똑팔이가 누구야?</h1>
-      {/* 다른컴포넌트 넣기 */}
-      <Answer />
-    </div>
-  );
-} ///////// Who 컴포넌트 ///////////////
+function Who(){
+    return (
+      <div>
+        <h1>김똑팔이가 누구야?</h1>
+        {/* 다른컴포넌트 넣기 */}
+        <Answer />
+      </div>
+    );
+  } ///////// Who 컴포넌트 ///////////////
+  
+  // 컴포넌트 내부에서 호출할 컴포넌트 /////
+  function Answer(){
+    return <h2>김씨가 똑하고 팔이 부러졌대!</h2>
+  } /////////// Answer 컴포넌트 //////////////
+  
+  // 출력: 다섯번째 .root
+  ReactDOM.render(<Who />,target[4]);
+  
 
-// 컴포넌트 내부에서 호출할 컴포넌트 /////
-function Answer() {
-  return <h2>김씨가 똑하고 팔이 부러졌대!</h2>;
-} /////////// Answer 컴포넌트 //////////////
+  // [ 외부파일 컴포넌트 출력하기 ]
+  // 출력: 여섯번째 .root
+  ReactDOM.render(<Avengers />,target[5]);
 
-// 출력: 다섯번째 .root
-ReactDOM.render(<Who />, target[4]);
 
-// [외부파일 컴포넌트 출력하기]
-// 출력: 여섯번째 .root
-ReactDOM.render(<Avengers  />, target[5]);
-/*************************************************** 
+
+  /*************************************************** 
     [ 컴포넌트의 파일분리 ]
     리액트는 코드를 재사용하는 것이므로
     컴포넌트를 별도의 파일로 분할 하는것 일반적이다!

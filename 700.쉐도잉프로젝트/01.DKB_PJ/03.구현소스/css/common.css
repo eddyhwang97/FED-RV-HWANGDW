@@ -1,0 +1,182 @@
+@charset "utf-8";
+
+/* 도깨비 PJ : 공통 모듈 CSS - common.css */
+/* 공유기능 요소 셋팅 */
+
+/**************** 1. 상단영역 ****************/
+/* 겉박스 */
+#top-area {
+  position: relative;
+  /* .smenu의 부모 */
+  z-index: 999;
+  /* 가장위! */
+}
+.top-area {
+  /* 최소높이설정 : 최소높이보다 컨텐츠가
+  많아지면 높이값이 auto로 전환되어 늘어남! */
+  min-height: 120px;
+}
+/* 1-1.로고영역 - 로고 */
+.logo {
+  padding: 18px 10px;
+}
+/* 1-2. 메뉴영역/메뉴박스 */
+.menu-box {
+  display: flex;
+  /* row사이간격 */
+  gap: 42px;
+  /* 세로진행방향 */
+  flex-direction: column;
+  /* 진행방향 정렬 */
+  justify-content: flex-end;
+  /* 진행방향수직 정렬 */
+  align-items: flex-end;
+
+  /* 마진탑 위치이동 */
+  margin-top: 8px;
+
+  /* 높이값 부모박스만큼 */
+  height: 100%;
+}
+/* 1-2. 메뉴영역/메뉴박스/탑메뉴 */
+.top-menu {
+  font-size: 1.3rem;
+}
+.top-menu ul {
+  gap: 1.6rem;
+}
+
+/*  1-2. 메뉴영역/메뉴박스/GNB메뉴 */
+.gnb {
+  font-size: 1.6rem;
+}
+.gnb ul {
+  gap: 3.2rem;
+}
+/* gnb 상위 a요소 */
+.gnb ul > li > a {
+  padding-bottom: 10px;
+}
+/* gnb 상위 li 오버시 a요소
++ 서브메뉴 a오버시 */
+.gnb ul > li:hover > a,
+.smenu a:hover {
+  color: red;
+}
+/* gnb 상위 li 오버시 a요소
+밑줄 디자인 보이기 */
+.gnb ul > li > a::after {
+  content: "";
+  display: block;
+  margin-top: 5px;
+  height: 4px;
+  background-color: #fff;
+}
+.gnb ul > li:hover > a::after {
+  background-color: #222;
+}
+
+/* 아래화살표 아이콘 */
+.gnb i {
+  font-size: 1rem;
+  vertical-align: 0.3rem;
+}
+
+/* 서브메뉴 */
+aside.smenu {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  /* 숨길 박스는 패딩주지말것!(하위박스에 줘라)
+  왜? height 0 할때 패딩이 보임! */
+  max-height: 0;
+  transition: max-height 0.6s ease-in-out;
+  /* 부모는? 최상위 상단영역 #top-area */
+  background-color: white;
+  overflow: hidden;
+  /* 상단보더 */
+  border-top: 2px solid #ccc;
+}
+/* 마우스 오버시 보이기 */
+.gnb > ul > li:hover .smenu {
+  max-height: 300px;
+}
+/* 서브 속박스 */
+.smenu > div {
+  padding: 20px;
+  /* 패딩,보더 포함박스 */
+  box-sizing: border-box;
+}
+/* 서브제목 */
+.smenu h2 {
+  font-size: 3rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+/* 서브 리스트 */
+.smenu ol {
+  /* 플렉스 랩핑박스 */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 7rem;
+  font-size: 2rem;
+}
+
+/**************** 2. 하단영역 ****************/
+#footer-area {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  padding-bottom: 80px;
+  background: url(../images/footer_bg_tvn-pc.png) no-repeat center/cover;
+}
+
+/* 하단링크박스 */
+.info-link ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 15px;
+}
+.info-link a {
+  font-size: 1.4rem;
+  line-height: 2.5;
+  white-space: nowrap;
+}
+/* 바로가기 콤보박스 영역 */
+.combo-area {
+  text-align: right;
+}
+.combo-area select {
+  width: 170px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(230, 230, 230);
+  font-size: 1.5rem;
+  margin: 5px;
+}
+/* 하단로고박스 */
+.footer__logo {
+  padding: 20px 0;
+}
+/* 회사주소박스 */
+.corp-info {
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 1.8;
+}
+/* SNS박스 */
+.sns-box ul {
+  display: flex;
+  gap: 0 5px;
+}
+.sns-box li {
+  width: 35px;
+  height: 35px;
+  /* 플렉스 강제줄이기 해제 */
+  flex-shrink: 0;
+  line-height: 38px;
+  font-size: 1.8rem;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid gray;
+}

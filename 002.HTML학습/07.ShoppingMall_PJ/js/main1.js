@@ -10,21 +10,21 @@ import myFn from "./my_function.js";
     3. 변경 대상: 슬라이드 박스(.slide)
     4. 기능 설계:
 
-        (1) 오른쪽 버튼 클릭시 다음 슬라이드가
-            나타나도록 슬라이드 박스의 translate값을
-            -100% 단위로 값을 증가하여 변경시킨다.
+      (1) 오른쪽 버튼 클릭시 다음 슬라이드가
+          나타나도록 슬라이드 박스의 translate값을
+          -100% 단위로 값을 증가하여 변경시킨다.
 
-        (2) 왼쪽 버튼 클릭시 이전 슬라이드가
-            나타나도록 슬라이드 박스의 translate값을
-            -100% 단위로 값을 감소하여 변경시킨다.
+      (2) 왼쪽 버튼 클릭시 이전 슬라이드가
+          나타나도록 슬라이드 박스의 translate값을
+          -100% 단위로 값을 감소하여 변경시킨다.
 
-        (3) 이동 중 첫번째 슬라이드는 왼쪽이동버튼 숨기기
-            마지막 슬라이드는 오른쪽이동버튼 숨기기함!
+      (3) 이동 중 첫번째 슬라이드는 왼쪽이동버튼 숨기기
+          마지막 슬라이드는 오른쪽이동버튼 숨기기함!
 
-        (4) 공통기능: 슬라이드 위치표시 블릿
-            - 블릿 대상: .indic li
-            - 변경 내용: 슬라이드 순번과 같은 순번의
-            li에 클래스 "on"주기(나머진 빼기->초기화!)
+      (4) 공통기능: 슬라이드 위치표시 블릿
+          - 블릿 대상: .indic li
+          - 변경 내용: 슬라이드 순번과 같은 순번의
+          li에 클래스 "on"주기(나머진 빼기->초기화!)
 
 *****************************************************/
 
@@ -41,41 +41,22 @@ const slideBox = myFn.qs(".slide-box");
 // 동일한 기능이 될 수 있게 해준다!
 
 // (2) 이벤트대상: .abtn
-const abtn = myFn.qsaEl(
-  slideBox,
-  ".abtn"
-);
+const abtn = myFn.qsaEl(slideBox, ".abtn");
 // 처음에 첫번째 버튼 숨기기
 abtn[0].style.display = "none";
 
 // (3) 변경대상: .slide
-const slide = myFn.qsEl(
-  slideBox,
-  ".slide"
-);
-
-// (4) 인디케이터 블릿대상
-const indic = myFn.qsaEl(
-  slideBox,
-  ".indic li"
-);
-console.log(
-  "대상:",
-  abtn,
-  slide,
-  indic
-);
-
+const slide = myFn.qsEl(slideBox, ".slide");
 // 슬라이드 개수 변수할당!
 // 보통 변경없이 사용하는 변수는 상수라고 하고
 // 상수는 보통 대문자로 쓰고 스네이크 케이스 사용함!
-const SLIDE_CNT = myFn.qsaEl(
-  slide,
-  "li"
-).length;
+const SLIDE_CNT = myFn.qsaEl(slide, "li").length;
 console.log("슬라이드개수:", SLIDE_CNT);
 
-// console.log("대상:",slideBox,abtn,slide);
+// (4) 인디케이터 블릿대상
+const indic = myFn.qsaEl(slideBox, ".indic li");
+
+// console.log("대상:",slideBox,abtn,slide,indic);
 
 // 2. 이벤트 설정하기 ////////////////////
 abtn.forEach((el) => {
@@ -91,8 +72,7 @@ function goSlide() {
   // console.log('나함수!',this);
 
   // 2. 오른쪽버튼여부 확인
-  let isRight =
-    this.classList.contains("ab2");
+  let isRight = this.classList.contains("ab2");
   // classList.contains(클래스명) -> 클래스있으면 true
   console.log("나함수!", isRight);
 
@@ -103,8 +83,7 @@ function goSlide() {
     // 한계값 설정 :
     // -> 마지막 슬라이드 순번보다 크면 마지막번호고정
     // 위에서 슬라이드개수는 상수 SLIDE_CNT에 있음!
-    if (seqNum > SLIDE_CNT - 1)
-      seqNum = SLIDE_CNT - 1;
+    if (seqNum > SLIDE_CNT - 1) seqNum = SLIDE_CNT - 1;
   } /// if ///
   // (2) 왼쪽일때 감소
   else {
@@ -117,10 +96,8 @@ function goSlide() {
   console.log("슬순번:", seqNum);
 
   // 4. 슬라이드 CSS변경하여 슬라이드 이동하기
-  slide.style.translate =
-    seqNum * -100 + "%";
-  slide.style.transition =
-    ".4s ease-in-out";
+  slide.style.translate = seqNum * -100 + "%";
+  slide.style.transition = ".4s ease-in-out";
 
   // 5. 순번이 끝번호일때 버튼 숨기기 보이기 처리
   if (seqNum === 0) {
@@ -138,21 +115,20 @@ function goSlide() {
   } /// else ///
 
   // 6. 인디케이터 변경하기 : 대상 .indic li
-  // ->seqNum값 즉, 슬라이드 순번과
-  // 인디케이터 li순번이 같으므로
-  // 해당순번의 li에 클래스 on을 넣고
-  // 나머지는 on을 제거한다.
   indic.forEach((el, idx) => {
-    console.log(el, idx);
-
-    // (1) 페이지번호와 이치하는 순번li에 클래스 "on"넣기
+    // console.log(el,idx);
+    // (1) 페이지번호와 일치하는 순번li에 클래스 "on"넣기
     if (idx === seqNum) {
       el.classList.add("on");
-    } 
-     // (2) 나머지 li는 "on" 지우기
+    } /// if ///
+    // (2) 나머지 li는 "on" 제거하기
     else {
       el.classList.remove("on");
-    }///else ///
-   
-  }); ///forEach ///
+    } /// else ///
+  }); /// forEach ////
+
+  // -> seqNum 값 즉, 슬라이드 순번과
+  // 인디케이터 li 순번이 같으므로
+  // 해당순번의 li에 클래스"on"을 넣고
+  // 나머지는 "on"을 제거한다!
 } ////////// goSlide함수 /////////////

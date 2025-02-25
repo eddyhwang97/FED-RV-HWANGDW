@@ -105,8 +105,6 @@ body{
 
     /* 처음에 멈춤상태로 애니메이션 셋팅 */
     animation-play-state: paused;
-
-    
 }
 /* .cont에 마우스 오버시 문여닫기 애니작동 */
 .cont:hover .door{

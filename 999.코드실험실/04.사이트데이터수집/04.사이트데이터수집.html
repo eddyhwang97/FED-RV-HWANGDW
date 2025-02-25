@@ -2,74 +2,49 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>04.사이트 데이터 수집</title>
     <script>
-      window.addEventListener(
-        "load",
-        () => {
-          /************************************* 
-          [ 1. 내가 사용할 데이터 정의하기]
-          1. 유일키 만들기 : idx
+      window.addEventListener('load',()=>{
+
+        /****************************** 
+          [ 1. 내가 사용할 데이터 정의하기 ]
+
+          1. 유일키만들기 : idx
           2. 카테고리 : catName (.category 텍스트)
           3. 제목 : title (h3 텍스트)
           4. 이미지경로 : imgSrc (img - src속성값)
           5. 날짜글쓴이 : dateWriter (.date 텍스트)
-          ___________________________________
+        ____________________________
 
-          [ 2. 정보의 객체화]
+          [ 2. 정보의 객체화 ]
           
           {
-          idx : "값",
-          catName : "값",
-          title : "값",
-          imgSrc : "값",
-          dateWriter : "값"
+            idx : "값",
+            catName : "값",
+            title : "값",
+            imgSrc : "값",
+            dateWriter : "값"
           }
-          ___________________________________
-
-          [ 3. 객체의 배열만들기]
-           (1) 빈배열 변수
-           (2) 반복요소 순회하여 객체를 만들고
+          ____________________________
+    
+          [ 3. 객체의 배열만들기 ]
+            (1) 빈배열변수
+            (2) 반복요소 순회하여 객체를 만들고
                배열값으로 넣기(push메서드)
-               ->이때 forEach메서드 사용!
-           (3) 결과를 console로 찍어서 복사
-           (4) 제이슨 문서 또는 JS문서로 파일생성
+               -> 이때 forEach메서드 사용!
+            (3) 결과를 console로 찍어서 복사
+            (4) 제이슨 문서 또는 JS문서로 파일생성
+        ********************************************/
 
-        *************************************/
-
-          // 1. 배열변수 만들기
-          const myArr = [];
-          // 2. 반복요소 선택하여 forEach 돌리기
-          document
-            .querySelectorAll("ul#post_list li")
-            .forEach((el, idx) => {
-              // 3. 배열값으로 객체를 구성하여 넣기
-              myArr.push({
-                idx: idx+1,
-                catName: el.querySelector('.category').innerText,
-                title: el.querySelector('h3').innerText,
-                imgSrc: el.querySelector('img').src,
-                dateWriter: el.querySelector('.date').innerText,
-              });
-            }); /////forEach //////////
-
-            // 콘솔출력하기
-            console.log(myArr);
-
-
-            {
-             // 1. 배열변수만들기
+        // 1. 배열변수만들기
         const myArr = [];
         // 2. 반복요소 선택하여 forEach돌리기
-        document.querySelectorAll('.post_list.main_fashion_list li')
+        document.querySelectorAll('.ly_post li')
         .forEach((el,idx)=>{
           // 3. 배열값으로 객체를 구성하여 넣기
           myArr.push({
-            idx : idx+1,
+            idx : idx+32,
             catName : el.querySelector('.category').innerText,
             title : el.querySelector('h3.s_tit').innerText,
             imgSrc : el.querySelector('img').src,
@@ -81,11 +56,10 @@
 
         // 콘솔 출력하기
         console.log(myArr);
-            }
 
 
-        }
-      ); /////load //////////////////////
+      }); /////////// load ///////////////////
+      
     </script>
   </head>
   <body>
@@ -115,19 +89,10 @@
             /></noscript>
           </div>
           <div class="content">
-            <p class="category">
-              패션 아이템
-            </p>
-            <h3>
-              부츠컷 리부트! 이번 시즌
-              데님 트렌드 부츠컷 청바지
-              입는 법
-            </h3>
+            <p class="category">패션 아이템</p>
+            <h3>부츠컷 리부트! 이번 시즌 데님 트렌드 부츠컷 청바지 입는 법</h3>
             <p class="date">
-              2024.04.30<span
-                >by 황혜원, Alice Cary,
-                Joy Montgomery</span
-              >
+              2024.04.30<span>by 황혜원, Alice Cary, Joy Montgomery</span>
             </p>
           </div>
         </a>
@@ -157,19 +122,11 @@
             /></noscript>
           </div>
           <div class="content">
-            <p class="category">
-              셀러브리티 스타일
-            </p>
+            <p class="category">셀러브리티 스타일</p>
             <h3>
-              이번 일요일에 입고 싶은
-              다코타 존슨의 흰색
-              청바지와 스니커즈 조합
+              이번 일요일에 입고 싶은 다코타 존슨의 흰색 청바지와 스니커즈 조합
             </h3>
-            <p class="date">
-              2024.03.13<span
-                >by 황혜원</span
-              >
-            </p>
+            <p class="date">2024.03.13<span>by 황혜원</span></p>
           </div>
         </a>
       </li>
@@ -198,19 +155,9 @@
             /></noscript>
           </div>
           <div class="content">
-            <p class="category">
-              셀러브리티 스타일
-            </p>
-            <h3>
-              청바지에 샌들로 완벽하게
-              청순해진 앤 해서웨이의
-              스프링 룩
-            </h3>
-            <p class="date">
-              2024.03.25<span
-                >by 황혜원</span
-              >
-            </p>
+            <p class="category">셀러브리티 스타일</p>
+            <h3>청바지에 샌들로 완벽하게 청순해진 앤 해서웨이의 스프링 룩</h3>
+            <p class="date">2024.03.25<span>by 황혜원</span></p>
           </div>
         </a>
       </li>
@@ -239,18 +186,10 @@
             /></noscript>
           </div>
           <div class="content">
-            <p class="category">
-              Fashion
-            </p>
-            <h3>
-              지젤 번천을 더욱 길고
-              늘씬하게 만들어준 청바지
-            </h3>
+            <p class="category">Fashion</p>
+            <h3>지젤 번천을 더욱 길고 늘씬하게 만들어준 청바지</h3>
             <p class="date">
-              2024.03.12<span
-                >by 황혜원, Héloïse
-                Salessy</span
-              >
+              2024.03.12<span>by 황혜원, Héloïse Salessy</span>
             </p>
           </div>
         </a>
@@ -280,17 +219,9 @@
             /></noscript>
           </div>
           <div class="content">
-            <p class="category">
-              셀러브리티 스타일
-            </p>
-            <h3>
-              가을에도 청순할 수 있어요
-            </h3>
-            <p class="date">
-              2023.09.07<span
-                >by 황혜원</span
-              >
-            </p>
+            <p class="category">셀러브리티 스타일</p>
+            <h3>가을에도 청순할 수 있어요</h3>
+            <p class="date">2023.09.07<span>by 황혜원</span></p>
           </div>
         </a>
       </li>

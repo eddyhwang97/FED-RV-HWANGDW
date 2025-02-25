@@ -104,8 +104,7 @@ figcaption {
 }
 
 /* ul,ol 순번,블릿없앰 */
-ul,
-ol {
+ul, ol {
   list-style: none;
 }
 
@@ -116,24 +115,19 @@ a {
 }
 
 /* heading 요소 글자크기 */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
   /* 박스 디자인시 글자크기로 인한
-    영향을 없애기 위한 초기화! */
+  영향을 없애기 위한 초기화! */
 }
 
 /* 이미지 초기화 */
 img {
   /* 이미지 링크시 서버에서 볼때
-    파란 테두리 없앰 */
+  파란 테두리 없앰 */
   border: none;
   /* 박스에 이미지만 넣을때
-    엔터간극 4px 하단공백 없애기  */
+  엔터간극 4px 하단공백 없애기  */
   vertical-align: middle;
 }
 
@@ -143,7 +137,7 @@ img {
 }
 
 .top-area {
-  color: #a40606;
+  color: #a31212;
 }
 .top-area h1 {
   color: aqua;
@@ -152,22 +146,21 @@ img {
   text-align: center;
   text-decoration: underline;
   text-underline-offset: 10px;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4901960784);
+  text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4901960784);
   margin-bottom: 40px;
-  background-color: #ed8c37;
+  background-color: #e46d0b;
   background-image: url(../images/flower.png);
-  background-position: 0;
+  background-position: center;
   background-repeat: repeat-x;
   background-size: 70px;
   padding: 20px;
 }
 .top-area h1::before {
-  content: "👑";
+  content: "🎎";
 }
 .top-area h2 {
   position: relative;
   font-size: 30px;
-  text-align: center;
 }
 .top-area h2 span {
   position: absolute;
@@ -209,75 +202,76 @@ img {
 }
 
 .main-area section {
-  border-color: red;
+  border-color: blue;
   border-style: dashed;
   border-width: 7px;
   margin-bottom: 20px;
   padding: 20px;
 }
-.main-area h3 {
+.main-area section h3 {
   color: navy;
   font-size: 40px;
   font-family: "Times New Roman";
   text-align: center;
   text-decoration: underline;
   text-underline-offset: 10px;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4901960784);
+  text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4901960784);
 }
-.main-area h3::before {
-  content: "👑";
+.main-area section h3::before {
+  content: "🏀";
 }
-.main-area ul,
-.main-area ol,
-.main-area p {
+.main-area section ul,
+.main-area section ol,
+.main-area section p {
   line-height: 2;
   font-size: 24px;
 }
-.main-area ul li,
-.main-area ol li,
-.main-area p li {
+.main-area section ul li,
+.main-area section ol li,
+.main-area section p li {
   text-decoration: underline;
+  text-underline-offset: 10px;
   text-decoration-thickness: 5px;
-  text-decoration-color: #374ced;
+  text-decoration-color: #204ffc;
   text-align: center;
   background-color: #ff0;
 }
-.main-area ul li:first-child,
-.main-area ol li:first-child,
-.main-area p li:first-child {
+.main-area section ul li:first-child,
+.main-area section ol li:first-child,
+.main-area section p li:first-child {
   color: orchid;
   font-weight: bold;
   font-size: 30px;
   text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000;
 }
-.main-area ul li:nth-child(2),
-.main-area ol li:nth-child(2),
-.main-area p li:nth-child(2) {
+.main-area section ul li:nth-child(2),
+.main-area section ol li:nth-child(2),
+.main-area section p li:nth-child(2) {
   border-left: 40px solid red;
   border-right: 40px solid red;
 }
-.main-area ul li:nth-child(3),
-.main-area ol li:nth-child(3),
-.main-area p li:nth-child(3) {
+.main-area section ul li:nth-child(3),
+.main-area section ol li:nth-child(3),
+.main-area section p li:nth-child(3) {
   border-left: 60px solid red;
   border-right: 60px solid red;
 }
-.main-area ul li:nth-child(4),
-.main-area ol li:nth-child(4),
-.main-area p li:nth-child(4) {
+.main-area section ul li:nth-child(4),
+.main-area section ol li:nth-child(4),
+.main-area section p li:nth-child(4) {
   border-left: 80px solid red;
   border-right: 80px solid red;
 }
-.main-area ul li:nth-child(5),
-.main-area ol li:nth-child(5),
-.main-area p li:nth-child(5) {
+.main-area section ul li:nth-child(5),
+.main-area section ol li:nth-child(5),
+.main-area section p li:nth-child(5) {
   border-left: 100px solid red;
   border-right: 100px solid red;
 }
-.main-area ul li::before,
-.main-area ol li::before,
-.main-area p li::before {
-  content: "😀";
+.main-area section ul li::before,
+.main-area section ol li::before,
+.main-area section p li::before {
+  content: "😘";
 }
 
 .box-basic, .bottom-title, .button-box, .top-area h2 {
@@ -286,17 +280,17 @@ img {
 }
 
 .bottom-title {
-  color: red;
+  color: darkred;
   font-size: 40px;
   font-family: "Times New Roman";
   text-align: center;
   text-decoration: underline;
   text-underline-offset: 10px;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4901960784);
+  text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4901960784);
   margin-bottom: 50px;
 }
 .bottom-title::before {
-  content: "👑";
+  content: "🥽";
 }
 
 .button-basic, .button-report {

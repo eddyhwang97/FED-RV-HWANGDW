@@ -86,18 +86,22 @@
 
 
 *********************************************/
-// 초기화 셋팅 sass 불러오기
-@import "./common/reset";
 // 변수 셋팅 sass 불러오기
 @import "./data/variables";
 
-// @mixin셋팅하기
-// (1) 타이틀 디자인 믹스인하기
-// @mixin title-text { -> 전달변수 없는 경우
-// @mixin title-text($selColor) { -> 전달변수 있는 경우
-@mixin title-text($selColor: red, $icon: "👑") {
+// 초기화 셋팅 sass 불러오기
+@import "./common/reset";
+// 주의: 파일선택후 실제로 부분파일 앞에 언더바와
+// 뒤에 scss 확장자는 사라진다!(안써도됨!)
+
+// @mixin 셋팅하기 ///////////////////
+// (1) 타이틀 디자인 믹스인
+// @mixin title-text { -> 전달변수없는 경우
+// @mixin title-text($selColor) { -> 전달변수있는 경우
+@mixin title-text($selColor: red, $icon: "🏀") {
+  //->기본값 주기
   color: $selColor;
-  // [속성접두어 묶음기법]
+  // [ 속성접두어 묶음기법 ]
   font: {
     size: $fontSize1;
     family: "Times New Roman";
@@ -106,16 +110,13 @@
     align: center;
     decoration: underline;
     underline-offset: 10px;
-    shadow: 5px 5px 5px #0000007d;
+    shadow: 5px 5px 4px #0000007d;
   }
-  //   가상요소 아이콘 넣기
+  // 가상요소 아이콘 넣기
   &::before {
-    content: "👑";
+    content: $icon;
   }
 }
-
-// 주의: 파일선택후 실제로 부분파일 앞에 언더바와
-// 뒤에 scss확장자는 사라진다.(안써도됨!)
 
 // 전체 페이지 요소
 .wrapper {
@@ -125,46 +126,48 @@
 
 // 상단영역
 .top-area {
-  // 박스글자
-  color: $maincolor1;
-
-  // [네스팅기법]
+  // 박스 글자
+  color: $mainColor1;
+  //[ 네스팅 기법 ]
   h1 {
     // 타이틀 믹스인 호출
-    @include title-text($orgAqua, "😍");
+    @include title-text($orgAqua, "🎎");
+    // @include 믹스인이름;
 
     // 하단마진
     margin-bottom: $fontSize1;
+
     // 배경설정
     background: {
-      color: $maincolor1-2;
+      color: $mainColor1-2;
       image: url(../images/flower.png);
-      position: 0;
+      position: center;
       repeat: repeat-x;
       size: 70px;
     }
+
     // 패딩
     padding: 20px;
   }
-  //   서브 타이틀 박스
+  // 서브 타이틀 박스
   h2 {
-    // 자식 span의 부모
+    // 자식span의 부모자격
     position: relative;
     font-size: $fontSize3;
     // 박스공통설정
     @extend .box-basic;
-    text-align: center;
+    // text-align: center;
     // padding: 20px 0;
 
-    // 원모양 4개의 span
+    // 원모양 4개의 span ///
     span {
       position: absolute;
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      //   background-color: #000;
+      // background-color: #000;
 
-      //  각span 위치잡기
+      // 각 span위치잡기
       @for $i from 1 through 4 {
         &:nth-of-type(#{$i}) {
           @if ($i==1 or $i==2) {
@@ -181,90 +184,96 @@
           }
         }
       }
-      //   &:nth-of-type(1) {
-      //     top: 0;
-      //     left: 0;
-      //   }
-      //   &:nth-of-type(2) {
-      //     top: 0;
-      //     right: 0;
-      //   }
-      //   &:nth-of-type(3) {
-      //     bottom: 0;
-      //     left: 0;
-      //   }
-      //   &:nth-of-type(4) {
-      //     bottom: 0;
-      //     right: 0;
-      //   }
+      // &:nth-of-type(1) {
+      //   top: 0;
+      //   left: 0;
+      // }
+      // &:nth-of-type(2) {
+      //   top: 0;
+      //   right: 0;
+      // }
+      // &:nth-of-type(3) {
+      //   bottom: 0;
+      //   left: 0;
+      // }
+      // &:nth-of-type(4) {
+      //   bottom: 0;
+      //   right: 0;
+      // }
     }
   }
 }
-// 상단영역 원모양 색상 @each 제어문으로 넣기
+
+// 상단영역의 span원모양 색상 @each 제어문으로 넣기
 // 사용할 셋팅값은 객체형변수인 $colors를 사용함
 @each $key, $val in $colors {
   .#{$key}-circle {
     background-color: $val;
   }
 }
-// #{} 자리에 변수가 들어가서 속성이 할당됨!
+// #{}자리에 변수가 들어가서 속성이 할당됨!
+// $key, $val은 순서대로 앞에것이 속성, 뒤엣것이 값 이 들어옴!
 
-// 메인영역
+// 메인 영역 //////////
 .main-area {
   // 내부박스 section
   section {
+    // 테두리
     border: {
-      color: red;
+      color: blue;
       style: dashed;
       width: 7px;
     }
     margin-bottom: 20px;
     padding: 20px;
-  }
 
-  //   타이틀 h3믹스인호출
-  h3 {
-    @include title-text(navy);
-  }
-  //   리스트 문단 디자인
-  ul,
-  ol,
-  p {
-    line-height: 2;
-    font-size: 24px;
-    // 하위 li
-    li {
-      text: {
-        decoration: underline;
-        decoration-thickness: 5px;
-        decoration-color: $maincolor2;
-        align: center;
-      }
-      // 배경색
-      background-color: #ff0;
-
-      // [네스팅 이어붙이기 기법(&)]
-      &:first-child {
-        color: orchid;
-        font-weight: bold;
-        font-size: $fontSize3;
-        // 글자 그림자로 글자 테두리 넣기
-        text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000;
-      }
-      // 2번째li요소부터 5번째까지 앞뒤 보더넣기
-      @for $i from 2 to 6 {
-        //to는 끝수 불포함
-
-        &:nth-child(#{$i}) {
-          border-left: ($i * 20px) solid red;
-          border-right: ($i * 20px) solid red;
+    // 타이틀 h3
+    h3 {
+      // 타이틀 믹스인 호출
+      @include title-text(navy);
+    }
+    // 리스트, 문단 디자인
+    ul,
+    ol,
+    p {
+      line-height: 2;
+      font-size: 24px;
+      // 하위 li요소
+      li {
+        text: {
+          decoration: underline;
+          // 언더라인 하단 간격 셋팅
+          underline-offset: 10px;
+          decoration-thickness: 5px;
+          decoration-color: $mainColor2;
+          align: center;
         }
-      }
-      // 변수구역인 #{}는 선택자부분, CSS속성부분에 사용
-      // 값부분에 사용시엔 변수를 그대로 쓸 수 있다@
-      // 가상요소 블릿넣기
-      &::before {
-        content: "😀";
+        // 배경색 노란색
+        background-color: #ff0;
+
+        // [ 네스팅 이어붙이기 기법(&) ]
+        &:first-child {
+          color: orchid;
+          font-weight: bold;
+          font-size: $fontSize3;
+          // 글자그림자로 글자테두리넣기
+          text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000;
+        }
+        // 두번째 li요소부터 5번째까지 앞뒤 보더넣기
+        @for $i from 2 to 6 {
+          // to는 끝수 불포함
+          &:nth-child(#{$i}) {
+            border-left: ($i * 20px) solid red;
+            border-right: ($i * 20px) solid red;
+          }
+        }
+        // 변수구역인 #{}는 선택자부분, CSS속성부분에 사용
+        // 값부분에 사용시엔 변수를 그대로 쓸 수 있다!
+
+        // 가상요소 블릿넣기
+        &::before {
+          content: "😘";
+        }
       }
     }
   }
@@ -274,25 +283,25 @@
 .box-basic {
   // 중앙정렬
   text-align: center;
-  // 위아래패딩
+  // 위아래 패딩
   padding: 20px 0;
 }
 // 위의 일반 박스 디자인 공통 클래스를
 // 원하는 박스에 @extend로 적용하자!
 
-// 버튼 박스
+// 버튼박스
 .button-box {
-  // 기본박스 클래스적용
+  // 기본박스 클래스 적용하기
   @extend .box-basic;
 }
 // 최하단박스
 .bottom-title {
-  // 기본박스 클래스적용
+  // 기본박스 클래스 적용하기
   @extend .box-basic;
-  // 믹스인 타이틀 공통디자인 불러오기
-  @include title-text;
-  // -> 글자 색상을 안보내면 기본설정색 적용
-  // ->추가디자인
+  // 믹스인 타이틀 공통 디자인 불러오기
+  @include title-text(darkred, "🥽");
+  // -> 글자 색상을 안보내면 기본설정색적용
+  // 추가디자인
   margin-bottom: 50px;
 }
 
@@ -308,7 +317,8 @@
   font-size: 20px;
   cursor: pointer;
   margin-left: 20px;
-  //   마우스 오버시
+
+  // 마우스오버시
   &:hover {
     background-color: hotpink;
     text: {
@@ -316,7 +326,8 @@
       decoration-style: wavy;
     }
   }
-  //   별도의 클래스는 다르게 적용
+
+  // 별도의 클래스는 다르게 적용
   &.my {
     text: {
       decoration: underline;
@@ -327,9 +338,11 @@
   }
 }
 
-// 제출하기 버튼
+// 제출하기 버튼 디자인
 .button-report {
+  // 기본 버튼 디자인 클래스 가져오기
   @extend .button-basic;
+  // 기본과 다른 디자인 덮어쓰기
   background-color: orange;
   color: #fff;
 }

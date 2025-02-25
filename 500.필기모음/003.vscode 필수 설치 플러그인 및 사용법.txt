@@ -1,5 +1,11 @@
 [ vscode 필수 설치 플러그인 및 사용법 ]
 
+((이미설치된 경우 완전삭제하기))
+1. 앱에서 vscode 프로그램삭제
+2. 사용자 폴더에서 .vscode폴더삭제
+3. 사용자 폴더에서 AppData/Roaming/Code 폴더삭제
+4. 최신버전 vscode 설치하기
+
 - 다운로드 설치후
 1. 확장프로그램 설치
  1) 왼쪽 메뉴 중 extension(확장) 버튼을 클릭
@@ -9,7 +15,7 @@
 2. 필수 플러그인
  1) korean language pack : 한국어팩
    : 모든 메뉴 등 한국어 지원
- 2) image preview   
+ 2) image preview
    : 이미지 미리보기 기능 지원
  3) Live Server
    : 브라우저 실시간 미리보기
@@ -70,6 +76,7 @@ https://vscode.dev
 : 주석은 html, css, JS에서 실제 코딩으로 반영되지 않고 설명을 쓸 수 있는 구역을 말한다!
 - 전체(라인)주석: ctrl + /(슬래쉬)
 - 부분주석: alt+shift+A (아쉬워~~ 에이....)
+          (mac: opt+shift+A 옵쉬에이~~)
 
 8. 실시간 브라우저 띄우기
 - Live Server를 설치해야함!
@@ -149,6 +156,15 @@ __________________________________________________
 새로생긴 라인은 지우고)
 - 추가할 코드:
 "editor.hover.enabled": false
+
+[ 테마 외에 글자색 변경하기 : 코멘트, 따옴표글자, 속성명 ]
+- settings.json에서 변경한다. 아래코드 추가함
+"editor.tokenColorCustomizations": {
+        "comments": "#49ff79",
+        "strings": "#eaff00",
+        "keywords": "#ffbd42"
+    },
+- 색상은 본인이 원하는 것으로 함!
 
 [ 외부 JS에서 제이쿼리 자동완성 안나오는 문제 ]
 -> 인터널 코드로 JS를 html페이지에 코딩할 경우

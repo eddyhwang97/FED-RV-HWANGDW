@@ -10,40 +10,42 @@
         //////// jQB ///////////////////
         // 미션: #container 를 클릭하면 이것의 직계자식인 p태그의 배경색을 노란색, 글자색은 녹색, 글지크기는 42px, 테두리는 5px 점선 빨간색으로 설정하시오!
 
-        $("#container").click(
+        $('#container').click(
           function () {
 
-            // [자손선택 3가지 방법]
-            // $('#container p')
-            // $(this).find('p')
-            // $("p", this)
+          // [ 자손선택 3가지 방법 ]
+          // $('#container p')
+          // $(this).find('p')
+          // $('p',this)
 
-            // [직계선택 3가지 방법]
-            // $('#container > p')
-            // $(this).children('p')
-            $(">p", this)
-            .css({
-              backgroundColor: "yellow",
-              color: "green",
-              fontSize: "42px",
-              border: "5px dotted red",
-            });
-          }
-        );
+          // [ 직계자식선택 3가지 방법 ]
+          // $('#container > p')
+          // $(this).children('p')
+          $('>p',this)
+          .css({
+            backgroundColor: 'yellow',
+            color: 'green',
+            fontSize: '42px',
+            border: '5px dotted red',
+          });// css //
+        }); // click //
 
-        // this를 이용한 자손선택법?
+        // this를 이용한 자손선택법은?
         // $(선택자,this)
-        // 예 $('p',this)
-        // ->자손선택 트래버싱 메서드
-        // ->find()
-        // $(this).find('p')
+        // 예) $('p',this)
+        // -> 자손선택 트래버싱 메서드
+        // -> find()
+        // 예) $(this).find('p')
 
         // this를 이용한 직계자식선택법은?
         // $('>선택자',this)
-        // 예 $('>p',this)
-        // ->직계자석선택 트래버싱 메서드
-        // ->children()
-        // $(this).children('p')
+        // 예) $('>p',this)
+        // -> 직계자식선택 트래버싱 메서드
+        // -> children()
+        // 예) $(this).children('p')
+
+
+
       }); //////////// jQB ///////////////////
     </script>
   </head>

@@ -155,7 +155,7 @@ body::before {
 /* 말풍선 */
 .words {
     position: absolute;
-    top: 14%;
+    top: 1%;
     left: 17%;
     /* 부모는? .house */
     /* width: 30%; */

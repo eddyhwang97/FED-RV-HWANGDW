@@ -2,7 +2,7 @@
   "name": "my-vue-app",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "eddyhwang97 <hwangdw1997@gmail.com>",
+  "author": "Tom B. Parker <tombap8@hotmail.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -41,6 +41,8 @@
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
     "rimraf": "^2.6.0",
+    "sass": "^1.84.0",
+    "sass-loader": "^10.5.2",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
     "uglifyjs-webpack-plugin": "^1.1.1",

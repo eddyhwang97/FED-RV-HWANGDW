@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>02. 블록과 인라인</title>
     <style>
-      /* 타이틀 */
-      .tit {
-        text-align: center;
-        border: 5px dotted orange;
-        background-color: lightblue;
-      }
-      /* 
+        /* 타이틀 */
+        .tit{
+            text-align: center;
+            border: 5px dotted orange;
+            background-color: lightblue;
+        }
+        /* 
             선택자에 별(*)은 모든의 의미!
             그래서 모든 요소를 선택함!
             .ele * 클래스 ele 하위 모든 요소들 선택
-            1.width 가로킈
-            2.height 세로크기
-            3.border 경계선
-            4.margin 바깥여백
-            5.padding 안쪽여백
         */
-      .ele * {
-        /* 박스모델의 기본속성 디자인주기 */
-        /* [박스모델이란?]
-            모즌 html요소를 박스로 파악하여 
-            필수 5개 속성을 셋팅하는 요소 모델링 */
-        width: 200px;
-        height: 150px;
-        border: 10px solid blue;
-        margin: 20px;
-        padding: 20px;
-      }
-      /********************************************
+        .ele * {
+            /* 박스모델의 기본속성 디자인주기
+                [박스모델이란?]
+                모든 html요소를 박스로 파악하여
+                필수 5개 속성을 셋팅하는 요소모델링
+                1. width (가로크기)
+                2. height (세로크기)
+                3. border (경계선)
+                4. margin (바깥여백)
+                5. padding (안쪽여백)
+            */
+            width: 200px;
+            height: 150px;
+            border: 10px solid blue;
+            margin: 20px;
+            padding: 20px;
+        }
+        /********************************************
         
             [ CSS의 display 속성이란? ]
 
-            -브라우저 화면에서 요소를 어떻게 보이게 할지를 결정해주는 속성
+            - 브라우저 화면에서 요소를 어떻게 보이게
+            할지를 결정해주는 속성
 
-            -요소의 역할은 내용 구분
-            -요소의 대표적인 display는 크게 2가지!
-            block vs inline
+            - 요소의 역할은 내용구분!
+
+            - 요소의 대표적인 display는 크게 2가지!
+            block VS inline
+
+
+            __________________________________
 
              1. inline 요소
 
@@ -56,7 +59,7 @@
             (3) 특징 :
                 1) 인라인요소는 블록요소를 포함할 수 없다!
                 예) <span><div></div></span>
-                -> 주의: 인라린을 블록으로 출신을 변경해도
+                -> 주의: 인라인을 블록으로 출신을 변경해도
                 원래 인라인이면 블록을 쌀 수 없다!
 
                 예외) a요소 -> 원래는 블록요소를 싸면
@@ -88,7 +91,9 @@
                 display: none; (dn)
                 -> 태그는 그대로 있고 화면 출력만 안됨!
 
-                2. block 요소
+            __________________________________
+
+            2. block 요소
 
             (1) 표현법 : db
                 display: block;
@@ -118,10 +123,13 @@
                 2) box-sizing: content-box; (bxc)
                 -> 크기를 지정한 박스에 패딩과 보더를 주면 늘어남! 
 
-    -------------------------------------
+                 ___________________________________
+
                 [ 초기화나 변경셋팅이 필요없는 순수태그 ]
                 1. 블록 대표주자 : div
+                (divide 나누다... 이런단어)
                 2. 인라인 대표주자 : span
+                (span 범위, 영역 ... 이런단어)
 
 
                 _____________________________________
@@ -141,54 +149,50 @@
                     box-sizing: border-box 가 기본 적용됨!
 
                 ___________________________________
+
                 [ 기타 display ]
                 1. table : 테이블 요소
                 2. flex : 유동적인 레이아웃 요소
                 3. grid : 그리드 레이아웃 요소
+
         
         ********************************************/
 
-      /* 컨텐트박스를 보더박스로 변경하여 
+        /* 컨텐트박스를 보더박스로 변경하여
         보더와 패딩크기가 사이즈 안쪽에 포함되게 하기! */
-      h4.bxb {
-        box-sizing: border-box;
-      }
+        h4.bxb{
+            box-sizing: border-box;
+        }
+
+
     </style>
-  </head>
-  <body>
-    <h1 class="tit">
-      02. 블록과 인라인
-    </h1>
+</head>
+<body>
+    <h1 class="tit">02. 블록과 인라인</h1>
 
     <h2 class="tit">인라인 요소들</h2>
     <div class="ele">
-      <a href="#">나는 a다!</a>
-      <img
-        src="./imgs/blogo.png"
-        alt="로고"
-        title="나는 img다!"
-      />
-      <span>나는 span이다!</span>
-      <b>나는 b다!</b>
-      <button>
-        나는 button이다! 나는
-        인라인인가?
-      </button>
-      <i>나는 i다!</i>
-      <em>나는 em이다!</em>
-      <strong>나는 strong이다!</strong>
+        <a href="#">나는 a다!</a>
+        <img src="./imgs/blogo.png" alt="로고" title="나는 img다!">
+        <span>나는 span이다!</span>
+        <b>나는 b다!</b>
+        <button>
+            나는 button이다! 나는 인라인인가?
+        </button>
+        <i>나는 i다!</i>
+        <em>나는 em이다!</em>
+        <strong>나는 strong이다!</strong>
     </div>
 
-    <h2 class="tit">블록 요소들</h2>
+    <h2 class="tit">블록 요소들</h2> 
+    
     <div class="ele">
-      <h1>나는 h1이다!</h1>
-      <h4 class="bxb">나는 h4다!</h4>
-      <div>나는 div다!</div>
-      <p>나는 p다!</p>
-      <header>나는 header다!</header>
-      <blockquote>
-        나는 blockquote다!
-      </blockquote>
+        <h1>나는 h1이다!</h1>
+        <h4 class="bxb">나는 h4다!</h4>
+        <div>나는 div다!</div>
+        <p>나는 p다!</p>
+        <header>나는 header다!</header>
+        <blockquote>나는 blockquote다!</blockquote>
     </div>
-  </body>
+</body>
 </html>

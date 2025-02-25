@@ -42,15 +42,15 @@ const Game = {
 const Corp = {
   template: `
     <div class="corp router">{{this.corpName}}</div>`,
-    data(){
-      return{
-        corpName : "🚗World Corporation🚕",
-      }
-    },
+  data(){
+    return{
+      corpName: "🌎World Corporation🌏",
+    }
+  },
 };
 
-// 회사 전역 컴포넌트 만들기////
-const CorpComp =Vue.component('corp-comp',Corp)
+// 회사 전역 컴포넌트 만들기 //////
+const CorpComp = Vue.component('corp-comp',Corp);
 
 /********************************************************* 
     [파라미터로 전달된 라우터 값을 읽는 코드법]
@@ -100,10 +100,10 @@ export default new VueRouter({
       path: "/corp",
       // (2) 연결할 컴포넌트 설정 : component
       // -> 외부의 변수로 셋팅할 수 있고 직접 쓸 수 있음
-      component: CorpComp,
-      // ->>> 컴포넌트용 객체 템플릿만 있어도 코드를 넣을 수 있으나 
-      // ->>>전역컴포넌트로 생성한 경우에도 router에 삽입하여
-      // ->>>사용하는것은 일반적인 일이다!
+      component: CorpComp, // 전역 컴포넌트임!
+      // ->>> 컴포넌트용 객체 템플릿만 있어도 코드를 넣을 수 있으나
+      // ->>> 전역 컴포넌트로 생성한 경우에도 라우터에 삽입하여
+      // ->>> 사용하는 것은 일반적인 일이다! 얼마든지 이렇게 쓰시오!
     },
     // [ 하위 메뉴 라우트 셋팅!!! ] //////
     {

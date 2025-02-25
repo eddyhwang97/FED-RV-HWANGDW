@@ -1,9 +1,10 @@
-@charset "uft-8";
+@charset "utf-8";
 
-/*  ROBOT PJ : 공통클래스/웹폰트 CSS - core.css */
+/* Robot PJ : 공통클래스/웹폰트 CSS - core.css */
 
-/******************* 1. 웹폰트 : CDN *******************/
+/*********** 1. 웹폰트 : CDN ***********/
 
+/* 웹폰트 CDN */
 @import url("https://fonts.googleapis.com/css2?family=Barlow&family=Black+Ops+One&family=Chakra+Petch&family=Orbitron:wght@500&display=swap");
 
 /* 
@@ -13,22 +14,11 @@
     font-family: 'Orbitron', sans-serif;
 */
 
-
-/******************** 2. 공통 클래스 ********************/
-/* 레이아웃 공통 클래스 */
-.part {
-  /* 가로크기 공통 */
-  width: 1200px;
-  /* 마.영.오 - 블록박스 중앙정렬 */
-  margin: 0 auto;
-}
-
+/********** 2. 공통 클래스 **********/
 /* 메탈배경 클래스 */
-.metal1 {
+.metal1{
   background: url(../images/metal01.jpg) no-repeat center/cover;
-
 }
-/* 메탈배경 클래스 */
 .metal2{
   background: url(../images/metal02.jpg) no-repeat center/cover;
 }

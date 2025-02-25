@@ -1,5 +1,6 @@
 @charset "utf-8";
-/* 레이아웃 2 CSS */
+
+/* 12그리드 CSS - float형 */
 
 /* 12나눈 비율설정 클래스
 이름구성은 col-기둥수 */
@@ -16,15 +17,13 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-/* 클래스 명에 "col-"가 있으면 적용 */
+/* 클래스 명에 "col-"가 있으면 적용
+대괄호[]는 속성선택자임! */
 [class*="col-"] {
     float: left;
     height: 100%;
     padding: 10px;
-    border: 1px solid rgb(222, 176, 176);
-    /* 패딩,보더 포함설정 */
+    border: 1px solid gray;
+    /* 패딩,보더 포함설정 : bxb */
     box-sizing: border-box;
-  }
-
-  
-
+}

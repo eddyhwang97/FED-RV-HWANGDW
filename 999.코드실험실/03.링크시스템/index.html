@@ -2,13 +2,8 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>
-      03.링크시스템-메인페이지
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.링크시스템 - 메인페이지</title>
     <style>
       html,
       body,
@@ -16,9 +11,9 @@
         margin: 0;
         padding: 0;
       }
-      body {
-        background: url(https://t4.ftcdn.net/jpg/02/96/64/61/360_F_296646140_btnypVWa1CHefYgC3EgoRLzO2Qh79ITa.jpg)
-          no-repeat center/cover;
+      body{
+        /* 배경넣기 */
+        background: url('https://t4.ftcdn.net/jpg/02/96/64/61/360_F_296646140_btnypVWa1CHefYgC3EgoRLzO2Qh79ITa.jpg') no-repeat center/cover;
       }
 
       /* 페이지 전환효과용 가림막 */
@@ -29,7 +24,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        /* display: none; */
+        /*display: none; */
         background-color: lightseagreen;
         /* 트랜지션: 속시이지 */
         /* transition: all 0.8s ease-in-out; */
@@ -81,7 +76,6 @@
       }
     </style>
 
-    <!-- JS코드구역 -->
     <!-- 제이쿼리 라이브러리 CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -89,21 +83,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
 
     <!-- 링크시스템 JS -->
-    <script
-      src="./js/linksys.js"
-      defer
-    ></script>
+     <script src="./js/linksys.js" defer></script>
 
-    <script
-      src="./js/common.js"
-      defer
-    ></script>
-    <script></script>
+    <!-- JS코드구역 -->
+     <script src="./js/common.js" defer></script>
   </head>
   <body>
     <nav class="gnb">
-      <a href="#">HOME</a> |
-      <a href="#">WORK</a> |
+      <a href="#">HOME</a> | <a href="#">WORK</a> |
       <a href="#">CONTACT</a>
     </nav>
     <div class="wrap">

@@ -85,7 +85,9 @@
         /* 박스 그림자 여러개주기
             x y blur spread 색... 을 
             콤마로 연결하면 여러개 사용가능 */
-        box-shadow: 0 0 10px purple, 10px 10px 5px 2px #0000ff6e;
+        box-shadow: 
+        0 0 10px purple, 
+        10px 10px 5px 2px #0000ff6e;
 
         /* 간격,위치조정 */
         vertical-align: middle;
@@ -101,27 +103,28 @@
         margin-left: 50px;
       }
 
-      dt::before {
-        content: '🧚‍♀️⭐️';
+      dt {
         /* 마진: 위 양쪽 아래 */
         margin: 25px 0 15px;
-        font-size: 25px;
       }
 
       /* 반복되는 요소의 앞에 아이콘 가상요소로 넣기 */
-      .뭘까{
+      dt::before{
         content: '🛕★';
         font-size: 30px;
         vertical-align: 2px;
         color: red;
       }
       /* dt아이콘 변경 */
+      /* dt중 두번째 */
       dt:nth-of-type(2)::before{
         content: '🧛‍♂️';
       }
+      /* dt중 세번째 */
       dt:nth-of-type(3)::before{
         content: '🏇';
       }
+      /* dt중 네번째 */
       dt:nth-of-type(4)::before{
         content: '🍒';
       }
@@ -138,11 +141,13 @@
       dd:nth-of-type(8)::before,
       dd:nth-of-type(9)::before,
       dd:nth-of-type(11)::before,
-      dd:nth-of-type(12)::before
+      dd:nth-of-type(12)::before      
       {
         content: '👩‍🦰';
       }
-      dd:nth-of-type(13):before      
+      /* 남자,여자 같이 출력
+      "찬열,펀치" */
+      dd:nth-of-type(13)::before       
       {
         content: '👨‍🦰👩‍🦰';
       }
@@ -165,16 +170,16 @@
             color: hotpink;
             font-weight: bold;
             /* ::first-line에서의 글자체가 같이 적용되므로
-            ::first-letter의 글자체를 별도로 셋팅한다
+            ::first-letter의 글자체를 별도로 셋팅한다!
             우선순위가 높음! */
-            font-family: '맑은고딕';
+            font-family: "맑은 고딕";
         }
 
       /* .story의 첫번째 p태그의 첫번째줄 디자인 변경하기 */
       .story p:first-of-type::first-line{
             font-size: 22px;
             color: blue;
-            font-family: '궁서체';
+            font-family: '궁서';
         }
 
       /* 두번째 p태그는 태그로 
@@ -192,7 +197,8 @@
       /* 기타 가상요소 ::selection */
       /* 드래그 선택시 글자색 배경색 설정변경! */
       
-      p::selection{
+      /* p::selection{ -> p요소만 적용*/
+      ::selection{/* 전체적용! */
         color: rgb(52, 255, 154);
         background-color: hotpink;
       }

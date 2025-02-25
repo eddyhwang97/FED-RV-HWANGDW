@@ -6,15 +6,16 @@ import myFn from "./my_function";
 // 자동차정보 불러오기
 import { carInfo, carImage } from "./car_data";
 
-console.log(carInfo);
+// console.log(carInfo, carImage);
 
 /********************************************************** 
     [ 리액트 Props ]
+
     1. 리액트 구성요소에 전달되는 인수다!(전달변수)
-    2. HTML 속성형태를 통해서 구성요소에 전달된다
-    3. props는 속성이다.(변수명을 자유롭게 지을 수 있음)
+    2. HTML 태그 속성형태를 통해서 구성요소에 전달된다
+    3. 속성명은 일반 변수명 작명스타일로 지어준다!(캐믈케이스)
     4. 컴포넌트에서 속성받기
-      (1) 속성받을 변수를 하나만 쓸 경우 :  변수.속성명 
+      (1) 속성받을 변수를 하나만 쓸 경우 :  변수.속성명
       (2) 전달 객체값을 구조분해 할당으로 직접쓸 경우
         {변수명,변수명,...}
         -> 보내준 속성명과 같은 이름의 변수로 설정함!
@@ -27,47 +28,63 @@ console.log(carInfo);
 **********************************************************/
 
 // 자기차를 소개하는 컴포넌트1 /////////////////
-function IntroCar({ brand, modelNum }) {
-  // 전달속성값 :
-  // brand - 자동차브랜드명
-  // modelNum - 데이터배열순서
+function IntroCar({brand, modelNum}){
+    // 전달속성값 : 
+    // brand - 자동차브랜드명
+    // modelNum - 데이터 배열순번
 
-  // 구체적인 자동차 정보를 셋팅 하여 변수에 할당
-
-  /* carInfo 객체 데이터 구조
+    /*********************************** 
+        carInfo객체 데이터구조 : {[{}]}
         carInfo = {
-        자동차브랜드명 : [
-            color: "차색",
-            model: "모델번호",
-            opt: { filter: "CSS filter" }
+            자동차브랜드명: [
+                {
+                    color: 자동차색,
+                    model: 모델명,
+                    opt: 이미지변경CSS옵션                
+                }
             ]
         }
-    */
-  let setInfo = carInfo[brand][modelNum];
-  console.log(setInfo);
+    ***********************************/
 
-  return (
-    <React.Fragment>
-      <h2>나의 차는 {brand}입니다!</h2>
-      {/* 추가질문 컴포넌트 호출 */}
-      <AskMoreInfo brand={brand} model={setInfo.model} color={setInfo.color} opt={setInfo.opt} />
-    </React.Fragment>
-  );
-} //////IntroCar 컴포넌트
+    // 구체적인 자동차 정보를 셋팅하여 변수에 할당!
+    let setInfo = carInfo[brand][modelNum];
+    console.log('선택객체확인:',setInfo);
 
-// 추가질문 컴포넌트
-function AskMoreInfo({ brand, model, color, opt }) {
-  //brand - 자동차 브랜드명
-  //model - 지동차 모델명
-  //color - 자동차 색상
-  //opt - 변경옵션
-  return (
-  <React.Fragment>
-    <h2>더 자세히 말씀해주세요</h2>
-    {/* 디테일 정보구성 컴포넌트 호출하기 */}
-    <DetailCarInfo brand={brand} model={model} color={color} opt={opt} />
-  </React.Fragment>);
-} ///AskMoreInfo 컴포넌트
+    // 코드리턴 구역 /////////////
+    return(
+        <React.Fragment>
+            <h2>나의 차는 {brand}입니다!</h2>
+            {/* 추가질문 컴포넌트호출 */}
+            <AskMoreInfo
+                brand={brand}
+                model={setInfo.model}
+                color={setInfo.color}
+                opt={setInfo.opt}
+            />
+        </React.Fragment>
+    );
+
+} /////////// IntroCar 컴포넌트 ////////////
+
+// 추가질문 컴포넌트 ///////////////////
+function AskMoreInfo({brand, model, color, opt}){
+    // brand - 자동차브랜드명
+    // model - 자동차 모델명
+    // color - 자동차 색상
+    // opt - CSS변경옵션
+    return(
+        <React.Fragment>
+            <h2>더 자세히 말씀해주세요?!</h2>
+            {/* 디테일 정보구성 컴포넌트 호출하기 */}
+            <DetailCarInfo
+                brand={brand}
+                model={model}
+                color={color}
+                opt={opt}
+            />
+        </React.Fragment>
+    );
+} //////////// AskMoreInfo 컴포넌트 ///////////
 
 // 디테일 정보구성 컴포넌트 ////////////////
 function DetailCarInfo({ brand, model, color, opt }) {
@@ -100,9 +117,9 @@ function ShowBrandCar({ brand, modelNum }) {
         <IntroCar brand={brand} modelNum={modelNum} />
       </React.Fragment>
     );
-  } ////////// ShowBrandCar 컴포넌트 ////////////
+} ////////// ShowBrandCar 컴포넌트 ////////////
 
-  // 화면 출력하기 /////////////////
+// 화면 출력하기 /////////////////
 //ReactDOM.render(출력코드,출력대상)
 ReactDOM.render(
     <div>

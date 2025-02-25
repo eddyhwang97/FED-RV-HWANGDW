@@ -42,11 +42,12 @@ let protEvt = 0;
 // (1) 드래그 중 이벤트함수 ///////////
 // - 이벤트 종류 : mousemove - touchmove
 cbx.on("mousemove touchmove", (e) => {
-  // 0.이벤트 횟수 줄이기 : 광클 금지원리와 같다
-  if (protEvt) return; //돌아가!
-  protEvt = 1; //잠금 - 이벤트 하나만 통과
-  setTimeout(() => (protEvt = 0), 30); //해제
-  // 타임아웃 시간에 따라서 이벤트 수를 조절할 수 있다.
+  // 0. 이벤트 횟수 줄이기 : 광클금지원리와 같음!
+  if(protEvt) return; // 돌아가!
+  protEvt = 1; // 잠금! - 이벤트 하나만 통과!
+  setTimeout(()=>protEvt=0, 25); // 해제
+  // 타임아웃 시간에 따라 이벤트수를 조절할 수 있다!
+
 
   // 1. x축 위치값
   let pos = e.pageX || e.changedTouches[0].pageX;
@@ -55,10 +56,10 @@ cbx.on("mousemove touchmove", (e) => {
   // point변수 - pos변수
   // 전체조건 : drag===1 일때만
   if (drag) {
-    // 방향 변수: 양수면 1, 음수면 0
+    // 방향변수 : 양수면 1보내고 음수면 0보냄
     let dir = point - pos < 0 ? 0 : 1;
-    // console.log("방향은?",dir);
-    // 이미지 넘김함수 호출 : 방향값 보내줌
+    // console.log('방향은?',dir);
+    // 이미지 넘김 함수 호출 : 방향값 보내줌!
     rotateCar(dir);
   } ///////// if ///////////
 
@@ -128,7 +129,7 @@ const rotateCar = (dir) => {
     // 첫순번은 0이므로 -1이면 마지막순번 49번으로 변경!
   } ///// else /////
 
-  console.log("순번:", fnum);
+  console.log('순번:',fnum);
 
   // (다른방법:) 위에서 증감전 숨기기 안하고 아래서 하기
   // 1번 주석후 테스트 할것!

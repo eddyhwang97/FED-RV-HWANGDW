@@ -189,8 +189,22 @@ function MakeImg({ isrc, ialt, icss, overFn, clickFn, itit, idName }) {
   // ((리턴코드 작성시 주의사항))
   // return키워드 바로 뒤에 JSX태그를 바로 이어쓰거나
   // 소괄호 시작부분을 같은 라인에 써야 에러가 나지 않는다!
-  return <img src={isrc} alt={ialt} style={icss} title={itit} id={idName} onMouseOver={overFn} onClick={clickFn} />;
+  return (
+    <img
+      src={isrc}
+      alt={ialt}
+      style={icss}
+      title={itit}
+      id={idName}
+      onMouseOver={overFn}
+      onClick={clickFn}
+    />
+  );
 } ///////////// MakeImg 컴포넌트 ////////////////
+
+///// 화면출력하기 /////////////
+ReactDOM.render(<EventShow />, myFn.qs('#root'));
+
 
 //// 일반함수로 페라리 움직이기 구현 ////////////
 function moveCar(eleName) {
@@ -207,6 +221,3 @@ function moveCar(eleName) {
 
   tg.transition = "2s ease-in-out";
 } ////////////// moveCar 함수 ///////////////
-///// 화면출력하기 /////////////
-
-ReactDOM.render(<EventShow />, myFn.qs("#root"));

@@ -6,25 +6,25 @@
     - 리액트에서 HTML을 쉽게 작성할 수 있다.
     - appendChild() 메서드 없이 DOM에 요소넣기가 가능함!
 *****************************************************/
-// 출력할 요소 선택하기
+// 출력할 요소 선택하기 ////
 const target = document.querySelectorAll("#root>div");
 
-// 1. JSX 사용한 것과 JSX를 사용하지 않은거 비교
-// (1) JSX 사용한 예
-// (1-1) 넣을요소 만들기
+// 1. JSX를 사용한 것과 JSX를 사용하지 않을 것을 비교
+// (1) JSX 를 사용한 예
+// (1-1) 넣을 요소 만들기
 const myEle1 = <h1>나는 JSX를 사용하고 있어!</h1>;
-// (1-2) 리액트 루트 선택하기 : createRoot()메서드 사용
+// (1-2) 리액트 루트 선택하기 : createRoot() 메서드 사용!
 const root1 = ReactDOM.createRoot(target[0]);
-// (1-3) 요소 출력하기 ////
+// (1-3) 요소 출력하기 //////
 // 생성된 루트에 render() 메서드를 붙여서 사용!
 root1.render(myEle1);
 
-// (2) JSX를 사용하지 않는 방법
-// -> 넣을 요소를 createElement()메서드로 생성해야함!
+// (2) JSX를 사용하지 않는 방법 //////////////
+// -> 넣을 요소를 createElement() 메서드로 생성해야함!
 const myEle2 = React.createElement("h1", {}, "나는 JSX를 쓰지 않아!");
 // createElement(요소명,{JS코드작성},요소내용)
 
-// 두번째 div에 출력하기
+// 두번째 div에 출력하기 /////
 ReactDOM.render(myEle2, target[1]);
 
 /***************************************************** 
@@ -68,22 +68,22 @@ ReactDOM.render(myEle2, target[1]);
 
 *****************************************************/
 
-// 표현식에 쓸
+// 표현식에 쓸 변수
 let num1 = 1000,
   num2 = 7;
 
 // 표현식에 사용할 리턴이 있는 함수
-const retFn = () => `만만세다 ~~!!!`;
+const retFn = () => `만만세다~!!!`;
 
-// 3. JSX 표현식 사용하기
+// 3. JSX 표현식 사용하기 /////////////
 const myEle3 = (
   <div>
-    <h1>리액트는 {num1 * num2}번사용해도 좋다!</h1>
-    <h1>리액트는 {num1 == 1000 ? "계속" : "한번만"}번사용해도 좋다!</h1>
-    <h1>리액트 {retFn()}</h1>
+    <h1>리액트는 {num1 * num2}번 사용해도 좋다!</h1>
+    <h1>리액트는 {num1 == 1000 ? "계속" : "한번만"} 사용해도 좋다!</h1>
+    <h1>리액트는 {retFn()}</h1>
   </div>
 );
-// 세번째 div 사용하기
+// 세번째 div에 출력하기 ////
 ReactDOM.render(myEle3, target[2]);
 
 /***************************************************** 
@@ -104,22 +104,21 @@ ReactDOM.render(myEle3, target[2]);
         (단점, 원하는 않는 태그가 삽입됨!!!)
 *****************************************************/
 
-// 4. 다중요소 html블록 삽입하기
+// 4. 다중요소 html블록 삽입하기 ////
 const myEle4 = (
   <React.Fragment>
-    <h2>[다중요소 HTML 블록 출력하기]</h2>
+    <h2>[ 다중요소 HTML 블록출력하기 ]</h2>
     <ul>
-      <li>프론트앤드</li>
+      <li>프론트엔드</li>
       <li>리액트적용개발</li>
-      <li>끝내주게 해보자고~!!</li>
+      <li>끝내주게 해보자구~!!!!</li>
     </ul>
   </React.Fragment>
 );
-
-// 네번째 div에 출력하기
+// 네번째 div에 출력하기 ////
 ReactDOM.render(myEle4, target[3]);
 
-// 5. 내가 원하는 태그 출력해보기
+// 5. 내가 원하는 태그 출력해 보기
 
 // 기본 데이터(배열)
 const mydata = [
@@ -129,24 +128,26 @@ const mydata = [
 ];
 
 // 출력형식:
-// 맨위에 h2 요소 타이틀 넣고
+// 맨위에 h2요소 타이틀넣고
+// ul>li
 // <li>배우명 : 영화명</li>
-// 배열변수.map 사용!
-// JSX리액트 에서는 map()은 join('')이 불필요!
+// 배열변수.map() 사용!
+// JSX 리액트에서의 map()은 join('')이 불필요!
+
 const myEle5 = (
   <React.Fragment>
-    <h2>[배우리스트]</h2>
+    <h2>[ 배우 리스트 ]</h2>
     <ul>
       {mydata.map((v) => (
         <li>
-          {v.name}:{v.movie}
-          {v.idx == 3 ? "!!예뻐" : "~~멋져"}
+          {v.name} : {v.movie} :{v.idx == 3 ? "예뻐!♥" : "멋쪄!★"}
         </li>
       ))}
     </ul>
   </React.Fragment>
 );
-// 다섯번째 div에 출력하기
+
+// 다섯번째 div에 출력하기 ////
 ReactDOM.render(myEle5, target[4]);
 
 /***************************************************** 
@@ -154,10 +155,13 @@ ReactDOM.render(myEle5, target[4]);
     예) <br> -> <br />
         <input type="text"> -> <input type="text" />
 *****************************************************/
-// 6. 홀로태그 출력해보기
+
+// 6. 홀로 태그 출력해보기 ///////////
 const myEle6 = <input type="text" value="홀로태그는 스스로 닫아라!" />;
 
+// 여섯번째 div에 출력하기 ////
 ReactDOM.render(myEle6, target[5]);
+
 /***************************************************** 
     [ JSX에서 속성 클래스는 className 으로 표기한다! ]
     <태그 class="클래스명">
@@ -167,19 +171,22 @@ ReactDOM.render(myEle6, target[5]);
     -> 리액트 버전 16부터 class라고 써도 자동 변환하여
     클래스를 표시해 주지만 경고메시지가 뜬다!
 
-    참고 ) label 태그의 for속성도 for를 못씀
-        대신 htmlFor 라는 변형속성을 사용한다
+    참고) label 태그의 for속성도 for를 못씀!
+        대신 htmlFor라는 변형속성을 사용한다!
 *****************************************************/
-// 7. 속성으로 클래스 셋팅하여 사용하기
 
+// 7. 속성으로 클래스 셋팅하여 사용하기 //////
 const myEle7 = (
-  <h1 className="myclass">
-    className 속성으로 클래스를 셋팅한다!
-    <br />
-    <label htmlFor="mytxt">이름:</label>
-    <input type="text" name="mytxt" id="mytxt" />
-  </h1>
+    <h1 className="myclass">
+        className 속성으로 클래스를 셋팅한다!
+        <br />
+        <label htmlFor="mytxt">htmlFor 속성으로 라벨요소의 for속성을 셋팅한다!</label>
+        <input type="text" name="mytxt" id="mytxt" />
+    </h1>
 );
+
+
+// 일곱번째 div에 출력하기 ////
 ReactDOM.render(myEle7, target[6]);
 
 /***************************************************** 
@@ -192,37 +199,49 @@ ReactDOM.render(myEle7, target[6]);
     아니면 내부에서 삼항연산자를 사용할 수 있다!
 *****************************************************/
 
-// 8. 
+// 8. JSX에서 if문 사용하여 출력하기 //////
 const x = 9000;
 
-const showResult = (money) => {
-  let txt = "";
-  if (money < 10000) {
-    txt = "돈이 부족해서 살 수 없어!";
-  } else {
-    txt = "이 돈으로 충분히 살 수 있어!";
-  }
-  return txt;
-};
+// if문 분기하여 결과 리턴하는 함수 ///
+const showResult = money => {
+    let txt = "";
 
-const myEle8 =(
+    if(money < 10000){
+        txt = "돈이 부족해서 살 수 없어!";
+    }
+    else{
+        txt = "이 돈으로 충분히 살 수 있어!";
+    }
+    // 결과값 리턴
+    return txt;
+}; ///// showResult 함수 ////
+
+// 출력변수 ////
+const myEle8 = (
     <div>
         <h1>현재 내가 가진 돈은 {x}원!</h1>
+        <h1>만원짜리 립밤을 살 수 있을까?</h1>
         <h1>{showResult(x)}</h1>
     </div>
 );
+
+
+// 여덟번째 div에 출력하기 ////
 ReactDOM.render(myEle8, target[7]);
 
-// 9. 
-let time =10;
+
+// 9. JSX의 표현식에 삼항연산자 사용하여 출력하기 ///
+let time = 8;
+
 const myEle9 = (
     <React.Fragment>
         <h1>지금 몇시지? {time}시야!</h1>
         <h1>
-            {time>9?"지금집에들아와!":"더 놀더와!"}
+            {time>9?"지금 집에 들어와!":"더 놀다와!"}
         </h1>
     </React.Fragment>
 );
+ 
 
-
+// 아홉번째 div에 출력하기 ////
 ReactDOM.render(myEle9, target[8]);

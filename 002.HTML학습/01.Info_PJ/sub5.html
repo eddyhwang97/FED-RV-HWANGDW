@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>
+      네이버요약뉴스 - TV/연예 뉴스
+    </title>
+    <!-- 웹폰트 CDN방식 호출하기 -->
+    <!-- CDN은 Content Delivery Network
+      네트웤으로 컨텐트 불러오기 -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 스타일 요소 -->
+    <!-- <style></style> -->
+
+    <!-- 외부 CSS 불러오기 -->
+    <!-- 공통 CSS -->
+    <link
+      rel="stylesheet"
+      href="./css/common.css"
+    />
+    <!-- 서브용 CSS -->
+    <link
+      rel="stylesheet"
+      href="./css/sub.css"
+    />
+  </head>
+  <body>
+    <!-- 1. 상단영역 -->
+    <header id="top-area" class="part">
+      <!-- 1-1. 타이틀 -->
+      <h1>네이버 요약뉴스</h1>
+      <!-- 1-2. 메뉴 -->
+      <nav class="menu">
+        <a href="index.html">
+          <img
+            src="images/naver_logo.png"
+            alt="네이버로고"
+            style="
+              width: 40px;
+              vertical-align: middle;
+            "
+          />
+        </a>
+        <span></span>
+        <a href="sub1.html">정치</a>
+        <span> | </span>
+        <a href="sub2.html">경제</a>
+        <span> | </span>
+        <a href="sub3.html">사회</a>
+        <span> | </span>
+        <a href="sub4.html">IT/과학</a>
+        <span> | </span>
+        <a href="sub5.html">TV/연예</a>
+      </nav>
+    </header>
+    <!-- <div id="header"></div> -->
+
+    <!-- 2. 메인영역 -->
+    <main
+      id="main-area"
+      class="part main-area"
+    >
+      <!-- 2-1. 서브타이틀 -->
+      <h2 class="sub-title tv">
+        TV/연예 뉴스
+      </h2>
+      <!-- 2-2.언론사로고 -->
+      <div class="press-logo">
+        <img
+          src="./images/press_logo5.png"
+          alt="스포츠조선"
+        />
+      </div>
+      <!-- 2-3. 기사제목 -->
+      <h3 class="article-title">
+        한소희 이
+        정도였나..'경성크리처2' 사로잡은
+        액션+감정
+      </h3>
+      <!-- 2-4. 기사사진 
+       figure요소 : 사진,그림 넣는 블록박스-->
+      <figure class="article-picture">
+        <img
+          src="./images/arti_img5.jpg"
+          alt="사진제공=넷플릭스"
+        />
+        <!-- 사진설명은 figcaption요소 사용 -->
+        <figcaption>
+          <small
+            >사진제공=넷플릭스</small
+          >
+        </figcaption>
+      </figure>
+      <!-- 2-5. 기사내용 -->
+      <section class="contents">
+        <p>
+          한소희는 지난달 27일 공개된
+          넷플릭스 오리지널 시리즈
+          '경성크리처' 시즌2(강은경
+          극본, 정동윤 연출)에서 1945년
+          나진을 삼키고, 홀로 경성의
+          봄을 살아온 채옥으로 분해
+          열연을 펼쳤다.
+        </p>
+
+        <p>
+          '경성크리처' 시즌2는 2024년
+          서울, 태상(박서준)과 모든 것이
+          닮은 호재(박서준)와 경성의
+          봄을 살아낸 채옥(한소희)이
+          만나 끝나지 않은 경성의 인연과
+          운명, 악연을 파헤치는
+          이야기로,
+          <mark>
+            공개 3일 만에 넷플릭스
+            글로벌 TOP 10 시리즈(비영어)
+            부문 2위에 올랐다.
+          </mark>
+          이어 2주차에도 넷플릭스 글로벌
+          TOP 10 시리즈(비영어) 부문
+          2위의 자리를 지키며 전
+          세계적인 인기를 과시하고 있다.
+        </p>
+
+        <p>
+          극중 1945년 나진을 삼킨 채옥은
+          <strong>
+            인간도 괴물도 아닌, 늙지도
+            죽지도 못 한 채 혼자 서울을
+            살아갔다.
+          </strong> 은제비라는 이름으로
+          실종된 사람을 찾아주는 일을
+          하던 채옥은 의뢰를 받고 찾아간
+          현장에서 우연히 태상을 만났고,
+          <em>
+            79년이라는 시간을 뛰어넘은 두
+            사람의 애틋한 재회
+          </em>가 진한
+          여운을 남겼다.
+        </p>
+
+        <p>
+          특히 한층 깊어진 한소희와
+          박서준의 로맨스 연기는 극의
+          몰입감을 높였다. 한소희는
+          태상을 빼닮은 호재를 보고
+          흔들리는 채옥의 복합적인
+          감정을 입체감 있게 그려내며
+          호평을 이끌어냈다.
+        </p>
+      </section>
+
+      <!-- 2-6. 기자정보 -->
+      <div class="reporter">
+        문지연(lunamoon@sportschosun.com)
+      </div>
+
+      <!-- 2-7. 기사원문 -->
+      <div class="article-link">
+        <a
+          href="https://m.entertain.naver.com/article/076/0004202821"
+          target="_blank"
+          >기사원문</a
+        >
+      </div>
+    </main>
+    <!-- <div id="main"></div> -->
+
+    <!-- 3. 하단영역 -->
+    <footer id="info-area" class="part">
+      <address>
+        서울시 강남구 역삼동 119 대호B
+        8F <br />
+        대표: Tom Brace Parker <br />
+        전화: 010-2222-3333
+      </address>
+    </footer>
+    <!-- <div id="footer"></div> -->
+
+    <!-- 
+      [ 1. HTML 서식 요소 ]
+      1. 두꺼운 글자
+      <b>- 굵은 글씨
+        (Bold Text - 단순히 글자만 두꺼움)
+      <strong>- 중요한 텍스트
+        (Important text - 중요함의 의미)
+
+      2. 이탤릭 글자
+      <i>- 이탤릭체 텍스트(기울임꼴 글자)
+          (Italic text - 글자만 이탤릭처리)
+      <em>- 강조된 텍스트
+          (Emphasized text - 강조의 의미)
+
+      3. 색상표시
+      <mark>- 표시된 텍스트
+          (Marked text - 눈에 띄게 표시)
+
+      4. 작은글자(13px)
+      <small>- 작은 텍스트
+          (Smaller text - 더 작은 텍스트)
+
+      5. 삭제된 글자표시
+      <del>- 삭제된 텍스트(Deleted text)          
+
+          중간 지우는줄표시 CSS속성값
+          text-decoration: line-through;
+
+      6. 삽입된 글자표시
+      <ins>- 삽입된 텍스트(Inserted text)
+        
+          밑줄표시 CSS속성값
+          text-decoration: underline;
+
+      7. 첨자표시
+      <sub>- 아래 첨자 텍스트
+        - 약간 아랫쪽 작은글자(Subscript text)
+        - 사용예 : 병행글자표시(영문,한자), 화학식
+
+      <sup>- 상위 첨자 텍스트
+        - 약간 윗쪽 작은글자(Superscript text)
+        - 사용예 : 주석표시숫자(숫자와 설명연결), 승수표시
+
+    ______________________________
+
+    [ 2. HTML 인용관련 요소 ]
+
+      1. 블록인용요소
+      <blockquote>
+          - 블록요소로 별도의 인용구를 구분하는 박스
+          - 주의: 내부에 p요소와 같은 다른 블록요소 사용불가!
+          - cite 속성 : 출처표시
+          (필수속성은 아니지만 url 주소가 들어가기 때문에
+          링크로 오해할 수 있으나 아님! 단순출처정보임)
+
+      2. 인라인 인용요소
+      <q>
+          - 작은 이용구(쌍따옴표가 자동생성됨!)
+          - 주의: 인라인요소임(blockquote와 구분할것!)
+
+      3. 줄임말 인용
+      <abbr>
+          - 줄임말의 원래 뜻을 표시하는 요소
+          - 필수속성 ->> title 속성 -> 툴팁으로 원래뜻을 표시
+      (참고: title 툴팁속성은 어느요소든 사용가능함!)
+          - 기본디자인 : 점선 밑줄
+          text-decoration: underline dotted;
+
+      4. 주소인용
+      <address>
+          - 주소, 대표자, 전화번호 등 사이트 정보표시
+      
+      5. 작품명 인용
+      <cite>
+          - 인용하고 있는 작품을 표시하기 위한 요소
+
+      6. 반대방향글 인용
+      <bdo>
+          - 글방향이 반대일때 사용함
+          - Bi-Directional Override(줄임)
+          - dir 속성 :  rtl(right to left : 오른쪽에서 왼쪽으로 진행)
+          - 아랍어, 이스라엘어 등 반대방향으로 
+          출력해야하는 문자를 인용할때 사용함!
+
+      __________________________________
+
+
+
+    [ HTML5에서 등장한 div 친구들 ]
+        - div에 내용을 구분하는 이름을 지어줌
+        - 의미가 있는요소를 시멘틱(sementic)태그라고 함!
+        1. header : 머릿부분
+        2. footer : 아랫부분
+        3. main : 메인부분(한번만 사용가능!)
+        4. nav : 네비게이션 부분
+        5. aside : 부가정보
+        6. section : 내용구분파트
+        7. article : 독립된 내용구분파트
+        ( section/article 내부에 h1~h6 태그사용권고)     
+         
+        [ 요소 명명법 ]
+        1. 아이디는 #, 클래스는 . (약어로만들기)
+        2. 이름은 구체적으로 만들고
+        단어마다 데쉬(-)를 사용함(케밥케이스)
+        3. 아이디는 유일함, 클래스는 다중적용가능
+        예) <div class="aa bb cc" id="ee"></div>
+
+
+        [ img 요소 ]
+        - img 는 이미지를 불러오는 요소
+        - 필수속성
+            1) src : 이미지경로
+            2) alt : 대체텍스트(웹접근성 필수)
+            -> alternative text
+
+        [ 요소의 구성 ]
+        1. 요소명 - 요소별 특징을 구분하는 이름
+        2. 속성 - 요소가 가지는 개별 셋팅값을 저장함
+        -> 속성값은 쌍따옴표안에 표기함
+        표기) <요소명 속성="값">
+        -> 요소의 문자는 모두 소문자를 원칙으로 한다!
+
+
+        [ 요소 공통속성 ]
+        1. style 속성 : 요소에 인라인으로 CSS속성값을 셋팅함
+        예) <요소명 style="속성:값;속성:값;">
+        2. title 속성 : 툴팁제공속성(마우스오버시 등장)
+
+        [ 블록요소 VS 인라인요소 ]
+        1. 블록요소 : 내용을 구분하는 큰 구분박스
+        - 기본적으로 다른요소가 옆에 올 수 없다!
+        ex) div, section, figure, article, p  
+
+        2. 인라인요소 : 내용으로 나오는 컨텐츠를
+        구분해주는 요소
+        - 기본적으로 다른요소가 옆에 위치함!
+        ex) a, span, i, em, strong, img
+
+        [ 쌍태그 VS 홀로태그 ]
+        1. 쌍태그: 일반적으로 태그는 여는태그와
+        닫는 태그가 있다. 그 사이에 데이터를 넣는다!
+        ex) <div></div>, <h1></h1>
+
+        2. 홀로태그: 닫는 태그가 없는 태그
+        -> 데이터를 넣을 필요가 없는 태그
+        ex) <br>, <img src="" alt="">
+        -> 줄바꿈br요소는 데이터를 담을 필요없다
+        -> 이미지는 불러오면 끝, 데이터 필요없다
+
+        참고) 프리티어 자동 줄마춤 적용시 홀로태그에
+        마무리 슬래쉬가 생기는 이유는?
+        기본 XHTML문법에서 홀로태그는 마지막에 
+        스스로 닫는 방식으로 마무리해야함의 문법있음
+        이 문법을 프리티어가 적용하는 것!
+        우리가 코딩시엔 할 필요없고 프리티어가
+        해줘도 신경쓰지 않아도됨!
+        -> 프리티어가 이것을 하는 이유는
+        JSX문법을 사용할 경우 홀로닫기 태그가 필요
+        그래서 일반적으로 넣어주는것임!
+        JSX는 리액트에서 hmtl태그를 그대로 사용하는
+        문서형식임!
+        예) <br> -> <br />
+
+        [ p요소 유의사항! ]
+        -> 블록요소지만 내부에 일반적으로 다른
+         블록요소를 사용할 수 있지만 p는 안된다!
+
+
+
+-->
+  </body>
+</html>

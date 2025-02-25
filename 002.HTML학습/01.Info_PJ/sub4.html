@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>네이버요약뉴스 - IT/과학 뉴스</title>
+    <!-- 웹폰트 CDN방식 호출하기 -->
+    <!-- CDN은 Content Delivery Network
+      네트웤으로 컨텐트 불러오기 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 스타일 요소 -->
+    <!-- <style></style> -->
+
+    <!-- 외부 CSS 불러오기 -->
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="./css/common.css" />
+    <!-- 서브용 CSS -->
+    <link rel="stylesheet" href="./css/sub.css" />
+  </head>
+  <body>
+    <!-- 1. 상단영역 -->
+    <header id="top-area" class="part">
+      <!-- 1-1. 타이틀 -->
+      <h1>네이버 요약뉴스</h1>
+      <!-- 1-2. 메뉴 -->
+      <nav class="menu">
+        <a href="index.html">
+          <img
+            src="images/naver_logo.png"
+            alt="네이버로고"
+            style="width: 40px; vertical-align: middle"
+          />
+        </a>
+        <span></span>
+        <a href="sub1.html">정치</a>
+        <span> | </span>
+        <a href="sub2.html">경제</a>
+        <span> | </span>
+        <a href="sub3.html">사회</a>
+        <span> | </span>
+        <a href="sub4.html">IT/과학</a>
+        <span> | </span>
+        <a href="sub5.html">TV/연예</a>
+      </nav>
+    </header>
+    <!-- <div id="header"></div> -->
+
+    <!-- 2. 메인영역 -->
+    <main id="main-area" class="part main-area">
+      <!-- 2-1. 서브타이틀 -->
+      <h2 class="sub-title it">IT/과학 뉴스</h2>
+      <!-- 2-2.언론사로고 -->
+      <div class="press-logo">
+        <img src="./images/press_logo4.png" alt="서울신문로고" />
+      </div>
+      <!-- 2-3. 기사제목 -->
+      <h3 class="article-title">
+        사랑스러운데 똑똑하기까지…병코돌고래, 진짜 ‘미소’ 지을 줄 안다[핵잼
+        사이언스]
+      </h3>
+      <!-- 2-4. 기사사진 
+       figure요소 : 사진,그림 넣는 블록박스-->
+      <figure class="article-picture">
+        <img
+          src="./images/arti_img4-1.jpg"
+          alt="병코돌고래 물위로 머리를 내밀고 귀엽게 웃고있음"
+        />
+        <!-- 사진설명은 figcaption요소 사용 -->
+        <figcaption>
+          <small> 병코돌고래의 각기 다른 표정 자료사진 </small>
+        </figcaption>
+      </figure>
+      <!-- 2-5. 기사내용 -->
+      <section class="contents">
+        <p>
+          귀여운 외모로 사랑받는 병코돌고래가
+          <strong> 실제로 ‘미소’를 지을 수 있다 </strong>는 내용의 연구결과가
+          나왔다고
+          <b>영국 BBC</b>
+          등 외신이 3일(이하 현지시간) 보도했다.
+        </p>
+
+        <p>
+          <b>이탈리아 피사대학 연구진</b>은 병코 돌고래 22마리가 조련사와 함께
+          있는 모습을 분석한 결과, 병코돌고래는 ‘친구’들과 놀이시간을 가질 때
+          <strong>
+            의사소통을 위해 미소와 비슷한 입을 벌리는 표정을 짓는다 </strong
+          >는 사실을 확인했다.
+        </p>
+
+        <p>
+          다른 병코돌고래가 시야에 있을 때에는 거의 대부분
+          <i> ‘웃는’ 얼굴 표정 </i>을 지었지만, 사람(조련사) 등과 함께 있거나
+          홀로 있을 때에는 이러한 표정이 나오지 않았다.
+        </p>
+
+        <p>
+          또 다른 병코돌고래가 자신의 시야에 있을뿐만 아니라
+          <em> 얼굴을 마주볼 수 있을 때에는 미소짓는 표정을 더욱 자주 사용 </em
+          >하는 것으로 확인됐다.
+        </p>
+        <!-- 추가이미지 -->
+        <figure class="article-picture">
+          <img
+            src="./images/arti_img4-2.jpg"
+            alt="병코돌고래가 물속에서 웃고 있다"
+          />
+          <!-- 사진설명은 figcaption요소 사용 -->
+          <figcaption>
+            <small> 병코돌고래가 물속에서 웃고 있다 </small>
+          </figcaption>
+        </figure>
+        <p>
+          구체적으로 홀로 놀 때에는 입을 벌리는 행동이 단 한 차례만 기록됐지만,
+          <mark>
+            다른 돌고래와 함께 있을 때에는 1288번의 ‘미소’를 보였으며, 이중
+            92%는 돌고래와 돌고래가 함께 놀 때 나타났다.
+          </mark>
+          <del>이 돌고래는 사람이 아닐까?</del>
+        </p>
+
+        <p>
+          연구를 이끈 엘리자베타 팔라 피사대학<sup>①</sup>
+          진화생물학자는
+          <q>
+            원숭이<sub>monkey</sub> 의 장난기 어린 얼굴이나 인간의 웃음 표정에서
+            볼 수 있는 ‘느슨히 벌어진 입’은
+            <ins>바보같지만</ins>
+            장난을 칠 때 나오는 보편적인 신호 </q
+          >라면서
+          <q>
+            이러한 신호는 동물이 인간과 놀 때 즐거움을 표현하는 한편 갈등을
+            피하게 하는데 도움이 된다 </q
+          >고 설명했다.
+        </p>
+
+        <p>
+          이어
+          <q> 돌고래의 이런 표정은 미어캣 또는 말레이곰에게서도 볼 수 있다 </q
+          >면서 <q> 병코돌고래의 미소짓는 표정은 의사소통의 방식 </q>이라고
+          덧붙였다.
+        </p>
+
+        <!-- 동영상 넣기 -->
+        <div class="mv-box">
+          <!-- iframe : inline frame
+           다른 웹사이트를 삽입하여 보여주는
+           연결창
+           필수속성 : src(원본위치) -->
+          <iframe
+            src="https://www.youtube.com/embed/IvIIofrMVWU"
+            title="친절한 돌고래의 선물"
+          ></iframe>
+        </div>
+
+        <p>
+          병코돌고래는 무리지어 생활하며 사회적 능력이 뛰어난 해양 동물로 알려져
+          있다.
+          <abbr title="물 위로 점프하는 등의 장난기 있는 행동">물쩜장</abbr>을
+          포함해 복잡한 상호작용을 할 줄 아는 것으로 유명하다.
+        </p>
+
+        <p>
+          연구진은 “이번 연구를 통해 돌고래가 다른 돌고래의 얼굴 표정을 따라할
+          수 있다는 것을 알게됐다”면서 “입을 벌리는 신호는 돌고래뿐만 아니라
+          많은 종(種)의 동물 사이에서 복잡한 사회적 상호작용을 형성하는데 중요한
+          역할을 했다는 것을 시사한다”고 전했다.
+        </p>
+
+        <p>
+          이어 “이번 연구에서는 돌고래의 음향신호를 따로 기록하지 않았다.
+          향후에는 놀이적 상호작용 시간 동안 발성과 촉각 신호가 어떤 역할을 하는
+          지 탐구해야 할 것”이라고 덧붙였다.
+        </p>
+
+        <p>
+          이번 연구결과는 저명한 국제학술지 셀(Cell)의 자매지인
+          아이사이언스(iScience) 최신호에 실렸다.
+        </p>
+
+        <p>
+          한편, 병코돌고래는 고래하목 참돌고래과에 속하는 돌고래로, ‘큰
+          돌고래’라고 부르기도 한다. 몸길이는 4m, 몸무게는 300kg에 달하며
+          극지방을 제외한 거의 모든 온대 바다와 열대 바다에서 볼 수 있다.
+        </p>
+
+        <p>
+          일반적으로 15~20마리로 이뤄진 무리가 함께 생활하는데, 종종 1000여
+          마리로 이루어진 무리를 짓기도 한다. 주로 작은 물고기나 갑각류, 오징어
+          등이 먹잇감이다.
+        </p>
+
+        <p>
+          여러 연구를 통해 병코돌고래의 뇌가 인간보다 크고, 학습 능력 또한 다른
+          야생동물에 비해 월등하다는 사실이 증명된 바 있다.
+        </p>
+
+        <!-- 반대방향 출력(예: 아랍어등) -->
+        <bdo dir="rtl">우리나라대한민국만세</bdo>
+      </section>
+
+      <!-- 2-5.5. 인용블록영역
+       공통 보더박스 디자인 .bd-box -->
+      <article class="quote-box bd-box">
+        <h4>참고자료 : 병코 돌고래</h4>
+
+        <blockquote
+          cite="https://ko.wikipedia.org/wiki/%ED%81%B0%EB%8F%8C%EA%B3%A0%EB%9E%98%EC%86%8D"
+        >
+          <img src="./images/dolpin.jpg" alt="병코돌고래" />
+          큰돌고래속(Tursiops) 또는 병코돌고래속은 이빨고래소목참돌고래과에
+          속하는 고래 속의 일종이다. 병코돌고래속은 큰돌고래(T. truncatus,
+          병코돌고래 또는 커먼돌고래)와 남방큰돌고래(T. aduncus,
+          인도태평양병코돌고래) 그리고 부르난큰돌고래(T. australis)의 3종으로
+          이루어져 있다.
+        </blockquote>
+      </article>
+
+      <!-- 블록인용요소는 p안에 쓰면 안된다!
+       왜? p요소는 인라인요소만 내부에 사용가능! -->
+
+      <!-- 2-6. 기자정보 -->
+      <div class="reporter">송현서 기자</div>
+
+      <!-- 2-7. 기사원문 -->
+      <div class="article-link">
+        <a
+          href="https://n.news.naver.com/mnews/hotissue/article/081/0003484894?type=series&cid=1064685"
+          target="_blank"
+          >기사원문</a
+        >
+      </div>
+
+      <!-- <hr /> -->
+      <!-- hr 요소 : horizontal line 수평선
+       보통 CSS디자인요소로 사용하지 않음! -->
+
+      <!-- 주해영역
+       article은 독립된 내용을 싸주는 박스
+       따라서 제목과 내용이 등장함!
+       공통 보더박스 디자인 .bd-box  -->
+      <article class="desc bd-box">
+        <h4>주해</h4>
+        <p>
+          ① 피사대학 : 피사대학교는 이탈리아 토스카나주 피사시에 있는 공립
+          연구중심 종합대학교이다. 1343년 설립되었다. 세계에서 19번째로 오래된
+          대학으로 이탈리아에서는 10번째로 역사가 긴 대학이다.
+        </p>
+      </article>
+
+      <!-- 오늘의 작품 & 느낌 -->
+      <article class="work">
+        <h4>오늘의 작품 &amp; 느낌</h4>
+        <figure>
+          <img src="./images/img_the_scream.jpg" alt="뭉크의 절규" />
+          <figcaption>뭉크의 &lt;<cite>절규</cite>&gt;</figcaption>
+        </figure>
+      </article>
+
+      <!-- 
+          [ 순서없는 리스트 : ul ]
+          unordered list
+
+          (참고: 블릿옵션
+          https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_ul_type_css)
+
+          [ 순서있는 리스트 : ol ]
+          ordered list
+
+          (참고: 순서표시옵션
+          https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_ol_type_all_css)
+
+          [ ul/ol 공통사항 ]
+          - 하위필수요소 : li (개별리스트)
+          - 주의 : 하위에 li 이외의 블록요소나 
+          그 어떤 요소도 직계자식으로 사용할 수 없다!
+          예) <ul><li></li><div></div></ul> -> 사용불가!
+
+         -->
+
+      <!-- 주요뉴스 : ul -->
+      <article class="main-news news-box">
+        <h3>주요뉴스</h3>
+        <ul>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/article/081/0003489077"
+              target="_blank"
+            >
+              “비자 면제해줬더니 불법체류”…제주서 중국인 1만명이나</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/article/081/0003489044"
+              target="_blank"
+              >“5조원대 무기 자체구매할 듯” K방산 큰손, 갑자기 방향 튼 이유는</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/article/081/0003489086"
+              target="_blank"
+              >“돈맛 알아야” 12살 딸에 400만원 D사 가방 선물한 남편</a
+            >
+          </li>
+        </ul>
+      </article>
+
+      <!-- 랭킹뉴스 : ol -->
+      <article class="rank-news news-box">
+        <h3>랭킹뉴스</h3>
+        <ol>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/article/081/0003488939?type=journalists"
+              target="_blank"
+              >우크라 전장에 꽂힌 北인공기…“북한군 파병 지역에 등장” 진실은?</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://nownews.seoul.co.kr/news/newsView.php?id=20241002601009&wlog_tag3=naver_relation"
+              target="_blank"
+              >태풍이 만든 '파묘', 관 떠내려가…"약 150명 사망, 지옥같은 상황"</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://nownews.seoul.co.kr/news/newsView.php?id=20240723601011&wlog_tag3=naver_relation"
+              target="_blank"
+              >마약먹은 미친 상어?…브라질 해안 상어 잡아보니 '코카인' 양성 반응
+            </a>
+          </li>
+        </ol>
+      </article>
+
+      <!-- 
+          [ 용어정의리스트 : dl ]
+          
+          dl > dt + dd
+          __________________
+
+          dl : 용어 리스트
+          (defines the description list)
+          dt : 용어정의
+          (defines the term)
+          dd : 용어설명
+          (description each term)
+          ________________________
+          주의 - dl은 반드시 자식요소로 dt와 dd가
+          반드시 한번이상 사용되어야 함!!!
+          또 주의 - dt와 dd는 형제관계임!(자식아님!)
+          -->
+
+      <!-- 분야별 뉴스 : dl -->
+      <article class="sec-news news-box">
+        <h3>분야별 뉴스</h3>
+        <dl>
+          <!-- 경제파트 -->
+          <dt>경제</dt>
+          <dd>
+            <a
+              href="https://n.news.naver.com/mnews/article/014/0005256340"
+              target="_blank"
+              >두산 사업재편 재시동… "주식 더 준다"</a
+            >
+          </dd>
+          <dd>
+            <a
+              href="https://n.news.naver.com/mnews/article/629/0000330962"
+              target="_blank"
+              >맘스터치, 메뉴 62종 가격 인상…싸이버거 300원↑</a
+            >
+          </dd>
+          <!-- 사회파트 -->
+          <dt>사회</dt>
+          <dd>
+            <a
+              href="https://n.news.naver.com/mnews/article/018/0005865201"
+              target="_blank"
+              >경찰, ‘36주 낙태 의혹’ 병원장·집도의 구속영장 신청</a
+            >
+          </dd>
+          <dd>
+            <a
+              href="https://n.news.naver.com/mnews/article/025/0003394914"
+              target="_blank"
+              >연세대 '논술문제 유출' 논란에…일부 수험생 무효소송 제기</a
+            >
+          </dd>
+          <!-- TV/연예파트 -->
+          <dt>TV/연예</dt>
+          <dd>
+            <a
+              href="https://m.entertain.naver.com/article/241/0003389139"
+              target="_blank"
+              >"마지막 앨범 될 수도"…조용필, 당신은 이미 나이와 시대를…</a
+            >
+          </dd>
+          <dd>
+            <a
+              href="https://m.entertain.naver.com/ranking/article/312/0000685785"
+              target="_blank"
+              >1[공식] 전소민, '런닝맨' 하차 1년 만에 겹경사 터졌다…</a
+            >
+          </dd>
+        </dl>
+      </article>
+
+      <!-- 
+            [ 테이블 요소 : table ]
+            table > tbody > tr > td
+
+            -> tbody는 안쓰고 tr부터 구현해도
+            브라우저가 자동으로 그려준다!
+
+            주의) table > tr 로 직계선택하게 되면
+            위와 같은 구조적인 이유로 선택되지 않는다!
+
+            _______________________________
+
+            ((간단한 테이블 작성시 필수요소 3가지!))
+            table : 테이블 박스 부모요소
+            tr : 테이블 행요소(table row)
+            td : 테이블 데이터요소(table data)
+           -->
+
+      <!-- 사진뉴스 : table -->
+      <article class="photo-news news-box">
+        <h3>사진뉴스</h3>
+        <!-- 3행3열 테이블 구성하기 -->
+        <!-- <table border="1"> -->
+        <table>
+          <!-- 첫번째줄 -->
+          <tr>
+            <td>1</td>
+            <td>
+              <a
+                href="https://n.news.naver.com/mnews/ranking/article/092/0002349600?ntype=RANKING"
+                target="_blank"
+                >"아이폰17, 애플 제품 중 최고 야심작"…근거는? "아이폰17, 애플 제품 중 최고 야심작"…근거는?</a
+              >
+            </td>
+            <td>
+              <a
+                href="https://n.news.naver.com/mnews/ranking/article/092/0002349600?ntype=RANKING"
+                target="_blank"
+              >
+                <img src="./images/photo_news1.jpg" alt="포토뉴스1" />
+              </a>
+            </td>
+          </tr>
+          <!-- 두번째줄 -->
+          <tr>
+            <td>2</td>
+            <td>
+              <a
+                href="https://n.news.naver.com/mnews/ranking/article/030/0003250270?ntype=RANKING"
+                target="_blank"
+                >“북한군, 러시아서 6천명씩 2개 여단 훈련… 돈 때문에 파병나간
+                듯”“북한군, 러시아서 6천명씩 2개 여단 훈련… 돈 때문에 파병나간
+                듯”</a
+              >
+            </td>
+            <td>
+              <a
+                href="https://n.news.naver.com/mnews/ranking/article/030/0003250270?ntype=RANKING"
+                target="_blank"
+                ><img src="./images/photo_news2.jpg" alt="포토뉴스2"
+              /></a>
+            </td>
+          </tr>
+          <!-- 세번째줄 -->
+          <tr>
+            <td>3</td>
+            <td>
+              <a
+                href="https://n.news.naver.com/mnews/ranking/article/018/0005866034?ntype=RANKING"
+                target="_blank"
+                >안성재 셰프 '1인 70만 원' 디너 코스…오픈 61초 만에 매진 안성재 셰프 '1인 70만 원' 디너 코스…오픈 61초 만에 매진</a
+              >
+            </td>
+            <td>
+              <a
+                href="https://n.news.naver.com/mnews/ranking/article/018/0005866034?ntype=RANKING"
+                target="_blank"
+                ><img src="./images/photo_news3.jpg" alt="포토뉴스3"
+              /></a>
+            </td>
+          </tr>
+        </table>
+      </article>
+
+      <!-- 
+        [ html요소에서 특수문자 처리 ]
+        & 엔퍼센드 &amp;
+        < 여는꺽쇠 &lt; (lt는 less than ~ 보다 작은)
+        > 닫는꺽쇠 &gt; (gt는 greater than ~ 보다 작은)
+       -->
+    </main>
+    <!-- <div id="main"></div> -->
+
+    <!-- 3. 하단영역 -->
+    <footer id="info-area" class="part">
+      <address>
+        서울시 강남구 역삼동 119 대호B 8F <br />
+        대표: Tom Brace Parker <br />
+        전화: 010-2222-3333
+      </address>
+    </footer>
+    <!-- <div id="footer"></div> -->
+
+    <!-- 
+      [ 1. HTML 서식 요소 ]
+      1. 두꺼운 글자
+      <b>- 굵은 글씨
+        (Bold Text - 단순히 글자만 두꺼움)
+      <strong>- 중요한 텍스트
+        (Important text - 중요함의 의미)
+
+      2. 이탤릭 글자
+      <i>- 이탤릭체 텍스트(기울임꼴 글자)
+          (Italic text - 글자만 이탤릭처리)
+      <em>- 강조된 텍스트
+          (Emphasized text - 강조의 의미)
+
+      3. 색상표시
+      <mark>- 표시된 텍스트
+          (Marked text - 눈에 띄게 표시)
+
+      4. 작은글자(13px)
+      <small>- 작은 텍스트
+          (Smaller text - 더 작은 텍스트)
+
+      5. 삭제된 글자표시
+      <del>- 삭제된 텍스트(Deleted text)          
+
+          중간 지우는줄표시 CSS속성값
+          text-decoration: line-through;
+
+      6. 삽입된 글자표시
+      <ins>- 삽입된 텍스트(Inserted text)
+        
+          밑줄표시 CSS속성값
+          text-decoration: underline;
+
+      7. 첨자표시
+      <sub>- 아래 첨자 텍스트
+        - 약간 아랫쪽 작은글자(Subscript text)
+        - 사용예 : 병행글자표시(영문,한자), 화학식
+
+      <sup>- 상위 첨자 텍스트
+        - 약간 윗쪽 작은글자(Superscript text)
+        - 사용예 : 주석표시숫자(숫자와 설명연결), 승수표시
+
+    ______________________________
+
+    [ 2. HTML 인용관련 요소 ]
+
+      1. 블록인용요소
+      <blockquote>
+          - 블록요소로 별도의 인용구를 구분하는 박스
+          - 주의: 내부에 p요소와 같은 다른 블록요소 사용불가!
+          - cite 속성 : 출처표시
+          (필수속성은 아니지만 url 주소가 들어가기 때문에
+          링크로 오해할 수 있으나 아님! 단순출처정보임)
+
+      2. 인라인 인용요소
+      <q>
+          - 작은 이용구(쌍따옴표가 자동생성됨!)
+          - 주의: 인라인요소임(blockquote와 구분할것!)
+
+      3. 줄임말 인용
+      <abbr>
+          - 줄임말의 원래 뜻을 표시하는 요소
+          - 필수속성 ->> title 속성 -> 툴팁으로 원래뜻을 표시
+      (참고: title 툴팁속성은 어느요소든 사용가능함!)
+          - 기본디자인 : 점선 밑줄
+          text-decoration: underline dotted;
+
+      4. 주소인용
+      <address>
+          - 주소, 대표자, 전화번호 등 사이트 정보표시
+      
+      5. 작품명 인용
+      <cite>
+          - 인용하고 있는 작품을 표시하기 위한 요소
+
+      6. 반대방향글 인용
+      <bdo>
+          - 글방향이 반대일때 사용함
+          - Bi-Directional Override(줄임)
+          - dir 속성 :  rtl(right to left : 오른쪽에서 왼쪽으로 진행)
+          - 아랍어, 이스라엘어 등 반대방향으로 
+          출력해야하는 문자를 인용할때 사용함!
+
+      __________________________________
+
+
+
+    [ HTML5에서 등장한 div 친구들 ]
+        - div에 내용을 구분하는 이름을 지어줌
+        - 의미가 있는요소를 시멘틱(sementic)태그라고 함!
+        1. header : 머릿부분
+        2. footer : 아랫부분
+        3. main : 메인부분(한번만 사용가능!)
+        4. nav : 네비게이션 부분
+        5. aside : 부가정보
+        6. section : 내용구분파트
+        7. article : 독립된 내용구분파트
+        ( section/article 내부에 h1~h6 태그사용권고)     
+         
+        [ 요소 명명법 ]
+        1. 아이디는 #, 클래스는 . (약어로만들기)
+        2. 이름은 구체적으로 만들고
+        단어마다 데쉬(-)를 사용함(케밥케이스)
+        3. 아이디는 유일함, 클래스는 다중적용가능
+        예) <div class="aa bb cc" id="ee"></div>
+
+
+        [ img 요소 ]
+        - img 는 이미지를 불러오는 요소
+        - 필수속성
+            1) src : 이미지경로
+            2) alt : 대체텍스트(웹접근성 필수)
+            -> alternative text
+
+        [ 요소의 구성 ]
+        1. 요소명 - 요소별 특징을 구분하는 이름
+        2. 속성 - 요소가 가지는 개별 셋팅값을 저장함
+        -> 속성값은 쌍따옴표안에 표기함
+        표기) <요소명 속성="값">
+        -> 요소의 문자는 모두 소문자를 원칙으로 한다!
+
+
+        [ 요소 공통속성 ]
+        1. style 속성 : 요소에 인라인으로 CSS속성값을 셋팅함
+        예) <요소명 style="속성:값;속성:값;">
+        2. title 속성 : 툴팁제공속성(마우스오버시 등장)
+
+        [ 블록요소 VS 인라인요소 ]
+        1. 블록요소 : 내용을 구분하는 큰 구분박스
+        - 기본적으로 다른요소가 옆에 올 수 없다!
+        ex) div, section, figure, article, p  
+
+        2. 인라인요소 : 내용으로 나오는 컨텐츠를
+        구분해주는 요소
+        - 기본적으로 다른요소가 옆에 위치함!
+        ex) a, span, i, em, strong, img
+
+        [ 쌍태그 VS 홀로태그 ]
+        1. 쌍태그: 일반적으로 태그는 여는태그와
+        닫는 태그가 있다. 그 사이에 데이터를 넣는다!
+        ex) <div></div>, <h1></h1>
+
+        2. 홀로태그: 닫는 태그가 없는 태그
+        -> 데이터를 넣을 필요가 없는 태그
+        ex) <br>, <img src="" alt="">
+        -> 줄바꿈br요소는 데이터를 담을 필요없다
+        -> 이미지는 불러오면 끝, 데이터 필요없다
+
+        참고) 프리티어 자동 줄마춤 적용시 홀로태그에
+        마무리 슬래쉬가 생기는 이유는?
+        기본 XHTML문법에서 홀로태그는 마지막에 
+        스스로 닫는 방식으로 마무리해야함의 문법있음
+        이 문법을 프리티어가 적용하는 것!
+        우리가 코딩시엔 할 필요없고 프리티어가
+        해줘도 신경쓰지 않아도됨!
+        -> 프리티어가 이것을 하는 이유는
+        JSX문법을 사용할 경우 홀로닫기 태그가 필요
+        그래서 일반적으로 넣어주는것임!
+        JSX는 리액트에서 hmtl태그를 그대로 사용하는
+        문서형식임!
+        예) <br> -> <br />
+
+        [ p요소 유의사항! ]
+        -> 블록요소지만 내부에 일반적으로 다른
+         블록요소를 사용할 수 있지만 p는 안된다!
+
+
+
+-->
+  </body>
+</html>

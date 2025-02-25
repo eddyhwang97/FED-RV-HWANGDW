@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>트랜지션</title>
     <style>
-        /*************************************************** 
+      /*************************************************** 
         [ 트랜지션으로 애니메이션 설정하기 ]
 
         - 트랜지션이란? CSS 속성값이 변경되는 과정을
@@ -65,197 +64,210 @@
             transition : none;
 
         
-            ***************************************************/
-        body{
-            padding-bottom: 400px;            
-        }
-        h1 {
-            text-align: center;
-        }
+      ***************************************************/
+      body {
+        padding-bottom: 400px;
+      }
+      h1 {
+        text-align: center;
+      }
 
-        /* 트랙 */
-        div {
-            border: 5px dotted blue;
-            padding: 15px;
-        }
+      /* 트랙 */
+      div {
+        border: 5px dotted blue;
+        padding: 15px;
+      }
 
-        /* 원 */
-        span {
-            position: relative;
-            top: 0;
-            left: 0;
-            /* 현재위치로 부터 이동! 
+      /* 원 */
+      span {
+        position: relative;
+        top: 0;
+        left: 0;
+        /* 현재위치로 부터 이동! 
             트랜지션에 초기값이 있어야 나오는 경우가 있음
             초기값이 없으면 변경 애니가 적용되지 않음!!! */
-            display: block;
-            width: 200px;
-            height: 200px;
-            border: 5px solid #000;
-            background-color: #ff0;
-            border-radius: 50%;
+        display: block;
+        width: 200px;
+        height: 200px;
+        border: 5px solid #000;
+        border-radius: 50%;
 
-            background-color: #ff0;
-            background: #ff0 url(./images/Maggie_Simpson.png) no-repeat center/cover;
+        /* 배경셋팅 */
+        background: #ff0
+          url(./images/simpson.png)
+          no-repeat top/100%;
+      }
 
-            
-        }
-        
-        /*  #tr1에 트랜지션 적용 */
-        /* 트랜지션을 hover가 아닌 원래 요소에 주면
+      /*  #tr1에 트랜지션 적용 */
+      /* 트랜지션을 hover가 아닌 원래 요소에 주면
         양방향(오버시포함) 모두 적용된다! */
-        #tr1 span{
-            /* transition: all 2s; */
-            transition:  2s;
-            /* 앞에 속성을 생략하거나 all이라고 쓰면
-            모든 속성이 변경될때 애니메이션이됨! */
-        }
-        /* 오버시 변경 */
-        #tr1:hover span{
-            /* 위치이동 */
-            left: 50%;
+      #tr1 span {
+        /* transition: all 2s; */
+        transition: 2s;
+        /* 앞에 속성을 생략하거나 all이라고 쓰면
+            모든 속성이 변경될때 애니메이션됨! */
+      }
+      /* 오버시 변경 */
+      #tr1:hover span {
+        /* 위치이동 */
+        left: 50%;
+        /* 배경색 */
+        background-color: darkorchid;
+        /* 다시 사각형으로 */
+        border-radius: 0;
+      }
 
-            background-color: #ba9422;
-            /* 다시 사각형 */
-            border-radius: 0;
-        }
-
-        /* #tr2에 트랜지션 설정하지 않음! */
-        #tr2 span{
-            width: 100px;
-            height: 100px;
-        }
-        /* 오버시에만 트랜지션을 주면 오버시에만 적용 */
-    #tr2:hover span{
+      /* #tr2에 트랜지션 설정하지 않음! */
+      #tr2 span {
+        width: 100px;
+        height: 100px;
+      }
+      /* 오버시에만 트랜지션을 주면 오버시에만 적용 */
+      #tr2:hover span {
         left: 70%;
         width: 300px;
         height: 300px;
-        background-color: #b45555;
+        background-color: aquamarine;
         /* 오버시에만 적용되는 트랜지션 */
         transition: 3s;
-    }
+      }
 
-    /* #tr3에 트랜지션 설정 */
-    #tr3 span{
+      /* #tr3에 트랜지션 설정 */
+      #tr3 span {
         left: -2%;
         width: 50px;
         height: 50px;
         background-color: palevioletred;
-        /* 트랜지션 원본(양방향/덜아올때) */
+        /* 트랜지션 원본(양방향/돌아올때) */
         transition: 
-        /* 돌아올때 1초후 2초간 진행 */
-        all 2s 1s,
-        /* 돌아올때 top값만 바로 1초간 진행 */
-        top 1s;
-        /*  */
-    }
-    /* 마우스 오버시 트랜지션설정 */
-    #tr3:hover span{
-        /* 위로 올라감 */
+        /* 돌아올때 1초후 2초간 진행 */ all
+            2s 1s,
+          /* 돌아올때 top값만 바로 1초간진행 */
+            top 1s;
+      }
+      /* 마우스 오버시 트랜지션설정 */
+      #tr3:hover span {
+        /* 위로올라감 */
         top: -200px;
+
         left: 70%;
         width: 400px;
         height: 400px;
-        background-color: lightblue;
+        background-color: lightgreen;
 
         /* 오버시에만 적용되는 트랜지션 */
         transition: 
-        /* 전체 오버시 5초간진행 */
-        5s,
-        /* top속성만 5초후 1초간 진행 */
-        top 1s 5s
-        ;
-    }
+        /* 전체오버시 5초간 진행 */ 5s,
+          /* top속성만 5초후 1초간 진행 */
+            top 1s 5s;
+      }
 
-    /* #tr4에 트랜지션 설정하기 */
-    /* 
+      /* #tr4에 트랜지션 설정하기 */
+      /* 
         여러가지 속성을 별도로 트랜지션 주고자 할때
         속시이지 순으로 셋팅하고 콤마로 구분한다!
     */
-    #tr4 span{
+      #tr4 span {
         left: 10%;
         width: 10px;
         height: 10px;
         background-color: royalblue;
-        transition: 3s;
-        /* 트랜지션: 돌아올때 */
+
+        /* 트랜지션 : 돌아올때 */
         transition: 
-        /* 1. left는 3초간 처음과 끝에 천천히 1초 기다림 */
-        left 3s ease-in-out 9s,
-        /* 2. width는 2초간 끝에서 천천히 4초 기다림 */
-        width 1s ease-out 8s,
-        /* 3. height는 1초간 처음에 천천히 6초 기다림 */
-        height 1s ease-in 8s,
-        /* 4. 배경색 3초간 등속도로 7초 기다림 */
-        background-color 3s 5s,
-        /* 5. 둥근모서리 2초간 등속도로 7초 기다림 */
-        border-radius 2s 3s,
-        /* 6. 보더 1초간 등속도로 7초 기다림 */
-        border 1s 2s,
-        /* 7. 배경이미지는 2초간 등속도 */
-        background-image 2s linear;
-    }
-    /* 체크박스가 체크되면 그 다음 형제요소를 변경하여
+        /* 1. left는 3초간 처음과 끝에 천천히 6초 기다림 */ left
+            3s ease-in-out 6s,
+          /* 2. width는 2초간 끝에 천천히 4초 기다림 */
+            width 2s ease-out 4s,
+          /* 3. height는 1초간 처음에 천천히 3초 기다림 */
+            height 1s ease-in 3s,
+          /* 4. 배경색은 3초간 등속도 */
+            background-color 3s linear,
+          /* 5. 둥근모서리는 2초간 등속도 */
+            border-radius 2s linear,
+          /* 6. 보더는 1초간 등속도 */
+            border 1s linear,
+          /* 7. 배경이미지는 2초간 등속도 */
+            background-image 2s linear;
+      }
+      /* 체크박스가 체크되면 그 다음 형제요소를 변경하여
     클릭시 변경된것 같은 효과로 작동시킨다!
-    */
-    #chkbx:checked + span{
-        left: 60%;
+     */
+      #chkbx:checked + span {
+        left: 50%;
         width: 500px;
-        height: 500px;
+        height: 400px;
         background-color: hotpink;
-        
+        border-radius: 0;
         border: 10px ridge gray;
-        border-radius: 0;    
 
-        /* 배경이미지변경 */
-        background-image: url(./images/simpson.png);
+        /* 배경이미지변경(심슨->마지) */
+        background-image: url(./images/Marge_Simpson.png);
 
-        /* 트랜지션: 진행할때 */
+        /* 트랜지션 : 진행할때 */
         transition: 
-        /* 1. left는 3초간 처음과 끝에 천천히 1초 기다림 */
-        left 3s ease-in-out 1s,
-        /* 2. width는 2초간 끝에서 천천히 4초 기다림 */
-        width 2s ease-out 4s,
-        /* 3. height는 1초간 처음에 천천히 6초 기다림 */
-        height 1s ease-in 6s,
-        /* 4. 배경색 3초간 등속도로 7초 기다림 */
-        background-color 3s linear 7s,
-        /* 5. 둥근모서리 2초간 등속도로 7초 기다림 */
-        border-radius 3s linear 7s,
-        /* 6. 보더 1초간 등속도로 7초 기다림 */
-        border 3s linear 7s,
-        /* 7. 배경이미지는 2초간 등속도로 7초 기다림 */
-        background-image 2s linear 7s;
-    }
-
-        
-        
+        /* 1. left는 3초간 처음과 끝에 천천히 1초 기다림 */ left
+            3s ease-in-out 1s,
+          /* 2. width는 2초간 끝에 천천히 4초 기다림 */
+            width 2s ease-out 4s,
+          /* 3. height는 1초간 처음에 천천히 6초 기다림 */
+            height 1s ease-in 6s,
+          /* 4. 배경색은 3초간 등속도로 7초기다림 */
+            background-color 3s linear
+            7s,
+          /* 5. 둥근모서리는 2초간 등속도로 7초기다림 */
+            border-radius 2s linear 7s,
+          /* 6. 보더는 1초간 등속도로 7초기다림 */
+            border 1s linear 7s,
+          /* 7. 배경이미지는 2초간 등속도로 7초기다림 */
+            background-image 2s linear
+            7s;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>트랜지션</h1>
 
-    <h2>1.원본에 트랜지션 주고 양방향이 동일함</h2>
+    <h2>
+      1.원본에 트랜지션 주고 양방향이
+      동일함
+    </h2>
     <div id="tr1">
-        <span></span>
+      <span></span>
     </div>
 
-    <h2>2.오버시에 트랜지션 주고 원본엔 없음</h2>
+    <h2>
+      2.오버시에 트랜지션 주고 원본엔
+      없음
+    </h2>
     <div id="tr2">
-        <span></span>
+      <span></span>
     </div>
 
-    <h2>3.원본과 오버시 트랜지션을 각각 잡아준다</h2>
+    <h2>
+      3.원본과 오버시 트랜지션을 각각
+      잡아준다
+    </h2>
     <div id="tr3">
-        <span></span>
+      <span></span>
     </div>
 
-    <h2>4.원본에 트랜지션을 각 속성별로 다르게 준다</h2>
-    <div id="tr4">    
-        <label for="chkbx">체크하면 작동!</label> 
-        <input type="checkbox" name="chkbx" id="chkbx">   
-        <span></span>
-        <!-- 체크박스 다음에 변경할 요소가 와야함!
+    <h2>
+      4.원본에 트랜지션을 각 속성별로
+      다르게 준다
+    </h2>
+    <div id="tr4">
+      <label for="chkbx"
+        >체크하면 작동!</label
+      >
+      <input
+        type="checkbox"
+        name="chkbx"
+        id="chkbx"
+      />
+      <span></span>
+      <!-- 체크박스 다음에 변경할 요소가 와야함!
         그래야 형제선택자로 변경을 할 수 있음! -->
     </div>
 
@@ -287,6 +299,5 @@
             동일한 작동을 할 수 있음!
 
      -->
-</body>
-
+  </body>
 </html>

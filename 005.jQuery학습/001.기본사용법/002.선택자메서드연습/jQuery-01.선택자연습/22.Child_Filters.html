@@ -8,13 +8,13 @@
     <script>
       $(() => {
         /* 
-          first-child, last-child, nth-child(n)
-          // 그룹별 자식요소 선택하기
-      */
+            first-child, last-child, nth-child(n)
+            // 그룹별 자식요소 선택하기
+        */
 
         // 미션: #container를 클릭하면
         $("#container")
-        .css({fontSize:"3vw"})
+        .css({fontSize: '2.5vw'})
         .click(function () {
           // 짝수번째에 글자를 "우리나라" 라고 쓰고
           $("li:nth-child(even)").text("우리나라");
@@ -28,12 +28,12 @@
         }); ///////// click ///////////////
 
         /* 
-          :nth-child(2n+1)
-          위와 같은 수식표현법은 CSS 기본문법에서 지원한다!!!
-          -> 제이쿼리 전용아님!!!
-          -> 공식문법확인:
-          https://www.w3schools.com/cssref/sel_nth-of-type.asp
-      */
+            :nth-child(2n+1)
+            위와 같은 수식표현법은 CSS 기본문법에서 지원한다!!!
+            -> 제이쿼리 전용아님!!!
+            -> 공식문법확인:
+            https://www.w3schools.com/cssref/sel_nth-of-type.asp
+        */
       }); //jQuery실행구역
     </script>
   </head>

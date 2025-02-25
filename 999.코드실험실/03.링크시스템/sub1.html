@@ -2,11 +2,8 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>03.링크시스템-sub1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.링크시스템 - 서브1</title>
     <style>
       html,
       body,
@@ -14,9 +11,9 @@
         margin: 0;
         padding: 0;
       }
-      body {
-        background: url(https://fjwp.s3.amazonaws.com/blog/wp-content/uploads/2021/02/25083908/How-to-Find-Online-Jobs-Work-From-Home-Jobs-That-Require-Little-or-No-Work-Experience.jpg)
-          no-repeat center/cover;
+      body{
+        /* 배경넣기 */
+        background: url('https://fjwp.s3.amazonaws.com/blog/wp-content/uploads/2021/02/25083908/How-to-Find-Online-Jobs-Work-From-Home-Jobs-That-Require-Little-or-No-Work-Experience.jpg') no-repeat center/cover;
       }
 
       /* 페이지 전환효과용 가림막 */
@@ -79,7 +76,6 @@
       }
     </style>
 
-    <!-- JS코드구역 -->
     <!-- 제이쿼리 라이브러리 CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -87,20 +83,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
 
     <!-- 링크시스템 JS -->
-    <script
-      src="./js/linksys.js"
-      defer
-    ></script>
+    <script src="./js/linksys.js" defer></script>
 
-    <script
-      src="./js/common.js"
-      defer
-    ></script>
+    <!-- JS코드구역 -->
+     <script src="./js/common.js" defer></script>
   </head>
   <body>
     <nav class="gnb">
-      <a href="#">HOME</a> |
-      <a href="#">WORK</a> |
+      <a href="#">HOME</a> | <a href="#">WORK</a> |
       <a href="#">CONTACT</a>
     </nav>
     <div class="wrap">

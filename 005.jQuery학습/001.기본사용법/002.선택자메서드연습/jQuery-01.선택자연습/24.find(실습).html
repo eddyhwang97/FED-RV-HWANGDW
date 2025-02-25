@@ -1,60 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>find</title>
-    <!-- jQuery library -->
-    <script src="../jquery-3.6.3.min.js"></script>
-    <script>
-      $(() => {
-        ////////JQB ////////////////
-        // [2. find(선택요소) 트래버싱 메서드]
-        // 선택요소 하위의 모든 요소를 찾아서 선택함
-        // -> children() 과 비교할것
+<head>
+<meta charset="utf-8">
+<title> find </title>
+<!-- jQuery library -->
+<script src="../jquery-3.6.3.min.js"></script>
+<script>
+  $(()=>{////// jQB /////////////////////
+    // [2. find(선택요소) 트래버싱 메서드]
+    // 선택요소 하위의 모든요소를 찾아서 선택함
+    // -> children() 과 비교할것!
 
-        $("#container")
-          .css({
-            scale: "4",
-            transformOrigin: "left top",
-          })
-          .click(function () {
-            $(this).find("p").css({
-              background:
-                "url(https://file.mk.co.kr/mkde/N0/2019/08/20190822_4206133_1566448073.jpeg) no-repeat center/cover",
-            }); ////css
-          }); /////clcik
-      }); ////////JQB ////////////////
-    </script>
+    // 미션: #container를 클릭하면
+    // p요소를 모두 찾아서 배경 이미지를 넣으시오!
+    $("#container")
+    .css({scale: '5', transformOrigin: 'left top'})
+    .click(function(){
+      $(this).find('p')
+      .css({
+        background:"url(https://file.mk.co.kr/mkde/N0/2019/08/20190822_4206133_1566448073.jpeg) no-repeat center/cover"
+      });/// css ///
+    }); /// click ////
+  });/////////// jQB /////////////////////
+</script>
 
-    <style>
-      div,
-      p {
-        float: left;
-        margin: 10px;
-        background-color: #fff;
-      }
-      div#sub {
-        width: 80px;
-        height: 80px;
-        border: #000 thin solid;
-      }
-      p {
-        width: 50px;
-        height: 50px;
-        border: #000 thin solid;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="container">
-      <div id="sub">
-        <p>div p</p>
-      </div>
-      <p>p</p>
-      <p>p</p>
+<style>
+  div, p {float:left;margin:10px; background-color:#FFF;}
+  div#sub { width:80px; height:80px; border:#000 thin solid;}
+  p { width:50px; height:50px; border:#000 thin solid;}
+</style>
+</head>
+<body>
+<div id="container">
+
+    <div id = "sub">
+      <p>div p</p>
     </div>
-    <!---------- jQuery code Start ---------->
+    <p>p</p>
+    <p>p</p>
 
-    <script></script>
-  </body>
+</div>
+<!---------- jQuery code Start ---------->
+
+<script>
+
+
+</script>
+
+</body>
 </html>

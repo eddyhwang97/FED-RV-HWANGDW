@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한국 최신 드라마 리스트</title>
+    <!-- 외부 CSS불러오기 -->
+     <link rel="stylesheet" href="./css/drama_table.css">
 </head>
-<link rel="stylesheet" href="./css/drama_table.css">
 <body>
     <!-- 테이블 풀팩키지를 사용한 리스트 -->
      <table class="tbl" id="drama">
-        <!-- 1. 테이블 제목 : caption -->
+        <!-- 1. 테이블 제목 :  caption -->
          <caption>
             한국 최신 드라마 리스트
-         </caption>
-         <!-- 2. 테이블 상단부분 : thead -->
-          <thead>
+        </caption>
+         <!-- 2. 테이블 상단부분 : thead -->         
+         <thead>
             <tr>
                 <th>번호</th>
                 <th>드라마명</th>
@@ -26,7 +27,7 @@
             </tr>
           </thead>
          <!-- 3. 테이블 메인부분 : tbody -->
-          <tb>
+          <tbody>
             <tr>
                 <td>1</td>
                 <td>경찰수업</td>
@@ -117,9 +118,9 @@
                 <td>오후10:50</td>
                 <td>10부작</td>
             </tr>
-          </tb>
-         <!-- 4. 테이블 하단부분 : tfoot -->
-          <tfoot>
+          </tbody>
+         <!-- 4. 테이블 하단부분 : tfoot -->          
+        <tfoot>
             <tr>
                 <td colspan="7">
                     ◀ 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 ▶
@@ -127,13 +128,15 @@
             </tr>
           </tfoot>
           <!-- 
-          [colspan 속성]
-          - 여러개의 td를 합칠때 사용하는 속성
-          - 합칠 개수만큼 속성값을 숫자로 쓴다
-          - 여기서는 td가 7개 인데 td한개만 썻으므로
-          colspan="7"로 사용함
-           -->
+            [ colspan 속성 ]
+            - 여러개의 td를 합칠때 사용하는 속성
+            - 합칠 개수만큼 속성값을 숫자로 쓴다
+            - 여기서는 td가 7개인데 td한개만
+            썼으므로 colspan="7"로 사용함
+          -->
+
      </table>
+
      <!-- 구분테이블 박스 -->
      <div class="gubun">
         <table id="gubun" class="tbl">
@@ -162,5 +165,52 @@
         </table>
     </div>
     
+    <!-- 
+            [ 가장 복잡한 그룹요소인 테이블 !!! ]
+            1. table : 테이블 전체 부모요소
+            2. tr : 테이블 레코드행요소(table row)
+            3. td : 테이블 데이터요소(table data)
+            4. th : 테이블 머릿부분에 사용될 경우 
+                td대신 th를 사용할 수 있다!
+                (기본디자인 - 중앙정렬+두꺼운글자)
+            _____________________________________
+
+            [ 테이블 구조를 위한 추가요소들 ]
+            5. caption : 테이블 제목
+            6. thead : 테이블 머릿부분
+            7. tbody : 테이블 중앙 내용부분
+            8. tfoot : 테이블 하단부분
+
+            ※tbody는 일반적으로  table tr td로
+            구성되는 테이블일 경우 자동으로 생성된다!
+
+            ※thead나 tfoot은 코딩순서와 상관없이
+            테이블 맨위와 맨아래에 출력된다!
+            ________________________________
+
+            ((참고))
+
+            [ 테이블 열관련 레이아웃 요소 ]
+            9. colgroup : 테이블 열별로 디자인 컨트롤할때 사용
+            -> 하위필수요소 col : 개별 컬럼(열)별 셋팅
+            -> col 속성들
+                - span 속성 : 값은 적용범위열 개수를 숫자로 입력함
+            -> 기타 열별로 스타일시트를 따로 쓸 수 있음!
+
+            예)
+            <table>
+                <colgroup>
+                    <col span="2" style="background-color:red">
+                    <col style="background-color:yellow;width:200px">
+                </colgroup>
+                <tr>...</tr>
+            </table>
+
+            -> 원본 W3 Schools
+            https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_colgroup_test            
+
+         -->
+
+
 </body>
 </html>

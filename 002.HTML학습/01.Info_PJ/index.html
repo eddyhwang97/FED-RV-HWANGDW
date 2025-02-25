@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>
+      네이버요약뉴스 2024.10.
+    </title>
+    <!-- 웹폰트 CDN방식 호출하기 -->
+    <!-- CDN은 Content Delivery Network
+      네트웤으로 컨텐트 불러오기 -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 스타일 요소 -->
+    <!-- <style></style> -->
+    
+    <!-- 외부 CSS 불러오기 -->
+     <link rel="stylesheet" href="./css/common.css">
+  </head>
+  <body>
+    <!-- 1. 상단영역 -->
+    <header id="top-area" class="part">
+      <!-- 1-1. 타이틀 -->
+      <h1>네이버 요약뉴스</h1>
+      <!-- 1-2. 메뉴 -->
+      <nav class="menu">
+        <a href="index.html">
+          <img
+            src="images/naver_logo.png"
+            alt="네이버로고"
+            style="
+              width: 40px;
+              vertical-align: middle;
+            "
+          />
+        </a>
+        <span></span>
+        <a href="sub1.html">정치</a>
+        <span> | </span>
+        <a href="sub2.html">경제</a>
+        <span> | </span>
+        <a href="sub3.html">사회</a>
+        <span> | </span>
+        <a href="sub4.html">IT/과학</a>
+        <span> | </span>
+        <a href="sub5.html">TV/연예</a>
+      </nav>
+    </header>
+    <!-- <div id="header"></div> -->
+
+    <!-- 2. 메인영역 -->
+    <main
+      id="main-area"
+      class="part main-area"
+    >
+    <img src="./images/main.jpg" alt="메인페이지 뉴스이미지" style="width: 100%;">
+  </main>
+
+    <!-- <div id="main"></div> -->
+
+    <!-- 3. 하단영역 -->
+    <footer id="info-area" class="part">
+      <address>
+        서울시 강남구 역삼동 119 대호B
+        8F <br />
+        대표: Tom Brace Parker <br />
+        전화: 010-2222-3333
+      </address>
+    </footer>
+    <!-- <div id="footer"></div> -->
+
+    <!-- 
+    [ HTML5에서 등장한 div 친구들 ]
+        - div에 내용을 구분하는 이름을 지어줌
+        - 의미가 있는요소를 시멘틱(sementic)태그라고 함!
+        1. header : 머릿부분
+        2. footer : 아랫부분
+        3. main : 메인부분(한번만 사용가능!)
+        4. nav : 네비게이션 부분
+        5. aside : 부가정보
+        6. section : 내용구분파트
+        7. article : 독립된 내용구분파트
+        ( section/article 내부에 h1~h6 태그사용권고)     
+         
+        [ 요소 명명법 ]
+        1. 아이디는 #, 클래스는 . (약어로만들기)
+        2. 이름은 구체적으로 만들고
+        단어마다 데쉬(-)를 사용함(케밥케이스)
+        3. 아이디는 유일함, 클래스는 다중적용가능
+        예) <div class="aa bb cc" id="ee"></div>
+
+
+        [ img 요소 ]
+        - img 는 이미지를 불러오는 요소
+        - 필수속성
+            1) src : 이미지경로
+            2) alt : 대체텍스트(웹접근성 필수)
+            -> alternative text
+
+        [ 요소의 구성 ]
+        1. 요소명 - 요소별 특징을 구분하는 이름
+        2. 속성 - 요소가 가지는 개별 셋팅값을 저장함
+        -> 속성값은 쌍따옴표안에 표기함
+        표기) <요소명 속성="값">
+        -> 요소의 문자는 모두 소문자를 원칙으로 한다!
+
+
+        [ 요소 공통속성 ]
+        1. style 속성 : 요소에 인라인으로 CSS속성값을 셋팅함
+        예) <요소명 style="속성:값;속성:값;">
+        2. title 속성 : 툴팁제공속성(마우스오버시 등장)
+-->
+  </body>
+</html>

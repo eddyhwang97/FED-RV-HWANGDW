@@ -1,0 +1,748 @@
+@charset "utf-8";
+
+/* 서브페이지 공통 CSS - sub.css */
+
+/*********************************** 
+[ 선택자의 종류 ]
+
+1) 타입선택자: 요소명 
+    예) h1{}, div{}
+
+2) 자손선택자: 띄어쓰기 
+    예) h1 a{}, div span{}
+
+3) 아이디선택자: # 
+    예) #my{}, #we{}
+
+4) 클래스선택자: . 
+    예) .home{}, .kite{}
+
+5) 직계자식선택자: > 
+    예) #my > div
+
+6) 그룹선택자: , 
+    예) html,body,h1{}
+
+7) 종속선택자: 태그명+아이디/클래스선택자
+    예) h1#logo{}, main.cont{}
+
+8) 속성선택자: []
+    예) [target=_blank], a[href="index.html"]
+
+9) 형제선택자: + 
+    예) li+li , tr+tr 
+    -> 앞에 다른형제가 있는 요소를 선택함
+
+10) 다중형제선택자: ~
+    예) li:nth-child(4)~li 
+    -> 4번째 li이후 모든 형제선택
+
+***********************************/
+
+/* 2-1. 서브타이틀 
+태그명+이름 방식의 선택자는 종속선택자*/
+h2.sub-title {
+  /* 글자체(웹폰트) font-family (ff) */
+  font-family: "Single Day", cursive;
+  /* 글자크기 : font-size (fz) */
+  font-size: 38px;
+  /* 글자두께 : font-weight (fw)
+    두껍게 bold(fwb) / 보통 normal(fwn) */
+  font-weight: normal;
+  /* 텍스트 중앙정렬 : tac */
+  text-align: center;
+  /* 배경색 : bgc */
+  /* background-color: pink; */
+  /* 글자그림자 ts */
+  text-shadow: 2px 2px 2px #00000081;
+
+  /* 박스디자인 */
+  /* 패딩 p */
+  padding: 20px;
+  /* 둥근모서리 brad */
+  border-radius: 20px;
+  /* CSS이미지는 상대경로로 CSS파일위치로부터
+    찾아서 넣는다! ../는 폴더하나위로 올라감 */
+  /* 배경 한번에 넣기 : 색이반고윙/크 */
+  background: url(../images/titbg4.jpg)
+    no-repeat center/cover;
+
+  /* 박스그림자 box-shadow (bxsh) 
+        box-shadow: 
+        (내부그림자 inset) x축 y축 불러 (확장) 색
+
+        -> 블러 뒤에 확장옵션에 px값을 주면
+        그림자가 더 커진다! 박스그림자에만 이 옵션있음
+
+        콤마로 연결하면 글자그림자든 박스그림자든
+        모두 다중 그림자 적용가능함!!!
+    */
+  box-shadow: 
+    /* 내부 그림자 */ inset
+      0 0 10px #000,
+    /* 바깥쪽 그림자 */ 0 0 20px 5px
+      darkcyan;
+}
+
+/* 
+    [ CSS 적용우선 순위 ]
+     0. 속성값안에 !important 라고 쓰면 가장 최우선적용!
+     1. 인라인 셋팅 :  태그안에 style속성셋팅
+     2. 종속선택 요소 : 태그명#아이디명 / 태그명.클래스명
+     3. 아이디 요소 : #이름
+     4. 클래스 요소 : .이름
+     5. 요소명 : 태그명
+     
+     -> 레벨이 같은 경우엔 나중에 쓴것이 덮어써진다!
+
+*/
+
+/* 페이지별 타이틀 박스 디자인 변경 */
+/* 정치뉴스 */
+h2.politics {
+  /* 배경이미지 변경 */
+  background-image: url(../images/titbg1.jpg);
+
+  /* 글자색 변경 */
+  color: darkorange;
+}
+/* 경제뉴스 */
+h2.economics {
+  /* 배경이미지 변경 */
+  background-image: url(../images/titbg2.jpg);
+
+  /* 글자색 변경 */
+  color: lightgreen;
+}
+/* 사회뉴스 */
+h2.social {
+  /* 배경이미지 변경 */
+  background-image: url(../images/titbg3.jpg);
+
+  /* 글자색 변경 */
+  color: lightseagreen;
+}
+/*  IT/과학뉴스 */
+h2.it {
+  /* 배경이미지 변경 */
+  background-image: url(../images/titbg4.jpg);
+
+  /* 글자색 변경 */
+  color: darkblue;
+}
+/*  TV/연예뉴스 */
+h2.tv {
+  /* 배경이미지 변경 */
+  background-image: url(../images/titbg5.jpg);
+
+  /* 글자색 변경 */
+  color: lightgoldenrodyellow;
+}
+
+/* 2-2.언론사로고 */
+.press-logo img {
+  /* 이미지 높이값 고정(가로크기는 자동) */
+  height: 32px;
+}
+/* 2-3. 기사제목 */
+.article-title {
+  /* 글자크기 fz30 */
+  font-size: 30px;
+  /* 글자색 c */
+  color: #1e1e23;
+}
+/* 2-4. 기사사진 */
+.article-picture {
+  /* fugure 요소 기본마진 없앰 */
+  margin: 0;
+}
+/* 기사이미지 */
+.article-picture img {
+  width: 100%;
+}
+/* 이미지 설명
+figcaption은 블록요소다! */
+.article-picture figcaption {
+  /* 글자가운데정렬 tac */
+  text-align: center;
+}
+/*  하위요소에 지정된 속성은 그 요소에서 
+재정의 해야 적용됨! 예컨데 글자크기가 이미
+small 태그에 적용되어 있어서 여기에 재정의해야함! */
+.article-picture figcaption small {
+  /* 글자크기 15px : fz15 */
+  font-size: 15px;
+}
+/* 2-5. 기사내용 */
+.contents p {
+  /* 기본마진없애고 아래쪽마진만 줌 */
+  margin: 0;
+  margin-bottom: 25px;
+
+  font-size: 20px;
+  line-height: 1.6;
+  /* 
+        [ 줄간격 : line-height ]
+         - 박스요소의 글자의 간격 높이를 지정하는 속성
+         - 글자는 높이값의 세로 정중앙에 위치함
+         - 단위를 사용하면 특정크기로 지정됨
+         - 단위없는 숫자로표현하면 글자크기의 배수로
+         상대적 크기가 적용됨
+         - 젠코딩시 숫자만쓰면 배수로 표현되므로
+         주의 요망!! 예) lh20 -> line-height: 20;
+    */
+  color: #303038;
+}
+
+/* 중요글자 strong */
+.contents p strong {
+  color: darkmagenta;
+}
+/* 강조글자 em */
+.contents p em {
+  /* 글자색 : c */
+  color: lightseagreen;
+  /* 글자그림자 : ts */
+  text-shadow: 2px 2px 2px #0000007a;
+  /* 글자윗줄 overline : tdo */
+  /* 글자윗줄 underline : tdu */
+  text-decoration: underline wavy;
+  /* text-decoratiion: 유형 (스타일)
+    스타일이 있을 경우 뒤에 띄어쓰기로 쓸 수 있음 */
+}
+
+/* 공통 보더박스 디자인 : .bd-box */
+.bd-box {
+  /* 윗쪽보더주기 : bdt */
+  border-top: 2px dashed gray;
+  /* 아래쪽보더주기 : bdb */
+  border-bottom: 2px dashed gray;
+  /* 윗아래마진 : m */
+  margin: 20px 0;
+  /* 위아래패딩 : p */
+  padding: 15px 0;
+}
+/* 타이틀 */
+.bd-box h4 {
+  /* 가로크기 내용만큼 설정위해 display변경!
+    -> inline (패딩 디자인이 실제 공간을 차지하지 않음)
+    -> inline-block (블록처럼 디자인적용되는 인라인요소) */
+  display: inline-block;
+  /* 배경색 : bgc */
+  background-color: #e6e6e6;
+  /* 패딩 : p */
+  padding: 15px;
+  /* 둥근모서리 : brad */
+  border-radius: 15px;
+  /* 박스그림자 : bxsh */
+  box-shadow: inset 0 0 10px #7b7b7b;
+}
+
+/* 2-5.5. 인용블록영역 */
+/* 인용구 박스 : blockquote */
+.quote-box blockquote {
+  /* 기본 마진 없앰 : m */
+  margin: 0;
+  /* 글자크기 : fz */
+  font-size: 20px;
+  /* 줄간격 : lh */
+  line-height: 1.8;
+  /* 양쪽정렬 justify : taj */
+  text-align: justify;
+  /* 양쪽 정렬시 영어단어 깨서 중앙
+    공백 없애기 : wbb */
+  word-break: break-all;
+  /* 첫줄 들여쓰기 : ti */
+  text-indent: 15px;
+}
+
+/* 이미지 오른쪽으로 보내고 옆에 글자 흘러가기 */
+.quote-box blockquote img {
+  /* 나는 오른쪽에 있고(글자는 왼쪽에 흘러감)
+    float: right (flr) */
+  float: right;
+  /* 
+        기본적으로 이미지는 인라인요소이며
+        글자가 왼쪽으로 한줄 하단에 나열됨!
+        글자가 옆에 올라와서 흘러가게 하려면
+        float속성을 사용해야 한다!
+            float:left 이미지는 왼쪽에 글자는 오른쪽에
+            float:right 이미지는 오른쪽에 글자는 왼쪽에
+
+    */
+
+  /* 왼쪽마진 : ml (이미지왼쪽에 글자에 간격줌) */
+  margin-left: 15px;
+  /* 마진탑으로 이미지위치를 이동함 : mt */
+  /* margin-top: 15px; - 아래쪽에 영향으로 주석! */
+  /* 둥근모서리 : brs */
+  border-radius: 10px;
+}
+
+/* 2-6. 기자정보 */
+.reporter {
+  /* 글자크기 : fz */
+  font-size: 20px;
+  /* 위아래 패딩 : p */
+  padding: 15px 0;
+}
+/* 2-7. 기사원문 */
+.article-link {
+  /* 오른쪽 정렬 */
+  text-align: right;
+}
+/* 자식요소 a는 인라인이므로 크기 적용안됨
+따라서 디자인 적용되는 인라인요소인 inline-block
+을 사용한다! */
+.article-link a {
+  /* 인라인블록 : dib */
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  /* 가로중앙정렬 */
+  text-align: center;
+  /* 세로중앙은? */
+  line-height: 100px;
+  /* vertical-align: middle;
+    ->인라인요소간 세로정렬
+    -> 세로중앙정렬은 table-cell 디스플레이에서만
+    적용됨. 여기서는 line-height를 높이값과 
+    같이 줌! */
+  border: 2px solid lightcoral;
+
+  /* a요소 기본 디자인 변경 */
+  /* 밑줄없앰 : tdn */
+  text-decoration: none;
+
+  /* 정원은 둥근모서리값 50% */
+  border-radius: 50%;
+  /* 배경색 : bgc */
+  background-color: lightcyan;
+  /* 글자색 : c */
+  color: darkcyan;
+  /* 글자크기 : fz */
+  font-size: 20px;
+  /* 두꺼운 글자 : fwb */
+  font-weight: bold;
+}
+/* 기사원문 오버시 변경 
+    :hover는 마우스 오버시 가상클래스임!
+    선택요소에 붙여서 사용함!
+    가상클래스란 마치 클래스를 준것 같다는 의미
+*/
+.article-link a:hover {
+  /* 배경색변경 : bgc */
+  background-color: yellow;
+  /* 글자색 변경 : c */
+  color: red;
+  /* 박스그림자 : bxsh */
+  box-shadow: 0 0 5px 1px darkred;
+  /* box-shadow: x축 y축 블러 확대 색 */
+}
+
+/* 주해영역 */
+/* 오늘의 작품 & 느낌 */
+.work {
+  /* 전체 정렬 중앙 : tac */
+  text-align: center;
+  /* 패딩 */
+  padding: 15px;
+  /* 박스 그림자 : bxsh */
+  box-shadow: inset 0 0 10px 2px
+    #00000075;
+  /* 박스 그림자 
+        box-shadow: x축 y축 blur spread 색
+        1.x축 - 가로축 이동
+        2.y축 - 세로축 이동
+        3.blur - 경계선 흐림
+        4.spread - 그림자 기존크기 보다 더한크기
+        5.색 - 그림자 색
+        ->> 내부 그림자일 경우 inset 키워드를 앞에씀
+        box-shadow: inset x축 y축 blur spread 색
+        ->> spread는 필요시에 작성함
+    */
+  /* 배경색 그라데이션 : bgl */
+  background: linear-gradient(
+    -45deg,
+    #fd62f9,
+    #a8ffab,
+    #00cac7
+  );
+}
+/* 그라데이션 
+    [ 선형 그라데이션 : linear-gradient ]
+    linear-gradient(방향,색1,색2,...);
+    linear-gradient(방향,색1 몇%,색2 몇%,...);
+    linear-gradient(각도,색1 몇%,색2 몇%,...);
+    - 옵션 : 
+    1. 방향: to top, to bottom, to left, to right
+    2. 각도: 각도deg
+    3. 콤마로 나열된 색상 뒤에 %수치를 쓰면 비율조정가능
+*/
+/* 타이틀 */
+.work h4 {
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 30px;
+  font-weight: normal;
+  margin: 0;
+  color: #555;
+}
+/* 이미지박스 */
+.work figure {
+  /* 기본마진없앰 */
+  margin: 0;
+  /* 위아래패딩 */
+  padding: 15px 0;
+}
+/* 작품 이미지 */
+.work img {
+  border: 20px ridge goldenrod;
+}
+/* 이미지 설명 */
+.work figcaption {
+  /* 글자관련설정 */
+  font-family: "Single Day", cursive;
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+}
+/* 작품명만 따로 디자인 
+cite는 작품명요소(시멘틱 구조화다!) */
+.work figcaption cite {
+  color: darkorchid;
+  /* 기본이택릭체 해제 : fsn */
+  font-style: normal;
+}
+
+/* 뉴스파트 공통 클래스 : .news-box */
+.news-box {
+  /* 상단보더 넣기 : bdt */
+  border-top: 2px dashed #ccc;
+  /* 위아래마진 : m */
+  margin: 20px 0;
+  /* 위아래패딩 : p */
+  padding: 20px 0;
+}
+/* 뉴스 타이틀 공통 */
+.news-box h3 {
+  /* 글자체 (웹폰트) : ff */
+  font-family: "Do Hyeon", sans-serif;
+  /* 두껍지 않게 : fwn */
+  font-weight: normal;
+  /* 글자크기 : fz */
+  font-size: 30px;
+  /* 배경 그라데이션 : bg */
+  background: linear-gradient(
+    to right,
+    lightblue,
+    transparent
+  );
+  /* 패딩 : p */
+  padding: 10px;
+}
+/* 뉴스파트 공통a요소 */
+.news-box a {
+  /* 글자크기 17px : fz17 */
+  font-size: 17px;
+  /* 줄간격 2.5배 : lh2.5 */
+  line-height: 2.5;
+  /* 글자색 #222 : c */
+  color: #222;
+  /* 밑줄없앰 : tdn */
+  text-decoration: none;
+
+  /* [ 한줄 말줄임 셋팅하기 ] */
+  /* 1. 줄바꿈 방지 : wh */
+  white-space: nowrap;
+  /* 2. 넘치는 요소 숨기기(전체조건 inline아닐것!) */
+  overflow: hidden; /* oh */
+  display: block; /* db : a는 inline이니까 변경 */
+  /* 3. 넘치는 글자 말줄임표시(...) : tov */
+  text-overflow: ellipsis;
+}
+/* 공통 a요소 오버시 
+가상클래스(:hover) */
+.news-box a:hover {
+  /* 글자색 : c */
+  color: yellowgreen;
+  /* 글자그림자 : ts */
+  text-shadow: 1px 1px 1px #000000d6;
+}
+
+/* 뉴스파트 공통 초기화하기
+ul, ol은 기본마진,패딩,블릿,번호 등
+초기화 필요함 */
+.news-box ul,
+.news-box ol {
+  /* 마진,패딩 0 */
+  margin: 0;
+  padding: 0;
+  /* 블릿,숫자표시 리스트 없앰
+    : lin */
+  list-style: none;
+}
+/* ol 은 숫자값 살리기 */
+.news-box ol {
+  /* 숫자표시 기본값 살리기 */
+  list-style: decimal;
+  /* 왼쪽패딩 : pl */
+  padding-left: 20px;
+}
+/* dl,dd는 기본마진있음  */
+.news-box dl,
+.news-box dl dd {
+  margin: 0;
+}
+
+/* 주요뉴스 개별 설정하기 */
+.main-news a::before {
+  /* 맨앞 */
+  /* 가상요소 필수속성 content : ct */
+  content: "🍦";
+  margin-right: 5px;
+  font-size: 20px;
+}
+.main-news a::after {
+  /* 맨뒤 */
+  content: "🍀";
+  /* content: url(https://cdn-icons-png.flaticon.com/256/5290/5290109.png); */
+  /* url을 사용하면 이미지를 넣을 수 
+    있으나 크기조정 안됨! */
+  /* width: 15px;적용안됨! */
+}
+
+/* 가상요소로 아이콘 넣기
+이미지같은 요소를 CSS에서 가상으로
+넣을 수 있음(가상은 실제 태그요소아님) 
+    앞에 넣는가상요소는 ::before
+    뒤에 넣는가상요소는 ::after
+    ((기본필수속성은? content속성)
+
+     [ CSS의 가상요소 : before, after ]
+    - 모든 요소는 맨앞과 맨뒤에 가상요소를 사용할 수 있다!
+    - 가상요소 표기법은 요소명 뒤에 콜론2개를 겹쳐씀(::)
+    - 맨앞은 before, 맨뒤는 after
+    - 필수속성 : content
+    - 이미지는 content 속성값으로 url() 사용!
+*/
+
+/* 
+    주요뉴스의 li 순서에서 개별 선택하기!
+    글자색 변경하기!
+
+    [ 같은 종류의 형제요소 선택법 ]
+    :first-child -> 첫번째 자식
+    :last-child -> 마지막째 자식
+    :nth-child(n) -> n번째 자식
+*/
+.main-news li:first-child a {
+  color: red;
+}
+.main-news li:last-child a {
+  color: green;
+}
+.main-news li:nth-child(2) a {
+  color: blue;
+}
+
+/* 분야별 뉴스 */
+.sec-news dt {
+  font-family: "Single Day", cursive;
+  font-size: 30px;
+  border: 4px dashed darkcyan;
+  padding: 10px;
+  /* 내용만큼 가로크기 되도록
+    display변경 inline-block
+    -> dib */
+  display: inline-block;
+  /* 원형 둥근모서리 */
+  border-radius: 50%;
+}
+
+/* dt 따로 순서별 디자인 설정 */
+/* 경제파트 */
+.sec-news dt:first-of-type {
+  color: red;
+  background-color: lightgreen;
+  border-color: yellowgreen;
+}
+/* 사회파트 */
+.sec-news dt:nth-of-type(2) {
+  color: blue;
+  background-color: lightcoral;
+  border-color: darkmagenta;
+}
+/* TV/연예파트 */
+.sec-news dt:last-of-type {
+  color: green;
+  background-color: lightskyblue;
+  border-color: darkorchid;
+}
+/* 
+    [ 여러종류의 태그에서 순서별 선택법 ]
+     :first-of-type 같은 종류중 첫번째요소
+     :last-of-type 같은 종류중 마지막째요소
+     :nth-of-type(n) 같은 종류중 n번째요소
+*/
+
+/* 두번째 dt부터 마진탑주기
+-> dt앞에 dd가 있는 모든 dt를 선택함!
+-> 형제선택자 + 사용함 : dd+dt */
+.sec-news dd + dt {
+  margin-top: 20px;
+}
+
+
+/* 포토뉴스 파트 */
+/* 타이틀 */
+.photo-news h3{
+  /* 배경그라데이션 없앰 */
+  background-image: none;
+  /* 중앙정렬 */
+  text-align: center;
+}
+
+/* 가상요소로 사진기 아이콘 넣기 */
+.photo-news h3::before{
+  content: '📷';
+  vertical-align: -1px;
+  font-size: 31px;
+  margin-right: 8px;
+}
+.photo-news h3::after{
+  content: '📺';
+  vertical-align: -1px;
+  font-size: 31px;
+  margin-left: 8px;
+}
+
+/* 사진뉴스 테이블 */
+.photo-news table {
+  /* 최대가로크기설정 : maw
+    최대크기보다 작아지면 auto로전환! */
+  max-width: 500px;
+
+  /* 테이블 기본 간격없앰(정확한 수치화를 위해) */
+  border-collapse: collapse;
+  /* separate가 기본값임(사이간격있음)
+    -> table태그에서 border="1" 설정으로 확인 */
+
+  /* 테두리 */
+  border: 2px solid #ccc;
+
+  /* 테이블 중앙정렬 - 마영오!
+    블록요소, 테이블요소 모두 적용공통 */
+  margin: 0 auto;
+}
+
+/* 첫번째 td : 숫자데이터 부분 */
+.photo-news td:first-child {
+  /* 가로크기 : w */
+  width: 50px;
+  /* 세로크기 : h */
+  height: 84px;
+  /* 글자중앙 : tac */
+  text-align: center;
+  /* 배경색 : bgc */
+  background-color: #ccc;
+}
+
+/* 두번째 td : 기사제목링크 부분 */
+.photo-news td:nth-child(2) {
+  /* 배경색 : bgc */
+  background-color: #e4e4e4;
+  /* 양쪽패딩 : p */
+  padding: 0 20px;
+}
+/* 세번째 td : 사진링크 부분 */
+.photo-news td:last-child {
+  /* 배경색 : bgc */
+  background-color: #e4e4e4;
+}
+
+/* 사진뉴스 a요소 셋팅 */
+.photo-news a {
+  /* 줄바꿈방지 설정 해제 : whn
+    -> 줄바꿈방지 설정일 경우
+    테이블 td에서 크기가 글내용
+    만큼 밀려서 나오기때문에
+    기본 줄바꿈으로 설정함! */
+  white-space: normal;
+
+  /* 줄간격조정 */
+  line-height: 1.5;
+
+  /* 여러줄일때 말줄임 설정하기 */
+  /* 1. 여러줄 말줄임시 필요한 display */
+  display: -webkit-box;
+  /* 2. 넘치는요소 숨기기 */
+    overflow: hidden;
+    /* 3. 텍스트 말줄임표시 */
+    text-overflow: ellipsis;
+    /* 4. 말줄임 처리 줄수 : 여기선 2줄처리 */
+    -webkit-line-clamp: 2;
+    /* 5. 말줄임 처리 방향설정 : 수직방향(vertical) */
+    -webkit-box-orient: vertical;
+    /* 6. 높이값 제한설정 (이유: 숨겨야하니까)
+    필요시 사용! */
+    /* max-height: 2.5em; */
+    /* 7. 줄바꿈방지를 일반으로 변경 (줄바꿈상태) */
+    /* white-space: normal; -> 위에서 이미줌 */
+}
+
+/* 
+  [ CSS 속성이나 값에 벤더사 접두어 ]
+   - 브라우저 제작사별로 특정 속성을
+   지원할 경우 특정 버전부터 지원하게되고
+   그때 브라우저사 접두어를 사용함!
+   1. -webket- : 크롬, 사파리
+   2. -ms- : 익스플로러/엣지
+   3. -o- : 오페라
+   4. -moz- : (모질라)파이어폭스
+*/
+
+
+
+
+/* 사진뉴스 이미지 */
+.photo-news img {
+  width: 100px;
+  height: 70px;
+  vertical-align: middle;
+}
+/* 사이구분선 넣기 : 두번째 tr부터 */
+.photo-news tr + tr td {
+  border-top: 2px solid #ccc;
+}
+
+/* ******************************** */
+
+/* 비디오 박스 : .mv0-box */
+.mv-box iframe {
+  width: 100%;
+  height: 392px;
+}
+
+/* mark태그 디자인 변경 */
+.contents mark {
+  font-family: "Single Day", cursive;
+  font-size: 26px;
+  color: #333;
+  line-height: 1.7;
+  background-color: #ffe4b6;
+  display: block;
+  width: 90%;
+  margin: 20px auto;
+  padding: 30px 67px;
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+  box-sizing: border-box;
+}
+
+/* strong요소 디자인 변경 */
+.contents strong {
+  font-style: normal;
+  color: darkmagenta;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px #0b88db;
+}

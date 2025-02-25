@@ -83,4 +83,3 @@ package.json에서 devDependencies 목록에 있는 패키지는 제외하고 �
 만약, 노드의 NODE_ENV 환경변수에 production이 set 되어 있는 경우 
 모든 패키지를 받고싶으면 --production=false 옵션으로 
 prod와 dev패키지를 모두 받을 수 있다.
-
