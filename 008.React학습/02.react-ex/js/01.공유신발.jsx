@@ -32,60 +32,68 @@ function MainComponent() {
   // 4. 테스트용 상태관리변수(의존성 테스트용!)
   const [test, setTest] = React.useState(true);
 
-  // [ useEffect 테스트 함수 ]
+  // [ useEffect 테스트 함수 ] ///
   const testFn = () => {
     // 의존성 테스트를 위한 상태변수 업데이트
     setTest(!test);
-    // -> 이함수를 호출하면 true/false값이 반대로 셋팅됨!
+    // -> 이 함수를 호출하면 true/false값이 반대로 셋팅됨!
     console.log("테스트중~! 변경할값:", !test);
     console.log("리랜더링 전 test상태변수값:", test);
-  }; /////testFn
+  }; ///////////// testFn ////////////////
 
-  // [ 1. useEffect : 의존성이 없는경우 ] /////
+  // [ 1. useEffect : 의존성이없는 경우 ] ///
   // -> 컴포넌트가 생성, 변경, 삭제전 DOM을 랜더링하면
-  // 매변 실행되는 코드구역
+  // 매번 실행되는 코드구역이다!!!
   React.useEffect(() => {
     console.log("DOM이 완성되었어!");
-    console.log("⭐️랜더링 후 상태변수값:", test);
-    // 초이스인트로 애니함수 호출
-  }); ////useEffect /////////////////////
+    console.log("🍜랜더링후 test상태변수값:", test);
 
-  // [ 2. useEffect: 의존성이 있는경우 ] ////
+  }); ////////////// useEffect ///////////////
+
+  // [ 2. useEffect : 의존성이있는 경우 ] ///
   React.useEffect(() => {
-    console.log("의존성 useEffect 실행");
+    console.log("의존성useEffect실행![test]");
+
+    // 초이스인트로 애니함수 호출(의존성:selItem)
     comFn.choiceIntroAni();
-  }, [test, selItem]); ////useEffect /////////////////////
-
-  // 의존성이란? useEffect가 실행된느 것에 관련된
+  }, [test, selItem]);
+  // 의존성이란? useEffect가 실행되는 것에 관련된
   // 상태변수를 등록하여 실행구역을 컨트롤한다!
-  // 즉, 등록된 상태변수가 변경될때만 이구역은 실행된다!
-  // 의존성 등록은 이렇게한다!
+  // 즉, 등록된 상태변수가 변경될때만 이 구역은 실행된다!
+  // 의존성등록은 이렇게한다!
   // -> useEffect(함수,[의존성변수])
-  // -> 함수 두에 콤마후 배열형으로 넣는다
+  // -> 함수 뒤에 콤마후 배열형으로 넣는다
   // -> 배열형이므로 여러개를 등록할 수 있다!
+  // 예) useEffect(함수,[변수1,변수2,변수3])
 
-  // [ 3. useEffect: 의존성이 있으나 빈 경우 ] ////
+  // [ 3. useEffect : 의존성이있으나 빈 경우 ] ///
   React.useEffect(() => {
-    console.log("useEffect의존성이 비어서 한번만 실행!");
+    console.log("useEffect 의존성이 비어서 한번만 실행!");
+    
+    // 로고 애니호출(처음 한번만 실행!)
     comFn.logoAni();
   }, []);
-  // -> useEffect(함수, [])
+  // -> useEffect(함수,[])
   // -> 최초로딩시 한번만 실행한다!
 
-  // [ 4. useLayoutEffect : 화면랜드링 전 DOM 완성 후 실행구역 ]
+  // [ 4. useLayoutEffect :
+  // 화면랜더링 전 DOM완성후 실행구역 ] ///
   React.useLayoutEffect(() => {
-    console.log("화면렌더링전 DOM완성 후 실행!");
-    // 애니 속성 초기화 함수 실행
+    console.log("화면랜더링전 DOM완성후 실행!");
+
+    // 애니 속성 초기화 함수실행(의존성:selItem)
     comFn.initFn();
-    // 스트롤위치 맨위로 이동
+
+    // 스크롤위치 맨 위로 이동하기 ///
     window.scrollTo(0, 0);
-  }, [test, selItem]); // -> 의존성 실행
-  // },[]); -> 최초한번 실행
+  }, [test, selItem]); // -> 의존성실행!
+  // },[]); -> 최초한번실행
   // }); -> 매번실행
-  // useEffect보다 먼저 실행됨!
+
+  // -> useEffect보다 먼저 실행됨!
   // -> useLayoutEffect도 의존성 셋팅은 useEffect와 동일함!
   // useLayoutEffect(함수,[의존성])
-  // useLayoutEffect(함수,[]) -> 최초한번 실행
+  // useLayoutEffect(함수,[]) -> 최초한번만 실행
 
   /************************************** 
     [ 코드구성 ]
@@ -127,25 +135,37 @@ function MainComponent() {
             marginRight: "10px",
           }}
         />
-        <span>{selItem + (selItem === "공유" ? "가 신고다닌다는!" : "이 입고다는다는!")}</span>
+        <span>{
+        selItem + 
+        (selItem==="공유"?
+          "가 신고 다닌다는!":
+          "이 입고 다닌다는!")
+          }</span>
       </h1>
       <section>
-        <h2 className="stit">{selItem + (selItem === "공유" ? "는 오늘도 멋찝니다!" : "은 오늘도 쨍~합니다!")}</h2>
+        <h2 className="stit">
+          {
+            selItem === "공유"?
+            "공유는 오늘도 멋찝니다!":
+            "효진은 오늘도 쨍~합니다!"
+          }          
+          </h2>
         <div className="img-box">
-          {selItem === "공유" ? (
-            <img src="./images/vans/gongyoo.jpg" alt="멋진공유" />
-          ) : (
+          {
+            selItem === "공유"?
+            <img src="./images/vans/gongyoo.jpg" alt="멋진공유" />:
             <img src="./images/gallery/hyo.jpg" alt="엘레강스한 효진" />
-          )}
+          }
         </div>
       </section>
       <div className="btn-box">
         <button
           onClick={() => {
-            // 선택아이템 변경하기
+            // 선택 아이템 변경하기
             setSelItem(selItem === "공유" ? "효진" : "공유");
-            // 아이템 변경시 리스트 보기 상태로 전환
+            // 아이템 변경시 리스트보기 상태로 전환
             setViewList(true);
+            // 왜? 상세보기상태에서 아이템 변경이 될 수 있으므로!
           }}
         >
           {selItem === "공유" ? "효진" : "공유"}초이스 바로가기
@@ -168,7 +188,11 @@ function MainComponent() {
           ) : (
             // 상태변수 viewList가 false면
             // 상품상세보기 하위 컴포넌트 보이기
-            <GoodsDetail selItem={selItem} gIdx={gIdx} setViewList={setViewList} />
+            <GoodsDetail
+              selItem={selItem}
+              gIdx={gIdx}
+              setViewList={setViewList}
+            />
           )
         }
       </div>

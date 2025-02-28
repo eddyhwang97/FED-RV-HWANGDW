@@ -2,9 +2,11 @@
 
 // 공유신발 데이터 불러오기
 import guData from "../data/gu_data";
+
 // 효진드레스 데이터 불러오기
 import hjData from "../data/hj_data";
 // console.log(guData);
+
 // 공통함수 불러오기
 import * as comFn from "./common/com_fn";
 
@@ -15,7 +17,8 @@ export default function GoodsDetail({ selItem, gIdx, setViewList }) {
   console.log("selItem:", selItem, "\ngIdx:", gIdx);
 
   // 데이터 종류 선택하기 ////
-  const selDB = selItem === "공유" ? guData : selItem === "효진" ? hjData : null;
+  const selDB =
+    selItem === "공유" ? guData : selItem === "효진" ? hjData : null;
 
   // 조건 랜더링 : null값일 경우
   if (!selDB)
@@ -37,15 +40,16 @@ export default function GoodsDetail({ selItem, gIdx, setViewList }) {
 
   console.log("선택데이터:", selData);
 
-  // [ useEffect 코드구역 : 화면 업데이트 후 실행구역 ]
+  // [ useEffect 코드 구역 :  화면업데이트 후 실행구역 ]
   React.useEffect(() => {
-    console.log("나는 디테일 컴포넌트다");
-    //  컴포넌트 소명시 실행구역은 useEffect함수안에
-    // return() 메서드를 만들어준다!
+    console.log("나는 디테일 컴포넌트다!");
+
+    // 컴포넌트 소멸시 실행구역은 useEffect 함수안에
+    // 함수 리턴코드를 만들어준다!
     return () => {
       console.log("나는 디테일 컴포넌트 소멸시 실행이다!");
     };
-  });
+  }); /////////// useEffect ////////////////
 
   // 리턴 코드구역 ////////////
   return (
@@ -58,9 +62,17 @@ export default function GoodsDetail({ selItem, gIdx, setViewList }) {
     >
       <li>
         {selItem === "공유" ? (
-          <img src={"./images/vans/vans_" + selData.idx + ".jpg"} alt="반스신발" style={{ width: "100%" }} />
+          <img
+            src={"./images/vans/vans_" + selData.idx + ".jpg"}
+            alt="반스신발"
+            style={{ width: "100%" }}
+          />
         ) : (
-          <img src={"./images/gallery/" + selData.idx + ".jpg"} alt="반스신발" style={{ width: "100%" }} />
+          <img
+            src={"./images/gallery/" + selData.idx + ".jpg"}
+            alt="드레스"
+            style={{ width: "100%" }}
+          />
         )}
       </li>
       <li
@@ -72,10 +84,11 @@ export default function GoodsDetail({ selItem, gIdx, setViewList }) {
       >
         상품명 : {selData.gname}
         <br />
-        가격 : {comFn.addCommas(selData.gprice)}
+        가격 : {comFn.addCommas(selData.gprice)}원
+
         <br />
         {
-          // 공유일때만 추가 데이터 조건렌더링
+          // 공유일때만 추가 데이터 조건렌더링!
           selItem === "공유" && (
             <div>
               소재 : {selData.소재}
