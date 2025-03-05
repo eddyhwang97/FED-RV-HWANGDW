@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useLayoutEffect } from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 /// 전체 PJ 공통 CSS 최상위 JS에서 불러오기 ///
 import "./css/index.scss";
@@ -8,17 +8,17 @@ import "./css/index.scss";
 // 리액트 import에서는 모두 정확히 써야함!
 
 // 컴포넌트 불러오기 ////
-import Layout from './components/layout/Layout';
-import Main from './components/pages/Main';
-import Character from './components/pages/Character';
-import Comics from './components/pages/Comics';
-import Movies from './components/pages/Movies';
-import Games from './components/pages/Games';
-import News from './components/pages/News';
-import Video from './components/pages/Video';
-import Board from './components/pages/Board';
+import Layout from "./components/layout/Layout";
+import Main from "./components/pages/Main";
+import Character from "./components/pages/Character";
+import Comics from "./components/pages/Comics";
+import Movies from "./components/pages/Movies";
+import Games from "./components/pages/Games";
+import News from "./components/pages/News";
+import Video from "./components/pages/Video";
+import Board from "./components/pages/Board";
+import CatDetail from "./components/pages/CatDetail";
 // import SwiperApp from './components/plugin/SwiperApp';
-
 
 /********************************************* 
     [ 리액트 라우터 ]
@@ -56,35 +56,58 @@ import Board from './components/pages/Board';
 *********************************************/
 
 //// 메인 컴포넌트 ///////////////////////////////
-export default function MainComponent(){
+export default function MainComponent() {
+  // 리턴 코드구역 ////////////
+  return (
+    <BrowserRouter>
+      {/* 라우터 경로 변경시 최상단 이동 컴포넌트 */}
+      <ScrollTop />
 
-    // 리턴 코드구역 ////////////
-    return (
-        <BrowserRouter>
-            <Routes>
-                {/* 최상위 Route는 쌍으로 태그를 만든다!
+      {/* 라우터 경로 및 컴포넌트 매칭 셋팅 */}
+      <Routes>
+        {/* 최상위 Route는 쌍으로 태그를 만든다!
                 슬래쉬는 루트를 말하고 레이아웃 컴포넌트 불러옴 */}
-                <Route path="/" element={<Layout />}>
-                {/* 하위중 첫페이지는 index라고 속성씀! */}
-                    <Route index element={<Main catName="main" />}  />
-                    <Route path='character' element={<Character />}  />
-                    <Route path='comics' element={<Comics catName="COMICS" />}  />
-                    <Route path='movies' element={<Movies catName="MOVIES" />}  />
-                    <Route path='games' element={<Games catName="GAMES" />}  />
-                    <Route path='news' element={<News />}  />
-                    <Route path='video' element={<Video catName="VIDEO" />}  />
-                    <Route path='board' element={<Board />}  />
-                    {/* <Route index element={<SwiperApp />}  /> */}
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
-
+        <Route path="/" element={<Layout />}>
+          {/* 하위중 첫페이지는 index라고 속성씀! */}
+          <Route index element={<Main catName="main" />} />
+          <Route path="character" element={<Character />} />
+          <Route path="comics" element={<Comics catName="COMICS" />} />
+          <Route path="movies" element={<Movies catName="MOVIES" />} />
+          <Route path="games" element={<Games catName="GAMES" />} />
+          <Route path="news" element={<News />} />
+          <Route path="video" element={<Video catName="VIDEO" />} />
+          <Route path="board" element={<Board />} />
+          <Route path="detail" element={<CatDetail />} />
+          {/* <Route index element={<SwiperApp />}  /> */}
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 } /////////// MainComponent ////////////////////
+
+/* 
+================================================
+컴포넌트로 만들고 라우터 안에 넣고 
+라우터 결로변경시 스크롤 최상단이동!
+================================================
+*/
+const ScrollTop = () => {
+  // 라우터 경로 변경시 path값 일어오기
+  // pathname 객체 속성에 담긴다
+  const { pathname } = useLocation();
+  // 화면 렌더링구역에 스크롤 상단이동 코드넣기
+  useLayoutEffect(() => {
+    // 스크롤 상단이동코드
+    window.scrollTo(0, 0);
+    console.log(pathname);
+  }, [pathname]); //
+  return null;
+}; //////////ScrollTop 컴포넌트 //////////////////
+
+// 컴포넌트 리턴구역 : 리턴할게 없어서 null리턴
 
 /// 컴포넌트 출력 ///
 // 먼저 root 객체 만들기
-const root = ReactDOM.createRoot(
-    document.querySelector("#root"));
+const root = ReactDOM.createRoot(document.querySelector("#root"));
 // 출력하기
 root.render(<MainComponent />);
