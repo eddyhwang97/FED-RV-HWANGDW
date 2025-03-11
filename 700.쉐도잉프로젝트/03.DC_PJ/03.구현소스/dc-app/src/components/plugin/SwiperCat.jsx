@@ -59,11 +59,17 @@ export function SwiperCat() {
           숫자형변환해줌! Number(변수) */
             Number(v.idx) <= 7 && (
               <SwiperSlide key={i}>
-                {/* 라우터 to 셋팅시 주의사항
-                'detailed'만 쓰면 계속 하위를 만든다
-                따라서 '/detail'로 최상위아래 표시 필수
-                 */}
-                <Link to="/detail" state={{ cname: v.cname, cdesc: v.cdesc, facts: v.facts }}>
+                {/* 라우터 to셋팅시 주의사항
+                'detail'만쓰면 계속 하위를 만든다
+                따라서 '/detail'로 최상위아래 표시필수 */}
+                <Link 
+                    to="/detail"
+                    state={{
+                        cname: v.cname, // 캐릭터이름
+                        cdesc: v.cdesc, // 캐릭터설명
+                        facts: v.facts // 캐릭터상세
+                    }}
+                >
                   <section className="sw-inbox2">
                     {/* 캐릭터이미지영역 */}
                     <div className="cat-img2">

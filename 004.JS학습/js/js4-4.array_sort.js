@@ -586,7 +586,7 @@ myFn.addEvt(sel4, "change", function () {
   // (3) 정렬변경하기 /////////////
   // (3-1) 오름차순 //////
   if (this.value == "1")
-    newArray.sort((a, b) => (a[cta] == b[cta] ? 0 : a[cta] < b[cta] ? -1 : 1));
+    newArray.sort((a, b) => (a[cta] ==  b[cta] ? 0 : a[cta] < b[cta] ? -1 : 1));
   // (3-2) 내림차순 ///////
   else if (this.value == "2")
     newArray.sort((a, b) => (a[cta] == b[cta] ? 0 : a[cta] > b[cta] ? -1 : 1));
