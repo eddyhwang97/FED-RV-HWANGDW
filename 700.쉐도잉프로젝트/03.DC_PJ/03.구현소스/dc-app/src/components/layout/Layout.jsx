@@ -4,8 +4,8 @@ import { useCallback, useState } from "react";
 // 컨텍스트 API 로 전역변수구역 설정하기! ////
 import { dCon } from "../modules/dCon";
 
-import { TopArea } from "./TopArea";
-import { FooterArea } from "./FooterArea";
+import {TopArea} from "./TopArea";
+import {FooterArea} from "./FooterArea";
 import MainArea from "./MainArea";
 import { useNavigate } from "react-router-dom";
 
@@ -23,14 +23,13 @@ export default function Layout() {
   // useNavigate()를 사용한 라우터 이동함수가
   // 변수에 할당될때 주소가 리랜더링시 변경된다!
   // 따라서 이것을 사용하는 메모이제이션에서
-  // 메모 처리되도록 이것도 useCallback()처리함
+  // 메모 처리되도록 이것도 useCallback()처리함!
   const goNav = useNavigate();
   // 다른 콜백처리 함수에서 이동함수를 호출함!
-  const goPage = useCallback((pm1, pm2) => {
-    // pm1은 라우터주소 , pm2 - state전달 객체
-    // pm2 가 없으면 전달하지 않으면 됨!(null값)
-    goNav(pm1, pm2);
-    
+  const goPage = useCallback((pm1,pm2)=>{
+    // pm1 - 라우터주소, pm2 - state전달객체
+    // pm2가 없으면 전달하지 않으면됨!(null값)
+    goNav(pm1,pm2);
   },[]);
 
   // [2] 로그인 환영 메시지 생성함수 ///
@@ -44,16 +43,19 @@ export default function Layout() {
   }; ///////// makeMsg /////////////
 
   // [3] 로그아웃 함수 /////////////
+  // 상단영역 메모이제이션 처리를 위해
+  // 보내주는 함수의 주소가 바뀌지 않도록
+  // useCallback()을 사용한 메모이제이션 처리함!
   const logoutFn = useCallback(() => {
     // (1) 로그인 상태값 null
     setLoginSts(null);
     // (2) 세션스 지우기 : minfo
-    sessionStorage.removeItem("minfo");
+    sessionStorage.removeItem('minfo');
     // (3) 로그인 메시지 초기화
     setLoginMsg(null);
     // (4) 메인 페이지로 돌아가기
     goPage("/");
-  }, []); ////////// logoutFn //////////
+  },[]); ////////// logoutFn //////////
 
   /// 리턴 코드구역 ////////
   return (

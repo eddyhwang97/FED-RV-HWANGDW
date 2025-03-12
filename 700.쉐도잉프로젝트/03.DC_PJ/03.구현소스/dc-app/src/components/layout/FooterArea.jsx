@@ -4,14 +4,14 @@
 import { bmData } from "../../js/data/bmenu";
 
 // 하단영역 CSS 불러오기 ////
-import "../../css/common/footer_area.scss";
+import '../../css/common/footer_area.scss';
 import Logo from "../modules/Logo";
 import { memo } from "react";
 
-// React.memo()를 사용한 컴포넌트 모메이제이션
-// -> 컴포넌트를 할당형으로 변경한다
+// React.memo() 를 사용한 컴포넌트 메모이제이션
+// -> 컴포넌트를 할당형으로 변경한다!!!
 export const FooterArea = memo(() => {
-  console.log("하단영역랜더링");
+  console.log('하단영역 랜더링!!!');
   /// 리턴 코드구역 ////////
   return (
     <footer className="info">
@@ -23,13 +23,18 @@ export const FooterArea = memo(() => {
         <li>
           {/* 하단링크박스 */}
           <ol className="bmenu">
-            {bmData.map((v, i) => (
-              <li key={i}>
-                <a href={v.link} target="_blank" rel="noreferrer">
-                  {v.txt.toUpperCase()}
-                </a>
-              </li>
-            ))}
+            {
+                bmData.map((v,i)=>
+                <li key={i}>
+                    <a 
+                        href={v.link} 
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        {v.txt.toUpperCase()}
+                    </a>
+                </li>)
+            }
           </ol>
         </li>
         <li>© & ™ DC. ALL RIGHTS RESERVED</li>

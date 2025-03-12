@@ -1,6 +1,6 @@
 /// 상단영역 컴포넌트 : TopArea.jsx /////
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // GNB 데이터 불러오기 ////////
 import { menu } from "../../js/data/gnb";
@@ -17,7 +17,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 // 제이쿼리 불러오기 ////
 import $ from "jquery";
 import { memo } from "react";
-// 상단영역 메모이제이션을 위한 주의사항 ///
+
+// [상단영역 메모이제이션을 위한 주의사항] ///
 // 1. 컨텍스트API를 사용하지 말것!
 // 2. 라우터이동함수를 직접사용하지 말것!
 // 3. 전달하는 함수를 콜백처리 할것!
@@ -27,13 +28,13 @@ export const TopArea = memo(({ loginMsg, loginSts, logoutFn, goPage }) => {
   // 1. loginMsg - 로그인 메시지 변수 getter
   // 2. loginSts - 로그인 상태 변수 getter
   // 3. logoutFn - 로그아웃 처리함수
-  // 4. gopage - 라우터 이동함수
+  // 4. goPage - 라우터 이동함수
 
   console.log("상단영역 랜더링!!!");
 
   // [ 라우터 이동함수 객체 생성하기 ] ////
   // const goPage = useNavigate();
-// -> 메모이제이션을 위해 직접이동함수 쓰지말것
+  // -> 메모이제이션을 위해 직접이동함수 쓰지말것!
 
   // 사용시 goPage(라우터주소, {전달객체})
   // 전달객체가 없으면 쓰지 않는다!
@@ -145,9 +146,20 @@ export const TopArea = memo(({ loginMsg, loginSts, logoutFn, goPage }) => {
               {/* 검색입력박스 */}
               <div className="searchingGnb">
                 {/* 검색버튼 돋보기 아이콘 */}
-                <FontAwesomeIcon icon={faSearch} className="schbtnGnb" title="Open search" onClick={() => {}} />
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className="schbtnGnb"
+                  title="Open search"
+                  onClick={() => {}}
+                />
                 {/* 입력창 */}
-                <input type="text" name="schinGnb" id="schinGnb" placeholder="Filter by Keyword" onKeyUp={enterKey} />
+                <input
+                  type="text"
+                  name="schinGnb"
+                  id="schinGnb"
+                  placeholder="Filter by Keyword"
+                  onKeyUp={enterKey}
+                />
               </div>
               {/* 검색기능링크 - 클릭시 검색창 보이기 */}
               <a href="#" onClick={showSearch}>
@@ -174,17 +186,14 @@ export const TopArea = memo(({ loginMsg, loginSts, logoutFn, goPage }) => {
               // 로그인 상태이면 로그아웃버튼 보이기!
               loginSts && (
                 <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
+                  <a href="#"
+                    onClick={e=>{
                       // 기본이동막기
                       e.preventDefault();
                       // 로그아웃 처리함수 호출
                       logoutFn();
                     }}
-                  >
-                    LOGOUT
-                  </a>
+                  >LOGOUT</a>
                 </li>
               )
             }

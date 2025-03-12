@@ -1,10 +1,19 @@
-import React from "react";
+// DC PJ 게시판 리스트 모드 모듈 - List.jsx
+
+import React, { useContext } from "react";
+import { dCon } from "../dCon";
 
 function List({ selData, setMode, selRecord }) {
+  // selData - 선택된 배열데이터 전달
+  // setMode - 모든 변경 상태변수 setter
+  // selRecord - 선택데이터 참조변수
+
+  // 전역 컨텍스트 API 사용하기!!
+  const myCon = useContext(dCon);
+  // console.log('List에서 loginSts:',myCon.loginSts);
+
+  // 리턴 코드구역 ////////////////////
   return (
-    // selData
-    // setMode
-    // selRecord
     <main className="cont">
       <h1 className="tit">OPINION</h1>
       <div className="selbx">
@@ -36,14 +45,17 @@ function List({ selData, setMode, selRecord }) {
         </thead>
         <tbody>
           {selData.map((v, i) => (
-            <tr key={v.idx}>
+            <tr key={i}>
               <td>{i + 1}</td>
               <td>
                 <a
                   href="#"
                   onClick={(e) => {
+                    // 기본이동막기
                     e.preventDefault();
-                    setMode('R');
+                    // 글보기모드('R')로 변경하기
+                    setMode("R");
+                    // 해당 데이터 참조변수에 저장하기
                     selRecord.current = v;
                   }}
                 >
@@ -62,7 +74,19 @@ function List({ selData, setMode, selRecord }) {
         <tbody>
           <tr>
             <td>
-              <button>Write</button>
+              {
+                // 로그인상태일때만 쓰기버튼 보이기
+                myCon.loginSts && (
+                  <button
+                    onClick={(e) => {
+                      // 글보기모드('R')로 변경하기
+                      setMode("W");
+                    }}
+                  >
+                    Write
+                  </button>
+                )
+              }
             </td>
           </tr>
         </tbody>
