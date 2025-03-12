@@ -3,10 +3,17 @@
 // GNB 데이터 가져오기 ////
 import { gnbData } from "../../js/data/gnb";
 
+import { memo } from "react";
+
+import $ from "jquery"
+
 // 전체메뉴 컴포넌트 불러오기
+import { TotalMenu } from "../modules/TotalMenu";
 
-export default function TopArea({catName}) {
 
+// React.memo() 를 사용하여 메모이제이션 처리하기!
+export const TopArea = memo(({catName}) => {
+  console.log("상단영역 랜더링!!!");
 
 
    /// GNB메뉴 리스트 만들기 함수
@@ -28,7 +35,7 @@ export default function TopArea({catName}) {
       <div id="top-area">
         <header className="top-area ibx">
           <h1 id="logo">
-            <a href="#" >
+            <a href="#">
               <img
                 src="/images/main_logo.png"
                 alt="파일럿로고"
@@ -41,12 +48,26 @@ export default function TopArea({catName}) {
               {makeList(catName)}
             </ul>
           </nav>
-          <div className="ham">
+          <div className="ham"
+          onClick={(e)=>{
+            // 토글은 show()/hide() 전환
+            // 전체메뉴박스 보이기 숨기기
+            $(".mbox").toggle('on');
+            $(e.currentTarget).toggleClass('on')
+            let bgm= $('.bgm').get(0);
+            if(bgm.paused){ //멈춤 상태면 재생
+              bgm.play();
+            }else{ //멈춤상태 아니면 멈춤
+              bgm.pause();
+            }
+          }}
+          >
             <span></span> <span></span> <span></span>
           </div>
           {/* 전체메뉴 컴포넌트 */}
+          <TotalMenu />
         </header>
       </div>
     </>
   );
-} //////////// TopArea 컴포넌트 ///////////
+}) //////////// TopArea 컴포넌트 ///////////

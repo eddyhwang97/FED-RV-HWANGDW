@@ -1,14 +1,20 @@
 // DC.com - 로그인 페이지 컴포넌트 - Login.jsx
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
 
 // 모듈 CSS 불러오기 : member.scss와 동일
 import "../../css/pages/member.scss";
 
 // 로컬스토리지 생성 JS ////
 import { initData } from "../../js/func/mem_fn";
+import { dCon } from "../modules/dCon";
 
 function Login() {
+  // 컨텍스트 API 사용하기 /////
+  const myCon = useContext(dCon);
+  console.log('로그인페이지 dCon:',myCon);
+
   // [ 상태관리변수 ] /////////////
   // [1] 입력요소 상태변수
   // 1. 아이디변수
@@ -146,23 +152,26 @@ function Login() {
           // -> 서버 세션을 대신하여 사용함!
           // -> 결과가 result에 배열로 담김
           // -> 넣을때는 JSON.stringify()
-          sessionStorage.setItem("minfo", JSON.stringify(result));
+          sessionStorage.setItem("minfo", 
+            JSON.stringify(result));
 
           // 2. 컨텍스트 API의 로그인상태 업데이트
-          // myCon.setLoginSts(sessionStorage.getItem("minfo"));
+          myCon.setLoginSts(
+            sessionStorage.getItem("minfo"));
           // -> 업데이트된 minfo 세션스값을 넣음!
 
           // 3. 로그인 환영메시지 셋팅함수 호출
-          // myCon.makeMsg(result.unm);
+          myCon.makeMsg(result.unm);
 
           // 4. 로그인 성공 메시지 버튼에 출력하기
-          document.querySelector(".sbtn").innerText = "넌 로그인 된거야~!";
+          document.querySelector(".sbtn").innerText = 
+          "넌 로그인 된거야~!";
 
           // 5. 라우팅 페이지 이동
           // 1초후 메인 페이지로 이동
-          // setTimeout(() => {
-          //   myCon.goPage("/");
-          // }, 1000);
+          setTimeout(() => {
+            myCon.goPage("/");
+          }, 1000);
         } //// if /////
         // 로그인 실패시 메시지 출력!
         else {
@@ -210,23 +219,51 @@ function Login() {
                 value={userId}
                 onChange={changeUserId}
               />
-              {userIdError && (
+              {
+                // 에러일 경우 메시지 출력
+                // 조건문 && 출력요소
+                userIdError && 
                 <div className="msg">
-                  <small style={{ color: "red", fontSize: "10px" }}>{idMsg}</small>
+                  <small
+                    style={{
+                      color: "red",
+                      fontSize: "10px",
+                    }}
+                  >
+                    {idMsg}
+                  </small>
                 </div>
-              )}
+              }
             </li>
             <li>
               <label>Password : </label>
-              <input type="password" maxLength="20" placeholder="Please enter your Password" value={pwd}
-                onChange={changePwd}/>{pwdError && (
-                  <div className="msg">
-                    <small style={{ color: "red", fontSize: "10px" }}>{pwdMsg}</small>
-                  </div>
-                )}
+              <input
+                type="password"
+                maxLength="20"
+                placeholder="Please enter your Password"
+                value={pwd}
+                onChange={changePwd}
+              />
+              {
+                // 에러일 경우 메시지 출력
+                // 조건문 && 출력요소
+                pwdError && 
+                <div className="msg">
+                  <small
+                    style={{
+                      color: "red",
+                      fontSize: "10px",
+                    }}
+                  >
+                    {pwdMsg}
+                  </small>
+                </div>
+              }
             </li>
             <li style={{ overflow: "hidden" }}>
-              <button className="sbtn" onClick={onSubmit}>Submit</button>
+              <button className="sbtn" onClick={onSubmit}>
+                Submit
+                </button>
             </li>
           </ul>
         </form>
