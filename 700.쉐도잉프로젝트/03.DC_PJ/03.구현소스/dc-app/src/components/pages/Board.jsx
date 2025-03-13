@@ -21,17 +21,31 @@ function Board() {
   // (3) 글쓰기 모드(W) : Write Mode
   // (4) 수정 모드(M) : Modify Mode (삭제포함)
 
+// 로컬스 데이터 변수할당하기!
+const baseData = JSON.parse(localStorage.getItem("board-data"));
+
   // [ 리액트 참조변수 셋팅구역 ] //////
   // [1] 게시글 선택 데이터 : 글 내용보기시
   const selRecord = useRef(null);
   // -> 읽기/쓰기시 변수.current 로 사용함!
-  console.log("선택데이터 참조변수값:", selRecord);
+  // console.log("선택데이터 참조변수값:", selRecord);
+
+  const [pageNum,setPageNum] = useState(1)
+
+  const totalCount = useRef(baseData.length);
+  console.log("totalCount:", totalCount);
+
+  // [일반변수 셋팅구역 : 매번 같은 값을 유지하야하는 변수들]
+  // 1. 페이지당 페이징 개수 : 페이지당 레코드수
+  const unitSize = 5;
+  // 2. 페이징의 페이징 개수 : 한번에 보여줄 페이징 개수
+  const pgPgSize = 3;
+  
 
   // 로컬스토리지 게시판 데이터 정보확인 함수호출!
   initBoardData();
 
-  // 로컬스 데이터 변수할당하기!
-  const baseData = JSON.parse(localStorage.getItem("board-data"));
+  
 
   // 데이터 정렬 : 
   baseData
@@ -43,8 +57,19 @@ function Board() {
   // 일부 데이터만 선택하기
   // -> 정렬후 상위 10개만 선택
   // -> 페이징을 하면 일정단위수만큼 보이기
+  // -> pageNum, unitSize 사용하여 구성
+
+  // 페이지 시작번호 : 단위수 * 페이지번호 -1
+  let initNum = unitSize*(pageNum-1);
+  // 한계수 번호 : 단위수 * 페이지번호
+  let limitNum = unitSize*pageNum;
+  // 샘플계산 (단위수 5, 1~3페이지)
+  // 시작수(5*(1-1)) = 0 /한계수(5*1) = 5
+  // 시작수(5*(2-1)) = 5 /한계수(5*2) = 10
+  // 시작수(5*(3-1)) = 10 /한계수(5*3) = 15
+
   const selData = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = (initNum); i < limitNum; i++) {
     selData.push(baseData[i]);
   }
 
@@ -58,6 +83,10 @@ function Board() {
             selData={selData} // 선택 리스트 배열데이터
             setMode={setMode} // 모드 상태변수 setter
             selRecord={selRecord} // 선택데이터 참조변수
+            setPageNum={setPageNum}
+            unitSize={unitSize}
+            pageNum={pageNum}
+            totalCount={totalCount}
           />
         )
       }
@@ -76,6 +105,7 @@ function Board() {
         mode === "W" && (
           <Write
             setMode={setMode} // 모드 상태변수 setter
+            totalCount={totalCount}
           />
         )
       }

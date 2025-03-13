@@ -7,13 +7,12 @@ function Read({ setMode, selRecord }) {
   // setMode - 모든 변경 상태변수 setter
   // selRecord - 선택데이터 참조변수
 
-  // 전역 컨텍스트 API 사용하기!!
-  const myCon = useContext(dCon);
-  console.log(myCon.loginSts.uid)
-  // 로그인 상태 
-
   // 선택된 참조변수 데이터 넣기
   const selData = selRecord.current;
+
+  // 전역 컨텍스트 API 사용하기!!
+  const myCon = useContext(dCon);
+  // console.log('Read에서 loginSts:',myCon.loginSts);
 
   // 리턴 코드구역 ///////////////////
   return (
@@ -25,19 +24,37 @@ function Read({ setMode, selRecord }) {
           <tr>
             <td>Name</td>
             <td>
-              <input type="text" className="name" size="20" readOnly={true} defaultValue={selData.unm} />
+              <input
+                type="text"
+                className="name"
+                size="20"
+                readOnly={true}
+                defaultValue={selData.unm}
+              />
             </td>
           </tr>
           <tr>
             <td>Title</td>
             <td>
-              <input type="text" className="subject" size="60" readOnly={true} defaultValue={selData.tit} />
+              <input
+                type="text"
+                className="subject"
+                size="60"
+                readOnly={true}
+                defaultValue={selData.tit}
+              />
             </td>
           </tr>
           <tr>
             <td>Content</td>
             <td>
-              <textarea className="content" cols="60" rows="10" readOnly={true} defaultValue={selData.cont}></textarea>
+              <textarea
+                className="content"
+                cols="60"
+                rows="10"
+                readOnly={true}
+                defaultValue={selData.cont}
+              ></textarea>
             </td>
           </tr>
           <tr>
@@ -62,7 +79,16 @@ function Read({ setMode, selRecord }) {
               {
                 // 로그인한 사용자가 글쓴이와 같은 아이디일 경우
                 // 수정버튼 보이기
-                myCon.loginSts && myCon.loginSts.uid === selData.uid ? <button>Modify</button> : null
+                myCon.loginSts && myCon.loginSts.uid === selData.uid && (
+                  <button
+                    onClick={() => {
+                      // 수정모드로 변경하기
+                      setMode("M");
+                    }}
+                  >
+                    Modify
+                  </button>
+                )
               }
             </td>
           </tr>

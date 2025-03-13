@@ -3,10 +3,13 @@
 import React, { useContext } from "react";
 import { dCon } from "../dCon";
 
-function List({ selData, setMode, selRecord }) {
+function List({ selData, setMode, selRecord, setPageNum, unitSize, pageNum, totalCount }) {
   // selData - 선택된 배열데이터 전달
   // setMode - 모든 변경 상태변수 setter
   // selRecord - 선택데이터 참조변수
+  // unitSize - 
+  // pageNum - 
+  // totalCount - 
 
   // 전역 컨텍스트 API 사용하기!!
   const myCon = useContext(dCon);
@@ -46,7 +49,10 @@ function List({ selData, setMode, selRecord }) {
         <tbody>
           {selData.map((v, i) => (
             <tr key={i}>
-              <td>{i + 1}</td>
+              {/* 페이징 시작번호더하기
+              -> 자동순번 + (단위수 *(페이지번호-1))
+              */}
+              <td>{i + 1 + unitSize * (pageNum - 1)}</td>
               <td>
                 <a
                   href="#"
@@ -78,8 +84,8 @@ function List({ selData, setMode, selRecord }) {
                 // 로그인상태일때만 쓰기버튼 보이기
                 myCon.loginSts && (
                   <button
-                    onClick={(e) => {
-                      // 글보기모드('R')로 변경하기
+                    onClick={() => {
+                      // 글쓰기 모드로 변경하기
                       setMode("W");
                     }}
                   >
@@ -90,6 +96,39 @@ function List({ selData, setMode, selRecord }) {
             </td>
           </tr>
         </tbody>
+        {/* 페이징 하단파트 */}
+        <tfoot>
+          <tr>
+            <td colSpan="5" className="paging">
+              {}
+              <a
+                onClick={() => {
+                  setPageNum(1);
+                }}
+              >
+                1
+              </a>{" "}
+              |{" "}
+              <a
+                href="#"
+                onClick={() => {
+                  setPageNum(2);
+                }}
+              >
+                2
+              </a>{" "}
+              |{" "}
+              <a
+                href="#"
+                onClick={() => {
+                  setPageNum(3);
+                }}
+              >
+                3
+              </a>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </main>
   );
