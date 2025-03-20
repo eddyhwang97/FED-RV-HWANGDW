@@ -5,10 +5,13 @@ import React from "react";
 // 제이쿼리 불러오기 ////
 import $ from "jquery";
 
-function Modify({ setMode, selRecord, totalCount }) {
+function Modify({ setMode, selRecord, totalCount, setPageNum, pgPgNum }) {
   // setMode - 모든 변경 상태변수 setter
   // selRecord - 선택데이터 참조변수
   // totalCount - 전체 개수 참조변수 (글삭제시 카운트 1감소!)
+  // setPageNum - 리스트 페이지번호 setter (글삭제시 첫페이지 이동)
+  // pgPgNum - 페이징의 페이징 번호 (글삭제시 페이징구역도 1)
+
 
   // 선택된 참조변수 데이터 넣기
   const selData = selRecord.current;
@@ -39,7 +42,7 @@ function Modify({ setMode, selRecord, totalCount }) {
 
       // 2) 수정할 현재 데이터 idx값(키값)
       let currIdx = selData.idx;
-      console.log("수정할idx:", currIdx);
+    // console.log("수정할idx:", currIdx);
 
       // 3) 로컬스 객체화 데이터 배열을 find로 순회하여
       // 해당 idx만 찾아서 제목과 내용 변경하기
@@ -83,7 +86,7 @@ function Modify({ setMode, selRecord, totalCount }) {
 
       // 2) 수정할 현재 데이터 idx값(키값)
       let currIdx = selData.idx;
-      console.log("삭제할idx:", currIdx);
+    // console.log("삭제할idx:", currIdx);
 
       // 3) 로컬스 객체화 데이터 배열을 some()으로 순회하여
       // 해당 idx만 삭제 처리한다!
@@ -103,11 +106,17 @@ function Modify({ setMode, selRecord, totalCount }) {
       localStorage.setItem("board-data", JSON.stringify(localData));
 
       // 5) 전체 개수 1감소하기 ////
-      totalCount.current--;
+      totalCount.current--;      
 
-      // 6) 리스트 이동을 위해 모드 변경하기
+      // 6) 페이지 번호 초기화
+      setPageNum(1);
+
+      // 7) 페이징 구역 번호 초기화
+      pgPgNum.current = 1;
+
+      // 8) 리스트 이동을 위해 모드 변경하기
       setMode("L");
-    } /// if :리confirm창 true처리 ///
+    } /// if : confirm창 true처리 ///
   }; ///////// deleteFn 함수 ////////////////
 
   // 리턴 코드구역 /////////////////////

@@ -10,7 +10,6 @@ export function TotalMenu() {
   const myCon = useContext(pCon);
   // pCon에 Provider value 속성에 공개한 변수/함수를 사용함!
 
-  
   // 메뉴 클릭시 처리함수 ///
   const setPage = (catName) => { // catName 호출시 카테고리명
     // (1) 카테고리명 상태변수 변경 : 상단메뉴 변경
@@ -20,6 +19,7 @@ export function TotalMenu() {
     // (3) 전체박스 숨기기
     document.querySelector('.ham').click();
   }; //////// setPage 메서드 ///////////
+
   // 코드 리턴 //////////////////////
   return (
     <>
