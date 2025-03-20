@@ -54,16 +54,11 @@ function Board() {
   // ->>> 매번 같은 값을 유지해야하는 변수들
 
   // [1] 페이지당 개수 : 페이지당 레코드수
-  const unitSize = 7;
+  const unitSize = 10;
   // [2] 페이징의 페이징 개수 : 한번에 보여줄 페이징 개수
-  const pgPgSize = 3;
+  const pgPgSize = 4 ;
 
-  // [ 데이터 정렬 ] /////////////
-  baseData
-    // ((기준1))-> 최신날짜로 내림차순
-    .sort((a, b) => (a.date > b.date ? -1 : a.date < b.date ? 1 : 0))
-    // ((기준2))-> idx로 내림차순
-    .sort((a, b) => (a.idx > b.idx ? -1 : a.idx < b.idx ? 1 : 0));
+  
 
   // [ 일부 데이터만 선택하기 ]
   // -> 페이징을 하기위해 일정단위수만큼 보이기
@@ -78,18 +73,38 @@ function Board() {
   // 시작수(5*(2-1)) = 5 / 한계수 (5*2) = 10
   // 시작수(5*(3-1)) = 10 / 한계수 (5*3) = 15
 
-  // 선택 데이터 담을 배열변수 ///
-  const selData = [];
+  // [ 데이터 정렬 ] /////////////
+  const selData = baseData.slice(initNum,limitNum);
+  selData
+    // ((기준1))-> 최신날짜로 내림차순
+    .sort((a, b) => (a.date > b.date ? -1 : a.date < b.date ? 1 : 0))
+    // ((기준2))-> idx로 내림차순
+    .sort((a, b) => (a.idx > b.idx ? -1 : a.idx < b.idx ? 1 : 0));
+
+
+    // [ slice() 배열 메서드르 이용한 부분값 가져오기]
+    // 배열 메서드 slice(시작순번, 끝순번)
+    // (1) 시작순번 : 시작할 배열값 첫번째 순번
+    // (2) 끝순번 : 출력에 포함되지 않는 마지막쩨 배열순번
+    // (3) slice 중요 특징:
+    // 1) 배열원본을 보존하여 새로운 배열생성
+    // 2) 끝순번 배열번호가 실제 배열번호보다 커도 에너가 나지 않고
+    // 자동으로 업는 순번을 빠져나가준다!
+  
+  
+  // [ 선택 데이터 담을 배열변수  :  for문 사용한경우] ///
+  // const selData = [];
 
   // [ ★★ 페이징에 맞게 데이터를 다시 담기 ★★ ] ///
-  for (let i = initNum; i < limitNum; i++) {
-    // ★★★매우중요함!!! 여분 페이지에서
-    // (전체레코드수-1)보다 크면 for문을 나가야함!
-    if (i > totalCount.current - 1) break;
+  // for (let i = initNum; i < limitNum; i++) {
+  //   // ★★★매우중요함!!! 여분 페이지에서
+  //   // (전체레코드수-1)보다 크면 for문을 나가야함!
+  //   if (i > totalCount.current - 1) break;
 
-    // 데이터 골라담기! ///
-    selData.push(baseData[i]);
-  } //////////// for : 선택데이터 담기 ///////////
+  //   // 데이터 골라담기! ///
+  //   selData.push(baseData[i]);
+  // } //////////// for : 선택데이터 담기 ///////////
+  
 
   // DOM 랜더링 실행구역 ///////
   useEffect(() => {
