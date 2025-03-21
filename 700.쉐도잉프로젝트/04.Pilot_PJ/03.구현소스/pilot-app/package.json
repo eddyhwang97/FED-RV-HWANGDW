@@ -11,6 +11,7 @@
     "jquery": "^3.7.1",
     "jquery-ui-dist": "^1.13.3",
     "jquery-ui-touch-punch": "^0.2.3",
+    "parallax": "^0.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0",
