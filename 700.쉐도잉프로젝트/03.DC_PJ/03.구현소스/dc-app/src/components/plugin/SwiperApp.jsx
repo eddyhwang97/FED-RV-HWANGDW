@@ -57,7 +57,7 @@ export default function SwiperApp() {
           // 배열이미지 이름만큼 반복하여 슬라이드 생성!
           imgArr.map((v, i) => (
             <SwiperSlide key={i}>
-              <img src={process.env.PUBLIC_URL+"./images/" + v + ".jpg"} alt="list image" />
+              <img src={"./images/" + v + ".jpg"} alt="list image" />
             </SwiperSlide>
           ))
         }
