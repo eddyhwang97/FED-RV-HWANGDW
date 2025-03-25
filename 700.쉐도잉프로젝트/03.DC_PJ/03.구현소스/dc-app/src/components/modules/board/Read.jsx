@@ -199,6 +199,11 @@ function Read({ setMode, selRecord }) {
     });
   };
 
+  // [4] 코멘트 삭제함수
+  const deleteComment =idx=>{ //idx - 지울 커멘트 idx값
+
+  } /////////deleteComment ////////
+
   // 코멘트 데이터 변경시에만 높이값 적용함수 호출
   useEffect(() => {
     adjustHeight();
@@ -274,7 +279,7 @@ function Read({ setMode, selRecord }) {
                       {v.unm}
                       {myCon.loginSts && myCon.loginSts.uid === v.uid && (
                         <>
-                          <button>Delete</button>
+                          <button onClick={()=>deleteComment(v.idx)}>Delete</button>
                           <button>Modify</button>
                         </>
                       )}
