@@ -92,13 +92,18 @@ function Read({ setMode, selRecord }) {
     localStorage.setItem("board-data", JSON.stringify(bdData));
   } ///// if ///////
 
-  // ★★★★★★★★★★★★★★★★ ////
+  // ★★★★★★★★★★★★★★★★★★★★★★★ ////
+  // ★★★★★★★★★★★★★★★★★★★★★★★ ////
   // [코멘트 구현 관련 코드 구역] ////////////
   // [1] 코멘트 관련 상태변수 및 참조변수
   // (1) 코멘트 정보 객체저장 상태변수
   const [commentData, setCommentData] = useState([]);
   // (2) TextArea 요소용 참조변수
   const textareaRef = useRef([]);
+  // (3) 수정중 코멘트 idx 저장변수 : 수정완료시 null값 복원!
+  const [isEditing, setIsEditing] = useState(null);
+  // (4) 수정중 코멘트 내용 저장변수
+  const [editedContent, setEditedContent] = useState("");
 
   /***************************************** 
       [ 코멘트 데이터 객체 구조 ]
@@ -123,7 +128,9 @@ function Read({ setMode, selRecord }) {
 
     // 2) 코멘트 데이터 로컬스 확인하기
     // -> 로컬스 코멘트가 없으면 빈배열 있으면 파싱 데이터 할당!
-    let comDt = localStorage.getItem("comment-data") ? JSON.parse(localStorage.getItem("comment-data")) : [];
+    let comDt = localStorage.getItem("comment-data")
+      ? JSON.parse(localStorage.getItem("comment-data"))
+      : [];
 
     console.log(
       "코멘트 저장해~!",
@@ -149,7 +156,7 @@ function Read({ setMode, selRecord }) {
     // 5) 기존 입력 내용 지우기
     $(".comment-box").val("");
 
-    // 6. 코멘트 데이터 생성함수 호출
+    // 6) 코멘트 데이터 생성함수 호출!
     makeCommentData();
   }; //////////// saveComment 함수 /////////////
 
@@ -186,36 +193,90 @@ function Read({ setMode, selRecord }) {
     } /// if ///
   }; ////////// makeCommentData 함수 ////////
 
-  // 호출시 모든 텍스트 박스의 높이를 조정함!
+  // (3) 호출시 모든 텍스트 박스의 높이 조정함수! //////
   const adjustHeight = () => {
-    // 코멘트로 생성된 textarea 수만큼 ㄷ돌아서 높이값 셋팅
-    textareaRef.current.forEach((textarea) => {
-      console.log("높이:", textarea.scrollHeight);
+    // 코멘트로 생성된 textarea 수만큼 돌아서 높이값 셋팅!
+    // 지운 데이터 순번처리위해 index값이 확인시 필요함!
+    textareaRef.current.forEach((textarea, index) => {
+      // index는 순회시 순번리턴
       if (textarea) {
-        // 높이값을 먼저 초기화 해야 높이값 설정이 적용된다.
+        // console.log("높이:", textarea.scrollHeight);
+        // 높이값을 먼저 초기화 해야 높이값 설정이 적용된다!
         textarea.style.height = "auto";
+        // 컨텐츠만큼 생긴 높이값을 적용함!
         textarea.style.height = `${textarea.scrollHeight}px`;
-      } ///if////
+      } /// if ///
+
+      /// 지운 경우 else문으로 처리함!(안하면 에러남!!!)///
+      else {
+        // 코드변경할 일은 없음
+        console.log("Textarea 처리안함 순번:", index);
+      } ////// else /////
     });
-  };
+  }; ///// adjustHeight 함수 ///////////////
 
-  // [4] 코멘트 삭제함수
-  const deleteComment =idx=>{ //idx - 지울 커멘트 idx값
+  // [4] 코멘트 삭제 함수 /////////////////////
+  const deleteComment = (idx) => {
+    // idx - 지울 코멘트 idx값
+    // (1) 삭제여부를 다시한번 확인 후 "취소"시 리턴
+    if (!window.confirm("Are you sure you want to delete?")) return;
 
-  } /////////deleteComment ////////
+    // (2) idx값을 비교해서 filter로 제거후 localStrage에 다시 저장
+    let comDt = JSON.parse(localStorage.getItem("comment-data"));
+    // idx가 지울idx와 같지 않은 것만 다시 담기함!
+    comDt = comDt.filter((v) => v.idx !== idx);
+    // 로컬스에 다시 저장!
+    localStorage.setItem("comment-data", JSON.stringify(comDt));
 
-  // 코멘트 데이터 변경시에만 높이값 적용함수 호출
+    // (3) 코멘트 데이터 생성함수 호출!
+    makeCommentData();
+  }; ////////////// deleteComment 함수 //////////////
+
+  // [5] 코멘트 수정상태 변경 함수 /////////////////////
+  const modifyComment = (idx) => {
+    // (1) 수정상태모드로 설정
+    setIsEditing(idx);
+    // (2) idx값이 동일한 코멘트를 선택
+    const selData = commentData.find((v) => v.idx === idx);
+    // (3) 수정대상 코멘트 컨텐트 데이터를 editedContent에 넣기
+    setEditedContent(selData.cont);
+    // 왜 넣었나요? 바로 다시 수정저장시 그대로 저장될 수 있게함!
+  }; /// modifyComment 함수 //////////////
+
+  // [6] 코멘트 수정저장 함수 /////////////////////
+  const saveModifiedComment = (idx) => {
+    // (1) 원본 코멘트 로컬스 데이터 불러와서 파싱하기
+    let comDt = JSON.parse(localStorage.getItem("comment-data"));
+
+    // (2) 파싱된 배열데이터의 해당 코멘트의 cont값을 변경함!
+    comDt = comDt.map((v) =>
+      v.idx === idx ? { ...v, cont: editedContent } : v
+    );
+
+    // (3) 로컬스에 다시 저장!
+    localStorage.setItem("comment-data", JSON.stringify(comDt));
+
+    // (4) 수정이 끝났으므로 수정모드 해제하기!
+    setIsEditing(null); // 버튼이 다시 Send -> Modify로 변경
+
+    // (5) 코멘트 데이터 상태변수에 반영하기
+    makeCommentData();
+  }; /// saveModifiedComment 함수 //////////////
+
+  // [코멘트데이터 변경시에만 높이값 적용함수 호출!] ///
   useEffect(() => {
     adjustHeight();
   }, [commentData]);
 
-  // 최초 로딩시 실행구역 //////////
+  // [최초 로딩시 실행구역] //////////
   useEffect(() => {
     // 코멘트 데이터 셋팅함수 호출
     makeCommentData();
   }, []); ///// useEffect ///////////
 
-  //////////////////////////////////
+  // ★★★★★★★★★★★★★★★★★★★★★★★ ////
+  // ★★★★★★★★★★★★★★★★★★★★★★★ ////
+  // ★★★★★★★★★★★★★★★★★★★★★★★ ////
   // 리턴 코드구역 ///////////////////
   return (
     <main className="cont">
@@ -226,101 +287,44 @@ function Read({ setMode, selRecord }) {
           <tr>
             <td>Name</td>
             <td>
-              <input type="text" className="name" size="20" readOnly={true} defaultValue={selData.unm} />
+              <input
+                type="text"
+                className="name"
+                size="20"
+                readOnly={true}
+                defaultValue={selData.unm}
+              />
             </td>
           </tr>
           <tr>
             <td>Title</td>
             <td>
-              <input type="text" className="subject" size="60" readOnly={true} defaultValue={selData.tit} />
+              <input
+                type="text"
+                className="subject"
+                size="60"
+                readOnly={true}
+                defaultValue={selData.tit}
+              />
             </td>
           </tr>
           <tr>
             <td>Content</td>
             <td>
-              <textarea className="content" cols="60" rows="10" readOnly={true} defaultValue={selData.cont}></textarea>
+              <textarea
+                className="content"
+                cols="60"
+                rows="10"
+                readOnly={true}
+                defaultValue={selData.cont}
+              ></textarea>
             </td>
           </tr>
-          {
-            // 로그인한 사용자에게만 코멘트 입력란이 보인다!
-            myCon.loginSts && (
-              <tr>
-                <td>Comments</td>
-                <td>
-                  <textarea className="comment-box" cols="60" rows="5"></textarea>
-                  <button
-                    style={{
-                      marginLeft: "10px",
-                      height: "80px",
-                      verticalAlign: "35px",
-                    }}
-                    onClick={saveComment}
-                  >
-                    Send
-                  </button>
-                </td>
-              </tr>
-            )
-          }
         </tbody>
       </table>
-      {/* 코멘트 데이터 출력 테이블 */}
-      {
-        // 코멘트가 있으면 출력 (상태변수로체크!)
-        commentData && (
-          <table className="dtblview">
-            <tbody>
-              {
-                // 코멘트 테이터 만큼 반복생성하기
-                commentData.map((v, i) => (
-                  <tr key={i}>
-                    {/* (1) 코멘트 쓴이 이름 */}
-                    <td style={{ fontSize: "16px", fontWeight: "normal" }}>
-                      {v.unm}
-                      {myCon.loginSts && myCon.loginSts.uid === v.uid && (
-                        <>
-                          <button onClick={()=>deleteComment(v.idx)}>Delete</button>
-                          <button>Modify</button>
-                        </>
-                      )}
-                    </td>
-                    {/* (2) 코멘트 내용 */}
-                    <td>
-                      <textarea
-                        className="comment-view-box"
-                        // 내용에 따른 높이값 정보를 참조변수에 노출
-                        // 자기자신을 참조변수 textareaRef에 할당!
-                        ref={(el) => (textareaRef.current[i] = el)}
-                        value={v.cont}
-                        readOnly
-                        style={{
-                          width: "100%",
-                          border: "none",
-                          outline: "none",
-                          overflow: "hidden",
-                          resize: "none",
-                        }}
-                      ></textarea>
-                    </td>
-                    {/* (3) 코멘트 날짜 */}
-                    <td
-                      style={{
-                        fontSize: "16px",
-                        fontWeight: "normal",
-                        width: "20%",
-                      }}
-                    >
-                      {v.date}
-                    </td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        )
-      }
 
       <br />
+      {/* 버튼 출력박스 */}
       <table className="dtbl btngrp">
         <tbody>
           <tr>
@@ -351,6 +355,146 @@ function Read({ setMode, selRecord }) {
           </tr>
         </tbody>
       </table>
+
+      {/* 코멘트 입력 박스 */}
+      {
+        // 로그인한 사용자에게만 코멘트 입력란이 보인다!
+        myCon.loginSts && (
+          <table className="dtblview">
+            <tbody>
+              <tr>
+                <td>Comments</td>
+                <td>
+                  <textarea
+                    className="comment-box"
+                    cols="60"
+                    rows="5"
+                  ></textarea>
+                  <button
+                    style={{
+                      marginLeft: "10px",
+                      height: "80px",
+                      verticalAlign: "35px",
+                    }}
+                    onClick={saveComment}
+                  >
+                    Send
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        )
+      }
+      {/* 코멘트 데이터 출력 테이블 */}
+      {
+        // 코멘트가 있으면 출력 (상태변수로체크!)
+        commentData && (
+          <table className="dtblview">
+            <tbody>
+              {
+                // 코멘트 테이터 만큼 반복생성하기
+                commentData.map((v, i) => (
+                  <tr key={i}>
+                    {/* (1) 코멘트 쓴이 이름 */}
+                    <td style={{ fontSize: "16px", fontWeight: "normal" }}>
+                      {v.unm} <br />
+                      {
+                        // 로그인한 사용자 + 해당코멘트 작성자
+                        // 삭제, 수정버튼 출력!
+                        myCon.loginSts && myCon.loginSts.uid === v.uid && (
+                          <>
+                            <button
+                              // 클릭시 지울 idx를 삭제함수에 보내줌!
+                              onClick={() => deleteComment(v.idx)}
+                            >
+                              Delete
+                            </button>
+
+                            {/* 수정버튼은 수정모드에서 'send'버튼변경 */}
+                            {
+                              // 수정상태일때는 isEditing값과 v.idx값 일치
+                              isEditing === v.idx ? (
+                                <button
+                                  /* Send버튼 클릭시 해당 코멘트값 수정 */
+                                  onClick={() => {
+                                    saveModifiedComment(v.idx);
+                                  }}
+                                >
+                                  Send
+                                </button>
+                              ) : (
+                                <button
+                                  /* Modify버튼 클릭시 isEditing 값 변경 */
+                                  onClick={() => {
+                                    modifyComment(v.idx);
+                                  }}
+                                >
+                                  Modify
+                                </button>
+                              )
+                            }
+                          </>
+                        )
+                      }
+                    </td>
+                    {/* (2) 코멘트 내용
+                      -> textarea가 수정모드일때는 입력상태로 변경됨!
+                    */}
+                    <td>
+                      <textarea
+                        className="comment-view-box"
+                        // 내용에 따른 높이값 정보를 참조변수에 노출
+                        // 자기자신을 참조변수 textareaRef에 할당!
+                        ref={(el) => (textareaRef.current[i] = el)}
+                        value={
+                          isEditing === v.idx // 수정해당이면
+                            ? editedContent // 수정컨텐트변수넣기
+                            : v.cont // 아니면 코멘트 데이터 넣기
+                        }
+                        // 읽기전용은 수정대상이 아닌경우만 해당함!
+                        readOnly={isEditing !== v.idx}
+                        // 수정모드시 타이핑 가능하게 onChange설정!
+                        onChange={(e) => {
+                          // e - 이벤트전달
+                          // 수정모드일 경우 값이 변경되게함
+                          if (isEditing === v.idx)
+                            setEditedContent(e.target.value);
+                          // 수정 코멘트 상태변수값이 변경되므로
+                          // value속성에 설정된 수정 코멘트가
+                          // 변경된 값으로 반영된다!!!
+                        }}
+                        style={{
+                          width: "100%",
+                          border: "none",
+                          // 아웃라인으로 수정표시하기 ///
+                          outline:
+                            isEditing === v.idx
+                              ? "2px solid blue" // 수정모드시 테두리
+                              : "none", // 보통은 안보임
+                          overflow: "hidden",
+                          resize: "none",
+                        }}
+                      ></textarea>
+                    </td>
+                    {/* (3) 코멘트 날짜 */}
+                    <td
+                      style={{
+                        fontSize: "16px",
+                        fontWeight: "normal",
+                        width: "20%",
+                      }}
+                    >
+                      {v.date}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        )
+      }
+      
     </main>
   );
 }
