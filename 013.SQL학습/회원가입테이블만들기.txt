@@ -21,7 +21,7 @@ CREATE TABLE `member`(
 `email2` varchar(20) not null,
 `regdate` timestamp not null DEFAULT CURRENT_TIMESTAMP,
 `auth` char(1) default "M"
-)
+);
 
 
 
