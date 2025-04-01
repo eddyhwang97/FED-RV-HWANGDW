@@ -1,6 +1,6 @@
 // DC PJ 게시판 리스트 모드 모듈 - List.jsx
 
-import React, { Fragment, useContext, useReducer } from "react";
+import React, { Fragment, useContext, useEffect, useReducer } from "react";
 import { dCon } from "../dCon";
 
 // 제이쿼리 불러오기 ///
@@ -215,6 +215,15 @@ function List({
   /******************************************* 
     [ 리액트 리듀서를 이용한 검색 레코드 생성하기 ]
 
+    -> 리듀서는 언제 사용하나?
+    변수값을 유지해야하고 그값이 연속적으로 변경되는 경우
+    리듀서를 이용하면 단일한 함수를 대리호출 메서드를 이용해
+    쉽고 간편하게 하나의 모듈로 통합하여 관리할 수 있다!
+    즉, 리액트용 변수값 관리 객체모듈이다!
+
+    -> 리듀서의 변수값은 리듀서의 함수 리턴값으로 변경한다!
+    그 함수는 리듀서의 셋팅 메서드로 호출된다!
+
     1. 리듀서 셋팅 기본형
 
       const [리듀서변수, 호출메서드] = 
@@ -295,20 +304,32 @@ function List({
     const [key, ele] = action.type;
     console.log("리듀서함수 전달값:", memory, key, ele);
 
-    // 2. key값에 따라서 분기하여 처리하기
+    // 2.  최신 검색어를 기준으로 5개 이상일 경우 맨 앞 배열값 삭제하기
+    let newArr = memory.split("*");
+    // 5개 이상일때 맨앞값 삭제
+    if (newArr.length > 5) newArr.shift();
+    // 문자열로 변환
+    newArr = newArr.join("*");
+    console.log("최신검색어:", newArr);
+
+    // 3. key값에 따라서 분기하여 처리하기
     switch (key) {
-      // 2.1 검색어 저장
+      // 2.1 검색어 클릭시 처리하기
       case "search":
         // (1) 검색어 읽어오기
         let txt = $(ele).prev().val();
         // (2) 검색어를 리듀서 변수에 리턴하는 값을 만드는 함수 호출
-        return retVal(memory, txt);
+        return retVal(newArr, txt);
       // memory는 기존 리듀서변수값, txt는 새로운값
     } /// case: search ///
   }; ////////// reducerFn 함수 //////////
 
   // [2] 검색어 저장기능 지원 후크 리듀서 : useReducer
-  const [memory, dispatch] = useReducer(reducerFn, "");
+  const [memory, dispatch] = useReducer(
+    reducerFn,
+    // 로컬쓰에 검색어 메모리값이 있으면 할당하기
+    localStorage.getItem("memory-data") ? localStorage.getItem("memory-data") : ""
+  );
   // 1. memory : 검색어 저장변수
   // -> 값은 *로 구분자를 사용한 문자열
 
@@ -323,6 +344,19 @@ function List({
   // 구분자가 없는 경우 split은 문자열을
   // 배열 0번째에 할당하고 에러안남!
   // console.log(memory.split('*'));
+
+  // 컴포넌트 처음 로딩 후 실행구역
+  useEffect(() => {
+    // 컴포넌트 소멸시 구역
+    // 리듀서 검색어 저장값을 로컬쓰에 할당함
+    console.log("리듀서 검색어 저장값 할당", memory);
+    localStorage.setItem("memory-data", memory);
+    // memory변수 의존성을 심어서 만약 memory가 변경되면
+    // 변경된 값을 반영한 소명자 구역 코드를 다시 구성함
+    // [] 빈대괄호를 하여 처음 한번 실행 코드를 만들면
+    // memory츼 초기값만 반영한 소멸자 구역 코드를 구성하기 때문에
+    // 로컬스토리지에 값이 빈 문자열값이 나온다!
+  }, [memory]);
 
   // ★★★★★★★★★★★★★★★★★ //
   // 리턴 코드구역 ////////////////////
@@ -417,13 +451,16 @@ function List({
           }}
           onClick={(e) => {
             // 클릭하면 검색레코드 보이기
-            $("ol", e.currentTarget).show();
+            $("ol", e.currentTarget).css({
+              display: "flex",
+            });
           }}
         >
           History
           <ol
             style={{
               position: "absolute",
+              flexDirection: "column-reverse",
               lineHeight: "1.7",
               padding: "5px 15px",
               border: "1px solid gray",
@@ -441,17 +478,21 @@ function List({
                 // 순회하여 li를 생성해 준다!
                 memory.split("*").map((v, i) => (
                   <li key={i}>
-                    <b onClick={()=>{
-                    // 검색어 바꾸기
-                    $("#stxt").val(v);
-                    // 검색함수 호출
-                    searchFn();
-                  }}>{v}</b>
+                    <b
+                      onClick={() => {
+                        // 검색어 바꾸기
+                        $("#stxt").val(v);
+                        // 검색함수 호출
+                        searchFn();
+                      }}
+                    >
+                      {v}
+                    </b>
                   </li>
                 ))
               ) : (
                 <li>
-                  <b >No history</b>
+                  <b>No history</b>
                 </li>
               )
             }
