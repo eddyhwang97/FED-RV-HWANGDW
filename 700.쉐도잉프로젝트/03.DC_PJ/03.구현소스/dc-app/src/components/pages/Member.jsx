@@ -9,11 +9,11 @@ import { Link, useNavigate } from "react-router-dom";
 // 로컬스토리지 생성 JS ////
 import { initData } from "../../js/func/mem_fn";
 
-// 모듈 AddressInput
-import AddressInput from "../modules/AddressInput";
-
 // 제이쿼리 불러오기 ////
 import $ from "jquery";
+
+// 다음 우편번호 모듈 불러오기 ///
+import AddressInput from "../modules/AddressInput";
 
 function Member() {
   // 라우터이동 객체 생성하기 ///
@@ -262,6 +262,7 @@ function Member() {
     // 우편번호체크 추가
     // -> 주소에러로 등록(우편번호에러값이 따로없음)
     if (!zipcode) setAddrError(true);
+
     // 2. 통과시 true, 불통과시 false 리턴처리
     // 통과조건 : 빈값아님 + 에러후크변수가 모두 false
     if (
@@ -275,7 +276,8 @@ function Member() {
       !chkPwdError &&
       !userNameError &&
       !emailError &&
-      !addrError //주소 애러항목 추가
+      // 주소에러항목추가
+      !addrError
     )
       return true;
     // 하나라도 false이면 false를 리턴함!
@@ -480,13 +482,13 @@ function Member() {
             </li>
             <li>
               <label>Address</label>
-              {/* 
-              다음우편번호 모듈
-              - 보내줄 값은 내가 정해야함
-              - 변경체크함수를 포롭스다운시킴!
-              - 자식이 부모에게 전달은 프롭스펑션업
-              */}
-              <AddressInput changeAddr={changeAddr}/>
+              {
+                /* 다음 우편번호 모듈
+                  - 보내줄 값은 내가 정해야함!
+                  - 변경체크함수를 프롭스다운시킴!
+                */
+              }
+              <AddressInput changeAddr={changeAddr} />
               {
                 // 에러일 경우 메시지 출력
                 // 조건문 && 출력요소
