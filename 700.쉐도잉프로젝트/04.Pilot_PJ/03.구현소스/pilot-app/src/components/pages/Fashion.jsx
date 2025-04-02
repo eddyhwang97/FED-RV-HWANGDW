@@ -143,7 +143,8 @@ function Fashion() {
   // 위치값 리턴함수 //////////
   const retClient = (idx) => {
     // console.log(idx);
-    return document.querySelectorAll(".sc-ani")[idx].getBoundingClientRect().top;
+    return document.querySelectorAll(".sc-ani")[idx].getBoundingClientRect()
+      .top;
   }; //////////// retClient함수 /////
 
   // 등장액션 일괄 셋팅 ////////
@@ -176,7 +177,6 @@ function Fashion() {
         <SinSang catName={catName} chgItemFn={chgItemFn} />
       </section>
       {/* 3. 상세보기박스 */}
-
       <div
         className="bgbx"
         onClick={(e) => {
@@ -198,7 +198,12 @@ function Fashion() {
         <Parallax
           className="c2"
           // 패럴렉스 배경이미지 설정속성 bgImage
-          bgImage={process.env.PUBLIC_URL + "/images/sub/" + catName + "/02.special.png"}
+          bgImage={
+            process.env.PUBLIC_URL +
+            "/images/sub/" +
+            catName +
+            "/02.special.png"
+          }
           // 패럴렉스 이동정도 조정속성 strength
           // 수치범위 : -500 ~ 1000 -> 높은숫자는 반대방향
           strength={200}
