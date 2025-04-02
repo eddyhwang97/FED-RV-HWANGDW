@@ -70,16 +70,38 @@ function Fashion() {
       goPage("/");
     }); //////// click ////////
 
+    // [ 메뉴가 변경되었으므로 새롭게 링크이동설정하기 ]
+    // 대상: .gnb a
+    $(".gnb a").on("click", (e) => {
+      e.preventDefault();
+      console.log("메뉴이동", e.target);
+      // 1. 아이디이름
+      let idName = $(e.target).attr("href");
+      // 2. 이동위치
+      let pos = $(idName).offset().top;
+      // 3. 스크롤 이동
+      $("html,body").animate(
+        {
+          scrollTop: pos + "px",
+        },
+        500
+      ); ////// animate //////
+      // 4. 부드러운 스크롤 위치값 일치하기!!!
+      setPos(pos);
+    }); ///////// click //////////
+
     //// 소멸자 리턴구역 ////////////////////////
     return () => {
       // 컴포넌트 소멸시 부드러운 스크롤 휠이벤트 지우기
       document.removeEventListener("wheel", scrolled, { passive: false });
       // 부드러운 스크롤 위치값 초기화!!!
       setPos(0);
-      
-    // 등장액션 체크함수 이벤트 설정하기
-    window.removeEventListener('scroll',chkPos);
-    
+
+      // 등장액션 체크함수 이벤트 설정하기
+      window.removeEventListener("scroll", chkPos);
+
+      // 메뉴 이벤트 설정 제거하기 : 안지우면 에러남!
+      $(".gnb a").off("click");
     }; //////// 소멸자 리턴 ////////
   }, []); //// useEffect : 한번만실행 ////////
 
@@ -98,9 +120,7 @@ function Fashion() {
     // 등장액션은 원래위치로 복귀하며 투명도회복 애니
 
     // 등장액션 체크함수 이벤트 설정하기
-    window.addEventListener('scroll',chkPos);
-
-
+    window.addEventListener("scroll", chkPos);
   }, [state]);
   // useEffect : state 변수 의존성 실행구역 끝 ////////
 
@@ -123,8 +143,7 @@ function Fashion() {
   // 위치값 리턴함수 //////////
   const retClient = (idx) => {
     // console.log(idx);
-    return document.querySelectorAll(".sc-ani")[idx].getBoundingClientRect()
-      .top;
+    return document.querySelectorAll(".sc-ani")[idx].getBoundingClientRect().top;
   }; //////////// retClient함수 /////
 
   // 등장액션 일괄 셋팅 ////////
@@ -157,6 +176,7 @@ function Fashion() {
         <SinSang catName={catName} chgItemFn={chgItemFn} />
       </section>
       {/* 3. 상세보기박스 */}
+
       <div
         className="bgbx"
         onClick={(e) => {
@@ -178,12 +198,7 @@ function Fashion() {
         <Parallax
           className="c2"
           // 패럴렉스 배경이미지 설정속성 bgImage
-          bgImage={
-            process.env.PUBLIC_URL +
-            "/images/sub/" +
-            catName +
-            "/02.special.png"
-          }
+          bgImage={process.env.PUBLIC_URL + "/images/sub/" + catName + "/02.special.png"}
           // 패럴렉스 이동정도 조정속성 strength
           // 수치범위 : -500 ~ 1000 -> 높은숫자는 반대방향
           strength={200}
