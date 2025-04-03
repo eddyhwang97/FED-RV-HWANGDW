@@ -49,7 +49,12 @@ export const TopArea = memo(({ catName, gMode, setGMode }) => {
           </h1>
           <nav className="gnb">
             <ul>
-              <li className="bld">배너순번 li 숨기기</li>
+            {
+                // 첫페이지에서만 보이기
+                catName === "main" && (
+                  <li className="bld">배너순번 li 숨기기</li>
+                )
+              }
               {makeList(catName)}
             </ul>
           </nav>

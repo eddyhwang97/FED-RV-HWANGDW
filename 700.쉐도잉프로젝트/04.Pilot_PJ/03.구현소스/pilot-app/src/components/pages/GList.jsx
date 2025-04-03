@@ -1,4 +1,10 @@
-import React, { Fragment, useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 // CSS 불러오기 ////
 import "../../css/glist.scss";
@@ -126,7 +132,14 @@ function GList() {
             >
               {/* 1,2,3,4 일련번호 출력 */}[{i + 1}]
               <img
-                src={process.env.PUBLIC_URL + "/images/goods/" + v.cat + "/" + v.ginfo[0] + ".png"}
+                src={
+                  process.env.PUBLIC_URL +
+                  "/images/goods/" +
+                  v.cat +
+                  "/" +
+                  v.ginfo[0] +
+                  ".png"
+                }
                 alt={v.ginfo[1]}
               />
               <aside>
@@ -160,17 +173,34 @@ function GList() {
     $(".bgbx").slideDown(600);
   }; //////////// showDetail 함수 ///////////
 
-  // 처음 한번만 로딩구역 ////
+  // 랜더링 실행구역 ////////
   useEffect(() => {
-    // 스크롤 맨위로 이동
+    // 스크롤 맨위로 이동!
     window.scrollTo(0, 0);
   }, [myCon.gMode]);
+  // 의존성 gMode 적용!
 
-  useEffect(()=>{
-    $('.gnb li').click((e)=>{
-      $(e.currentTarget).addClass('on').siblings().removeClass('on')
-    })
-  },[])
+  // 한번만 랜더링 구역 /////
+  useEffect(() => {
+    // 처음에 첫번째 li에만 on넣기
+    $(".gnb li")
+    .first().addClass("on")
+    .siblings().removeClass("on") ;
+
+
+    // 클릭된 메뉴에 class 'on' 넣기
+    $(".gnb li")
+    .on('click',(e) => {
+      $(e.currentTarget).addClass("on")
+      .siblings().removeClass("on");
+    });
+
+    // 소멸시 이벤트 제거하기 ///
+    return(()=>{
+      $(".gnb li").off("click");
+    });
+  }, []); //// 처음 한번만 실행 //////
+
   // ★★★★★★★★★★★★ ///
   // 코드 리턴구역 /////////////
   return (
@@ -223,7 +253,8 @@ function GList() {
             <div
               className="grid"
               style={{
-                gridTemplateColumns: selData.length === 0 ? "repeat(1, 1fr)" : "",
+                gridTemplateColumns:
+                  selData.length === 0 ? "repeat(1, 1fr)" : "",
               }}
             >
               {makeCode()}
@@ -239,7 +270,8 @@ function GList() {
             <div
               className="grid"
               style={{
-                gridTemplateColumns: selData.length === 0 ? "repeat(1, 1fr)" : "",
+                gridTemplateColumns:
+                  selData.length === 0 ? "repeat(1, 1fr)" : "",
               }}
             >
               {makeCode()}
@@ -299,22 +331,25 @@ function GList() {
             <div
               className="grid"
               style={{
-                gridTemplateColumns: selData.length === 0 ? "repeat(1, 1fr)" : "",
+                gridTemplateColumns:
+                  selData.length === 0 ? "repeat(1, 1fr)" : "",
               }}
             >
               {makeCode()}
             </div>
-            {/* 더보기 버튼 */}
-            <div id="more">
+            {/* 더보기 버튼박스 */}
+            <div
+              id="more"
+              style={{
+                // 더보기 횟수가 전체한계수와 같으면 숨기기
+                display: moreCnt === moreLimit.current ? "none" : "block",
+              }}
+            >
               <button
                 className="more"
                 onClick={(e) => {
                   // 더보기 횟수 1씩 증가
                   setMoreCnt(moreCnt + 1);
-                }}
-                style={{
-                  // 더보기 횟수가 전체한계수와 같으면 숨기기
-                  display: moreCnt === moreLimit ? "none" : "inline-block",
                 }}
               >
                 MORE
