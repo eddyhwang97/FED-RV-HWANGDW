@@ -93,7 +93,7 @@ export const TopArea = memo(({ loginMsg, loginSts, logoutFn, goPage }) => {
   useEffect(() => {
     // GNB a요소 클릭시 전체메뉴 닫기 ///
     // 대상: .gnb a[href!='#']
-    $('.gnb a').on("click", () => {
+    $(".gnb a").on("click", () => {
       // 상단영역 클래스 on제거하여 메뉴닫기!
       $(".top-area").removeClass("on");
     }); //// click ////
@@ -158,20 +158,9 @@ export const TopArea = memo(({ loginMsg, loginSts, logoutFn, goPage }) => {
               {/* 검색입력박스 */}
               <div className="searchingGnb">
                 {/* 검색버튼 돋보기 아이콘 */}
-                <FontAwesomeIcon
-                  icon={faSearch}
-                  className="schbtnGnb"
-                  title="Open search"
-                  onClick={() => {}}
-                />
+                <FontAwesomeIcon icon={faSearch} className="schbtnGnb" title="Open search" onClick={() => {}} />
                 {/* 입력창 */}
-                <input
-                  type="text"
-                  name="schinGnb"
-                  id="schinGnb"
-                  placeholder="Filter by Keyword"
-                  onKeyUp={enterKey}
-                />
+                <input type="text" name="schinGnb" id="schinGnb" placeholder="Filter by Keyword" onKeyUp={enterKey} />
               </div>
               {/* 검색기능링크 - 클릭시 검색창 보이기 */}
               <a href="#" onClick={showSearch}>
@@ -197,19 +186,24 @@ export const TopArea = memo(({ loginMsg, loginSts, logoutFn, goPage }) => {
             {
               // 로그인 상태이면 로그아웃버튼 보이기!
               loginSts && (
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      // 기본이동막기
-                      e.preventDefault();
-                      // 로그아웃 처리함수 호출
-                      logoutFn();
-                    }}
-                  >
-                    LOGOUT
-                  </a>
-                </li>
+                <>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        // 기본이동막기
+                        e.preventDefault();
+                        // 로그아웃 처리함수 호출
+                        logoutFn();
+                      }}
+                    >
+                      LOGOUT
+                    </a>
+                  </li>
+                  <li>
+                    <Link to="/mypage">MY PAGE</Link>
+                  </li>
+                </>
               )
             }
           </ul>
