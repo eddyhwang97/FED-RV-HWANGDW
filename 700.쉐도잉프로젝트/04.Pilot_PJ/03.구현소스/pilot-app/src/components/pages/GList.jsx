@@ -195,6 +195,11 @@ function GList() {
       .siblings().removeClass("on");
     });
 
+    // 초기 gMode값 F로 셋팅
+    if(myCon.gMode!=='F'){
+      myCon.setGMode('F');
+    }
+
     // 소멸시 이벤트 제거하기 ///
     return(()=>{
       $(".gnb li").off("click");
