@@ -1,0 +1,1 @@
+{"version":3,"file":"bundle.js","mappings":";;;;;AAAa;AACb;AACA,kBAAkB,KAAK;AACvB;AACA","sources":["webpack://9994.typescript/./src/index.ts"],"sourcesContent":["\"use strict\";\nfunction greet(name) {\n    return `안녕, ${name}~!`;\n}\nconsole.log(greet(\"찐친 개발자\"));\n"],"names":[],"sourceRoot":""}
