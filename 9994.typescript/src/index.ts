@@ -172,6 +172,41 @@ console.log(AISystem.MidJourney);
 console.log(AISystem.StableDiffusion);
 console.log(AISystem.Cop);
 
+// 10.  제네릭 타입 함수에 적용하기
+// -> 타입을 외에 유연하게 전달 받을 수 있는 방법
+
+// 배열 요소 콘솔 출력 제네릭 함수
+function printArray<T>(arr: T[]): void {
+  arr.forEach((val, idx) => {
+    console.log(idx, " : ", val);
+  });
+}
+const numberArray: number[] = [1000, 2000, 3000, 4000, 5000];
+// 제네릭 함수 호출시 형을 지정하여 호출하기
+// printArray<number>(numberArray);
+// 데이터 형을 지정하지 않아도 자동으로 형을 감지한다.(타입 추론)
+printArray(numberArray);
+
+// 문자 배열 제네릭함수 호출예
+const stringArray: string[] = ["코딩의 신", "타입스크립트", "JS 개발자", "찐친 개발자"];
+// printArray<string>(stringArray);
+printArray(stringArray);
+
+// 11. 제네릭타입 설정하기
+type ApiResponse<T> = {
+  data: T;
+  success: boolean;
+  error?: string;
+};
+
+// 사용자 정보 전달 ///////
+const userResponse: ApiResponse<{ name: string; age: number }> = {
+  data: {
+    name: "코딩의 신",
+    age: 30,
+  },
+};
+
 // ★★★★★★★★★★★★★★★★★★★★★ //
 // 개발자 회사 샘플 찍어보기 //////////////////
 
