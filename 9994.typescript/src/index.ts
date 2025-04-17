@@ -3,6 +3,10 @@
 
 // 외부 ts파일 불러오기 ////
 import {
+  // 개발자 기술
+  Skill,
+  // 개발자 역할
+  Role,
   // 개발팀 배열
   devTeam,
   // 활동 중인 개발자 필터 함수
@@ -91,7 +95,7 @@ function sayGoodBye(
 
 console.log("😎 함수타입");
 console.log(sayGoodBye("찐친 개발자", true));
-console.log(sayGoodBye("타입스크립트", true, "멋쪄!"));
+console.log(sayGoodBye("타입스크립트", true, "완전멋쪄!"));
 console.log(sayGoodBye("JS 개발자", false));
 console.log(sayGoodBye("코딩의 신", false, "하이!"));
 
@@ -104,7 +108,8 @@ console.log("😎 void 함수");
 logMessage("코딩의 신");
 logMessage("타입스크립트");
 
-// 8. 인터섹션 타입 선언
+// 8. 인터섹션 타입 선언 :
+// &를 쓰기도하고 {}로 한꺼번에 셋팅하기도함
 type Employee = {
   name: string;
   company: string;
@@ -147,41 +152,49 @@ const student2: StudentInformation = {
   age: 21,
 };
 
-// 9. enum 타입 선언 
-enum AISystem{
-  Cgpt = "ChatGPT",
-  DallE = "Dall-E",
-  
-  Cot ="Copilot" 
-  
-}
-
 console.log("😎 인터섹션타입");
 console.log(student1);
 console.log(student2);
 
+// 9. enum 타입 선언
+enum AISystem {
+  Cgpt = "Chat GPT",
+  DallE = "DALL-E",
+  MidJourney = "MidJourney",
+  StableDiffusion = "Stable Diffusion",
+  Cop = "Copilot",
+}
+
+console.log("😎 enum타입");
+console.log(AISystem.Cgpt);
+console.log(AISystem.DallE);
+console.log(AISystem.MidJourney);
+console.log(AISystem.StableDiffusion);
+console.log(AISystem.Cop);
+
+// ★★★★★★★★★★★★★★★★★★★★★ //
 // 개발자 회사 샘플 찍어보기 //////////////////
 
 console.log("😎 개발자 회사 샘플 찍어보기");
 console.log("👷‍♀️🦸‍♀️전체 개발자 리스트:", devTeam);
 
 console.log("👷‍♀️🦸‍♀️Frontend 개발자 리스트:");
-console.log(findByRole(devTeam, "Frontend"));
+console.log(findByRole(devTeam, Role.Frontend));
 
 console.log("👷‍♀️🦸‍♀️BackEnd 개발자 리스트:");
-console.log(findByRole(devTeam, "Backend"));
+console.log(findByRole(devTeam, Role.Backend));
 
 console.log("👷‍♀️🦸‍♀️Fullstack 개발자 리스트:");
-console.log(findByRole(devTeam, "Fullstack"));
+console.log(findByRole(devTeam, Role.Fullstack));
 
 console.log("👷‍♀️🦸‍♀️현재 활동중인 개발자 리스트:");
 console.log(getActiveDevelopers(devTeam));
 
 console.log("👷‍♀️🦸‍♀️TypeScript 스킬을 가진 개발자 리스트:");
-console.log(findBySkill(devTeam, "TypeScript"));
+console.log(findBySkill(devTeam, Skill.TypeScript));
 
 console.log("👷‍♀️🦸‍♀️React 스킬을 가진 개발자 리스트:");
-console.log(findBySkill(devTeam, "React"));
+console.log(findBySkill(devTeam, Skill.React));
 
 console.log("👷‍♀️🦸‍♀️VueJS 스킬을 가진 개발자 리스트:");
-console.log(findBySkill(devTeam, "VueJS"));
+console.log(findBySkill(devTeam, Skill.VueJs));
