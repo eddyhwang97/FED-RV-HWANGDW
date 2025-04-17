@@ -71,16 +71,18 @@ export enum Role {
 // 각 개발자는 이름(name), 나이(age), 역할(role), 기술(skills),
 // 활동상태(isActive)를 가짐
 export type Developer = {
-// 이름
-name: string;
-// 나이
-age: number;
-// 역할(Frontend, Backend, Fullstack)
-role: Role;
-// 기술(예: React, Node.js, TypeScript)
-skills: string[];
-// 활동상태(true, false)
-isActive: boolean;
+  // 이름
+  name: string;
+  // 나이
+  age: number;
+  // 역할(Frontend, Backend, Fullstack)
+  role: Role;
+  // 연차
+  year: number;
+  // 기술(예: React, Node.js, TypeScript)
+  skills: string[];
+  // 활동상태(true, false)
+  isActive: boolean;
 };
 
 // 🤹‍♀️ 3. 개발자 정보 셋팅 : 배열 객체
@@ -95,85 +97,95 @@ export enum Skill {
 }
 
 export const devTeam: Developer[] = [
-{
-  name: "김상중하",
-  age: 30,
-  role: Role.Frontend,
-  skills: [Skill.React, Skill.NodeJs, Skill.TypeScript],
-  isActive: false,
-},
-{
-  name: "이주현",
-  age: 25,
-  role: Role.Backend,
-  skills: [Skill.NodeJs, Skill.VueJs, Skill.Express, Skill.MongoDB],
-  isActive: true,
-},
-{
-  name: "김하루방",
-  age: 32,
-  role: Role.Fullstack,
-  skills: [Skill.React, Skill.NodeJs, Skill.TypeScript, Skill.Express, Skill.MongoDB],
-  isActive: false,
-},
-{
-  name: "조삼모사",
-  age: 48,
-  role: Role.Frontend,
-  skills: [Skill.TypeScript, Skill.Sass],
-  isActive: false,
-},
-{
-  name: "김한결",
-  age: 27,
-  role: Role.Backend,
-  skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
-  isActive: true,
-},
-{
-  name: "이상민",
-  age: 26,
-  role: Role.Fullstack,
-  skills: [Skill.React, Skill.NodeJs, Skill.TypeScript, Skill.Express, Skill.MongoDB],
-  isActive: true,
-},
-{
-  name: "김하은",
-  age: 24,
-  role: Role.Frontend,
-  skills: [Skill.React, Skill.Sass],
-  isActive: true,
-},
-{
-  name: "이주호",
-  age: 23,
-  role: Role.Backend,
-  skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
-  isActive: true,
-},
-{
-  name: "김상민",
-  age: 29,
-  role: Role.Fullstack,
-  skills: [Skill.React, Skill.NodeJs, Skill.Express, Skill.MongoDB],
-  isActive: true,
-},
-{
-  name: "박상현",
-  age: 25,
-  role: Role.Backend,
-  skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
-  isActive: true,
-},
+  {
+    name: "김상중하",
+    age: 30,
+    year: 3,
+    role: Role.Frontend,
+    skills: [Skill.React, Skill.NodeJs, Skill.TypeScript],
+    isActive: false,
+  },
+  {
+    name: "이주현",
+    age: 25,
+    year: 5,
+    role: Role.Backend,
+    skills: [Skill.NodeJs, Skill.VueJs, Skill.Express, Skill.MongoDB],
+    isActive: true,
+  },
+  {
+    name: "김하루방",
+    age: 32,
+    year: 8,
+    role: Role.Fullstack,
+    skills: [Skill.React, Skill.NodeJs, Skill.TypeScript, Skill.Express, Skill.MongoDB],
+    isActive: false,
+  },
+  {
+    name: "조삼모사",
+    age: 48,
+    year: 10,
+    role: Role.Frontend,
+    skills: [Skill.TypeScript, Skill.Sass],
+    isActive: false,
+  },
+  {
+    name: "김한결",
+    age: 27,
+    year: 4,
+    role: Role.Backend,
+    skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
+    isActive: true,
+  },
+  {
+    name: "이상민",
+    age: 26,
+    year: 6,
+    role: Role.Fullstack,
+    skills: [Skill.React, Skill.NodeJs, Skill.TypeScript, Skill.Express, Skill.MongoDB],
+    isActive: true,
+  },
+  {
+    name: "김하은",
+    age: 24,
+    year: 2,
+    role: Role.Frontend,
+    skills: [Skill.React, Skill.Sass],
+    isActive: true,
+  },
+  {
+    name: "이주호",
+    age: 23,
+    year: 1,
+    role: Role.Backend,
+    skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
+    isActive: true,
+  },
+  {
+    name: "김상민",
+    age: 29,
+    year: 7,
+    role: Role.Fullstack,
+    skills: [Skill.React, Skill.NodeJs, Skill.Express, Skill.MongoDB],
+    isActive: true,
+  },
+  {
+    name: "박상현",
+    age: 25,
+    year: 2,
+    role: Role.Backend,
+    skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
+    isActive: true,
+  },
 ];
 
 // 🤹‍♀️ 4. 활동중인 개발자 필터링 함수 정의 ///////
 // -> team 파라미터변수에 devTeam 배열을 받아서
 // 배열값의 객체속성중 isActive 속성값이 true인 개발자들만 반환
 export function getActiveDevelopers(
-team: Developer[] // 팀원데이터
+  team: Developer[] // 팀원데이터
 ): Developer[] {
-return team.filter((dev) => dev.isActive);
+  return team.filter((dev) => dev.isActive);
 } ////////// getActiveDevelopers 함수 //////////////
 
 // 🤹‍♀️ 5. 특정기술을 가진 개발자 필터링 함수 정의 ///////
@@ -181,10 +193,10 @@ return team.filter((dev) => dev.isActive);
 // 배열값의 객체속성중 skills 속성값중
 // 해당 기술이 있는 개발자들만 반환
 export function findBySkill(
-team: Developer[], // 팀원데이터
-skill: string
+  team: Developer[], // 팀원데이터
+  skill: string
 ): Developer[] {
-return team.filter((dev) => dev.skills.includes(skill));
+  return team.filter((dev) => dev.skills.includes(skill));
 } ////////// findBySkill 함수 //////////////
 
 // 🤹‍♀️ 6. 특정 역할을 가진 개발자 필터링 함수 정의 ///////
@@ -195,7 +207,7 @@ export function findByRole(
   team: Developer[], // 팀원데이터
   role: Role // 역할
 ): Developer[] {
-return team.filter((dev) => dev.role === role);
+  return team.filter((dev) => dev.role === role);
 } ////////// findByRole 함수 //////////////
 
 // 7. 인터페이스를 활용한 팀 메니저 타입 정의
@@ -205,11 +217,25 @@ export interface TeamManager {
   // 팀의 크기
   teamSize: number;
   // 어떤 역할들을 관리하는지
-  manegerRoles  : Role[];
+  manegerRoles: Role[];
 }
 
 export const teamManager: TeamManager = {
   name: "코딩의 신",
   teamSize: devTeam.length,
   manegerRoles: [Role.Frontend, Role.Backend],
-}
+};
+
+// 제네릭을 활용한 중급, 고급 개발자 필터함수 만들기///
+// 기준 -> 중고급자 개발자는 경력 5년 이상이다!
+// 기존에 경력년수가 없으므로 year 속성을 추가함
+export function getSeniorDevelopers<T>(
+  items: T[], //개발자 배열 객체 데이터
+  filterFn : (item:T)=> boolean //검증함수
+):T[] {
+  // 검증함수 결과가 true인 배열값만 반환
+  return items.filter(filterFn);
+} ////////// getSeniorDevelopers 함수 //////////////
+
+
+

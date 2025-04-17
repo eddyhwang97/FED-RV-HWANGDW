@@ -3,7 +3,6 @@
 
 // 외부 ts파일 불러오기 ////
 import {
-  
   // 개발자 기술
   Skill,
   // 개발자 역할
@@ -11,13 +10,15 @@ import {
   // 개발팀 배열
   devTeam,
   // 매니저 객체
-  TeamManager,
+  teamManager,
   // 활동 중인 개발자 필터 함수
   getActiveDevelopers,
   // 특정 기술을 가진 개발자 필터 함수
   findBySkill,
   // 특정 역할을 가진 개발자 필터 함수
   findByRole,
+  // 중급, 고급 개발자 필터 함수
+  getSeniorDevelopers,
 } from "./devTeam";
 
 function greet(name: string): string {
@@ -239,3 +240,30 @@ console.log(findBySkill(devTeam, Skill.React));
 
 console.log("👷‍♀️🦸‍♀️VueJS 스킬을 가진 개발자 리스트:");
 console.log(findBySkill(devTeam, Skill.VueJs));
+
+console.log("👷‍♀️🦸‍♀️팀 매니저 정보");
+console.log(teamManager);
+
+const seniorDevelopers = getSeniorDevelopers(devTeam, (dev) => dev.year >= 5);
+
+console.log("👷‍♀️🦸‍♀️중고급 개발자 리스트 ; ");
+console.log(seniorDevelopers);
+
+// 모든 개발자를 화면에 출력해보자!
+console.log("👷‍♀️🦸‍♀️모든 개발자 리스트 ; ");
+const devListContainer = document.getElementById("dev-list") as HTMLElement;
+// 목록 출력
+
+devTeam.map((dev) => {
+  const devInfo = document.createElement("div");
+  devInfo.classList.add("dev-info");
+  devInfo.innerHTML = `
+   <h3>이름 : ${dev.name}</h3>
+   <p>나이 : ${dev.age}</p>
+   <p>개발 경력 : ${dev.year}</p>
+   <p>개발 역할 : ${dev.role}</p>
+   <p>개발 스킬 : ${dev.skills}</p>
+  `;
+  devListContainer.appendChild(devInfo);
+});
+console.log();
