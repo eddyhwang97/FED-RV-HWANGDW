@@ -197,3 +197,19 @@ export function findByRole(
 ): Developer[] {
 return team.filter((dev) => dev.role === role);
 } ////////// findByRole 함수 //////////////
+
+// 7. 인터페이스를 활용한 팀 메니저 타입 정의
+export interface TeamManager {
+  // 팀 메니저 이름
+  name: string;
+  // 팀의 크기
+  teamSize: number;
+  // 어떤 역할들을 관리하는지
+  manegerRoles  : Role[];
+}
+
+export const teamManager: TeamManager = {
+  name: "코딩의 신",
+  teamSize: devTeam.length,
+  manegerRoles: [Role.Frontend, Role.Backend],
+}

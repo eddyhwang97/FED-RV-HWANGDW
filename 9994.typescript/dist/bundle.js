@@ -15,7 +15,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   devTeam: () => (/* binding */ devTeam),
 /* harmony export */   findByRole: () => (/* binding */ findByRole),
 /* harmony export */   findBySkill: () => (/* binding */ findBySkill),
-/* harmony export */   getActiveDevelopers: () => (/* binding */ getActiveDevelopers)
+/* harmony export */   getActiveDevelopers: () => (/* binding */ getActiveDevelopers),
+/* harmony export */   teamManager: () => (/* binding */ teamManager)
 /* harmony export */ });
 /**************************************
 🧩 실습 주제: “우리 개발팀 인력 관리 시스템”
@@ -189,6 +190,11 @@ role // 역할
 ) {
     return team.filter((dev) => dev.role === role);
 } ////////// findByRole 함수 //////////////
+const teamManager = {
+    name: "코딩의 신",
+    teamSize: devTeam.length,
+    manegerRoles: [Role.Frontend, Role.Backend],
+};
 
 
 /***/ })
@@ -388,7 +394,10 @@ const userResponse = {
         name: "코딩의 신",
         age: 30,
     },
+    success: true,
 };
+console.log("😎 제네릭타입");
+console.log(userResponse);
 // ★★★★★★★★★★★★★★★★★★★★★ //
 // 개발자 회사 샘플 찍어보기 //////////////////
 console.log("😎 개발자 회사 샘플 찍어보기");
